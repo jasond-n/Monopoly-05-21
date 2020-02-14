@@ -8,8 +8,8 @@
 public class Property {
 	
 	//initializing variables
-	private int price, color, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3Hourse, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
-	private String owner, name;
+	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
+	private String owner, name, color;
 	
 //Getters and Setters
 	public String getOwner() {
@@ -28,11 +28,11 @@ public class Property {
 		this.price = price;
 	}
 
-	public int getColor() {
+	public String getColor() {
 		return color;
 	}
 
-	public void setColor(int color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 
@@ -84,12 +84,12 @@ public class Property {
 		this.rent2House = rent2House;
 	}
 
-	public int getRent3Hourse() {
-		return rent3Hourse;
+	public int getRent3House() {
+		return rent3House;
 	}
 
-	public void setRent3Hourse(int rent3Hourse) {
-		this.rent3Hourse = rent3Hourse;
+	public void setRent3House(int rent3Hourse) {
+		this.rent3House = rent3Hourse;
 	}
 
 	public int getRent4House() {
@@ -138,6 +138,25 @@ public class Property {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, String owner, String name, String color) {
+		setPrice(price); //price of property
+		setNumOfHouses(numOfHouses); 
+		setNumOfHotels(numOfHotels);
+		setPositionOnBoard(positionOnBoard); //position of property 1-40
+		setRentBase(rentBase);
+		setRent1House(rent1House);
+		setRent2House(rent2House);
+		setRent3House(rent3House);
+		setRent4House(rent4House);
+		setRentHotel(rentHotel);
+		setMortgageValue(mortgageValue);
+		setHouseCost(houseCost);
+		setHotelCost(hotelCost);
+		setOwner(owner); //name of owner of property
+		setName(name); //name of the actual property
+		setColor(color); //String of color
 	}
 	
 }
