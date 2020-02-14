@@ -2,15 +2,17 @@ import java.util.ArrayList;
 
 public class Player {
 
+	private final int INITIAL_BALANCE = 1500;
+	
 	private String avatar;
 	private ArrayList<Property> properties;
 	private int balance;
 	private Boolean injail;
 	
-	public Player(String avatar, int balance)
+	public Player(String avatar)
 	{
 		this.avatar = avatar;
-		this.balance = balance;
+		this.balance = INITIAL_BALANCE;
 		this.properties = new ArrayList<Property>();
 		this.injail = false;
 	}
