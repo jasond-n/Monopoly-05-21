@@ -11,7 +11,7 @@ public class GameConfiguration {
 	
 	public void update()
 	{
-		My changes
+		
 	}
 	
 	
