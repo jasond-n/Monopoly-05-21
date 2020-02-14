@@ -28,7 +28,7 @@ public class Player {
 	{
 		if(this.balance < theProperty.getPrice())
 		{
-			return false;
+			return false;a
 		}
 		else
 		{
