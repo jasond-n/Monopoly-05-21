@@ -1,5 +1,5 @@
 /*
- * If you add variables, make getters and setter plz
+ * If you add variables, make getters and setter please
  * 
  * 
  * 
@@ -9,9 +9,10 @@ public class Property {
 	
 	//initializing variables
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
+	// Owner is string but in UML Diagram it says Owner is of type Player object?????
 	private String owner, name, color;
 	
-//Getters and Setters
+	//Getters and Setters
 	public String getOwner() {
 		return owner;
 	}
@@ -140,7 +141,29 @@ public class Property {
 		this.name = name;
 	}
 	
+	// Property constructor that takes in arguments
 	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, String owner, String name, String color) {
+		setPrice(price); //price of property
+		setNumOfHouses(numOfHouses); 
+		setNumOfHotels(numOfHotels);
+		setPositionOnBoard(positionOnBoard); //position of property 1-40
+		setRentBase(rentBase);
+		setRent1House(rent1House);
+		setRent2House(rent2House);
+		setRent3House(rent3House);
+		setRent4House(rent4House);
+		setRentHotel(rentHotel);
+		setMortgageValue(mortgageValue);
+		setHouseCost(houseCost);
+		setHotelCost(hotelCost);
+		setOwner(owner); //name of owner of property
+		setName(name); //name of the actual property
+		setColor(color); //String of color
+	}
+	
+	// Property constructor that takes in no arguments 
+	// This may for now cause a NullPointerException because of the fact that we are calling on objects  
+	public Property() {
 		setPrice(price); //price of property
 		setNumOfHouses(numOfHouses); 
 		setNumOfHotels(numOfHotels);
