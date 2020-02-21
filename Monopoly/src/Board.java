@@ -69,7 +69,26 @@ public class Board {
 		pennsylvaniaAvenue = new Property(320, 0, 0, 35, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, "n/a", "Pennsylvania Avenue", "green");
 		parkPlace = new Property(350, 0, 0, 38, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, "n/a", "Park Place", "dark blue");
 		boardwalk = new Property(400 , 0, 0, 40, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200, "n/a", "Boardwalk", "dark blue");
+		
+		Card money1 = new Card("You have just recieved your student loans. Collect $50.", "money", 50);
+		Card money2 = new Card("A bus just ran you over on campus. Collect $150 from the lawsuit settlement.", "money", 150);
+		Card money3 = new Card("Pay $15 for a pizza bun at Bake Chef.", "money", -15);
+		Card money4 = new Card("You got a scholarship for maintaining a 4.0 GPA last semester. Collect $100", "money", 100);
+		Card move1 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
+		Card move2 = new Card("Advance to GO. Collect $200.", "move", 1);
+		// in move2, value = 1 represents the index for the GO space. use 41 - player.getLocation() instead? the number of spaces player needs to go forwards to get to GO. (player get location is needed)	
+		Card move3 = new Card("Advance to Science Theatres. If you pass GO, collect $200", "move", 25);
+		Card move4 = new Card("Advance to Reeve Theatre. If you pass GO, collect $200.", "move", 12);
+		Card move5 = new Card("Take a trip to Somerset Station. If you pass Go, collect $200", "move", 6);
+		// advance to nearest utility. If owned, throw dice and pay owner a total 10 times the amount thrown.
+		// Advance to nearest Railroad and pay owner twice the rental amount.
+		// Get out of Jail Free. This card may be kept until needed, or traded/sold.
+		// Make general repairs on all your property: For each house pay $25, For each hotel pay $100.
+		// You have been elected as an SU faculty representative. Pay each player $50.
+		
+		
 	}
+	
 
 	
 
