@@ -1,4 +1,6 @@
 
+import java.util.Scanner;
+
 public class GameConfiguration {
 	
 	private static Board gameBoard;
@@ -7,11 +9,47 @@ public class GameConfiguration {
 		final int startPosition = 1;
 		
 		gameBoard = new Board();
-		System.out.println(Board.mediterraneanAvenue.getColor()); //proof of concept
+		
+		
+		Player player1 = new Player("Bob");
+		Player player2 = new Player("Sally");
+		int turn = 0; //counter to determine turn
+		//Player player3 = new Player("n/a");
+		//Player player4 = new Player("n/a");
+		
+		Scanner sc = new Scanner(System.in);
+		String userInput = "";
+		do {
+			if (turn == 0) {
+				int postion =player1.move(player1.diceRoll());
+				
+				
+				turn = 1;
+			}
+			else {
+				
+				
+				turn = 0;
+			}
+			
+			
+		} while (userInput != "");
+		
+		
+		sc.close();
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//switch statement to handle player move
 		switch(startPosition) {
 			case 1: break;
+		
 			case 2: break;
 			case 3: break;
 			case 4: break;
