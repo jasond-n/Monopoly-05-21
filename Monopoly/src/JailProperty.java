@@ -1,5 +1,5 @@
 
-public class SpecialProperty extends Property {
+public class JailProperty extends Property {
 	
 	//railroads
 	public SpecialProperty(int price, int positionOnBoard, int rentBase, int rent2, int rent3, int rent4, int mortgageValue, String owner, String name) {
