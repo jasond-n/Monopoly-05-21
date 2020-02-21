@@ -9,7 +9,7 @@ public class Board {
 	
 	private Property go;
 	private Property cragie; //this makes coding the gameconfig alot easier if we make them all public static just not sure about privacy leaks
-	//communityChest1
+	private CommunityChest communityChest1;
 	//rentFee1
 	private Property scienceB;
 	private RailroadProperty somerset;
@@ -24,7 +24,7 @@ public class Board {
 	private Property kinesA;
 	private RailroadProperty cityHall;
 	private Property scurfield;
-	//communityChest2
+	private CommunityChest communityChest2;
 	private Property professional;
 	private Property scienceA;
 	//free parking
@@ -40,7 +40,7 @@ public class Board {
 	//goto jail
 	private Property tfdl;
 	private Property schulich;
-	//community chest3
+	private CommunityChest communityChest3;
 	private RailroadProperty tuscany;
 	private Property ict;
 	//chance 3
@@ -92,7 +92,7 @@ public class Board {
 		//in the constructor possibly add number of players?
 		allSpotsOnBoard.add(go = new Property(200));
 		allSpotsOnBoard.add(cragie = new Property(60, 0, 0, 2, 2, 10, 30, 90, 160, 250, 30, 50, 50, "n/a", "Cragie Hall", "brown"));
-		//community chest
+		allSpotsOnBoard.add(communityChest1 = new CommunityChest(3 ,"Community Chest 1"));
 		//rent fee
 		allSpotsOnBoard.add(scienceB = new Property(60, 0, 0, 5, 4, 20, 60, 180, 320, 450, 30, 50, 50, "n/a", "Science B", "brown"));
 		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 6, 25, 50, 100, 200, 100, "n/a", "Somerset Station"));
@@ -105,9 +105,9 @@ public class Board {
 		//zipper
 		allSpotsOnBoard.add(kinesB = new Property(140, 0, 0, 14, 10, 50, 150, 450, 625, 750, 70, 100, 100, "n/a", "Kineseology B", "pink"));
 		allSpotsOnBoard.add(kinesA = new Property(160, 0, 0, 15, 12, 60, 180, 500, 700, 900, 80, 100, 100, "n/a", "Kineseology A", "pink"));
-		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 6, 25, 50, 100, 200, 100, "n/a", "City Hall Station"));
+		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 16, 25, 50, 100, 200, 100, "n/a", "City Hall Station"));
 		allSpotsOnBoard.add(scurfield = new Property(180, 0, 0, 17, 14, 70, 200, 550, 750, 950, 90, 100, 100, "n/a", "Scurfield Hall", "orange"));
-		//community chest
+		allSpotsOnBoard.add(communityChest2 = new CommunityChest(18 ,"Community Chest 2"));
 		allSpotsOnBoard.add(professional = new Property(180, 0, 0, 19, 14, 70, 200, 550, 750, 950, 90, 100, 100, "n/a", "Professional Faculty", "orange"));
 		allSpotsOnBoard.add(scienceA = new Property(200, 0, 0, 20, 16, 80, 220, 600, 800, 1000, 100, 100, 100, "n/a", "Science A", "orange"));
 		//free parking
@@ -115,7 +115,7 @@ public class Board {
 		//chance
 		allSpotsOnBoard.add(murrayFraser = new Property(220, 0, 0, 24, 18, 90, 250, 700, 875, 1050, 110, 150, 150, "n/a", "Murray Fraser Hall", "red"));
 		scienceTheatres = new Property(240, 0, 0, 25, 20, 100, 300, 750, 925, 1100, 120, 150, 150, "n/a", "Science Theatres", "red");
-		allSpotsOnBoard.add(university = new RailroadProperty(200, 6, 25, 50, 100, 200, 100, "n/a", "University Staiton"));
+		allSpotsOnBoard.add(university = new RailroadProperty(200, 26, 25, 50, 100, 200, 100, "n/a", "University Staiton"));
 		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, "n/a", "Administration Building", "yellow"));
 		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 28, 22, 110, 330, 800, 975, 1150, 130, 150, 150, "n/a", "Macewan Hall", "yellow"));
 		//gym
@@ -123,9 +123,9 @@ public class Board {
 		//gotojail
 		allSpotsOnBoard.add(tfdl = new Property(300, 0, 0, 32, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, "n/a", "Taylor Family Digital Library", "green"));
 		allSpotsOnBoard.add(schulich = new Property(300, 0, 0, 33, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, "n/a", "Schulich School of Engineering", "green"));
-		//com chest
-		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 6, 25, 50, 100, 200, 100, "n/a", "Tuscany Station"));
-		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 35, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, "n/a", "ICT", "green"));
+		allSpotsOnBoard.add(communityChest3 = new CommunityChest(34 ,"Community Chest 3"));
+		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 35, 25, 50, 100, 200, 100, "n/a", "Tuscany Station"));
+		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 36, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, "n/a", "ICT", "green"));
 		//chance
 		allSpotsOnBoard.add(eeel = new Property(350, 0, 0, 38, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, "n/a", "EEEL", "dark blue"));
 		//tuition
