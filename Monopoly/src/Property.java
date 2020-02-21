@@ -196,8 +196,9 @@ public class Property {
 					setName(name); //name of the actual property
 				}
 		
-		public Property(int price) {
+		public Property(int price, int positionOnBoard) {
 			setPrice(price);
+			setPositionOnBoard(positionOnBoard); //position of property 1-40
 		}
 		
 	
