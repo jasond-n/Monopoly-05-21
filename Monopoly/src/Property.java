@@ -1,17 +1,17 @@
 /*
- * If you add variables, make getters and setter plz
+ * If you add variables, make getters and setter please
  * 
  * 
  * 
  * 
  * */
 public class Property {
-	
 	//initializing variables
-	private int price, color, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3Hourse, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
-	private String owner, name;
+	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
+	// Owner is string but in UML Diagram it says Owner is of type Player object?????
+	private String owner, name, color;
 	
-//Getters and Setters
+	//Getters and Setters
 	public String getOwner() {
 		return owner;
 	}
@@ -24,15 +24,15 @@ public class Property {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	private void setPrice(int price) {
 		this.price = price;
 	}
 
-	public int getColor() {
+	public String getColor() {
 		return color;
 	}
 
-	public void setColor(int color) {
+	private void setColor(String color) {
 		this.color = color;
 	}
 
@@ -56,7 +56,7 @@ public class Property {
 		return positionOnBoard;
 	}
 
-	public void setPositionOnBoard(int positionOnBoard) {
+	private void setPositionOnBoard(int positionOnBoard) {
 		this.positionOnBoard = positionOnBoard;
 	}
 
@@ -64,7 +64,7 @@ public class Property {
 		return rentBase;
 	}
 
-	public void setRentBase(int rentBase) {
+	private void setRentBase(int rentBase) {
 		this.rentBase = rentBase;
 	}
 
@@ -72,7 +72,7 @@ public class Property {
 		return rent1House;
 	}
 
-	public void setRent1House(int rent1House) {
+	private void setRent1House(int rent1House) {
 		this.rent1House = rent1House;
 	}
 
@@ -80,23 +80,23 @@ public class Property {
 		return rent2House;
 	}
 
-	public void setRent2House(int rent2House) {
+	private void setRent2House(int rent2House) {
 		this.rent2House = rent2House;
 	}
 
-	public int getRent3Hourse() {
-		return rent3Hourse;
+	public int getRent3House() {
+		return rent3House;
 	}
 
-	public void setRent3Hourse(int rent3Hourse) {
-		this.rent3Hourse = rent3Hourse;
+	private void setRent3House(int rent3Hourse) {
+		this.rent3House = rent3Hourse;
 	}
 
 	public int getRent4House() {
 		return rent4House;
 	}
 
-	public void setRent4House(int rent4House) {
+	private void setRent4House(int rent4House) {
 		this.rent4House = rent4House;
 	}
 
@@ -104,7 +104,7 @@ public class Property {
 		return rentHotel;
 	}
 
-	public void setRentHotel(int rentHotel) {
+	private void setRentHotel(int rentHotel) {
 		this.rentHotel = rentHotel;
 	}
 
@@ -112,7 +112,7 @@ public class Property {
 		return mortgageValue;
 	}
 
-	public void setMortgageValue(int mortgageValue) {
+	private void setMortgageValue(int mortgageValue) {
 		this.mortgageValue = mortgageValue;
 	}
 
@@ -120,7 +120,7 @@ public class Property {
 		return houseCost;
 	}
 
-	public void setHouseCost(int houseCost) {
+	private void setHouseCost(int houseCost) {
 		this.houseCost = houseCost;
 	}
 
@@ -128,7 +128,7 @@ public class Property {
 		return hotelCost;
 	}
 
-	public void setHotelCost(int hotelCost) {
+	private void setHotelCost(int hotelCost) {
 		this.hotelCost = hotelCost;
 	}
 	
@@ -136,8 +136,43 @@ public class Property {
 		return name;
 	}
 
-	public void setName(String name) {
+	private void setName(String name) {
 		this.name = name;
+	}
+	
+	// Property constructor that takes in arguments
+	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, String owner, String name, String color) {
+		setPrice(price); //price of property
+		setNumOfHouses(numOfHouses); 
+		setNumOfHotels(numOfHotels);
+		setPositionOnBoard(positionOnBoard); //position of property 1-40
+		setRentBase(rentBase);
+		setRent1House(rent1House);
+		setRent2House(rent2House);
+		setRent3House(rent3House);
+		setRent4House(rent4House);
+		setRentHotel(rentHotel);
+		setMortgageValue(mortgageValue);
+		setHouseCost(houseCost);
+		setHotelCost(hotelCost);
+		setOwner(owner); //name of owner of property
+		setName(name); //name of the actual property
+		setColor(color); //String of color
+	}
+	
+	//use this to make special property
+	// Property constructor that takes in no arguments 
+	// This may for now cause a NullPointerException because of the fact that we are calling on objects  
+	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, String owner, String name) {
+		setPrice(price); //price of property
+		setPositionOnBoard(positionOnBoard); //position of property 1-40
+		setRentBase(rentBase);
+		setRent1House(rent1House);
+		setRent2House(rent2House);
+		setRent3House(rent3House);
+		setMortgageValue(mortgageValue);
+		setOwner(owner); //name of owner of property
+		setName(name); //name of the actual property
 	}
 	
 }

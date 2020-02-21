@@ -32,7 +32,7 @@ public class Player {
 		}
 		else
 		{
-			theProperty.setOwner(this);
+			theProperty.setOwner(this.avatar);
 			this.properties.add(theProperty);
 			this.balance = this.balance - theProperty.getPrice();
 			return true;
