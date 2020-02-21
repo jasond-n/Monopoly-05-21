@@ -1,14 +1,6 @@
-
 public class JailProperty extends Property {
-	
-	//railroads
-	public SpecialProperty(int price, int positionOnBoard, int rentBase, int rent2, int rent3, int rent4, int mortgageValue, String owner, String name) {
-		super(price, positionOnBoard, rentBase, rent2, rent3, rent4, mortgageValue, owner, name);
+	public JailProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, String owner, String name)
+	{
+		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, mortgageValue, owner, name);
 	}
-	
-	//utilities
-	public SpecialProperty(int price, int positionOnBoard, int rentBase, int rent2, int mortgageValue, String owner, String name) {
-		super(price, positionOnBoard, rentBase, rent2, mortgageValue, owner, name);
-	}
-
 }

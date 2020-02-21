@@ -160,7 +160,7 @@ public class Property {
 		setColor(color); //String of color
 	}
 	
-	//use this to make special property
+	// use this to make special property
 	// Property constructor that takes in no arguments 
 	// This may for now cause a NullPointerException because of the fact that we are calling on objects  
 	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, String owner, String name) {
@@ -175,7 +175,7 @@ public class Property {
 		setName(name); //name of the actual property
 	}
 	
-	//use this to make special property
+	//use this to make utility
 		// Property constructor that takes in no arguments 
 		// This may for now cause a NullPointerException because of the fact that we are calling on objects  
 		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, String owner, String name) {
@@ -187,6 +187,14 @@ public class Property {
 			setOwner(owner); //name of owner of property
 			setName(name); //name of the actual property
 		}
+		
+		//use this to make comunity chest property
+				// Property constructor that takes in no arguments 
+				// This may for now cause a NullPointerException because of the fact that we are calling on objects  
+				public Property(int positionOnBoard,  String name) {
+					setPositionOnBoard(positionOnBoard); //position of property 1-40
+					setName(name); //name of the actual property
+				}
 		
 		public Property(int price) {
 			setPrice(price);
