@@ -74,6 +74,7 @@ public class Card {
 		// hard coding each type of community chest or chance card, each with unique actions
 		Card money1 = new Card("You have just recieved your student loans. Collect $150.", "money", 150);
 		Card move1 = new Card("MATH 265 has no more open lecture seats left for the semester. Move back four spaces.","move", -4);
+		Card move2 = new Card("Advance to ")
 		// advance to ___
 		// advance to nearest ____
 		// for each house/hotel, pay ___
