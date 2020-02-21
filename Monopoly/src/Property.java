@@ -6,7 +6,6 @@
  * 
  * */
 public class Property {
-	
 	//initializing variables
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
 	// Owner is string but in UML Diagram it says Owner is of type Player object?????
