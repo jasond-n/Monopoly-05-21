@@ -175,4 +175,22 @@ public class Property {
 		setName(name); //name of the actual property
 	}
 	
+	//use this to make special property
+		// Property constructor that takes in no arguments 
+		// This may for now cause a NullPointerException because of the fact that we are calling on objects  
+		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, String owner, String name) {
+			setPrice(price); //price of property
+			setPositionOnBoard(positionOnBoard); //position of property 1-40
+			setRentBase(rentBase);
+			setRent1House(rent1House);
+			setMortgageValue(mortgageValue);
+			setOwner(owner); //name of owner of property
+			setName(name); //name of the actual property
+		}
+		
+		public Property(int price) {
+			setPrice(price);
+		}
+		
+	
 }
