@@ -1,10 +1,13 @@
 
 public class GameConfiguration {
 
-	private Board gameBoard;
+	private static Board gameBoard;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		gameBoard = new Board();
+		System.out.println(Board.mediterraneanAvenue.getColor()); //proof of concept
+		
+		
 		
 	}
 

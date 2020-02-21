@@ -24,7 +24,7 @@ public class Property {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	private void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -32,7 +32,7 @@ public class Property {
 		return color;
 	}
 
-	public void setColor(String color) {
+	private void setColor(String color) {
 		this.color = color;
 	}
 
@@ -56,7 +56,7 @@ public class Property {
 		return positionOnBoard;
 	}
 
-	public void setPositionOnBoard(int positionOnBoard) {
+	private void setPositionOnBoard(int positionOnBoard) {
 		this.positionOnBoard = positionOnBoard;
 	}
 
@@ -64,7 +64,7 @@ public class Property {
 		return rentBase;
 	}
 
-	public void setRentBase(int rentBase) {
+	private void setRentBase(int rentBase) {
 		this.rentBase = rentBase;
 	}
 
@@ -72,7 +72,7 @@ public class Property {
 		return rent1House;
 	}
 
-	public void setRent1House(int rent1House) {
+	private void setRent1House(int rent1House) {
 		this.rent1House = rent1House;
 	}
 
@@ -80,7 +80,7 @@ public class Property {
 		return rent2House;
 	}
 
-	public void setRent2House(int rent2House) {
+	private void setRent2House(int rent2House) {
 		this.rent2House = rent2House;
 	}
 
@@ -88,7 +88,7 @@ public class Property {
 		return rent3House;
 	}
 
-	public void setRent3House(int rent3Hourse) {
+	private void setRent3House(int rent3Hourse) {
 		this.rent3House = rent3Hourse;
 	}
 
@@ -96,7 +96,7 @@ public class Property {
 		return rent4House;
 	}
 
-	public void setRent4House(int rent4House) {
+	private void setRent4House(int rent4House) {
 		this.rent4House = rent4House;
 	}
 
@@ -104,7 +104,7 @@ public class Property {
 		return rentHotel;
 	}
 
-	public void setRentHotel(int rentHotel) {
+	private void setRentHotel(int rentHotel) {
 		this.rentHotel = rentHotel;
 	}
 
@@ -112,7 +112,7 @@ public class Property {
 		return mortgageValue;
 	}
 
-	public void setMortgageValue(int mortgageValue) {
+	private void setMortgageValue(int mortgageValue) {
 		this.mortgageValue = mortgageValue;
 	}
 
@@ -120,7 +120,7 @@ public class Property {
 		return houseCost;
 	}
 
-	public void setHouseCost(int houseCost) {
+	private void setHouseCost(int houseCost) {
 		this.houseCost = houseCost;
 	}
 
@@ -128,7 +128,7 @@ public class Property {
 		return hotelCost;
 	}
 
-	public void setHotelCost(int hotelCost) {
+	private void setHotelCost(int hotelCost) {
 		this.hotelCost = hotelCost;
 	}
 	
@@ -136,7 +136,7 @@ public class Property {
 		return name;
 	}
 
-	public void setName(String name) {
+	private void setName(String name) {
 		this.name = name;
 	}
 	

@@ -3,7 +3,7 @@
 public class Board {
 	private Property propertyName; //don't know what this is for but will leave it here
 	private int freeParkingMoneyPool;
-	private Property mediterraneanAvenue;
+	public static Property mediterraneanAvenue; //this makes coding the gameconfig alot easier if we make them all public static just not sure about privacy leaks
 	private Property balticAvenue;
 	private Property orientalAvenue;
 	private Property vermontAvenue;
