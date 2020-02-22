@@ -40,34 +40,56 @@ public class Card {
 	// and pass the effect onto the player
 	public void ChanceEffect(Player p) {
 		
-		int randomIndex = (int) Math.random() * chanceDeck.size();
-		Card cardDrawn = chanceDeck.get(randomIndex);
-		System.out.println(cardDrawn.desc);
-		
-		if (cardDrawn.type == "money") {
-			// update player's money value
-			p.setBalance(p.getBalance() += cardDrawn.value);
-		} else if (cardDrawn.type == "move") {
-			// update player's location
-			p.setLocation(p.getLocation() += cardDrawn.value); // location in Player class ????
-		}
+//		int randomIndex = (int) Math.random() * chanceDeck.size();
+//		Card cardDrawn = chanceDeck.get(randomIndex);
+//		System.out.println(cardDrawn.desc);
+//		
+//		if (cardDrawn.type == "money") {
+//			// update player's money value
+//			p.setBalance(p.getBalance() += cardDrawn.value);
+//		} else if (cardDrawn.type == "move") {
+//			// update player's location
+//			p.setLocation(p.getLocation() += cardDrawn.value); // location in Player class ????
+//		}
 	} 
 	
 	// do the same thing if player lands on community chest space
 	public void CommunityEffect(Player p) {
 		
-		int randomIndex = (int) Math.random() * communityDeck.size();
-		Card cardDrawn = communityDeck.get(randomIndex);
-		System.out.println(cardDrawn.desc);
-		
-		if (cardDrawn.type == "money") {
-			// update player's money value
-			p.setBalance(p.getBalance() += cardDrawn.value);
-		} else if (cardDrawn.type == "move") {
-			// update player's location
-			p.setLocation(p.getLocation() += cardDrawn.value); // location in Player class ????
-		}
+//		int randomIndex = (int) Math.random() * communityDeck.size();
+//		Card cardDrawn = communityDeck.get(randomIndex);
+//		System.out.println(cardDrawn.desc);
+//		
+//		if (cardDrawn.type == "money") {
+//			// update player's money value
+//			p.setBalance(p.getBalance() += cardDrawn.value);
+//		} else if (cardDrawn.type == "move") {
+//			// update player's location
+//			p.setLocation(p.getLocation() += cardDrawn.value); // location in Player class ????
+//		}
 	} 
+	
+	public static void main (String args[]) {
+		
+		// hard coding each type of community chest or chance card, each with unique actions
+		Card money1 = new Card("You have just recieved your student loans. Collect $150.", "money", 150);
+		Card move1 = new Card("MATH 265 has no more open lecture seats left for the semester. Move back four spaces.","move", -4);
+		//Card move2 = new Card("Advance to ")
+		// advance to ___
+		// advance to nearest ____
+		// for each house/hotel, pay ___
+		// pay each player ___
+		// go to jail
+		// get out of jail
+		
+		
+		// creating an arraylist (a deck) of chance cards (GOES IN BOARD CLASS ??)
+		ArrayList<Card> chanceDeck = new ArrayList<Card>();
+		chanceDeck.add(money1);
+		chanceDeck.add(move1);
+		
+		// creating an arraylist (a deck) of community chest cards (GOES IN BOARD CLASS ??)
+		
 	}
 
 	

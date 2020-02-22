@@ -173,7 +173,19 @@ public class Board {
 		
 	}
 	
+	public ArrayList<Property> getProperties()
+	{
+		return this.allSpotsOnBoard;
+	}
 
-	
+	public String toString()
+	{
+		String resultString = "";
+		for(Property theProperty : allSpotsOnBoard)
+		{
+			resultString = theProperty.getName() + " ";
+		}
+		return resultString;
+	}
 
 }
