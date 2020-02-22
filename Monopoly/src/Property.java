@@ -188,7 +188,7 @@ public class Property {
 			setName(name); //name of the actual property
 		}
 		
-		//use this to make comunity chest property
+		//use this to make comunity chest / chance / tax
 				// Property constructor that takes in no arguments 
 				// This may for now cause a NullPointerException because of the fact that we are calling on objects  
 				public Property(int positionOnBoard,  String name) {
@@ -201,10 +201,7 @@ public class Property {
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
 		}
 		
-		//constructor for tax properties
-		public Property(int positionOnBoard) {
-			setPositionOnBoard(positionOnBoard);
-		}
+		
 		
 		
 		
