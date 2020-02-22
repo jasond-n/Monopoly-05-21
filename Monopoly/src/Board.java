@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Board {
 	
-	private ArrayList<Property> allSpotsOnBoard;
+	public static ArrayList<Property> allSpotsOnBoard;
 	private ArrayList<Card> chanceDeck = new ArrayList<Card>();
 	private ArrayList<Card> communityDeck = new ArrayList<Card>();
 	
@@ -128,45 +128,45 @@ public class Board {
 		allSpotsOnBoard = new ArrayList<Property>();
 		//in the constructor possibly add number of players?
 		allSpotsOnBoard.add(go = new Property(200, 1));
-		allSpotsOnBoard.add(cragie = new Property(60, 0, 0, 2, 2, 10, 30, 90, 160, 250, 30, 50, 50, "n/a", "Cragie Hall", "brown"));
+		allSpotsOnBoard.add(cragie = new Property(60, 0, 0, 2, 2, 10, 30, 90, 160, 250, 30, 50, 50, null, "Cragie Hall", "brown"));
 		allSpotsOnBoard.add(communityChest1 = new CommunityChest(3 ,"Community Chest 1"));
 		allSpotsOnBoard.add(rentFee = new TaxProperty(4, "Rent Fee"));
-		allSpotsOnBoard.add(scienceB = new Property(60, 0, 0, 5, 4, 20, 60, 180, 320, 450, 30, 50, 50, "n/a", "Science B", "brown"));
-		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 6, 25, 50, 100, 200, 100, "n/a", "Somerset Station"));
-		allSpotsOnBoard.add(mathScience = new Property(100, 0, 0, 7, 6, 30, 90, 270, 400, 550, 50, 50, 50, "n/a", "Math Sciences", "light blue"));
+		allSpotsOnBoard.add(scienceB = new Property(60, 0, 0, 5, 4, 20, 60, 180, 320, 450, 30, 50, 50, null, "Science B", "brown"));
+		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 6, 25, 50, 100, 200, 100, null, "Somerset Station"));
+		allSpotsOnBoard.add(mathScience = new Property(100, 0, 0, 7, 6, 30, 90, 270, 400, 550, 50, 50, 50, null, "Math Sciences", "light blue"));
 		allSpotsOnBoard.add(chance1 = new Chance(8 ,"Chance 1"));
-		allSpotsOnBoard.add(bioSci = new Property(100, 0, 0, 9, 6, 30, 90, 270, 400, 550, 50, 50, 50, "n/a", "Biological Sciences", "light blue"));
-		allSpotsOnBoard.add(alma = new Property(120, 0, 0, 10, 8, 40, 100, 300, 450, 600, 60, 50, 50, "n/a", "Hotel Alma", "light blue"));
+		allSpotsOnBoard.add(bioSci = new Property(100, 0, 0, 9, 6, 30, 90, 270, 400, 550, 50, 50, 50, null, "Biological Sciences", "light blue"));
+		allSpotsOnBoard.add(alma = new Property(120, 0, 0, 10, 8, 40, 100, 300, 450, 600, 60, 50, 50, null, "Hotel Alma", "light blue"));
 		allSpotsOnBoard.add(jail = new JailProperty(11, "Jail"));
-		allSpotsOnBoard.add(reeveTheatre = new Property(140, 0, 0, 12, 10, 50, 150, 450, 625, 750, 70, 100, 100, "n/a", "Reeve Theatre", "pink"));
-		allSpotsOnBoard.add(zipper = new Utility(150, 13, 4, 10, 75, "n/a", "The Zipper"));
-		allSpotsOnBoard.add(kinesB = new Property(140, 0, 0, 14, 10, 50, 150, 450, 625, 750, 70, 100, 100, "n/a", "Kineseology B", "pink"));
-		allSpotsOnBoard.add(kinesA = new Property(160, 0, 0, 15, 12, 60, 180, 500, 700, 900, 80, 100, 100, "n/a", "Kineseology A", "pink"));
-		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 16, 25, 50, 100, 200, 100, "n/a", "City Hall Station"));
-		allSpotsOnBoard.add(scurfield = new Property(180, 0, 0, 17, 14, 70, 200, 550, 750, 950, 90, 100, 100, "n/a", "Scurfield Hall", "orange"));
+		allSpotsOnBoard.add(reeveTheatre = new Property(140, 0, 0, 12, 10, 50, 150, 450, 625, 750, 70, 100, 100, null, "Reeve Theatre", "pink"));
+		allSpotsOnBoard.add(zipper = new Utility(150, 13, 4, 10, 75, null, "The Zipper"));
+		allSpotsOnBoard.add(kinesB = new Property(140, 0, 0, 14, 10, 50, 150, 450, 625, 750, 70, 100, 100, null, "Kineseology B", "pink"));
+		allSpotsOnBoard.add(kinesA = new Property(160, 0, 0, 15, 12, 60, 180, 500, 700, 900, 80, 100, 100, null, "Kineseology A", "pink"));
+		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 16, 25, 50, 100, 200, 100, null, "City Hall Station"));
+		allSpotsOnBoard.add(scurfield = new Property(180, 0, 0, 17, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Scurfield Hall", "orange"));
 		allSpotsOnBoard.add(communityChest2 = new CommunityChest(18 ,"Community Chest 2"));
-		allSpotsOnBoard.add(professional = new Property(180, 0, 0, 19, 14, 70, 200, 550, 750, 950, 90, 100, 100, "n/a", "Professional Faculty", "orange"));
-		allSpotsOnBoard.add(scienceA = new Property(200, 0, 0, 20, 16, 80, 220, 600, 800, 1000, 100, 100, 100, "n/a", "Science A", "orange"));
+		allSpotsOnBoard.add(professional = new Property(180, 0, 0, 19, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Professional Faculty", "orange"));
+		allSpotsOnBoard.add(scienceA = new Property(200, 0, 0, 20, 16, 80, 220, 600, 800, 1000, 100, 100, 100, null, "Science A", "orange"));
 		allSpotsOnBoard.add(freeParking = new TaxProperty(21, "Free Parking"));
-		allSpotsOnBoard.add(olympicOval = new Property(220, 0, 0, 22, 18, 90, 250, 700, 875, 1050, 110, 150, 150, "n/a", "Olympic Oval", "red"));
+		allSpotsOnBoard.add(olympicOval = new Property(220, 0, 0, 22, 18, 90, 250, 700, 875, 1050, 110, 150, 150, null, "Olympic Oval", "red"));
 		allSpotsOnBoard.add(chance2 = new Chance(23 ,"Chance 2"));
-		allSpotsOnBoard.add(murrayFraser = new Property(220, 0, 0, 24, 18, 90, 250, 700, 875, 1050, 110, 150, 150, "n/a", "Murray Fraser Hall", "red"));
-		allSpotsOnBoard.add(scienceTheatres = new Property(240, 0, 0, 25, 20, 100, 300, 750, 925, 1100, 120, 150, 150, "n/a", "Science Theatres", "red"));
-		allSpotsOnBoard.add(university = new RailroadProperty(200, 26, 25, 50, 100, 200, 100, "n/a", "University Staiton"));
-		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, "n/a", "Administration Building", "yellow"));
-		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 28, 22, 110, 330, 800, 975, 1150, 130, 150, 150, "n/a", "Macewan Hall", "yellow"));
-		allSpotsOnBoard.add(gym = new Utility(150, 29, 4, 10, 75, "n/a", "The Gym"));
-		allSpotsOnBoard.add(education = new Property(280, 0, 0, 30, 24, 120, 360, 850, 1025, 1200, 140, 150, 150, "n/a", "Werklund School of Education", "yellow"));
+		allSpotsOnBoard.add(murrayFraser = new Property(220, 0, 0, 24, 18, 90, 250, 700, 875, 1050, 110, 150, 150, null, "Murray Fraser Hall", "red"));
+		allSpotsOnBoard.add(scienceTheatres = new Property(240, 0, 0, 25, 20, 100, 300, 750, 925, 1100, 120, 150, 150, null, "Science Theatres", "red"));
+		allSpotsOnBoard.add(university = new RailroadProperty(200, 26, 25, 50, 100, 200, 100, null, "University Staiton"));
+		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Administration Building", "yellow"));
+		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 28, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Macewan Hall", "yellow"));
+		allSpotsOnBoard.add(gym = new Utility(150, 29, 4, 10, 75, null, "The Gym"));
+		allSpotsOnBoard.add(education = new Property(280, 0, 0, 30, 24, 120, 360, 850, 1025, 1200, 140, 150, 150, null, "Werklund School of Education", "yellow"));
 		allSpotsOnBoard.add(jail = new JailProperty(31, "Go To Jail"));
-		allSpotsOnBoard.add(tfdl = new Property(300, 0, 0, 32, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, "n/a", "Taylor Family Digital Library", "green"));
-		allSpotsOnBoard.add(schulich = new Property(300, 0, 0, 33, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, "n/a", "Schulich School of Engineering", "green"));
+		allSpotsOnBoard.add(tfdl = new Property(300, 0, 0, 32, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Taylor Family Digital Library", "green"));
+		allSpotsOnBoard.add(schulich = new Property(300, 0, 0, 33, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Schulich School of Engineering", "green"));
 		allSpotsOnBoard.add(communityChest3 = new CommunityChest(34 ,"Community Chest 3"));
-		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 35, 25, 50, 100, 200, 100, "n/a", "Tuscany Station"));
-		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 36, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, "n/a", "ICT", "green"));
+		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 35, 25, 50, 100, 200, 100, null, "Tuscany Station"));
+		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 36, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, null, "ICT", "green"));
 		allSpotsOnBoard.add(chance3 = new Chance(37 ,"Chance 3"));
-		allSpotsOnBoard.add(eeel = new Property(350, 0, 0, 38, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, "n/a", "EEEL", "dark blue"));
+		allSpotsOnBoard.add(eeel = new Property(350, 0, 0, 38, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, null, "EEEL", "dark blue"));
 		allSpotsOnBoard.add(tuitionFee = new TaxProperty(39, "Tuition Fee"));
-		allSpotsOnBoard.add(ti = new Property(400 , 0, 0, 40, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200, "n/a", "Taylor Institute", "dark blue"));
+		allSpotsOnBoard.add(ti = new Property(400 , 0, 0, 40, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200, null, "Taylor Institute", "dark blue"));
 		
 		
 		

@@ -9,14 +9,16 @@ public class Property {
 	//initializing variables
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
 	// Owner is string but in UML Diagram it says Owner is of type Player object?????
-	private String owner, name, color;
+	private String name, color;
+	private Player owner;
 	
 	//Getters and Setters
-	public String getOwner() {
+	public Player getOwner() {
 		return owner;
 	}
+	
 
-	public void setOwner(String owner) {
+	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
 	
@@ -141,7 +143,7 @@ public class Property {
 	}
 	
 	// Property constructor that takes in arguments
-	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, String owner, String name, String color) {
+	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, Player owner, String name, String color) {
 		setPrice(price); //price of property
 		setNumOfHouses(numOfHouses); 
 		setNumOfHotels(numOfHotels);
@@ -163,7 +165,7 @@ public class Property {
 	// use this to make special property
 	// Property constructor that takes in no arguments 
 	// This may for now cause a NullPointerException because of the fact that we are calling on objects  
-	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, String owner, String name) {
+	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name) {
 		setPrice(price); //price of property
 		setPositionOnBoard(positionOnBoard); //position of property 1-40
 		setRentBase(rentBase);
@@ -178,7 +180,7 @@ public class Property {
 	//use this to make utility
 		// Property constructor that takes in no arguments 
 		// This may for now cause a NullPointerException because of the fact that we are calling on objects  
-		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, String owner, String name) {
+		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name) {
 			setPrice(price); //price of property
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
 			setRentBase(rentBase);

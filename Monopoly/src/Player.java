@@ -11,6 +11,8 @@ public class Player {
 	private Boolean injail;
 	private int location;
 	
+	
+	
 	public Player(String avatar)
 	{
 		this.avatar = avatar;
