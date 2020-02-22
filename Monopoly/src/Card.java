@@ -19,27 +19,18 @@ public class Card {
 	public String getDesc() {
 		return desc;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
 	public String getType() {
 		return type;
 	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public int getValue() {
 		return value;
-	}
-	public void setValue(int value) {
-		this.value = value;
 	}
 	
 	// does this go in card class?
 	// if player lands on chance space, choose a random card from the chance deck
 	// and pass the effect onto the player
 	public void ChanceEffect(Player p) {
-		
+	
 		int randomIndex = (int) Math.random() * chanceDeck.size();
 		Card cardDrawn = chanceDeck.get(randomIndex);
 		System.out.println(cardDrawn.desc);
