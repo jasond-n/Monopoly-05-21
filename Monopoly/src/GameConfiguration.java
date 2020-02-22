@@ -9,6 +9,9 @@ public class GameConfiguration {
 	public static void main(String[] args) {
 		final int startPosition = 1;
 		
+		System.out.println("Generating board...");
+		gameBoard = new Board();
+		System.out.println(gameBoard.toString());
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -27,41 +30,45 @@ public class GameConfiguration {
 		{
 			System.out.println("Player " + i + ", please enter your name now: ");
 			String playerName = sc.next();
-			Player player = new Player(playerName);
+			Player player = new Player(playerName, gameBoard);
 			allPlayers.add(player);
 		}
 		
-		System.out.println("Generating board...");
-		gameBoard = new Board();
-		System.out.println("gameBoard.toString()");
+		
 		// Later on, we need to add win condition or game end condition.
 		while (true){
 			for(int i = 0; i < numOfPlayers; i++)
 			{
-				
+				Player currentPlayer = allPlayers.get(i);
 				System.out.println(allPlayers.get(i).getPlayerAllInfo());
 				String ConfirmationOfDiceRoll = "";
-				while(ConfirmationOfDiceRoll != "yes")
+				while(!ConfirmationOfDiceRoll.equalsIgnoreCase("yes"))
 				{
-					System.out.println("Player " + (i+1) + ", please enter yes to dice roll: ");
+					System.out.println(currentPlayer.getAvatar() + ", please enter yes to dice roll: ");
 					ConfirmationOfDiceRoll = sc.next();
 				}
-				Player currentPlayer = allPlayers.get(i);
-				int dice = currentPlayer.rollDice();
+				
+				//int dice = currentPlayer.rollDice();
+				
+				//hardcode for testing
+				int dice = 10;
+				System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 				if(currentPlayer.getInjail() != true)
 				{
 					currentPlayer.movePosition(dice);
-					int currentPosition = currentPlayer.getPosition();
-					Property landedProperty = gameBoard.getProperties().get(currentPosition);
+					
+					Property landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+					System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
 					
 					//now you land on here, what do you do?
 					// call landedProperty doactions after landed here
-					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, gameBoard);
+					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
 						
 				}
 				// The logic when you are in jail
 				else
 				{
+					System.out.println("You are in the Jail now. You need to throwing doubles on the next " + (2 - currentPlayer.getCounterOfRollForLeaveJail()) + " turns.");
 					if(dice % 2 == 0)
 					{
 						currentPlayer.setCounterOfRollForLeaveJail(currentPlayer.getCounterOfRollForLeaveJail() + 1);
@@ -80,17 +87,15 @@ public class GameConfiguration {
 						
 						//now you land on here, what do you do?
 						// call landedProperty doactions after landed here
-						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, gameBoard);
+						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
 					}
 				}
-								
-				System.out.println("Enter yes to end your turn:");
-						
+									
 				String confirmationOfEndTurn = "";
-				while(ConfirmationOfDiceRoll != "yes")
+				while(!confirmationOfEndTurn.equalsIgnoreCase("yes"))
 				{
-					System.out.println("Player " + (i+1) + ", please enter yes to end your turn: ");
-					ConfirmationOfDiceRoll = sc.next();
+					System.out.println(currentPlayer.getAvatar() + ", please enter yes to end your turn: ");
+					confirmationOfEndTurn = sc.next();
 				}
 			}
 		}
