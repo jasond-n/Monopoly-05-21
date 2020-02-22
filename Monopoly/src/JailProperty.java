@@ -25,7 +25,17 @@ public class JailProperty extends Property {
 	}
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 	{
-		System.out.println(player.getAvatar() + " are in the Jail now and lost 500. And you have to throwing doubles on any of his next two turns.");
-		player.loseMoney(500);
+		switch(player.getPosition())
+		{
+			case 10:
+				System.out.println(player.getAvatar() + " are passing the lail. Nothing happens.");
+				break;
+			case 30:
+				System.out.println(player.getAvatar() + " are going to the lail now and lost 500. And you have to throw doubles on any of his next two turns.");
+				player.setLocation(10);
+				player.loseMoney(500);
+				break;
+		}
+		
 	}
 }
