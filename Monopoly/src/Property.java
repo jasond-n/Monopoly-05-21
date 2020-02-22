@@ -205,7 +205,14 @@ public class Property {
 		
 		
 		
+		public void doActionAfterPlayerLandingHere(Player player, Board board)
+		{
+			
+		}
 		
-		
+		public void doActionBeforePlayerLeavingingHere(Player player,  Board board)
+		{
+			
+		}
 	
 }

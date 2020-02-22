@@ -11,7 +11,7 @@ public class Player {
 	private int position;
 	private Boolean injail;
 	private int location;
-	
+	private int counterOfRollForLeaveJail;
 	
 	
 	public Player(String avatar)
@@ -22,8 +22,17 @@ public class Player {
 		this.properties = new ArrayList<Property>();
 		this.injail = false;
 		this.location = 1;
+		this.counterOfRollForLeaveJail = 0;
 	}
 	
+	public int getCounterOfRollForLeaveJail() {
+		return counterOfRollForLeaveJail;
+	}
+
+	public void setCounterOfRollForLeaveJail(int counterOfRollForLeaveJail) {
+		this.counterOfRollForLeaveJail = counterOfRollForLeaveJail;
+	}
+
 	public void sellProperty(Property theProperty)
 	{
 		theProperty.setOwner(null);
@@ -39,7 +48,7 @@ public class Player {
 		}
 		else
 		{
-			theProperty.setOwner(this.avatar);
+			theProperty.setOwner(this);
 			this.properties.add(theProperty);
 			this.balance = this.balance - theProperty.getPrice();
 			return true;

@@ -1,12 +1,12 @@
 import java.util.Scanner;
 public class Utility extends Property {
 
-	public Utility(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, String owner, String name)
+	public Utility(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name)
 	{
 		super(price, positionOnBoard, rentBase, rent1House, mortgageValue, owner, name);
 	}
 	
-	public void doActionAfterPlayerLandingHere(Player player, Move move, Board board)
+	public void doActionAfterPlayerLandingHere(Player player,  Board board)
 	{
 		String userInput;
 		

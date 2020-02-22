@@ -46,19 +46,52 @@ public class GameConfiguration {
 					System.out.println("Player " + (i+1) + ", please enter yes to dice roll: ");
 					ConfirmationOfDiceRoll = sc.next();
 				}
-				
-				int dice = 4;
 				Player currentPlayer = allPlayers.get(i);
-				
-				
-				currentPlayer.movePosition(dice);
-				
-				
-				int currentPosition = currentPlayer.getPosition();
-				Property landedProperty = gameBoard.getProperties().get(currentPosition);
-				//now you land on here, what do you do?
-				System.out.print(currentPlayer.getPosition());
-				sc.next();
+				int dice = currentPlayer.rollDice();
+				if(currentPlayer.getInjail() != true)
+				{
+					currentPlayer.movePosition(dice);
+					int currentPosition = currentPlayer.getPosition();
+					Property landedProperty = gameBoard.getProperties().get(currentPosition);
+					
+					//now you land on here, what do you do?
+					// call landedProperty doactions after landed here
+					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, gameBoard);
+						
+				}
+				// The logic when you are in jail
+				else
+				{
+					if(dice % 2 == 0)
+					{
+						currentPlayer.setCounterOfRollForLeaveJail(currentPlayer.getCounterOfRollForLeaveJail() + 1);
+					}
+					else
+					{
+						currentPlayer.setCounterOfRollForLeaveJail(0);
+					}
+					if(currentPlayer.getCounterOfRollForLeaveJail() == 2)
+					{
+						currentPlayer.setCounterOfRollForLeaveJail(0);
+						
+						currentPlayer.movePosition(dice);
+						int currentPosition = currentPlayer.getPosition();
+						Property landedProperty = gameBoard.getProperties().get(currentPosition);
+						
+						//now you land on here, what do you do?
+						// call landedProperty doactions after landed here
+						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, gameBoard);
+					}
+				}
+								
+				System.out.println("Enter yes to end your turn:");
+						
+				String confirmationOfEndTurn = "";
+				while(ConfirmationOfDiceRoll != "yes")
+				{
+					System.out.println("Player " + (i+1) + ", please enter yes to end your turn: ");
+					ConfirmationOfDiceRoll = sc.next();
+				}
 			}
 		}
 		//sc.close();		
