@@ -39,4 +39,20 @@ public class Player {
 		}
 	}
 	
+	public String getAvatar()
+	{
+		return this.avatar;
+	}
+	
+	public void getMoney(int money)
+	{
+		this.balance = this.balance + money;
+	}
+	
+	public void loseMoney(int money)
+	{
+		this.balance = this.balance - money;
+	}
+	
+	
 }
