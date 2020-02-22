@@ -47,6 +47,10 @@ public class Property {
 	public void setNumOfHouses(int numOfHouses) {
 		this.numOfHouses = numOfHouses;
 	}
+	
+	public void addNumOfHouses() {
+		this.numOfHouses++;
+	}
 
 	public int getNumOfHotels() {
 		return numOfHotels;
@@ -261,6 +265,29 @@ public class Property {
 					
 				
 				sc.close();
+			}
+			//you own the property 
+			else {
+				//asks to buy a house if you have less than 4 houses
+				
+				if (getNumOfHouses() < 4 && getNumOfHotels() == 0) {
+					Scanner sc = new Scanner(System.in);
+					System.out.print("would you like to buy a house? (y/n)");
+					userInput = sc.next();
+	
+					if (userInput.equalsIgnoreCase("y")) {
+						if (player.getBalance() - getHouseCost() >= 0) {
+							addNumOfHouses();
+							player.loseMoney(getHouseCost());
+							System.out.println("You just bought a house ");
+						}
+						else {
+							System.out.println("Sorry You do not have enough money to buy this");
+						}
+					}
+					
+					sc.close();
+				}
 			}
 			
 			
