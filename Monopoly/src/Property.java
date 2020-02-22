@@ -249,7 +249,7 @@ public class Property {
 			//no one owns the property
 			else if (board.getProperties().get(getPositionOnBoard()).getOwner() == null) {
 				Scanner sc = new Scanner(System.in);
-					System.out.print("would you like to buy this property? (y/n)");
+					System.out.print("would you like to buy " +getName()+"? (y/n)");
 					userInput = sc.next();
 					
 					if (userInput.equalsIgnoreCase("y")) {
