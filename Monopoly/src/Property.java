@@ -201,5 +201,12 @@ public class Property {
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
 		}
 		
+		//constructor for tax properties
+		public Property(int positionOnBoard) {
+			setPositionOnBoard(positionOnBoard);
+		}
+		
+		
+		
 	
 }
