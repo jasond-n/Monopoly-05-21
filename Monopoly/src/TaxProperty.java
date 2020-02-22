@@ -6,12 +6,12 @@ public class TaxProperty extends Property {
 		super(positionOnBoard, name);
 	}
 	
-	public void doActionAfterPlayerLandingHere(Player player, int positionOnBoard, Board board)
+	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 	{
 		int userInput;
 		
 		if (player.getBalance() > 0) {
-			switch (positionOnBoard) {
+			switch (player.getPosition()) {
 			case 4: //if they land on the first tax spot
 				Scanner sc = new Scanner(System.in);
 					System.out.print("Enter 1 to pay 10 percent of your income, or 2 to pay 200 dollars: ");
