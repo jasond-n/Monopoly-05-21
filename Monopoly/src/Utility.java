@@ -17,9 +17,11 @@ public class Utility extends Property {
 				System.out.print("Do you want to buy " + getName() + "? (y/n)");
 				userInput = sc.next();
 				if (userInput.equalsIgnoreCase("y")) {
-					setOwner(player);
-					player.loseMoney(getPrice());
-					System.out.println("You just bought: " + getName());
+					if (player.getBalance() - getPrice() >= 0) {
+						setOwner(player);
+						player.loseMoney(getPrice());
+						System.out.println("You just bought: " + getName());
+					}
 				}
 			sc.close();
 		}

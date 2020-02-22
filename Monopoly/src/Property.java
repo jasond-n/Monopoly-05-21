@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /*
  * If you add variables, make getters and setter please
  * 
@@ -207,9 +209,11 @@ public class Property {
 		
 		public void doActionAfterPlayerLandingHere(Player player, Board board)
 		{
+			String userInput;
 			//figure out mortgages later
 			//if you are not the owner
 			if (board.getProperties().get(getPositionOnBoard()).getOwner() != player) {
+				System.out.println("You have  to pay the owner of the property!");
 				if (getNumOfHotels() == 0) {
 					switch(getNumOfHouses()) {
 					case 0: 
@@ -240,6 +244,27 @@ public class Property {
 					board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRentHotel());
 				}
 			}
+			//no one owns the property
+			else if (board.getProperties().get(getPositionOnBoard()).getOwner() == null) {
+				Scanner sc = new Scanner(System.in);
+					System.out.print("would you like to buy this property? (y/n)");
+					userInput = sc.next();
+					
+					if (userInput.equalsIgnoreCase("y")) {
+						if (player.getBalance() - getPrice() >= 0) {
+							setOwner(player);
+							player.loseMoney(getPrice());
+							System.out.println("You just bought: " + getName());
+						}
+						else {
+							System.out.println("Sorry You do not have enough money to buy this");
+						}
+					}
+					
+				
+				sc.close();
+			}
+			
 			
 			
 			
