@@ -264,7 +264,7 @@ public class Property {
 					}
 					
 				
-				sc.close();
+				//sc.close();
 			}
 			//you own the property 
 			else {
@@ -286,7 +286,7 @@ public class Property {
 						}
 					}
 					
-					sc.close();
+					//sc.close();
 				}
 			}
 			
