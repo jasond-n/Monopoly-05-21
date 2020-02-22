@@ -42,7 +42,7 @@ public class Card {
 			
 		} else if (cardDrawn.type == "move") {
 			// update player's location
-			p.setLocation(p.getLocation() + cardDrawn.value);
+			p.movePosition(p.getPosition() + cardDrawn.value);
 		}
 	} 
 	
@@ -64,7 +64,7 @@ public class Card {
 			
 		} else if (cardDrawn.type == "move") {
 			// update player's location
-			p.setLocation(p.getLocation() + cardDrawn.value);
+			p.movePosition(p.getPosition() + cardDrawn.value);
 		}
 	} 
 
