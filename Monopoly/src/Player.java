@@ -8,6 +8,7 @@ public class Player {
 	private ArrayList<Property> properties;
 	private int balance;
 	private Boolean injail;
+	private int location;
 	
 	public Player(String avatar)
 	{
@@ -15,6 +16,7 @@ public class Player {
 		this.balance = INITIAL_BALANCE;
 		this.properties = new ArrayList<Property>();
 		this.injail = false;
+		this.location = 1;
 	}
 	
 	public void sellProperty(Property theProperty)
@@ -54,5 +56,13 @@ public class Player {
 		this.balance = this.balance - money;
 	}
 	
+	public int getLocation()
+	{
+		return location;
+	}
 	
+	public void setLocation(int newLocation)
+	{
+		this.location = newLocation;
+	}
 }

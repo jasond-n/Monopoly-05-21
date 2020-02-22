@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class Board {
 	
 	private ArrayList<Property> allSpotsOnBoard;
+	private ArrayList<Card> chanceDeck = new ArrayList<Card>();
+	private ArrayList<Card> communityDeck = new ArrayList<Card>();
 	
 	private Property propertyName; //don't know what this is for but will leave it here
 	private int freeParkingMoneyPool;
@@ -99,7 +101,6 @@ public class Board {
 		
 		
 		// creating the chance and community chest decks as ArrayLists and adding the appropriate cards
-		ArrayList<Card> chanceDeck = new ArrayList<Card>();
 		chanceDeck.add(money50);
 		chanceDeck.add(money150);
 		chanceDeck.add(moneyN15);
@@ -111,7 +112,7 @@ public class Board {
 		chanceDeck.add(moveTo6);
 		chanceDeck.add(moveTo40);
 		// add nearest utility, nearest railroad, get out of jail, go to jail, repairs, SU president
-		ArrayList<Card> communityDeck = new ArrayList<Card>();
+		
 		communityDeck.add(money200);
 		communityDeck.add(money20);
 		communityDeck.add(moneyN50a);
