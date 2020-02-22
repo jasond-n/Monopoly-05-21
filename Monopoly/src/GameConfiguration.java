@@ -51,7 +51,7 @@ public class GameConfiguration {
 				//int dice = currentPlayer.rollDice();
 				
 				//hardcode for testing
-				int dice = 10;
+				int dice = 4;
 				System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 				if(currentPlayer.getInjail() != true)
 				{
@@ -68,7 +68,7 @@ public class GameConfiguration {
 				// The logic when you are in jail
 				else
 				{
-					System.out.println("You are in the Jail now. You need to throwing doubles on the next " + (2 - currentPlayer.getCounterOfRollForLeaveJail()) + " turns.");
+					//System.out.println("You are in the Jail now. You need to throwing doubles on the next " + (2 - currentPlayer.getCounterOfRollForLeaveJail()) + " turns.");
 					if(dice % 2 == 0)
 					{
 						currentPlayer.setCounterOfRollForLeaveJail(currentPlayer.getCounterOfRollForLeaveJail() + 1);
