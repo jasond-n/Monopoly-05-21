@@ -5,7 +5,7 @@ public class Board {
 	private ArrayList<Property> allSpotsOnBoard;
 	
 	private Property propertyName; //don't know what this is for but will leave it here
-	private int freeParkingMoneyPool;
+	public static int freeParkingMoneyPool;
 	
 	private Property go;
 	private Property cragie; //this makes coding the gameconfig alot easier if we make them all public static just not sure about privacy leaks
@@ -150,7 +150,7 @@ public class Board {
 		allSpotsOnBoard.add(olympicOval = new Property(220, 0, 0, 22, 18, 90, 250, 700, 875, 1050, 110, 150, 150, "n/a", "Olympic Oval", "red"));
 		allSpotsOnBoard.add(chance2 = new Chance(23 ,"Chance 2"));
 		allSpotsOnBoard.add(murrayFraser = new Property(220, 0, 0, 24, 18, 90, 250, 700, 875, 1050, 110, 150, 150, "n/a", "Murray Fraser Hall", "red"));
-		scienceTheatres = new Property(240, 0, 0, 25, 20, 100, 300, 750, 925, 1100, 120, 150, 150, "n/a", "Science Theatres", "red");
+		allSpotsOnBoard.add(scienceTheatres = new Property(240, 0, 0, 25, 20, 100, 300, 750, 925, 1100, 120, 150, 150, "n/a", "Science Theatres", "red"));
 		allSpotsOnBoard.add(university = new RailroadProperty(200, 26, 25, 50, 100, 200, 100, "n/a", "University Staiton"));
 		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, "n/a", "Administration Building", "yellow"));
 		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 28, 22, 110, 330, 800, 975, 1150, 130, 150, 150, "n/a", "Macewan Hall", "yellow"));

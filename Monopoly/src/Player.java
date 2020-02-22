@@ -44,7 +44,25 @@ public class Player {
 		return this.avatar;
 	}
 	
-	public void getMoney(int money)
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	public Boolean getInjail() {
+		return injail;
+	}
+
+	public void setInjail(Boolean injail) {
+		this.injail = injail;
+	}
+	
+	
+	
+	public void addMoney(int money)
 	{
 		this.balance = this.balance + money;
 	}
