@@ -31,8 +31,8 @@ public class Card {
 	// and pass the effect onto the player
 	public void ChanceEffect(Player p) {
 	
-		int randomIndex = (int) Math.random() * chanceDeck.size();
-		Card cardDrawn = chanceDeck.get(randomIndex);
+		int randomIndex = (int) Math.random() * Board.chanceDeck.size();
+		Card cardDrawn = Board.chanceDeck.get(randomIndex);
 		System.out.println(cardDrawn.desc);
 		
 		if (cardDrawn.type == "money") {
@@ -52,8 +52,8 @@ public class Card {
 	// do the same thing if player lands on community chest space
 	public void CommunityEffect(Player p) {
 		
-		int randomIndex = (int) Math.random() * CommunityDeck().size();
-		Card cardDrawn = CommunityDeck.get(randomIndex);
+		int randomIndex = (int) Math.random() * Board.communityDeck.size();
+		Card cardDrawn = Board.communityDeck.get(randomIndex);
 		System.out.println(cardDrawn.desc);
 		
 		if (cardDrawn.type == "money") {
