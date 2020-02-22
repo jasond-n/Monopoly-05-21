@@ -28,7 +28,6 @@ public class Card {
 	// if player lands on chance space, choose a random card from the chance deck
 	// and pass the effect onto the player
 	public void ChanceEffect(Player p) {
-	
 		int randomIndex = (int) Math.random() * Board.chanceDeck.size();
 		Card cardDrawn = Board.chanceDeck.get(randomIndex);
 		System.out.println(cardDrawn.desc);
@@ -50,6 +49,7 @@ public class Card {
 	// do the same thing if player lands on community chest space
 	public void CommunityEffect(Player p) {
 		
+
 		int randomIndex = (int) Math.random() * Board.communityDeck.size();
 		Card cardDrawn = Board.communityDeck.get(randomIndex);
 		System.out.println(cardDrawn.desc);
@@ -68,7 +68,6 @@ public class Card {
 		}
 	} 
 
-	
 
 	
 
