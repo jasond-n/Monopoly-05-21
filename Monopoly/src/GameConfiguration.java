@@ -9,21 +9,47 @@ public class GameConfiguration {
 		final int startPosition = 1;
 		
 		gameBoard = new Board();
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Player 1, please enter your name: ");
+		
 		
 		
 		Player player1 = new Player("Bob");
+		
+		
+		
+		
 		Player player2 = new Player("Sally");
 		int turn = 0; //counter to determine turn
 		//Player player3 = new Player("n/a");
 		//Player player4 = new Player("n/a");
+		
+		
+		
+		System.out.println("Game start!")
+		while (!isGameEnd() && !board.hasWinner()){
+			if(!board.getCurrentPlayer().isBrokeOut()){
+				int face = board.getCurrentPlayer().tossDie(die);
+				board.movePlayer(board.getCurrentPlayer(), face);
+			}
+			board.nextTurn();
+		}
+		System.out.println("========");
+		if(board.hasWinner()){
+			System.out.println(board.getWinner().getName() + " is won by don't brokeout!");
+		}else{
+			System.out.println(board.getMaxMoneyPlayer().getName() + " is won by have most money!");
+		}
+		System.out.println("Game over!");
+		
 		
 		Scanner sc = new Scanner(System.in);
 		String userInput = "";
 		do {
 			if (turn == 0) {
 				int postion =player1.move(player1.diceRoll());
-				
-				
+					
 				turn = 1;
 			}
 			else {
@@ -31,7 +57,6 @@ public class GameConfiguration {
 				
 				turn = 0;
 			}
-			
 			
 		} while (userInput != "");
 		
