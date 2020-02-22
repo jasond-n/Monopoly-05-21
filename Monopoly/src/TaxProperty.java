@@ -12,7 +12,7 @@ public class TaxProperty extends Property {
 		
 		if (player.getBalance() > 0) {
 			switch (player.getPosition()) {
-			case 4: //if they land on the first tax spot
+			case 3: //if they land on the first tax spot
 				Scanner sc = new Scanner(System.in);
 					System.out.print("Enter 1 to pay 10 percent of your income, or 2 to pay 200 dollars: ");
 					userInput = sc.nextInt();
@@ -30,12 +30,12 @@ public class TaxProperty extends Property {
 					}
 				sc.close();
 				break;
-			case 21: //if you land on free parking
+			case 20: //if you land on free parking
 				System.out.println("You just landed on free parking! The money currently in the pool is $" + Board.freeParkingMoneyPool);
 				player.addMoney(Board.freeParkingMoneyPool);
 				Board.freeParkingMoneyPool = 0;
 				break;
-			case 39: 
+			case 38: 
 				System.out.println("You just lost $100"); //take this out later
 				Board.freeParkingMoneyPool += 100;
 				player.loseMoney(100);
