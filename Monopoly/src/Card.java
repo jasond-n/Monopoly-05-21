@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Card {
 	// initializing variables
@@ -26,7 +24,7 @@ public class Card {
 		return value;
 	}
 	
-	// does this go in card class?
+	// this is supposed to go into a different class lol. im not sure which one tho -justin
 	// if player lands on chance space, choose a random card from the chance deck
 	// and pass the effect onto the player
 	public void ChanceEffect(Player p) {
