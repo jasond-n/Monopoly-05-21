@@ -38,7 +38,7 @@ public class Card {
 		if (cardDrawn.type == "money") {
 			// update player's money value
 			if (cardDrawn.value > 0) {
-				p.getMoney(cardDrawn.value);
+				p.addMoney(cardDrawn.value);
 			} else if (cardDrawn.value < 0) {
 				p.loseMoney(cardDrawn.value);
 			}
@@ -52,14 +52,14 @@ public class Card {
 	// do the same thing if player lands on community chest space
 	public void CommunityEffect(Player p) {
 		
-		int randomIndex = (int) Math.random() * chanceDeck.size();
-		Card cardDrawn = chanceDeck.get(randomIndex);
+		int randomIndex = (int) Math.random() * CommunityDeck().size();
+		Card cardDrawn = CommunityDeck.get(randomIndex);
 		System.out.println(cardDrawn.desc);
 		
 		if (cardDrawn.type == "money") {
 			// update player's money value
 			if (cardDrawn.value > 0) {
-				p.getMoney(cardDrawn.value);
+				p.addMoney(cardDrawn.value);
 			} else if (cardDrawn.value < 0) {
 				p.loseMoney(cardDrawn.value);
 			}
