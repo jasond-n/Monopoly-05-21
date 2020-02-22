@@ -2,9 +2,11 @@ import java.util.ArrayList;
 
 public class Board {
 	
+
 	public static ArrayList<Property> allSpotsOnBoard;
-	private ArrayList<Card> chanceDeck = new ArrayList<Card>();
-	private ArrayList<Card> communityDeck = new ArrayList<Card>();
+	public static ArrayList<Card> chanceDeck = new ArrayList<Card>();
+	public static ArrayList<Card> communityDeck = new ArrayList<Card>();
+
 	
 	private Property propertyName; //don't know what this is for but will leave it here
 	public static int freeParkingMoneyPool;
@@ -174,7 +176,19 @@ public class Board {
 		
 	}
 	
+	public ArrayList<Property> getProperties()
+	{
+		return this.allSpotsOnBoard;
+	}
 
-	
+	public String toString()
+	{
+		String resultString = "";
+		for(Property theProperty : allSpotsOnBoard)
+		{
+			resultString = theProperty.getName() + " ";
+		}
+		return resultString;
+	}
 
 }

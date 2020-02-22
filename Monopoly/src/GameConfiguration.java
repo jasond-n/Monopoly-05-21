@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameConfiguration {
@@ -8,116 +9,59 @@ public class GameConfiguration {
 	public static void main(String[] args) {
 		final int startPosition = 1;
 		
+		
+		Scanner sc = new Scanner(System.in);
+		
+		
+		System.out.println("How many players are playing: (2-4) ");
+		int numOfPlayers = sc.nextInt();
+		while (numOfPlayers < 2 || numOfPlayers > 4)
+		{
+			System.out.println("The number that you entered is not between 2-4. Please enter again: ");
+			numOfPlayers = sc.nextInt();
+		}
+		
+		ArrayList<Player> allPlayers = new ArrayList<Player>();
+		
+		for (int i = 1; i <= numOfPlayers; i++)
+		{
+			System.out.println("Player " + i + ", please enter your name now: ");
+			String playerName = sc.next();
+			Player player = new Player(playerName);
+			allPlayers.add(player);
+		}
+		
+		System.out.println("Generating board...");
 		gameBoard = new Board();
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Player 1, please enter your name: ");
-		
-		
-		
-		Player player1 = new Player("Bob");
-		
-		
-		
-		
-		Player player2 = new Player("Sally");
-		int turn = 0; //counter to determine turn
-		//Player player3 = new Player("n/a");
-		//Player player4 = new Player("n/a");
-		
-		
-		
-		System.out.println("Game start!")
-		while (!isGameEnd() && !board.hasWinner()){
-			if(!board.getCurrentPlayer().isBrokeOut()){
-				int face = board.getCurrentPlayer().tossDie(die);
-				board.movePlayer(board.getCurrentPlayer(), face);
-			}
-			board.nextTurn();
-		}
-		System.out.println("========");
-		if(board.hasWinner()){
-			System.out.println(board.getWinner().getName() + " is won by don't brokeout!");
-		}else{
-			System.out.println(board.getMaxMoneyPlayer().getName() + " is won by have most money!");
-		}
-		System.out.println("Game over!");
-		
-		
-		Scanner sc = new Scanner(System.in);
-		String userInput = "";
-		do {
-			if (turn == 0) {
-				int postion =player1.move(player1.diceRoll());
-					
-				turn = 1;
-			}
-			else {
+		System.out.println("gameBoard.toString()");
+		// Later on, we need to add win condition or game end condition.
+		while (true){
+			for(int i = 0; i < numOfPlayers; i++)
+			{
+				
+				System.out.println(allPlayers.get(i).getPlayerAllInfo());
+				String ConfirmationOfDiceRoll = "";
+				while(ConfirmationOfDiceRoll != "yes")
+				{
+					System.out.println("Player " + (i+1) + ", please enter yes to dice roll: ");
+					ConfirmationOfDiceRoll = sc.next();
+				}
+				
+				int dice = 4;
+				Player currentPlayer = allPlayers.get(i);
 				
 				
-				turn = 0;
+				currentPlayer.movePosition(dice);
+				
+				
+				int currentPosition = currentPlayer.getPosition();
+				Property landedProperty = gameBoard.getProperties().get(currentPosition);
+				//now you land on here, what do you do?
+				System.out.print(currentPlayer.getPosition());
+				sc.next();
 			}
-			
-		} while (userInput != "");
-		
-		
-		sc.close();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//switch statement to handle player move
-		switch(startPosition) {
-			case 1: break;
-		
-			case 2: break;
-			case 3: break;
-			case 4: break;
-			case 5: break;
-			case 6: break;
-			case 7: break;
-			case 8: break;
-			case 9: break;
-			case 10: break;
-			case 11: break;
-			case 12: break;
-			case 13: break;
-			case 14: break;
-			case 15: break;
-			case 16: break;
-			case 17: break;
-			case 18: break;
-			case 19: break;
-			case 20: break;
-			case 21: break;
-			case 22: break;
-			case 23: break;
-			case 24: break;
-			case 25: break;
-			case 26: break;
-			case 27: break;
-			case 28: break;
-			case 29: break;
-			case 30: break;
-			case 31: break;
-			case 32: break;
-			case 33: break;
-			case 34: break;
-			case 35: break;
-			case 36: break;
-			case 37: break;
-			case 38: break;
-			case 39: break;
-			case 40: break;
 		}
-		
-		
-		
+		//sc.close();		
 	}
 
 	
@@ -125,10 +69,4 @@ public class GameConfiguration {
 	{
 		
 	}
-	
-	
-	
-	
-	
-	
 }
