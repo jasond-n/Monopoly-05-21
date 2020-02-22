@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class Player {
 
@@ -9,6 +10,7 @@ public class Player {
 	private int balance;
 	private int position;
 	private Boolean injail;
+	private int location;
 	
 	public Player(String avatar)
 	{
@@ -17,6 +19,7 @@ public class Player {
 		this.position = 0;
 		this.properties = new ArrayList<Property>();
 		this.injail = false;
+		this.location = 1;
 	}
 	
 	public void sellProperty(Property theProperty)
@@ -41,11 +44,22 @@ public class Player {
 		}
 	}
 	
+	//dice roll function will return the roll
+	public int rollDice() {
+		int dice1, dice2;
+		dice1 = (int)(Math.random() * 6 + 1);
+		dice2 = (int)(Math.random() * 6 + 1);
+		return dice1 + dice2;
+	}
+	
+	
+	
 	public String getAvatar()
 	{
 		return this.avatar;
 	}
 	
+
 	public int getPosition()
 	{
 		return this.position;
@@ -61,7 +75,25 @@ public class Player {
 		}
 	}
 	
-	public void getMoney(int money)
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	public Boolean getInjail() {
+		return injail;
+	}
+
+	public void setInjail(Boolean injail) {
+		this.injail = injail;
+	}
+	
+	
+	
+	public void addMoney(int money)
 	{
 		this.balance = this.balance + money;
 	}
@@ -81,5 +113,15 @@ public class Player {
 			resultString += theProperty.getName();
 		}
 		return resultString;
+	}
+	
+	public int getLocation()
+	{
+		return location;
+	}
+	
+	public void setLocation(int newLocation)
+	{
+		this.location = newLocation;
 	}
 }
