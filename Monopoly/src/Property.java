@@ -207,6 +207,41 @@ public class Property {
 		
 		public void doActionAfterPlayerLandingHere(Player player, Board board)
 		{
+			//figure out mortgages later
+			//if you are not the owner
+			if (board.getProperties().get(getPositionOnBoard()).getOwner() != player) {
+				if (getNumOfHotels() == 0) {
+					switch(getNumOfHouses()) {
+					case 0: 
+						player.loseMoney(getRentBase());
+						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRentBase());
+						break;
+					case 1: 
+						player.loseMoney(getRent1House());
+						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent1House());
+						break;
+					case 2: 
+						player.loseMoney(getRent2House());
+						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent2House());
+						break;
+					case 3: 
+						player.loseMoney(getRent3House());
+						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent3House());
+						break; 
+					case 4: 
+						player.loseMoney(getRent4House());
+						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent4House());
+						break;
+					}
+				}
+				
+				if (getNumOfHotels() == 1) {
+					player.loseMoney(getRentHotel());
+					board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRentHotel());
+				}
+			}
+			
+			
 			
 		}
 		
