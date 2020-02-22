@@ -12,9 +12,9 @@ public class Player {
 	private Boolean injail;
 	private int location;
 	private int counterOfRollForLeaveJail;
+	private Board board;
 	
-	
-	public Player(String avatar)
+	public Player(String avatar, Board board)
 	{
 		this.avatar = avatar;
 		this.balance = INITIAL_BALANCE;
@@ -23,6 +23,7 @@ public class Player {
 		this.injail = false;
 		this.location = 1;
 		this.counterOfRollForLeaveJail = 0;
+		this.board = board;
 	}
 	
 	public int getCounterOfRollForLeaveJail() {
@@ -117,7 +118,7 @@ public class Player {
 	public String getPlayerAllInfo()
 	{
 		String resultString = "";
-		resultString = this.avatar + "your position is at " + this.position + ", your banlance is " + this.balance;
+		resultString = this.avatar + ", your position is at " + board.getProperties().get(this.position).getName() + ", your banlance is " + this.balance;
 		resultString += " The properies you owned is: ";
 		for(Property theProperty: properties)
 		{

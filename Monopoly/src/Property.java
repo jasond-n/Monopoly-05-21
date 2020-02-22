@@ -205,9 +205,7 @@ public class Property {
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
 		}
 		
-		
-		
-		public void doActionAfterPlayerLandingHere(Player player, Board board)
+		public void doActionAfterPlayerLandingHere(Player player, int roll, int position, Board board)
 		{
 			String userInput;
 			//figure out mortgages later
@@ -269,7 +267,7 @@ public class Property {
 			
 			
 		}
-		
+				
 		public void doActionBeforePlayerLeavingingHere(Player player,  Board board)
 		{
 			

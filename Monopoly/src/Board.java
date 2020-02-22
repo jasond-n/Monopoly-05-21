@@ -186,7 +186,7 @@ public class Board {
 		String resultString = "";
 		for(Property theProperty : allSpotsOnBoard)
 		{
-			resultString = theProperty.getName() + " ";
+			resultString += theProperty.getName() + " \n";
 		}
 		return resultString;
 	}
