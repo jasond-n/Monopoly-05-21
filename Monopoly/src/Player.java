@@ -26,6 +26,8 @@ public class Player {
 		this.board = board;
 	}
 	
+	
+	
 	public int getCounterOfRollForLeaveJail() {
 		return counterOfRollForLeaveJail;
 	}
