@@ -18,7 +18,6 @@ public class Property {
 	public Player getOwner() {
 		return owner;
 	}
-	
 
 	public void setOwner(Player owner) {
 		this.owner = owner;
@@ -215,7 +214,7 @@ public class Property {
 			//figure out mortgages later
 			//if you are not the owner
 			if (board.getProperties().get(getPositionOnBoard()).getOwner() != player && board.getProperties().get(getPositionOnBoard()).getOwner() != null) {
-				System.out.println("You have  to pay the owner of the property!");
+				System.out.println("You have to pay the owner of the property!");
 				if (getNumOfHotels() == 0) {
 					switch(getNumOfHouses()) {
 					case 0: 
@@ -249,7 +248,7 @@ public class Property {
 			//no one owns the property
 			else if (board.getProperties().get(getPositionOnBoard()).getOwner() == null) {
 				Scanner sc = new Scanner(System.in);
-					System.out.print("would you like to buy " +getName()+"? (y/n)");
+					System.out.print("Would you like to buy" +getName()+"? (y/n)");
 					userInput = sc.next();
 					
 					if (userInput.equalsIgnoreCase("y")) {

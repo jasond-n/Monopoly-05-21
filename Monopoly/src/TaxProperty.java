@@ -28,7 +28,7 @@ public class TaxProperty extends Property {
 						Board.freeParkingMoneyPool += 200;
 						player.loseMoney(200);
 					}
-				sc.close();
+				//sc.close();
 				break;
 			case 20: //if you land on free parking
 				System.out.println("You just landed on free parking! The money currently in the pool is $" + Board.freeParkingMoneyPool);

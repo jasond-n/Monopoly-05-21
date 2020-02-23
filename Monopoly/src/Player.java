@@ -10,6 +10,7 @@ public class Player {
 	private int balance;
 	private int position;
 	private Boolean injail;
+	private ArrayList<Card> cardsOwned;
 	private int location;
 	private int counterOfRollForLeaveJail;
 	private Board board;
