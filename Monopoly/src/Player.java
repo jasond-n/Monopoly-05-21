@@ -27,8 +27,6 @@ public class Player {
 		this.board = board;
 	}
 	
-	
-	
 	public int getCounterOfRollForLeaveJail() {
 		return counterOfRollForLeaveJail;
 	}
@@ -67,14 +65,11 @@ public class Player {
 		return dice1 + dice2;
 	}
 	
-	
-	
 	public String getAvatar()
 	{
 		return this.avatar;
 	}
 	
-
 	public int getPosition()
 	{
 		return this.position;
