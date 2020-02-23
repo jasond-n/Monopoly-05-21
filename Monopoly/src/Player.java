@@ -121,7 +121,7 @@ public class Player {
 	public String getPlayerAllInfo()
 	{
 		String resultString = "";
-		resultString = this.avatar + ", your position is at " + board.getProperties().get(this.position).getName() + ", your banlance is " + this.balance;
+		resultString = this.avatar + ", your position is at " + board.getProperties().get(this.position).getName() + ", your balance is " + this.balance;
 		resultString += " The properies you owned is: ";
 		for(Property theProperty: properties)
 		{
