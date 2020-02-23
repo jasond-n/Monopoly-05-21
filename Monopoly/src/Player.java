@@ -11,7 +11,6 @@ public class Player {
 	private int position;
 	private Boolean injail;
 	private ArrayList<Card> cardsOwned;
-	private int location;
 	private int counterOfRollForLeaveJail;
 	private Board board;
 	
@@ -22,7 +21,6 @@ public class Player {
 		this.position = 0;
 		this.properties = new ArrayList<Property>();
 		this.injail = false;
-		this.location = 1;
 		this.counterOfRollForLeaveJail = 0;
 		this.board = board;
 	}
@@ -101,8 +99,6 @@ public class Player {
 		this.injail = injail;
 	}
 	
-	
-	
 	public void addMoney(int money)
 	{
 		this.balance = this.balance + money;
@@ -123,15 +119,5 @@ public class Player {
 			resultString += theProperty.getName();
 		}
 		return resultString;
-	}
-	
-	public int getLocation()
-	{
-		return location;
-	}
-	
-	public void setLocation(int newLocation)
-	{
-		this.location = newLocation;
 	}
 }
