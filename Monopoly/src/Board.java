@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 
 public class Board {
-	
 
 	private ArrayList<Property> allSpotsOnBoard;
 	private ArrayList<Card> chanceDeck = new ArrayList<Card>();
 	private ArrayList<Card> communityDeck = new ArrayList<Card>();
 
-	
 	private Property propertyName; //don't know what this is for but will leave it here
 	public static int freeParkingMoneyPool;
 	
@@ -169,11 +167,6 @@ public class Board {
 		allSpotsOnBoard.add(eeel = new Property(350, 0, 0, 37, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, null, "EEEL", "dark blue"));
 		allSpotsOnBoard.add(tuitionFee = new TaxProperty(38, "Tuition Fee"));
 		allSpotsOnBoard.add(ti = new Property(400 , 0, 0, 39, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200, null, "Taylor Institute", "dark blue"));
-		
-		
-		
-		
-		
 	}
 	
 	public ArrayList<Property> getProperties()
