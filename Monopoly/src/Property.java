@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Property {
 	//initializing variables
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
-	// Owner is string but in UML Diagram it says Owner is of type Player object?????
 	private String name, color;
 	private Player owner;
 	
@@ -167,9 +166,7 @@ public class Property {
 		setColor(color); //String of color
 	}
 	
-	// use this to make special property
-	// Property constructor that takes in no arguments 
-	// This may for now cause a NullPointerException because of the fact that we are calling on objects  
+	// use this to make special property 
 	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name) {
 		setPrice(price); //price of property
 		setPositionOnBoard(positionOnBoard); //position of property 1-40
@@ -182,9 +179,7 @@ public class Property {
 		setName(name); //name of the actual property
 	}
 	
-	//use this to make utility
-		// Property constructor that takes in no arguments 
-		// This may for now cause a NullPointerException because of the fact that we are calling on objects  
+	//use this to make utility 
 		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name) {
 			setPrice(price); //price of property
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
@@ -195,9 +190,7 @@ public class Property {
 			setName(name); //name of the actual property
 		}
 		
-		//use this to make comunity chest / chance / tax
-				// Property constructor that takes in no arguments 
-				// This may for now cause a NullPointerException because of the fact that we are calling on objects  
+		//use this to make community chest / chance / tax
 				public Property(int positionOnBoard,  String name) {
 					setPositionOnBoard(positionOnBoard); //position of property 1-40
 					setName(name); //name of the actual property
@@ -248,7 +241,7 @@ public class Property {
 			//no one owns the property
 			else if (board.getProperties().get(getPositionOnBoard()).getOwner() == null) {
 				Scanner sc = new Scanner(System.in);
-					System.out.print("Would you like to buy" +getName()+"? (y/n)");
+					System.out.print("Would you like to buy " +getName()+"? (y/n)");
 					userInput = sc.next();
 					
 					if (userInput.equalsIgnoreCase("y")) {
