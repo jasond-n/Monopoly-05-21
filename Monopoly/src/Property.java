@@ -207,6 +207,9 @@ public class Property {
 			//figure out mortgages later
 			//if you are not the owner
 			if (board.getProperties().get(getPositionOnBoard()).getOwner() != player && board.getProperties().get(getPositionOnBoard()).getOwner() != null) {
+				
+				
+				//add an if statement to see if the owner has a monopoly on all 3
 				System.out.println("You have to pay the owner of the property!");
 				if (getNumOfHotels() == 0) {
 					switch(getNumOfHouses()) {
