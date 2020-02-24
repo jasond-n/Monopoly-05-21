@@ -27,9 +27,9 @@ public class Card {
 	// this is supposed to go into a different class lol. im not sure which one tho -justin
 	// if player lands on chance space, choose a random card from the chance deck
 	// and pass the effect onto the player
-	public void ChanceEffect(Player p) {
-		int randomIndex = (int) Math.random() * Board.chanceDeck.size();
-		Card cardDrawn = Board.chanceDeck.get(randomIndex);
+	public void ChanceEffect(Player p, Board board) {
+		int randomIndex = (int) Math.random() * board.getChanceDeck().size();
+		Card cardDrawn = board.getChanceDeck().get(randomIndex);
 		System.out.println(cardDrawn.desc);
 		
 		if (cardDrawn.type == "money") {
@@ -47,11 +47,11 @@ public class Card {
 	} 
 	
 	// do the same thing if player lands on community chest space
-	public void CommunityEffect(Player p) {
+	public void CommunityEffect(Player p, Board board) {
 		
 
-		int randomIndex = (int) Math.random() * Board.communityDeck.size();
-		Card cardDrawn = Board.communityDeck.get(randomIndex);
+		int randomIndex = (int) Math.random() * board.getCommunityDeck().size();
+		Card cardDrawn = board.getCommunityDeck().get(randomIndex);
 		System.out.println(cardDrawn.desc);
 		
 		if (cardDrawn.type == "money") {

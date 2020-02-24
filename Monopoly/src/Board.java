@@ -169,6 +169,22 @@ public class Board {
 		allSpotsOnBoard.add(ti = new Property(400 , 0, 0, 39, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200, null, "Taylor Institute", "dark blue"));
 	}
 	
+	public ArrayList<Card> getChanceDeck() {
+		return chanceDeck;
+	}
+
+	public void setChanceDeck(ArrayList<Card> chanceDeck) {
+		this.chanceDeck = chanceDeck;
+	}
+
+	public ArrayList<Card> getCommunityDeck() {
+		return communityDeck;
+	}
+
+	public void setCommunityDeck(ArrayList<Card> communityDeck) {
+		this.communityDeck = communityDeck;
+	}
+
 	public ArrayList<Property> getProperties()
 	{
 		return this.allSpotsOnBoard;
