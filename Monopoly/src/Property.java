@@ -196,9 +196,10 @@ public class Property {
 					setName(name); //name of the actual property
 				}
 		
-		public Property(int price, int positionOnBoard) {
+		public Property(int price, int positionOnBoard, String name) {
 			setPrice(price);
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
+			setName(name); //name of the actual property
 		}
 		
 		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)

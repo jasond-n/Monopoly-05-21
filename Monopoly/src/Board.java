@@ -127,7 +127,7 @@ public class Board {
 		
 		allSpotsOnBoard = new ArrayList<Property>();
 		//in the constructor possibly add number of players?
-		allSpotsOnBoard.add(go = new Property(200, 0));
+		allSpotsOnBoard.add(go = new Property(200, 0, "GO"));
 		allSpotsOnBoard.add(cragie = new Property(60, 0, 0, 1, 2, 10, 30, 90, 160, 250, 30, 50, 50, null, "Cragie Hall", "brown"));
 		allSpotsOnBoard.add(communityChest1 = new CommunityChest(2 ,"Community Chest 1"));
 		allSpotsOnBoard.add(rentFee = new TaxProperty(3, "Rent Fee"));
