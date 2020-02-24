@@ -23,6 +23,5 @@ public class RailroadProperty extends Property {
 				}
 			//sc.close();
 		}
-		super.doActionAfterPlayerLandingHere(player, roll, board);
 	}
 }
