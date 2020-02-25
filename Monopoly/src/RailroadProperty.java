@@ -23,5 +23,13 @@ public class RailroadProperty extends Property {
 				}
 			//sc.close();
 		}
+		//if you are not the owner
+		//now you must pay rent
+		else if(board.getProperties().get(getPositionOnBoard()).getOwner() != player && board.getProperties().get(getPositionOnBoard()).getOwner() != null)
+		{
+			System.out.println("You have to pay the owner of the property!");
+			player.loseMoney(getRentBase());
+		}
+		
 	}
 }
