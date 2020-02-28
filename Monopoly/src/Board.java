@@ -94,6 +94,7 @@ public class Board {
 		Card moveTo11 = new Card("Advance to Reeve Theatre. If you pass GO, collect $200.", "moveTo", 11);
 		Card moveTo39 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $200.", "moveTo", 39);
 		Card moveTo5 = new Card("Take a trip to Somerset Station. If you pass Go, collect $200", "moveTo", 5);
+		Card moveToJail = new Card("Go directly to Jail. Do not pass GO, do not collect $200.", "moveTo", 30);
 		
 		Card nearestUtility = new Card("Advance to nearest utility.", "nearestUtil", 0); // If owned, throw dice and pay owner a total 10 times the amount thrown.
 		Card nearestStation = new Card ("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
@@ -118,10 +119,11 @@ public class Board {
 		chanceDeck.add(moveTo5);
 		chanceDeck.add(moveTo39);
 		chanceDeck.add(move3);
+		chanceDeck.add(moveToJail);
 		chanceDeck.add(nearestStation);
 		chanceDeck.add(nearestUtility);
 		chanceDeck.add(eachN50);
-		// add get out of jail, go to jail, repairs,
+		// add get out of jail repairs,
 		
 		communityDeck.add(money200);
 		communityDeck.add(money20);
@@ -136,7 +138,8 @@ public class Board {
 		communityDeck.add(move3);
 		communityDeck.add(each50);
 		communityDeck.add(each10);
-		// add go to jail, get out of jail, repairs
+		communityDeck.add(moveToJail);
+		// add get out of jail, repairs
 		
 		allSpotsOnBoard = new ArrayList<Property>();
 		//in the constructor possibly add number of players?

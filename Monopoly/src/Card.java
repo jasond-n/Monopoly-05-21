@@ -92,6 +92,8 @@ public class Card {
 	
 	// do the same thing if player lands on community chest space
 	public void CommunityEffect(Player p, Board board) {
+		
+	}
 
 
 
