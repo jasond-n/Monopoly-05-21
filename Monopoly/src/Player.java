@@ -79,6 +79,7 @@ public class Player {
 		this.position += dice;
 		if(this.position > 39)
 		{
+			this.balance += 200; //passing go
 			this.position %= 40;
 		}
 	}
@@ -107,6 +108,15 @@ public class Player {
 	public void loseMoney(int money)
 	{
 		this.balance = this.balance - money;
+	}
+	
+	public ArrayList<Property> getPlayerProperties() {
+		ArrayList<Property> temp = new ArrayList<Property>(this.properties);
+		return temp;
+	}
+	
+	public void addPlayerProperty(Property temp) {
+		this.properties.add(temp);
 	}
 	
 	public String getPlayerAllInfo()
