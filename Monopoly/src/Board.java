@@ -5,7 +5,8 @@ public class Board {
 	private ArrayList<Property> allSpotsOnBoard;
 	private ArrayList<Card> chanceDeck = new ArrayList<Card>();
 	private ArrayList<Card> communityDeck = new ArrayList<Card>();
-
+	private ArrayList<Player> allPlayers = new ArrayList<Player>(); 
+	
 	private Property propertyName; //don't know what this is for but will leave it here
 	public static int freeParkingMoneyPool;
 	
@@ -94,16 +95,17 @@ public class Board {
 		Card moveTo39 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $200.", "moveTo", 39);
 		Card moveTo5 = new Card("Take a trip to Somerset Station. If you pass Go, collect $200", "moveTo", 5);
 		
+		Card nearestUtility = new Card("Advance to nearest utility.", "nearestUtil", 0); // If owned, throw dice and pay owner a total 10 times the amount thrown.
+		Card nearestStation = new Card ("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
 		
-		// advance to nearest utility. If owned, throw dice and pay owner a total 10 times the amount thrown.
-		// Advance to nearest Railroad and pay owner twice the rental amount.
 		// Get out of Jail Free. This card may be kept until needed, or traded/sold.
 		// Make general repairs on all your property: For each house pay $25, For each hotel pay $100.
-		// You have been elected as SU president. Pay each player $50.
-		// You are hosting a networking night for software engineers. Each player pays you a $50 entrance fee.
-		// You got the highest grade on the midterm in your class. It was 57. Collect $10 from each player.
 		
+		Card eachN50 = new Card("You have been elected as SU president. Pay each player $50.", "each", -50);
+		Card each50 = new Card("You are hosting a networking night for software engineers. Each player pays you a $50 entrance fee.", "each", 50);
+		Card each10 = new Card("You got the highest grade on the midterm in your class. It was 57. Collect $10 from each player.", "each", 10);
 		
+
 		// creating the chance and community chest decks as ArrayLists and adding the appropriate cards
 		chanceDeck.add(money50);
 		chanceDeck.add(money150);
@@ -116,7 +118,10 @@ public class Board {
 		chanceDeck.add(moveTo5);
 		chanceDeck.add(moveTo39);
 		chanceDeck.add(move3);
-		// add nearest utility, nearest railroad, get out of jail, go to jail, repairs, SU president
+		chanceDeck.add(nearestStation);
+		chanceDeck.add(nearestUtility);
+		chanceDeck.add(eachN50);
+		// add get out of jail, go to jail, repairs,
 		
 		communityDeck.add(money200);
 		communityDeck.add(money20);
@@ -129,7 +134,9 @@ public class Board {
 		communityDeck.add(moveTo0);
 		communityDeck.add(moveTo39);
 		communityDeck.add(move3);
-		// add go to jail, get out of jail, network night, midterm, repairs
+		communityDeck.add(each50);
+		communityDeck.add(each10);
+		// add go to jail, get out of jail, repairs
 		
 		allSpotsOnBoard = new ArrayList<Property>();
 		//in the constructor possibly add number of players?
@@ -175,6 +182,14 @@ public class Board {
 		allSpotsOnBoard.add(ti = new Property(400 , 0, 0, 39, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200, null, "Taylor Institute", "dark blue"));
 	}
 	
+	public ArrayList<Player> getAllPlayers() {
+		return allPlayers;
+	}
+
+	public void setAllPlayers(ArrayList<Player> allPlayers) {
+		this.allPlayers = allPlayers;
+	}
+
 	public ArrayList<Card> getChanceDeck() {
 		return chanceDeck;
 	}
