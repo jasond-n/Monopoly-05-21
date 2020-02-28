@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class GameConfiguration {
 	
 	private static Board gameBoard;
-	
 	public static void main(String[] args) {
 		final int startPosition = 1;
 		
@@ -24,14 +23,12 @@ public class GameConfiguration {
 			numOfPlayers = sc.nextInt();
 		}
 		
-		ArrayList<Player> allPlayers = new ArrayList<Player>();
-		
 		for (int i = 1; i <= numOfPlayers; i++)
 		{
 			System.out.println("Player " + i + ", please enter your name now: ");
 			String playerName = sc.next();
 			Player player = new Player(playerName, gameBoard);
-			allPlayers.add(player);
+			gameBoard.getAllPlayers().add(player);
 		}
 		
 		
@@ -39,8 +36,8 @@ public class GameConfiguration {
 		while (true){
 			for(int i = 0; i < numOfPlayers; i++)
 			{
-				Player currentPlayer = allPlayers.get(i);
-				System.out.println(allPlayers.get(i).getPlayerAllInfo());
+				Player currentPlayer = gameBoard.getAllPlayers().get(i);
+				System.out.println(gameBoard.getAllPlayers().get(i).getPlayerAllInfo());
 				String ConfirmationOfDiceRoll = "";
 				while(!ConfirmationOfDiceRoll.equalsIgnoreCase("yes"))
 				{
@@ -99,10 +96,10 @@ public class GameConfiguration {
 				}
 			}
 		}
-		//sc.close();		
+		//sc.close();	
+		
 	}
 
-	
 	public void update()
 	{
 		
