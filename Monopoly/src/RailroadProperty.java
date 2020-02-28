@@ -1,8 +1,8 @@
 import java.util.Scanner;
 public class RailroadProperty extends Property {
-	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name)
+	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color)
 	{
-		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, mortgageValue, owner, name);
+		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, mortgageValue, owner, name, color);
 	}
 	
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board) {
@@ -18,6 +18,7 @@ public class RailroadProperty extends Property {
 					if (player.getBalance() - getPrice() >= 0) {
 						setOwner(player);
 						player.loseMoney(getPrice());
+						player.addPlayerProperty(board.getProperties().get(getPositionOnBoard()));
 						System.out.println("You just bought: " + getName());
 					}
 				}
