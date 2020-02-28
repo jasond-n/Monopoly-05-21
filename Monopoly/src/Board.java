@@ -84,13 +84,17 @@ public class Board {
 		Card moneyN15 = new Card("Pay $15 for a pizza bun at Bake Chef.", "money", -15);
 		Card moneyN50a = new Card("Pay a $50 fine for dropping out of astronomy 207. Yep, way too much physics.", "money", -50);
 		Card moneyN50b = new Card("You fell asleep during your final exam and got a D. Cramming was definitely a bad idea. Lose $50.", "money", -50);
+		
 		Card moveN3 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
-		Card moveTo1 = new Card("Advance to GO. Collect $200.", "move", 1);
-		// in move2, value = 1 represents the index for the GO space. use 41 - player.getLocation() instead? the number of spaces player needs to go forwards to get to GO. (player get location is needed)	
-		Card moveTo25 = new Card("Advance to Science Theatres. If you pass GO, collect $200", "move", 25);
-		Card moveTo12 = new Card("Advance to Reeve Theatre. If you pass GO, collect $200.", "move", 12);
-		Card moveTo40 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $200.", "move", 40);
-		Card moveTo6 = new Card("Take a trip to Somerset Station. If you pass Go, collect $200", "move", 6);
+		Card move3 = new Card("You assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
+		
+		Card moveTo0 = new Card("Advance to GO. Collect $200.", "moveTo", 0);
+		Card moveTo24 = new Card("Advance to Science Theatres. If you pass GO, collect $200", "moveTo", 24);
+		Card moveTo11 = new Card("Advance to Reeve Theatre. If you pass GO, collect $200.", "moveTo", 11);
+		Card moveTo39 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $200.", "moveTo", 39);
+		Card moveTo5 = new Card("Take a trip to Somerset Station. If you pass Go, collect $200", "moveTo", 5);
+		
+		
 		// advance to nearest utility. If owned, throw dice and pay owner a total 10 times the amount thrown.
 		// Advance to nearest Railroad and pay owner twice the rental amount.
 		// Get out of Jail Free. This card may be kept until needed, or traded/sold.
@@ -106,11 +110,12 @@ public class Board {
 		chanceDeck.add(moneyN15);
 		chanceDeck.add(money100a);
 		chanceDeck.add(moveN3);
-		chanceDeck.add(moveTo1);
-		chanceDeck.add(moveTo25);
-		chanceDeck.add(moveTo12);
-		chanceDeck.add(moveTo6);
-		chanceDeck.add(moveTo40);
+		chanceDeck.add(moveTo0);
+		chanceDeck.add(moveTo24);
+		chanceDeck.add(moveTo11);
+		chanceDeck.add(moveTo5);
+		chanceDeck.add(moveTo39);
+		chanceDeck.add(move3);
 		// add nearest utility, nearest railroad, get out of jail, go to jail, repairs, SU president
 		
 		communityDeck.add(money200);
@@ -121,8 +126,9 @@ public class Board {
 		communityDeck.add(money150);
 		communityDeck.add(money100b);
 		communityDeck.add(money50);
-		communityDeck.add(moveTo1);
-		communityDeck.add(moveTo40);
+		communityDeck.add(moveTo0);
+		communityDeck.add(moveTo39);
+		communityDeck.add(move3);
 		// add go to jail, get out of jail, network night, midterm, repairs
 		
 		allSpotsOnBoard = new ArrayList<Property>();

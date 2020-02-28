@@ -27,6 +27,7 @@ public class Card {
 	// this is supposed to go into a different class lol. im not sure which one tho -justin
 	// if player lands on chance space, choose a random card from the chance deck
 	// and pass the effect onto the player
+	
 	public void ChanceEffect(Player p, Board board) {
 		int randomIndex = (int) Math.random() * board.getChanceDeck().size();
 		Card cardDrawn = board.getChanceDeck().get(randomIndex);
@@ -38,11 +39,21 @@ public class Card {
 				p.addMoney(cardDrawn.value);
 			} else if (cardDrawn.value < 0) {
 				p.loseMoney(cardDrawn.value);
-			}
-			
-		} else if (cardDrawn.type == "move") {
+				
+		} else if (cardDrawn.type == "move") {					// check if go is passed???
 			// update player's location
 			p.movePosition(p.getPosition() + cardDrawn.value);
+				
+		} else if (cardDrawn.type == "moveTo") {
+			if (p.getPosition() < cardDrawn.value) {
+				p.movePosition(cardDrawn.value - p.getPosition());
+			} else {
+				p.movePosition(39 - p.getPosition() + cardDrawn.value);
+				}
+		// } else if () {
+			// ...
+		}
+			
 		}
 	} 
 	
