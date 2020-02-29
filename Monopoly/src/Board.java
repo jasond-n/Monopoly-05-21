@@ -286,6 +286,94 @@ public class Board {
 		
 		allPlayers.remove(whoToRemove);
 	}
+	
+	
+	public void decideOrder() {
+		ArrayList<String> order = new ArrayList<String>();
+		int player1 = 0, player2 = 0, player3 = 0, player4 = 0;
+		
+		while ((player1 == player2) || (player1 == player3) || (player1 == player4) || (player2 == player3) || (player2 == player4) || (player3 == player4)) {
+			for (int i = 0; i < allPlayers.size(); i++) {
+				switch (i) {
+				case 0: 
+					player1 = rollDice();
+					break;
+				case 1: 
+					player2 = rollDice();
+					break;
+				case 2: 
+					player3 = rollDice();
+					break;
+				case 3: 
+					player4 = rollDice();
+					break;
+				}
+			}
+		}
+		
+		
+		switch (allPlayers.size()) {
+		case 2: 
+			if ((player1 > player2)) {
+				order.add("p1");
+				order.add("p2");
+			}
+			else {
+				order.add("p2");
+				order.add("p1");
+			}
+			break;
+			
+		case 3: 
+			if ((player1 > player2) && (player1 > player3)) {
+				order.add("p1");
+				
+				if ((player2 > player3)) {
+					order.add("p2");
+					order.add("p3");
+				}
+				else {
+					order.add("p3");
+					order.add("p2");
+				}
+				
+			}
+			else if ((player2 > player1) && (player2 > player3)) {
+				order.add("p2");
+				
+				if ((player1 > player3)) {
+					order.add("p1");
+					order.add("p3");
+				}
+				else {
+					order.add("p3");
+					order.add("p1");
+				}
+				
+			}
+			else {
+				order.add("p3");
+				
+				if ((player1 > player2)) {
+					order.add("p1");
+					order.add("p2");
+				}
+				else {
+					order.add("p2");
+					order.add("p1");
+				}
+				
+			}
+			
+			break;
+		
+		case 4: //finish this
+			
+			break;
+		
+		}
+		
+	}
 		
 		
 	
