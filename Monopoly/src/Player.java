@@ -11,6 +11,7 @@ public class Player {
 	private int position;
 	private Boolean injail;
 	private ArrayList<Card> cardsOwned;
+
 	private int counterOfRollForLeaveJail;
 	private Board board;
 	
@@ -92,6 +93,10 @@ public class Player {
 		this.balance = balance;
 	}
 
+	public void setCardsOwned(ArrayList<Card> cardsOwned) {
+		this.cardsOwned = cardsOwned;
+	}
+	
 	public Boolean getInjail() {
 		return injail;
 	}

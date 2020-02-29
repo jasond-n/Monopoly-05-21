@@ -45,10 +45,10 @@ public class GameConfiguration {
 					ConfirmationOfDiceRoll = sc.next();
 				}
 				
-				int dice = currentPlayer.rollDice();
+				// int dice = currentPlayer.rollDice();
 				
 				//hardcode for testing
-				//int dice = 4;
+				int dice = 2;
 				System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 				if(currentPlayer.getInjail() != true)
 				{
