@@ -7,8 +7,7 @@ public class Board {
 	private ArrayList<Card> communityDeck = new ArrayList<Card>();
 	private ArrayList<Player> allPlayers = new ArrayList<Player>(); 
 	
-	private Property propertyName; //don't know what this is for but will leave it here
-	public static int freeParkingMoneyPool;
+	private int dice1, dice2;
 	
 	private Property go;
 	private Property cragie; //this makes coding the gameconfig alot easier if we make them all public static just not sure about privacy leaks
@@ -147,7 +146,7 @@ public class Board {
 		allSpotsOnBoard.add(communityChest1 = new CommunityChest(2 ,"Community Chest 1"));
 		allSpotsOnBoard.add(rentFee = new TaxProperty(3, "Rent Fee"));
 		allSpotsOnBoard.add(scienceB = new Property(60, 0, 0, 4, 4, 20, 60, 180, 320, 450, 30, 50, 50, null, "Science B", "brown"));
-		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 5, 25, 50, 100, 200, 100, null, "Somerset Station"));
+		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 5, 25, 50, 100, 200, 100, null, "Somerset Station", "black"));
 		allSpotsOnBoard.add(mathScience = new Property(100, 0, 0, 6, 6, 30, 90, 270, 400, 550, 50, 50, 50, null, "Math Sciences", "light blue"));
 		allSpotsOnBoard.add(chance1 = new Chance(7 ,"Chance 1"));
 		allSpotsOnBoard.add(bioSci = new Property(100, 0, 0, 8, 6, 30, 90, 270, 400, 550, 50, 50, 50, null, "Biological Sciences", "light blue"));
@@ -157,7 +156,7 @@ public class Board {
 		allSpotsOnBoard.add(zipper = new Utility(150, 12, 4, 10, 75, null, "The Zipper"));
 		allSpotsOnBoard.add(kinesB = new Property(140, 0, 0, 13, 10, 50, 150, 450, 625, 750, 70, 100, 100, null, "Kineseology B", "pink"));
 		allSpotsOnBoard.add(kinesA = new Property(160, 0, 0, 14, 12, 60, 180, 500, 700, 900, 80, 100, 100, null, "Kineseology A", "pink"));
-		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 15, 25, 50, 100, 200, 100, null, "City Hall Station"));
+		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 15, 25, 50, 100, 200, 100, null, "City Hall Station", "black"));
 		allSpotsOnBoard.add(scurfield = new Property(180, 0, 0, 16, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Scurfield Hall", "orange"));
 		allSpotsOnBoard.add(communityChest2 = new CommunityChest(17 ,"Community Chest 2"));
 		allSpotsOnBoard.add(professional = new Property(180, 0, 0, 18, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Professional Faculty", "orange"));
@@ -167,7 +166,7 @@ public class Board {
 		allSpotsOnBoard.add(chance2 = new Chance(22 ,"Chance 2"));
 		allSpotsOnBoard.add(murrayFraser = new Property(220, 0, 0, 23, 18, 90, 250, 700, 875, 1050, 110, 150, 150, null, "Murray Fraser Hall", "red"));
 		allSpotsOnBoard.add(scienceTheatres = new Property(240, 0, 0, 24, 20, 100, 300, 750, 925, 1100, 120, 150, 150, null, "Science Theatres", "red"));
-		allSpotsOnBoard.add(university = new RailroadProperty(200, 25, 25, 50, 100, 200, 100, null, "University Staiton"));
+		allSpotsOnBoard.add(university = new RailroadProperty(200, 25, 25, 50, 100, 200, 100, null, "University Staiton", "black"));
 		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 26, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Administration Building", "yellow"));
 		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Macewan Hall", "yellow"));
 		allSpotsOnBoard.add(gym = new Utility(150, 28, 4, 10, 75, null, "The Gym"));
@@ -176,7 +175,7 @@ public class Board {
 		allSpotsOnBoard.add(tfdl = new Property(300, 0, 0, 31, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Taylor Family Digital Library", "green"));
 		allSpotsOnBoard.add(schulich = new Property(300, 0, 0, 32, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Schulich School of Engineering", "green"));
 		allSpotsOnBoard.add(communityChest3 = new CommunityChest(33 ,"Community Chest 3"));
-		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 34, 25, 50, 100, 200, 100, null, "Tuscany Station"));
+		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 34, 25, 50, 100, 200, 100, null, "Tuscany Station", "black"));
 		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 35, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, null, "ICT", "green"));
 		allSpotsOnBoard.add(chance3 = new Chance(36 ,"Chance 3"));
 		allSpotsOnBoard.add(eeel = new Property(350, 0, 0, 37, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, null, "EEEL", "dark blue"));
@@ -222,5 +221,26 @@ public class Board {
 		}
 		return resultString;
 	}
+	
+	
+	//dice roll function will return the roll
+	public int rollDice() {
+		dice1 = (int)(Math.random() * 6 + 1);
+		dice2 = (int)(Math.random() * 6 + 1);
+		return dice1 + dice2;
+	}
+	
+	//checking to see if the roll is a double
+	public boolean isDouble() {
+		if (dice1 == dice2) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+		
+		
+	
 
 }

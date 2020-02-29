@@ -168,7 +168,7 @@ public class Property {
 	}
 	
 	// use this to make special property 
-	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name) {
+	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color) {
 		setPrice(price); //price of property
 		setPositionOnBoard(positionOnBoard); //position of property 1-40
 		setRentBase(rentBase);
@@ -178,6 +178,7 @@ public class Property {
 		setMortgageValue(mortgageValue);
 		setOwner(owner); //name of owner of property
 		setName(name); //name of the actual property
+		setColor(color); //String of color
 	}
 	
 	//use this to make utility 
