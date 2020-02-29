@@ -33,9 +33,20 @@ public class GameConfiguration {
 		
 		
 		// Later on, we need to add win condition or game end condition.
-		while (true){
+		//change it to while monopolized for win condition
+		while (gameBoard.getAllPlayers().size() > 1){
+			
+			
+			
+			
 			for(int i = 0; i < numOfPlayers; i++)
 			{
+				
+				if (gameBoard.someoneIsBankrupt()) {
+					gameBoard.liquidateAssets();
+					numOfPlayers--;
+				}
+				
 				Player currentPlayer = gameBoard.getAllPlayers().get(i);
 				System.out.println(gameBoard.getAllPlayers().get(i).getPlayerAllInfo());
 				String ConfirmationOfDiceRoll = "";
@@ -96,6 +107,7 @@ public class GameConfiguration {
 							
 							if (gameBoard.isDouble()) { //third double
 								currentPlayer.setPosition(10);
+								currentPlayer.setInJail(true);
 								landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 								System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
 								//now you land on here, what do you do?

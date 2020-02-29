@@ -246,6 +246,46 @@ public class Board {
 			return false;
 		}
 	}
+	
+	//checks to see if someone is bankrupt
+	public boolean someoneIsBankrupt() {
+		boolean bankrupt = false;
+		
+		for (int i = 0; i < allPlayers.size(); i++) {
+			if (allPlayers.get(i).getBalance() <= 0) {
+				bankrupt = true;
+			}
+		}
+		
+		return bankrupt;	
+	}
+	
+	//helper method checks to see who is bankrupt
+		private Player whoIsBankrupt() {
+			Player broke = new Player(null, null);
+			
+			for (int i = 0; i < allPlayers.size(); i++) {
+				if (allPlayers.get(i).getBalance() <= 0) {
+					broke = allPlayers.get(i);
+				}
+			}
+			
+			return broke;	
+		}
+	
+	//removes the player that is broke after all their properties have been transferred to the bank
+	public void liquidateAssets() {
+		Player whoToRemove = whoIsBankrupt();
+		
+		for (int i = 0; i < whoToRemove.getPlayerProperties().size(); i++) {
+			whoToRemove.getPlayerProperties().get(i).setOwner(null);
+			whoToRemove.getPlayerProperties().get(i).setNumOfHouses(0);
+			whoToRemove.getPlayerProperties().get(i).setNumOfHotels(0);
+		}
+		
+		
+		allPlayers.remove(whoToRemove);
+	}
 		
 		
 	
