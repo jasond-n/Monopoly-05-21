@@ -1,12 +1,13 @@
 import java.util.Scanner;
 public class RailroadProperty extends Property {
-	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name)
+	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color)
 	{
-		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, mortgageValue, owner, name);
+		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, mortgageValue, owner, name, color);
 	}
 	
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board) {
 		String userInput;
+		int counter = 0;
 		
 		if(this.getOwner() == null)
 		{
@@ -18,7 +19,9 @@ public class RailroadProperty extends Property {
 					if (player.getBalance() - getPrice() >= 0) {
 						setOwner(player);
 						player.loseMoney(getPrice());
+						player.addPlayerProperty(board.getProperties().get(getPositionOnBoard()));
 						System.out.println("You just bought: " + getName());
+						System.out.println(player.getPlayerProperties());
 					}
 				}
 			//sc.close();
@@ -28,8 +31,31 @@ public class RailroadProperty extends Property {
 		else if(board.getProperties().get(getPositionOnBoard()).getOwner() != player && board.getProperties().get(getPositionOnBoard()).getOwner() != null)
 		{
 			System.out.println("You have to pay the owner of the property!");
-			player.loseMoney(getRentBase());
+			if (counter >= 0) {
+				for(int i = 0; i < board.getProperties().get(getPositionOnBoard()).getOwner().getPlayerProperties().size(); i++) {
+					if (board.getProperties().get(getPositionOnBoard()).getOwner().getPlayerProperties().get(i).getColor().equals("black")) {
+						counter++;
+					}
+				}
+				switch(counter) {
+				case 1: 
+					player.loseMoney(getRentBase());
+					board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRentBase());
+					break;
+				case 2: 
+					player.loseMoney(getRent1House());
+					board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent1House());
+					break;
+				case 3: 
+					player.loseMoney(getRent2House());
+					board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent2House());
+					break;
+				case 4: 
+					player.loseMoney(getRent3House());
+					board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent3House());
+					break;
+				}
+			}
 		}
-		
 	}
 }

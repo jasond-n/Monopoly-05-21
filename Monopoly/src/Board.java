@@ -5,7 +5,8 @@ public class Board {
 	private ArrayList<Property> allSpotsOnBoard;
 	private ArrayList<Card> chanceDeck = new ArrayList<Card>();
 	private ArrayList<Card> communityDeck = new ArrayList<Card>();
-
+	private ArrayList<Player> allPlayers = new ArrayList<Player>(); 
+	
 	private Property propertyName; //don't know what this is for but will leave it here
 	public static int freeParkingMoneyPool;
 	
@@ -84,34 +85,45 @@ public class Board {
 		Card moneyN15 = new Card("Pay $15 for a pizza bun at Bake Chef.", "money", -15);
 		Card moneyN50a = new Card("Pay a $50 fine for dropping out of astronomy 207. Yep, way too much physics.", "money", -50);
 		Card moneyN50b = new Card("You fell asleep during your final exam and got a D. Cramming was definitely a bad idea. Lose $50.", "money", -50);
+		
 		Card moveN3 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
-		Card moveTo1 = new Card("Advance to GO. Collect $200.", "move", 1);
-		// in move2, value = 1 represents the index for the GO space. use 41 - player.getLocation() instead? the number of spaces player needs to go forwards to get to GO. (player get location is needed)	
-		Card moveTo25 = new Card("Advance to Science Theatres. If you pass GO, collect $200", "move", 25);
-		Card moveTo12 = new Card("Advance to Reeve Theatre. If you pass GO, collect $200.", "move", 12);
-		Card moveTo40 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $200.", "move", 40);
-		Card moveTo6 = new Card("Take a trip to Somerset Station. If you pass Go, collect $200", "move", 6);
-		// advance to nearest utility. If owned, throw dice and pay owner a total 10 times the amount thrown.
-		// Advance to nearest Railroad and pay owner twice the rental amount.
+		Card move3 = new Card("You assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
+		
+		Card moveTo0 = new Card("Advance to GO. Collect $200.", "moveTo", 0);
+		Card moveTo24 = new Card("Advance to Science Theatres. If you pass GO, collect $200", "moveTo", 24);
+		Card moveTo11 = new Card("Advance to Reeve Theatre. If you pass GO, collect $200.", "moveTo", 11);
+		Card moveTo39 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $200.", "moveTo", 39);
+		Card moveTo5 = new Card("Take a trip to Somerset Station. If you pass Go, collect $200", "moveTo", 5);
+		Card moveToJail = new Card("Go directly to Jail. Do not pass GO, do not collect $200.", "moveTo", 30);
+		
+		Card nearestUtility = new Card("Advance to nearest utility.", "nearestUtil", 0); // If owned, throw dice and pay owner a total 10 times the amount thrown.
+		Card nearestStation = new Card ("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
+		
 		// Get out of Jail Free. This card may be kept until needed, or traded/sold.
 		// Make general repairs on all your property: For each house pay $25, For each hotel pay $100.
-		// You have been elected as SU president. Pay each player $50.
-		// You are hosting a networking night for software engineers. Each player pays you a $50 entrance fee.
-		// You got the highest grade on the midterm in your class. It was 57. Collect $10 from each player.
 		
+		Card eachN50 = new Card("You have been elected as SU president. Pay each player $50.", "each", -50);
+		Card each50 = new Card("You are hosting a networking night for software engineers. Each player pays you a $50 entrance fee.", "each", 50);
+		Card each10 = new Card("You got the highest grade on the midterm in your class. It was 57. Collect $10 from each player.", "each", 10);
 		
+
 		// creating the chance and community chest decks as ArrayLists and adding the appropriate cards
 		chanceDeck.add(money50);
 		chanceDeck.add(money150);
 		chanceDeck.add(moneyN15);
 		chanceDeck.add(money100a);
 		chanceDeck.add(moveN3);
-		chanceDeck.add(moveTo1);
-		chanceDeck.add(moveTo25);
-		chanceDeck.add(moveTo12);
-		chanceDeck.add(moveTo6);
-		chanceDeck.add(moveTo40);
-		// add nearest utility, nearest railroad, get out of jail, go to jail, repairs, SU president
+		chanceDeck.add(moveTo0);
+		chanceDeck.add(moveTo24);
+		chanceDeck.add(moveTo11);
+		chanceDeck.add(moveTo5);
+		chanceDeck.add(moveTo39);
+		chanceDeck.add(move3);
+		chanceDeck.add(moveToJail);
+		chanceDeck.add(nearestStation);
+		chanceDeck.add(nearestUtility);
+		chanceDeck.add(eachN50);
+		// add get out of jail repairs,
 		
 		communityDeck.add(money200);
 		communityDeck.add(money20);
@@ -121,9 +133,13 @@ public class Board {
 		communityDeck.add(money150);
 		communityDeck.add(money100b);
 		communityDeck.add(money50);
-		communityDeck.add(moveTo1);
-		communityDeck.add(moveTo40);
-		// add go to jail, get out of jail, network night, midterm, repairs
+		communityDeck.add(moveTo0);
+		communityDeck.add(moveTo39);
+		communityDeck.add(move3);
+		communityDeck.add(each50);
+		communityDeck.add(each10);
+		communityDeck.add(moveToJail);
+		// add get out of jail, repairs
 		
 		allSpotsOnBoard = new ArrayList<Property>();
 		//in the constructor possibly add number of players?
@@ -132,7 +148,7 @@ public class Board {
 		allSpotsOnBoard.add(communityChest1 = new CommunityChest(2 ,"Community Chest 1"));
 		allSpotsOnBoard.add(rentFee = new TaxProperty(3, "Rent Fee"));
 		allSpotsOnBoard.add(scienceB = new Property(60, 0, 0, 4, 4, 20, 60, 180, 320, 450, 30, 50, 50, null, "Science B", "brown"));
-		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 5, 25, 50, 100, 200, 100, null, "Somerset Station"));
+		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 5, 25, 50, 100, 200, 100, null, "Somerset Station", "black"));
 		allSpotsOnBoard.add(mathScience = new Property(100, 0, 0, 6, 6, 30, 90, 270, 400, 550, 50, 50, 50, null, "Math Sciences", "light blue"));
 		allSpotsOnBoard.add(chance1 = new Chance(7 ,"Chance 1"));
 		allSpotsOnBoard.add(bioSci = new Property(100, 0, 0, 8, 6, 30, 90, 270, 400, 550, 50, 50, 50, null, "Biological Sciences", "light blue"));
@@ -142,7 +158,7 @@ public class Board {
 		allSpotsOnBoard.add(zipper = new Utility(150, 12, 4, 10, 75, null, "The Zipper"));
 		allSpotsOnBoard.add(kinesB = new Property(140, 0, 0, 13, 10, 50, 150, 450, 625, 750, 70, 100, 100, null, "Kineseology B", "pink"));
 		allSpotsOnBoard.add(kinesA = new Property(160, 0, 0, 14, 12, 60, 180, 500, 700, 900, 80, 100, 100, null, "Kineseology A", "pink"));
-		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 15, 25, 50, 100, 200, 100, null, "City Hall Station"));
+		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 15, 25, 50, 100, 200, 100, null, "City Hall Station", "black"));
 		allSpotsOnBoard.add(scurfield = new Property(180, 0, 0, 16, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Scurfield Hall", "orange"));
 		allSpotsOnBoard.add(communityChest2 = new CommunityChest(17 ,"Community Chest 2"));
 		allSpotsOnBoard.add(professional = new Property(180, 0, 0, 18, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Professional Faculty", "orange"));
@@ -152,7 +168,7 @@ public class Board {
 		allSpotsOnBoard.add(chance2 = new Chance(22 ,"Chance 2"));
 		allSpotsOnBoard.add(murrayFraser = new Property(220, 0, 0, 23, 18, 90, 250, 700, 875, 1050, 110, 150, 150, null, "Murray Fraser Hall", "red"));
 		allSpotsOnBoard.add(scienceTheatres = new Property(240, 0, 0, 24, 20, 100, 300, 750, 925, 1100, 120, 150, 150, null, "Science Theatres", "red"));
-		allSpotsOnBoard.add(university = new RailroadProperty(200, 25, 25, 50, 100, 200, 100, null, "University Staiton"));
+		allSpotsOnBoard.add(university = new RailroadProperty(200, 25, 25, 50, 100, 200, 100, null, "University Staiton", "black"));
 		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 26, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Administration Building", "yellow"));
 		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Macewan Hall", "yellow"));
 		allSpotsOnBoard.add(gym = new Utility(150, 28, 4, 10, 75, null, "The Gym"));
@@ -161,7 +177,7 @@ public class Board {
 		allSpotsOnBoard.add(tfdl = new Property(300, 0, 0, 31, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Taylor Family Digital Library", "green"));
 		allSpotsOnBoard.add(schulich = new Property(300, 0, 0, 32, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Schulich School of Engineering", "green"));
 		allSpotsOnBoard.add(communityChest3 = new CommunityChest(33 ,"Community Chest 3"));
-		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 34, 25, 50, 100, 200, 100, null, "Tuscany Station"));
+		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 34, 25, 50, 100, 200, 100, null, "Tuscany Station", "black"));
 		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 35, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, null, "ICT", "green"));
 		allSpotsOnBoard.add(chance3 = new Chance(36 ,"Chance 3"));
 		allSpotsOnBoard.add(eeel = new Property(350, 0, 0, 37, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, null, "EEEL", "dark blue"));
@@ -169,6 +185,14 @@ public class Board {
 		allSpotsOnBoard.add(ti = new Property(400 , 0, 0, 39, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200, null, "Taylor Institute", "dark blue"));
 	}
 	
+	public ArrayList<Player> getAllPlayers() {
+		return allPlayers;
+	}
+
+	public void setAllPlayers(ArrayList<Player> allPlayers) {
+		this.allPlayers = allPlayers;
+	}
+
 	public ArrayList<Card> getChanceDeck() {
 		return chanceDeck;
 	}
