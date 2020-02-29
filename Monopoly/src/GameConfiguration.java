@@ -54,6 +54,7 @@ public class GameConfiguration {
 				//int dice = 4;
 				
 				if(currentPlayer.getInjail() == false)
+
 				{
 					
 					dice = board.rollDice();

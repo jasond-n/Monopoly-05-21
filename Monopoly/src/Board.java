@@ -96,10 +96,9 @@ public class Board {
 		Card moveToJail = new Card("Go directly to Jail. Do not pass GO, do not collect $200.", "moveTo", 30);
 		
 		Card nearestUtility = new Card("Advance to nearest utility.", "nearestUtil", 0); // If owned, throw dice and pay owner a total 10 times the amount thrown.
-		Card nearestStation = new Card ("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
+		Card nearestStation = new Card("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
 		
-		// Get out of Jail Free. This card may be kept until needed, or traded/sold.
-		// Make general repairs on all your property: For each house pay $25, For each hotel pay $100.
+		Card GetOutOfJail = new Card("Get out of Jail Free. This card may be kept until needed, or traded/sold.", "jail", 0);
 		
 		Card eachN50 = new Card("You have been elected as SU president. Pay each player $50.", "each", -50);
 		Card each50 = new Card("You are hosting a networking night for software engineers. Each player pays you a $50 entrance fee.", "each", 50);
@@ -122,7 +121,7 @@ public class Board {
 		chanceDeck.add(nearestStation);
 		chanceDeck.add(nearestUtility);
 		chanceDeck.add(eachN50);
-		// add get out of jail repairs,
+		chanceDeck.add(GetOutOfJail);
 		
 		communityDeck.add(money200);
 		communityDeck.add(money20);
@@ -138,7 +137,7 @@ public class Board {
 		communityDeck.add(each50);
 		communityDeck.add(each10);
 		communityDeck.add(moveToJail);
-		// add get out of jail, repairs
+		communityDeck.add(GetOutOfJail);
 		
 		allSpotsOnBoard = new ArrayList<Property>();
 		//in the constructor possibly add number of players?

@@ -9,8 +9,9 @@ public class Player {
 	private ArrayList<Property> properties;
 	private int balance;
 	private int position;
-	private Boolean injail;
+	private Boolean inJail;
 	private ArrayList<Card> cardsOwned;
+
 	private int counterOfRollForLeaveJail;
 	private Board board;
 	
@@ -20,7 +21,7 @@ public class Player {
 		this.balance = INITIAL_BALANCE;
 		this.position = 0;
 		this.properties = new ArrayList<Property>();
-		this.injail = false;
+		this.inJail = false;
 		this.counterOfRollForLeaveJail = 0;
 		this.board = board;
 	}
@@ -91,12 +92,16 @@ public class Player {
 		this.balance = balance;
 	}
 
-	public Boolean getInjail() {
-		return injail;
+	public void setCardsOwned(ArrayList<Card> cardsOwned) {
+		this.cardsOwned = cardsOwned;
+	}
+	
+	public Boolean getInJail() {
+		return inJail;
 	}
 
-	public void setInjail(Boolean injail) {
-		this.injail = injail;
+	public void setInJail(Boolean inJail) {
+		this.inJail = inJail;
 	}
 	
 	public void addMoney(int money)
