@@ -53,11 +53,11 @@ public class GameConfiguration {
 				//hardcode for testing
 				//int dice = 4;
 				
-				if(currentPlayer.getInjail() == false)
+				if(currentPlayer.getInJail() == false)
 
 				{
 					
-					dice = board.rollDice();
+					dice = gameBoard.rollDice();
 					System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 					currentPlayer.movePosition(dice);
 					
@@ -67,9 +67,9 @@ public class GameConfiguration {
 					// call landedProperty doactions after landed here
 					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
 					
-					if (board.isDouble()) { //first double
+					if (gameBoard.isDouble()) { //first double
 						
-						dice = board.rollDice();
+						dice = gameBoard.rollDice();
 						System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 						currentPlayer.movePosition(dice);
 						
@@ -80,9 +80,9 @@ public class GameConfiguration {
 						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
 						
 						
-						if (board.isDouble()) { //second double
+						if (gameBoard.isDouble()) { //second double
 							
-							dice = board.rollDice();
+							dice = gameBoard.rollDice();
 							System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 							currentPlayer.movePosition(dice);
 							
@@ -94,7 +94,7 @@ public class GameConfiguration {
 							
 							
 							
-							if (board.isDouble()) { //third double
+							if (gameBoard.isDouble()) { //third double
 								currentPlayer.setPosition(10);
 								landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 								System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
@@ -109,9 +109,10 @@ public class GameConfiguration {
 				}
 				// The logic when you are in jail
 				else {
-					JailProperty.doActionBeforePlayerLeavingHere(currentPlayer, gameBoard);
+					landedProperty = gameBoard.getProperties().get(10);
+					landedProperty.doActionBeforePlayerLeavingHere(currentPlayer, dice, gameBoard);
 					if (currentPlayer.getInJail() == false) {
-						currentPlayer.movePosition(board.getDice1() + board.getDice2());
+						currentPlayer.movePosition(gameBoard.getDice1() + gameBoard.getDice2());
 						
 						landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 						System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
