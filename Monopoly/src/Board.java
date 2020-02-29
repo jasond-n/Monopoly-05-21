@@ -223,6 +223,13 @@ public class Board {
 		return resultString;
 	}
 	
+	public int getDice1() {
+		return dice1;
+	}
+	public int getDice2() {
+		return dice2;
+	}
+	
 	
 	//dice roll function will return the roll
 	public int rollDice() {

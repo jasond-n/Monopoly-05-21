@@ -67,6 +67,11 @@ public class Player {
 		return this.position;
 	}
 	
+	public int setPosition(int position)
+	{
+		this.position = position;
+	}
+	
 	public void movePosition(int dice)
 	{
 		

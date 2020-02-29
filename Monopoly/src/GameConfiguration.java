@@ -45,42 +45,75 @@ public class GameConfiguration {
 					ConfirmationOfDiceRoll = sc.next();
 				}
 				
-				int dice = currentPlayer.rollDice();
+				
+				
+				int dice;
+				Property landedProperty;
 				
 				//hardcode for testing
 				//int dice = 4;
-				System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
-				if(currentPlayer.getInjail() != true)
+				
+				if(currentPlayer.getInjail() == false)
 				{
+					
+					dice = board.rollDice();
+					System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 					currentPlayer.movePosition(dice);
 					
-					Property landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+					landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 					System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
-					
 					//now you land on here, what do you do?
 					// call landedProperty doactions after landed here
 					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+					
+					if (board.isDouble()) { //first double
+						
+						dice = board.rollDice();
+						System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
+						currentPlayer.movePosition(dice);
+						
+						landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+						System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
+						//now you land on here, what do you do?
+						// call landedProperty doactions after landed here
+						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+						
+						
+						if (board.isDouble()) { //second double
+							
+							dice = board.rollDice();
+							System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
+							currentPlayer.movePosition(dice);
+							
+							landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+							System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
+							//now you land on here, what do you do?
+							// call landedProperty doactions after landed here
+							landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+							
+							
+							
+							if (board.isDouble()) { //third double
+								currentPlayer.setPosition(10);
+								landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+								System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
+								//now you land on here, what do you do?
+								// call landedProperty doactions after landed here
+								landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+							}
+						}
+					}
+					
 						
 				}
 				// The logic when you are in jail
-				else
-				{
-					//System.out.println("You are in the Jail now. You need to throwing doubles on the next " + (2 - currentPlayer.getCounterOfRollForLeaveJail()) + " turns.");
-					if(dice % 2 == 0)
-					{
-						currentPlayer.setCounterOfRollForLeaveJail(currentPlayer.getCounterOfRollForLeaveJail() + 1);
-					}
-					else
-					{
-						currentPlayer.setCounterOfRollForLeaveJail(0);
-					}
-					if(currentPlayer.getCounterOfRollForLeaveJail() == 2)
-					{
-						currentPlayer.setCounterOfRollForLeaveJail(0);
+				else {
+					JailProperty.doActionBeforePlayerLeavingHere(currentPlayer, gameBoard);
+					if (currentPlayer.getInJail() == false) {
+						currentPlayer.movePosition(board.getDice1() + board.getDice2());
 						
-						currentPlayer.movePosition(dice);
-						int currentPosition = currentPlayer.getPosition();
-						Property landedProperty = gameBoard.getProperties().get(currentPosition);
+						landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+						System.out.println(currentPlayer.getAvatar() + ", you moved to " + landedProperty.getName());
 						
 						//now you land on here, what do you do?
 						// call landedProperty doactions after landed here

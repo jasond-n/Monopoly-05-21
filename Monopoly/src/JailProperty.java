@@ -5,7 +5,7 @@ public class JailProperty extends Property {
 	{
 		super(price, name);
 	}
-	public void doActionBeforePlayerLeavingHere(Player player, int positionOnBoard, Board board)
+	public void doActionBeforePlayerLeavingHere(Player player, Board board)
 	{
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println(player.getAvatar() + ", you are in the Jail now, do you want to pay 50 fine, and leave, type yes to pay, other any thing to not pay");
@@ -21,10 +21,31 @@ public class JailProperty extends Property {
 //			
 //		}
 //		
+		int roll;
 		
-		
-		
-		
+		if (player.getInJail() == true) {	
+			Scanner sc = new Scanner(System.in);
+			System.out.println("You are in jail. Would you like to pay $50 to get out this turn? (y/n)");
+			String userInput = sc.next();
+			if (userInput.equalsIgnoreCase("y")) {
+				player.loseMoney(50);
+				player.setInJail(false);
+				System.out.println("Nice you are out of jail!");
+				board.rollDice();
+				
+			}
+			else {
+				board.rollDice();
+				if (board.isDouble()) {
+					player.setInJail(false);
+					System.out.println("Hey you rolled a double! You are Free!");
+					//player.movePosition(board.rollDice());
+				}
+				else {
+					System.out.println("Damn you suck at rolling. Try again next turn!");
+				}
+			}
+		}
 	}
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 	{
@@ -34,7 +55,7 @@ public class JailProperty extends Property {
 				System.out.println(player.getAvatar() + " are passing the jail. Nothing happens.");
 				break;
 			case 30:
-				System.out.println(player.getAvatar() + " are going to the jail now and lost 500. And you have to throw doubles on any of your next three turns.");
+				System.out.println(player.getAvatar() + " are going to the jail now. And you have to throw doubles on any of your next three turns.");
 				player.movePosition(10);
 				player.setInJail(true);
 				break;
