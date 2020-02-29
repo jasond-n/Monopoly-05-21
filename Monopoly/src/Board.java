@@ -7,8 +7,7 @@ public class Board {
 	private ArrayList<Card> communityDeck = new ArrayList<Card>();
 	private ArrayList<Player> allPlayers = new ArrayList<Player>(); 
 	
-	private Property propertyName; //don't know what this is for but will leave it here
-	public static int freeParkingMoneyPool;
+	private int dice1, dice2;
 	
 	private Property go;
 	private Property cragie; //this makes coding the gameconfig alot easier if we make them all public static just not sure about privacy leaks
@@ -223,5 +222,26 @@ public class Board {
 		}
 		return resultString;
 	}
+	
+	
+	//dice roll function will return the roll
+	public int rollDice() {
+		dice1 = (int)(Math.random() * 6 + 1);
+		dice2 = (int)(Math.random() * 6 + 1);
+		return dice1 + dice2;
+	}
+	
+	//checking to see if the roll is a double
+	public boolean isDouble() {
+		if (dice1 == dice2) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+		
+		
+	
 
 }

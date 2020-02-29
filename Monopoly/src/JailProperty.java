@@ -22,6 +22,9 @@ public class JailProperty extends Property {
 //		}
 //		
 		
+		
+		
+		
 	}
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 	{
@@ -33,7 +36,7 @@ public class JailProperty extends Property {
 			case 30:
 				System.out.println(player.getAvatar() + " are going to the jail now and lost 500. And you have to throw doubles on any of your next two turns.");
 				player.movePosition(10);
-				player.loseMoney(500);
+				player.setInJail(true);
 				break;
 		}
 		
