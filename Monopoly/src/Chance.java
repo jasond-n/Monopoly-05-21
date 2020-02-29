@@ -10,6 +10,9 @@ public class Chance extends Property {
 			int randomIndex = (int) Math.random() * board.getChanceDeck().size();
 			Card cardDrawn = board.getChanceDeck().get(randomIndex);
 			
+			System.out.println("drawing a card...");
+			System.out.println(cardDrawn.getDesc());
+			
 			if (cardDrawn.getType() == "money") {
 				// update player's money getValue()
 				if (cardDrawn.getValue() > 0) {
