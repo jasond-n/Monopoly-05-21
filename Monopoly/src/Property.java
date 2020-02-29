@@ -325,6 +325,10 @@ public class Property {
 		}
 				
 		
+		public void doActionBeforePlayerLeavingHere(Player player, int roll, Board board) {
+			
+		}
+		
 		//helper method to see if the property that was landed on is monopolized
 		public boolean isMonopolized(Player player, Board board) {
 			ArrayList<Property> temp = new ArrayList<Property>(player.getPlayerProperties());

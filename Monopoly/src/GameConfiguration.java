@@ -47,7 +47,7 @@ public class GameConfiguration {
 				
 				
 				
-				int dice;
+				int dice = 0;
 				Property landedProperty;
 				
 				//hardcode for testing
