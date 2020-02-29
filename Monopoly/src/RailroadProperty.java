@@ -21,7 +21,6 @@ public class RailroadProperty extends Property {
 						player.loseMoney(getPrice());
 						player.addPlayerProperty(board.getProperties().get(getPositionOnBoard()));
 						System.out.println("You just bought: " + getName());
-						System.out.println(player.getPlayerProperties());
 					}
 				}
 			//sc.close();
