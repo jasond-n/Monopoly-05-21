@@ -8,8 +8,11 @@ public class CommunityChest extends Property {
 	
 	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board) {
 		
-		int randomIndex = (int) Math.random() * board.getCommunityDeck().size();
-		Card cardDrawn = board.getChanceDeck().get(randomIndex);
+		double randomIndex = (int) (Math.random() * (board.getCommunityDeck().size() + 1));	
+		Card cardDrawn = board.getChanceDeck().get((int)randomIndex);
+
+		System.out.println("drawing a card...");
+		System.out.println(cardDrawn.getDesc());
 		
 		if (cardDrawn.getType() == "money") {
 			// update player's money value
@@ -17,7 +20,7 @@ public class CommunityChest extends Property {
 				p.addMoney(cardDrawn.getValue());
 			} else if (cardDrawn.getValue() < 0) {
 				p.loseMoney(cardDrawn.getValue());
-			}
+			} 
 				
 		} else if (cardDrawn.getType() == "move") {					// check if go is passed???
 			// update player's location

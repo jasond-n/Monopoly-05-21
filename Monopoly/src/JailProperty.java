@@ -5,7 +5,7 @@ public class JailProperty extends Property {
 	{
 		super(price, name);
 	}
-	public void doActionBeforePlayerLeavingHere(Player player, Board board)
+	public void doActionBeforePlayerLeavingHere(Player player, int roll, Board board)
 	{
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println(player.getAvatar() + ", you are in the Jail now, do you want to pay 50 fine, and leave, type yes to pay, other any thing to not pay");
@@ -21,7 +21,7 @@ public class JailProperty extends Property {
 //			
 //		}
 //		
-		int roll;
+	
 		
 		if (player.getInJail() == true) {	
 			Scanner sc = new Scanner(System.in);
