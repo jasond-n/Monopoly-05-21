@@ -146,9 +146,4 @@ public class GameConfiguration {
 		//sc.close();	
 		
 	}
-
-	public void update()
-	{
-		
-	}
 }
