@@ -1,4 +1,4 @@
-# COOLPROJECT
+# Monopoly-05-21
 CPSC 233 Team Project
 GROUP 21 (Kai H, Hilton L, Jason N, Justin Y)
 
