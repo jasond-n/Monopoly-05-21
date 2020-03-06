@@ -1,9 +1,9 @@
 import java.util.Scanner;
 public class Utility extends Property {
 
-	public Utility(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name)
+	public Utility(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name, String color)
 	{
-		super(price, positionOnBoard, rentBase, rent1House, mortgageValue, owner, name);
+		super(price, positionOnBoard, rentBase, rent1House, mortgageValue, owner, name, color);
 	}
 
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
