@@ -1,4 +1,7 @@
 import javafx.scene.shape.Circle;
+
+import java.util.Random;
+
 import javafx.scene.paint.Color;
 
 
@@ -10,10 +13,14 @@ public class Icon extends Circle
 
   public Icon()
   {
-      setRadius(RADIUS);
-      setFill(Color.RED);
-      x = 0;
-      y = 0;
+		Random rnd = new Random();
+
+	      setRadius(RADIUS);
+	      setFill(Color.RED);
+	      x = 50;
+	      y = 50;
+	      xVel = rnd.nextInt(20) + 5;
+	      yVel = rnd.nextInt(20) + 5;
   }
 
   public void updateLocation()

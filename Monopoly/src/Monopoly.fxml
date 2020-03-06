@@ -20,7 +20,7 @@
       </Pane>
       <AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
          <children>
-            <GridPane fx:id="gridPaneBoard" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url('file:C:/Users/Jason/Documents/GitHub/COOLPROJECT/MonopolyacBoard.jpg'); -fx-background-size: 600px 600px;">
+            <GridPane fx:id="gridPaneBoard" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url('file:C:/Users/Jason/Documents/GitHub/COOLPROJECT/MonopolyacBoard.jpg'); -fx-background-size: 600px 600px;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.8000061035156" minWidth="10.0" prefWidth="127.20000610351562" />
                   <ColumnConstraints maxWidth="157.06665649414063" minWidth="6.399993896484375" prefWidth="103.19999389648436" />

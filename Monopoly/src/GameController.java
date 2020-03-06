@@ -31,8 +31,11 @@ public class GameController
     private Label message;
 	@FXML
     private GridPane gridPaneBoard;
+	@FXML
 	private HBox hbox;
+	@FXML
 	private Icon icon;
+	@FXML
 	private Pane pane;
     @FXML
     void diceroll(ActionEvent event) {
@@ -46,32 +49,29 @@ public class GameController
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
     	icon = new Icon();
-    	
-    	
-    	
-    	
-		Timeline timeline = new Timeline(
-	        new KeyFrame(Duration.millis(10),
-	               new EventHandler <ActionEvent>()
-				   {
-				   	@Override
-				   	public void handle(ActionEvent event)
-				   	{
-				   		icon.updateLocation();
-				   		if ((icon.getX() < 0) ||
-				   		    (icon.getX() > pane.getWidth()))
-				   			icon.reverseX();
-				   		if ((icon.getY() < 0) ||
-				   		    (icon.getY() > pane.getHeight()))
-				   			icon.reverseY();
-				   	}
-				   }
-	        )
-		);
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.setAutoReverse(true);
-		timeline.play();
-		pane.getChildren().add(icon);
-		
+    	System.out.print(gridPaneBoard.getWidth());
+    	Timeline timeline = new Timeline(
+            new KeyFrame(Duration.millis(10),
+                   new EventHandler <ActionEvent>()
+    			   {
+    			   	@Override
+    			   	public void handle(ActionEvent event)
+    			   	{
+    			   		icon.updateLocation();
+    			   		if ((icon.getX() < 0) ||
+    			   		    (icon.getX() > gridPaneBoard.getWidth()))
+    			   			icon.reverseX();
+    			   		if ((icon.getY() < 0) ||
+    			   		    (icon.getY() > gridPaneBoard.getHeight()))
+    			   			icon.reverseY();
+    			   	}
+    			   }
+            )
+    	);
+    	timeline.setCycleCount(Timeline.INDEFINITE);
+    	timeline.setAutoReverse(true);
+    	timeline.play();
+
+    	gridPaneBoard.getChildren().get.add(icon);
     }
 }
