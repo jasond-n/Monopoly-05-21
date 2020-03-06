@@ -33,8 +33,8 @@ public class Icon extends Circle
   
   public void initializeLocation()
   {
-	  setCenterX(x);
-	  setCenterY(y);
+	  setCenterX(550);
+	  setCenterY(550);
   }
   
   public void moveOneSpot()
@@ -44,8 +44,11 @@ public class Icon extends Circle
   
   public void jumpToLocation(int toX, int toY)
   {
-	  x = toX;
-	  y = toY;
+	  x = toX * 40;
+	  
+	  y = toY * 40;
+	  setCenterX(x);
+	  setCenterY(y);
   }
 
   public int getX()
