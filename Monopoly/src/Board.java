@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class Board {
 
@@ -289,117 +291,106 @@ public class Board {
 	
 	
 	public void decideOrder() {
-		ArrayList<String> order = new ArrayList<String>();
+		//ArrayList<String> order = new ArrayList<String>();
 		int player1 = 0, player2 = 0, player3 = 0, player4 = 0;
-		
-		while ((player1 == player2) || (player1 == player3) || (player1 == player4) || (player2 == player3) || (player2 == player4) || (player3 == player4)) {
-			for (int i = 0; i < allPlayers.size(); i++) {
-				switch (i) {
-				case 0: 
-					player1 = rollDice();
-					break;
-				case 1: 
-					player2 = rollDice();
-					break;
-				case 2: 
-					player3 = rollDice();
-					break;
-				case 3: 
-					player4 = rollDice();
-					break;
-				}
-			}
-		}
+		int[] rolls = new int[allPlayers.size()];
+		boolean sorted = false;
 		
 		
-		switch (allPlayers.size()) {
-		case 2: 
-			if ((player1 > player2)) {
-				order.add("p1");
-				order.add("p2");
-			}
-			else {
-				order.add("p2");
-				order.add("p1");
-			}
-			break;
-			
-		case 3: 
-			if ((player1 > player2) && (player1 > player3)) {
-				order.add("p1");
+		if (allPlayers.size() != 2) {
+			//this while loop rolls dice until all tje player's rolls are unique
+			while ((player1 == player2) || (player1 == player3) || (player1 == player4) || (player2 == player3) || (player2 == player4) || (player3 == player4)) {
 				
-				if ((player2 > player3)) {
-					order.add("p2");
-					order.add("p3");
-				}
-				else {
-					order.add("p3");
-					order.add("p2");
-				}
 				
-			}
-			else if ((player2 > player1) && (player2 > player3)) {
-				order.add("p2");
 				
-				if ((player1 > player3)) {
-					order.add("p1");
-					order.add("p3");
-				}
-				else {
-					order.add("p3");
-					order.add("p1");
-				}
-				
-			}
-			else {
-				order.add("p3");
-				
-				if ((player1 > player2)) {
-					order.add("p1");
-					order.add("p2");
-				}
-				else {
-					order.add("p2");
-					order.add("p1");
-				}
-				
-			}
-			
-			break;
-		
-		case 4: //finish this
-			if ((player1 > player2) && (player1 > player3) && (player1 > player4)) {
-				order.add("p1");
-				
-				if ((player2 > player3) && (player2 > player4)) {
-					order.add("p2");
-					
-					if (player3 > player4) {
-						order.add("p3");
-						order.add("p4");
+				for (int i = 0; i < allPlayers.size(); i++) {
+					switch (i) {
+					case 0: 
+						player1 = rollDice();
+						rolls[0] = player1;
+						break;
+					case 1: 
+						player2 = rollDice();
+						rolls[1] = player2;
+						break;
+					case 2: 
+						player3 = rollDice();
+						rolls[2] = player3;
+						break;
+					case 3: 
+						player4 = rollDice();
+						rolls[3] = player4;
+						break;
 					}
 				}
 			}
-			
-			else if ((player2 > player1) && (player2 > player3) && (player2 > player4)) {
-				
-			}
-			
-			else if ((player3 > player1) && (player3 > player2) && (player3 > player4)) {
-				
-			}
-			
-			else {
-				
-			}
-			
-			break;
-		
 		}
+		else {
+			while ((player1 == player2)) {
+				
+				for (int i = 0; i < allPlayers.size(); i++) {
+					switch (i) {
+					case 0: 
+						player1 = rollDice();
+						rolls[0] = player1;
+						break;
+					case 1: 
+						player2 = rollDice();
+						rolls[1] = player2;
+						break;
+					}
+				}
+			}
+		}
+		//a bubble sort to create the order
 		
+		int temp;
+		Player temp2;
+		do {
+			//sorting
+			for (int i = 0; i < allPlayers.size() - 1; i++) {
+				if (rolls[i] < rolls[i + 1]) {
+					temp = rolls[i];
+					rolls[i] = rolls[i + 1];
+					rolls[i + 1] = temp;
+					
+					temp2 = allPlayers.get(i);
+					allPlayers.set(i, allPlayers.get(i + 1));
+					allPlayers.set(i + 1, temp2);
+					
+					
+				}
+			}
+			
+			
+			
+			switch (allPlayers.size()) {
+			case 2: 
+				if (rolls[0] > rolls[1]) {
+					sorted = true;
+				} 
+			break;
+			case 3: 
+				
+				if (rolls[0] > rolls[1] && rolls[1] > rolls[2]) {
+					sorted = true;
+				} 
+				
+				break;
+			case 4: 
+				
+				if (rolls[0] > rolls[1] && rolls[1] > rolls[2] && rolls[2] > rolls[3]) {
+					sorted = true;
+				} 
+				
+				break;
+			}
+			
+			
+		} while (sorted == false);
+		
+			
 	}
-		
-		
 	
-
+	
 }
