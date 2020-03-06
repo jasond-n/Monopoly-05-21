@@ -182,7 +182,7 @@ public class Property {
 	}
 	
 	//use this to make utility 
-		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name) {
+		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name, String color) {
 			setPrice(price); //price of property
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
 			setRentBase(rentBase);
@@ -190,6 +190,7 @@ public class Property {
 			setMortgageValue(mortgageValue);
 			setOwner(owner); //name of owner of property
 			setName(name); //name of the actual property
+			setColor(color);
 		}
 		
 		//use this to make community chest / chance / tax
@@ -218,7 +219,8 @@ public class Property {
 			//if you are not the owner
 			if (board.getProperties().get(getPositionOnBoard()).getOwner() != player && board.getProperties().get(getPositionOnBoard()).getOwner() != null) {
 				
-				//checking to see if property landed is monopolized
+				
+				
 				if (isMonopolized(player, board)) {
 					multiplier = 2;
 				}
@@ -332,15 +334,21 @@ public class Property {
 		//helper method to see if the property that was landed on is monopolized
 		public boolean isMonopolized(Player player, Board board) {
 			ArrayList<Property> temp = new ArrayList<Property>(player.getPlayerProperties());
-			String color2check = board.getProperties().get(getPositionOnBoard()).getColor();
+			String color2check = board.getProperties().get(player.getPosition()).getColor();
 			int numOfColor = 0;
 			boolean toReturn = false;
+			
+			
 			
 			for(int i = 0; i < temp.size(); i++) {
 				if (temp.get(i).getColor().equalsIgnoreCase(color2check)) {
 					numOfColor++;
+					
+					
 				}
 			}
+			
+			
 			
 			if (numOfColor == 2) {
 				switch(color2check) {

@@ -65,7 +65,7 @@ public class GameConfiguration {
 				
 				
 				
-				int dice = 0;
+				int dice = 2;
 				Property landedProperty;
 				
 				//hardcode for testing
@@ -75,7 +75,7 @@ public class GameConfiguration {
 
 				{
 					
-					dice = gameBoard.rollDice();
+					//dice = gameBoard.rollDice();
 					System.out.println(currentPlayer.getAvatar() + ", you just threw " + dice);
 					currentPlayer.movePosition(dice);
 					

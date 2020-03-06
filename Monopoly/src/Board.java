@@ -155,7 +155,7 @@ public class Board {
 		allSpotsOnBoard.add(alma = new Property(120, 0, 0, 9, 8, 40, 100, 300, 450, 600, 60, 50, 50, null, "Hotel Alma", "light blue"));
 		allSpotsOnBoard.add(jail = new JailProperty(10, "Jail"));
 		allSpotsOnBoard.add(reeveTheatre = new Property(140, 0, 0, 11, 10, 50, 150, 450, 625, 750, 70, 100, 100, null, "Reeve Theatre", "pink"));
-		allSpotsOnBoard.add(zipper = new Utility(150, 12, 4, 10, 75, null, "The Zipper"));
+		allSpotsOnBoard.add(zipper = new Utility(150, 12, 4, 10, 75, null, "The Zipper", "white"));
 		allSpotsOnBoard.add(kinesB = new Property(140, 0, 0, 13, 10, 50, 150, 450, 625, 750, 70, 100, 100, null, "Kineseology B", "pink"));
 		allSpotsOnBoard.add(kinesA = new Property(160, 0, 0, 14, 12, 60, 180, 500, 700, 900, 80, 100, 100, null, "Kineseology A", "pink"));
 		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 15, 25, 50, 100, 200, 100, null, "City Hall Station", "black"));
@@ -171,7 +171,7 @@ public class Board {
 		allSpotsOnBoard.add(university = new RailroadProperty(200, 25, 25, 50, 100, 200, 100, null, "University Staiton", "black"));
 		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 26, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Administration Building", "yellow"));
 		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Macewan Hall", "yellow"));
-		allSpotsOnBoard.add(gym = new Utility(150, 28, 4, 10, 75, null, "The Gym"));
+		allSpotsOnBoard.add(gym = new Utility(150, 28, 4, 10, 75, null, "The Gym", "white"));
 		allSpotsOnBoard.add(education = new Property(280, 0, 0, 29, 24, 120, 360, 850, 1025, 1200, 140, 150, 150, null, "Werklund School of Education", "yellow"));
 		allSpotsOnBoard.add(jail = new JailProperty(30, "Go To Jail"));
 		allSpotsOnBoard.add(tfdl = new Property(300, 0, 0, 31, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Taylor Family Digital Library", "green"));
@@ -241,7 +241,9 @@ public class Board {
 	
 	//checking to see if the roll is a double
 	public boolean isDouble() {
+		
 		if (dice1 == dice2) {
+			
 			return true;
 		}
 		else {
