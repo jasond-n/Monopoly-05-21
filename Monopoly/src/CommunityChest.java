@@ -24,19 +24,24 @@ public class CommunityChest extends Property {
 				
 		} else if (cardDrawn.getType() == "move") {					// check if go is passed???
 			// update player's location
-			p.movePosition(p.getPosition() + cardDrawn.getValue());
+			p.setPosition(p.getPosition() + cardDrawn.getValue());
+
+			super.doActionAfterPlayerLandingHere(p, roll, board);
 				
 		} else if (cardDrawn.getType() == "moveTo") {
 			if (p.getPosition() < cardDrawn.getValue()) {
-				p.movePosition(cardDrawn.getValue() - p.getPosition());
+				p.setPosition(cardDrawn.getValue() - p.getPosition());
 			} else {
-				p.movePosition(39 - p.getPosition() + cardDrawn.getValue());
+				p.setPosition(39 - p.getPosition() + cardDrawn.getValue());
 				}
+			
+			super.doActionAfterPlayerLandingHere(p, roll, board);
 			
 		} else if (cardDrawn.getType() == "nearestStation") {
 			if (p.getPosition() <= 4 && p.getPosition() >= 35) {
 				// go to 5
 				p.movePosition(5);
+				
 			} else if (p.getPosition() >= 5 && p.getPosition() <= 14) {
 				// go to 15
 				p.movePosition(15);
@@ -48,12 +53,16 @@ public class CommunityChest extends Property {
 				p.movePosition(35);
 			}
 			
+			super.doActionAfterPlayerLandingHere(p, roll, board);
+			
 		} else if (cardDrawn.getType() == "nearestUtil") {
 			if (p.getPosition() >= 11 && p.getPosition() >= 28) {
 				p.movePosition(12);
 			} else {
 				p.movePosition(28);
 			}
+			
+			super.doActionAfterPlayerLandingHere(p, roll, board);
 			
 		} else if (cardDrawn.getType() == "each") {
 			ArrayList<Player> players = board.getAllPlayers();
