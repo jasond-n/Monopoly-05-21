@@ -6,6 +6,10 @@ public class GameConfiguration {
 	
 	private static Board gameBoard;
 	public static void main(String[] args) {
+		
+		
+		
+		
 		final int startPosition = 1;
 		
 		System.out.println("Generating board...");
@@ -30,6 +34,9 @@ public class GameConfiguration {
 			Player player = new Player(playerName, gameBoard);
 			gameBoard.getAllPlayers().add(player);
 		}
+		
+		//deciding the order for turns
+		gameBoard.decideOrder();
 		
 		
 		// Later on, we need to add win condition or game end condition.
