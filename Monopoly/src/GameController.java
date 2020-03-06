@@ -42,7 +42,7 @@ public class GameController
     	int d1 = gameBoard.getDice1();
     	int d2 = gameBoard.getDice2();
     	message.setText("dice1: "+ Integer.toString(d1) +"dice2: "+ Integer.toString(d2));
-    	icon.jumpToLocation(d1, d2);
+    	icon.updateLocation();
     	
     	
     }
@@ -50,27 +50,27 @@ public class GameController
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() { 
     	
-//    	Timeline timeline = new Timeline(
-//            new KeyFrame(Duration.millis(10),
-//                   new EventHandler <ActionEvent>()
-//    			   {
-//    			   	@Override
-//    			   	public void handle(ActionEvent event)
-//    			   	{
-//    			   		icon.updateLocation();
-//    			   		if ((icon.getX() < 0) ||
-//    			   		    (icon.getX() > boardPane.getWidth()))
-//    			   			icon.reverseX();
-//    			   		if ((icon.getY() < 0) ||
-//    			   		    (icon.getY() > boardPane.getHeight()))
-//    			   			icon.reverseY();
-//    			   	}
-//    			   }
-//            )
-//    	);
-//    	timeline.setCycleCount(Timeline.INDEFINITE);
-//    	timeline.setAutoReverse(true);
-//    	timeline.play();
+    	Timeline timeline = new Timeline(
+            new KeyFrame(Duration.millis(50),
+                   new EventHandler <ActionEvent>()
+    			   {
+    			   	@Override
+    			   	public void handle(ActionEvent event)
+    			   	{
+    			   		icon.updateLocation();
+    			   		if ((icon.getX() < 0) ||
+    			   		    (icon.getX() > boardPane.getWidth()))
+    			   			icon.reverseX();
+    			   		if ((icon.getY() < 0) ||
+    			   		    (icon.getY() > boardPane.getHeight()))
+    			   			icon.reverseY();
+    			   	}
+    			   }
+            )
+    	);
+    	timeline.setCycleCount(Timeline.INDEFINITE);
+    	timeline.setAutoReverse(true);
+    	timeline.play();
     	
     	
     	
