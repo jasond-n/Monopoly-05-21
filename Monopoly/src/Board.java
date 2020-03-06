@@ -368,6 +368,30 @@ public class Board {
 			break;
 		
 		case 4: //finish this
+			if ((player1 > player2) && (player1 > player3) && (player1 > player4)) {
+				order.add("p1");
+				
+				if ((player2 > player3) && (player2 > player4)) {
+					order.add("p2");
+					
+					if (player3 > player4) {
+						order.add("p3");
+						order.add("p4");
+					}
+				}
+			}
+			
+			else if ((player2 > player1) && (player2 > player3) && (player2 > player4)) {
+				
+			}
+			
+			else if ((player3 > player1) && (player3 > player2) && (player3 > player4)) {
+				
+			}
+			
+			else {
+				
+			}
 			
 			break;
 		
