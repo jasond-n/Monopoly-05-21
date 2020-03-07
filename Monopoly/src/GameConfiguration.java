@@ -6,12 +6,6 @@ public class GameConfiguration {
 	
 	private static Board gameBoard;
 	public static void main(String[] args) {
-		
-		
-		
-		
-		final int startPosition = 1;
-		
 		System.out.println("Generating board...");
 		gameBoard = new Board();
 		System.out.println(gameBoard.toString());

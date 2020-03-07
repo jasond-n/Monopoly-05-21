@@ -69,7 +69,7 @@ public class Icon extends Circle
 		  case 0:
 			  x += xVel;
 			  setCenterX(x);
-		  		setCenterY(y);
+		  	  setCenterY(y);
 		  	break;
 		  
 		  case 1:
