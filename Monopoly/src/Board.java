@@ -88,7 +88,7 @@ public class Board {
 		Card moneyN50b = new Card("You fell asleep during your final exam and got a D. Cramming was definitely a bad idea. Lose $50.", "money", -50);
 		
 		Card moveN3 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
-		Card move3 = new Card("YouR assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
+		Card move3 = new Card("Your assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
 		
 		Card moveTo0 = new Card("Advance to GO. Collect $200.", "moveTo", 0);
 		Card moveTo24 = new Card("Advance to Science Theatres. If you pass GO, collect $200", "moveTo", 24);
