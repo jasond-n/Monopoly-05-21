@@ -54,26 +54,26 @@ public class CommunityChest extends Property {
 		} else if (cardDrawn.getType() == "nearestStation") {
 			if (p.getPosition() <= 4 && p.getPosition() >= 35) {
 				// go to 5
-				p.movePosition(5);
+				p.setPosition(5);
 				
 			} else if (p.getPosition() >= 5 && p.getPosition() <= 14) {
 				// go to 15
-				p.movePosition(15);
+				p.setPosition(15);
 			} else if (p.getPosition() >= 15 && p.getPosition() <= 24) {
 				// go to 25
-				p.movePosition(25);
+				p.setPosition(25);
 			} else if (p.getPosition() >= 25 && p.getPosition() <= 34) {
 				// go to 35
-				p.movePosition(35);
+				p.setPosition(35);
 			}
 			
 			super.doActionAfterPlayerLandingHere(p, roll, board);
 			
 		} else if (cardDrawn.getType() == "nearestUtil") {
 			if (p.getPosition() >= 11 && p.getPosition() >= 28) {
-				p.movePosition(12);
+				p.setPosition(12);
 			} else {
-				p.movePosition(28);
+				p.setPosition(28);
 			}
 			
 			super.doActionAfterPlayerLandingHere(p, roll, board);
