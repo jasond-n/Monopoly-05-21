@@ -24,6 +24,8 @@ public class Property {
 		this.owner = owner;
 	}
 	
+	
+	
 	public int getPrice() {
 		return price;
 	}
@@ -208,6 +210,7 @@ public class Property {
 		}
 		
 		public void setUserInput(String userInput) {
+			System.out.println("Stinky");
 			this.userInput = userInput;
 		}
 		
