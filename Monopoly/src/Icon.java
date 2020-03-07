@@ -12,12 +12,12 @@ public class Icon extends Circle
   private int xVel, yVel; //Velocities of the ball in the x and y directions
   int counter; //will be used to determine what lines of code will be run in the update location method
 
-  public Icon()
+  public Icon(Color color)
   {
 		//Random rnd = new Random();
 
 	      setRadius(RADIUS);
-	      setFill(Color.RED);
+	      setFill(color);
 	      x = 550;
 	      y = 550;
 	      xVel = 50;
@@ -27,10 +27,10 @@ public class Icon extends Circle
 
 
   
-  public void initializeLocation()
+  public void initializeLocation(int player)
   {
-	  setCenterX(550);
-	  setCenterY(550);
+	  setCenterX(550+ player*20);
+	  setCenterY(550+ player*20);
   }
   
   public void moveOneSpot()
