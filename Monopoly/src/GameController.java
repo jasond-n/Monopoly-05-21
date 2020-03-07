@@ -60,6 +60,7 @@ public class GameController
 	private Label consoleLabel;
 	
 	
+	
     @FXML
     void diceroll(ActionEvent event) {
     	gameBoard.rollDice();
