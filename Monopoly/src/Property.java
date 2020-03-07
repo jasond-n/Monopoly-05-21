@@ -13,6 +13,7 @@ public class Property {
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
 	private String name, color;
 	private Player owner;
+	private String userInput;
 	
 	//Getters and Setters
 	public Player getOwner() {
@@ -208,6 +209,14 @@ public class Property {
 			setName(name); //name of the actual property
 		}
 		
+		public void setUserInput(String userInput) {
+			this.userInput = userInput;
+		}
+		
+		public String getUserInput() {
+			return userInput;
+		}
+		
 		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 		{
 			String userInput;
@@ -270,14 +279,12 @@ public class Property {
 					
 					&& (board.getProperties().get(player.getPosition()).getName().equals("GO") == false)) 
 			{
-				Scanner sc = new Scanner(System.in);
 				
-				//debugging line
-				System.out.println(board.getProperties().get(player.getPosition()).getName());
-				System.out.println("stinky");
 				
-					System.out.print("Would you like to buy " + board.getProperties().get(player.getPosition()).getName()+"? (y/n)");
-					userInput = sc.next();
+				//will wait for the show and wait
+				//continue from here
+					userInput = getUserInput();
+					
 					
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getBalance() - getPrice() >= 0) {

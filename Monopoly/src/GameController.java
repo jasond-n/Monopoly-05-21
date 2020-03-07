@@ -72,6 +72,7 @@ public class GameController
 	private Label consoleLabel;
 	
 	
+	
     @FXML
     void diceroll(ActionEvent event) {
     	gameConfiguration.getGameBoard().rollDice();
