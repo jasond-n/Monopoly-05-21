@@ -59,9 +59,9 @@ public class Property {
 		this.numOfHotels = numOfHotels;
 	}
 
-	public int getPositionOnBoard() {
-		return positionOnBoard;
-	}
+	//public int getPositionOnBoard() {
+		//return positionOnBoard;
+	//}
 
 	private void setPositionOnBoard(int positionOnBoard) {
 		this.positionOnBoard = positionOnBoard;
@@ -218,7 +218,7 @@ public class Property {
 			
 			//figure out mortgages later
 			//if you are not the owner
-			if (board.getProperties().get(getPositionOnBoard()).getOwner() != player && board.getProperties().get(getPositionOnBoard()).getOwner() != null) {
+			if (board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null) {
 				
 				
 				
@@ -233,44 +233,45 @@ public class Property {
 					switch(getNumOfHouses()) {
 					case 0: 
 						player.loseMoney(getRentBase() * multiplier);
-						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRentBase() * multiplier);
+						board.getProperties().get(player.getPosition()).getOwner().addMoney(getRentBase() * multiplier);
 						break;
 					case 1: 
 						player.loseMoney(getRent1House());
-						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent1House() * multiplier);
+						board.getProperties().get(player.getPosition()).getOwner().addMoney(getRent1House() * multiplier);
 						break;
 					case 2: 
 						player.loseMoney(getRent2House());
-						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent2House() * multiplier);
+						board.getProperties().get(player.getPosition()).getOwner().addMoney(getRent2House() * multiplier);
 						break;
 					case 3: 
 						player.loseMoney(getRent3House());
-						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent3House() * multiplier);
+						board.getProperties().get(player.getPosition()).getOwner().addMoney(getRent3House() * multiplier);
 						break; 
 					case 4: 
 						player.loseMoney(getRent4House());
-						board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRent4House() * multiplier);
+						board.getProperties().get(player.getPosition()).getOwner().addMoney(getRent4House() * multiplier);
 						break;
 					}
 				}
 				
 				if (getNumOfHotels() == 1) {
 					player.loseMoney(getRentHotel());
-					board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(getRentHotel() * multiplier);
+					board.getProperties().get(player.getPosition()).getOwner().addMoney(getRentHotel() * multiplier);
 				}
 			}
 			//no one owns the property
-			else if (board.getProperties().get(getPositionOnBoard()).getOwner() == null 
+			else if ((board.getProperties().get(player.getPosition()).getOwner() == null )
 					
-					&& !(board.getProperties().get(getPositionOnBoard()).getName().startsWith("communityChest")) 
+					&& (board.getProperties().get(player.getPosition()).getName().startsWith("Community Chest") == false) 
 					
-					&& !(board.getProperties().get(getPositionOnBoard()).getName().startsWith("chance")) 
+					&& (board.getProperties().get(player.getPosition()).getName().startsWith("Chance") == false) 
 					
-					&& !(board.getProperties().get(getPositionOnBoard()).getName().equals("GO"))) 
+					&& (board.getProperties().get(player.getPosition()).getName().equals("GO") == false)) 
 			{
 				Scanner sc = new Scanner(System.in);
 				
 				//debugging line
+				System.out.println(board.getProperties().get(player.getPosition()).getName());
 				System.out.println("stinky");
 				
 					System.out.print("Would you like to buy " +getName()+"? (y/n)");
@@ -280,7 +281,7 @@ public class Property {
 						if (player.getBalance() - getPrice() >= 0) {
 							setOwner(player);
 							player.loseMoney(getPrice());
-							player.addPlayerProperty(board.getProperties().get(getPositionOnBoard()));
+							player.addPlayerProperty(board.getProperties().get(player.getPosition()));
 							System.out.println("You just bought: " + getName());
 						}
 						else {

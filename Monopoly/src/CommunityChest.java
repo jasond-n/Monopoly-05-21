@@ -26,11 +26,25 @@ public class CommunityChest extends Property {
 			// update player's location
 			p.setPosition(p.getPosition() + cardDrawn.getValue());
 
+			
+			//checking to see if you go negative
+			if (p.getPosition() < 0) {
+				p.setPosition(p.getPosition() + 40);
+			}
+			
+			
 			super.doActionAfterPlayerLandingHere(p, roll, board);
 				
 		} else if (cardDrawn.getType() == "moveTo") {
 			if (p.getPosition() < cardDrawn.getValue()) {
 				p.setPosition(cardDrawn.getValue() - p.getPosition());
+				
+				//checking to see if you go negative
+				if (p.getPosition() < 0) {
+					p.setPosition(p.getPosition() + 40);
+				}
+				
+				
 			} else {
 				p.setPosition(39 - p.getPosition() + cardDrawn.getValue());
 				}

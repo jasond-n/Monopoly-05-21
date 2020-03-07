@@ -19,7 +19,7 @@ public class Utility extends Property {
 				if (userInput.equalsIgnoreCase("y")) {
 					if (player.getBalance() - getPrice() >= 0) {
 						setOwner(player);
-						player.addPlayerProperty(board.getProperties().get(getPositionOnBoard()));
+						player.addPlayerProperty(board.getProperties().get(player.getPosition()));
 						player.loseMoney(getPrice());
 						System.out.println("You just bought: " + getName());
 					}
@@ -32,12 +32,12 @@ public class Utility extends Property {
 		{
 			if((board.getProperties().get(12).getOwner() == board.getProperties().get(28).getOwner()) &&  board.getProperties().get(12).getOwner() != null) {
 				player.loseMoney(roll * 10);
-				board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(roll * 10);
+				board.getProperties().get(player.getPosition()).getOwner().addMoney(roll * 10);
 			}
 			else {
 				//lose money equal to 4 times
 				player.loseMoney(roll * 4);
-				board.getProperties().get(getPositionOnBoard()).getOwner().addMoney(roll * 4);
+				board.getProperties().get(player.getPosition()).getOwner().addMoney(roll * 4);
 			}
 			
 		}
