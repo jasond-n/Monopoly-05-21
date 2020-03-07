@@ -23,6 +23,8 @@ public class Property {
 		this.owner = owner;
 	}
 	
+	
+	
 	public int getPrice() {
 		return price;
 	}
