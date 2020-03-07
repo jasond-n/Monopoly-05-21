@@ -212,6 +212,9 @@ public class GameConfiguration {
 	}
 
 
+
+	
+	
 	public boolean isWin()
 	{
 		return false;
