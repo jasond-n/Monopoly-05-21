@@ -31,6 +31,18 @@ public class GameController
     
     @FXML
     private Label message;
+    
+    @FXML
+    private Label p1Balance;
+    
+    @FXML
+    private Label p2Balance;
+    
+    @FXML
+    private Label p3Balance;
+    
+    @FXML
+    private Label p4Balance;
 	
 	@FXML
 	private HBox hbox;
@@ -48,7 +60,7 @@ public class GameController
     	gameBoard.rollDice();
     	int d1 = gameBoard.getDice1();
     	int d2 = gameBoard.getDice2();
-    	message.setText("dice1: "+ Integer.toString(d1) +"; dice2: "+ Integer.toString(d2));
+    	//message.setText("dice1: "+ Integer.toString(d1) +"; dice2: "+ Integer.toString(d2));
 
     	Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
 
@@ -115,11 +127,14 @@ public class GameController
 		consoleLabel.setText("Generating board...");
 		consoleLabel.setText(gameBoard.toString());
 		
+		
 		Scanner sc = new Scanner(System.in);
 		
 		
 		//consoleLabel.setText("How many players are playing: (2-4) ");
 		int numOfPlayers = 2;
+		
+		
 		
 		for (int i = 1; i <= numOfPlayers; i++)
 		{
@@ -129,6 +144,11 @@ public class GameController
 			Player player = new Player(playerName, gameBoard);
 			gameBoard.getAllPlayers().add(player);
 		}
+		
+		p1Balance.setText("P1 Balance: $1500");
+		p2Balance.setText("P2 Balance: $1500");
+		
+		
 		consoleLabel.setText("Player 1, please dice roll now: ");
 
 		sc.close();	
