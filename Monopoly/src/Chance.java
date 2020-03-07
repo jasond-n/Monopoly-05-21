@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Chance extends Property {
-	public Chance(int positionOnBoard, String name)
+	public Chance(int positionOnBoard, Player owner, String name)
 	{
-		super(positionOnBoard, name);
+		super(positionOnBoard, owner, name);
 	}
 	
 	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board) {

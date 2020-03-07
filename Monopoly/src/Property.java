@@ -194,9 +194,10 @@ public class Property {
 		}
 		
 		//use this to make community chest / chance / tax
-				public Property(int positionOnBoard,  String name) {
+				public Property(int positionOnBoard, Player owner, String name) {
 					setPositionOnBoard(positionOnBoard); //position of property 1-40
 					setName(name); //name of the actual property
+					setOwner(owner);
 				}
 		
 		public Property(int price, int positionOnBoard, String name) {
@@ -259,8 +260,19 @@ public class Property {
 				}
 			}
 			//no one owns the property
-			else if (board.getProperties().get(getPositionOnBoard()).getOwner() == null) {
+			else if (board.getProperties().get(getPositionOnBoard()).getOwner() == null 
+					
+					&& !(board.getProperties().get(getPositionOnBoard()).getName().startsWith("communityChest")) 
+					
+					&& !(board.getProperties().get(getPositionOnBoard()).getName().startsWith("chance")) 
+					
+					&& !(board.getProperties().get(getPositionOnBoard()).getName().equals("GO"))) 
+			{
 				Scanner sc = new Scanner(System.in);
+				
+				//debugging line
+				System.out.println("stinky");
+				
 					System.out.print("Would you like to buy " +getName()+"? (y/n)");
 					userInput = sc.next();
 					
@@ -283,6 +295,10 @@ public class Property {
 			else {
 				Scanner sc = new Scanner(System.in);
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
+					
+					//debugging line
+					System.out.println("alalalalala funny poo");
+					
 					System.out.print("would you like to buy a hotel? (y/n)");
 					userInput = sc.next();
 	
@@ -302,6 +318,9 @@ public class Property {
 				
 				//asks to buy a house if you have less than 4 houses
 				if (getNumOfHouses() < 4 && getNumOfHotels() == 0) {
+					
+					//debugging line
+					System.out.println("poopy");
 					
 					System.out.print("would you like to buy a house? (y/n)");
 					userInput = sc.next();
@@ -333,18 +352,15 @@ public class Property {
 		
 		//helper method to see if the property that was landed on is monopolized
 		public boolean isMonopolized(Player player, Board board) {
-			ArrayList<Property> temp = new ArrayList<Property>(player.getPlayerProperties());
 			String color2check = board.getProperties().get(player.getPosition()).getColor();
 			int numOfColor = 0;
 			boolean toReturn = false;
 			
 			
 			
-			for(int i = 0; i < temp.size(); i++) {
-				if (temp.get(i).getColor().equalsIgnoreCase(color2check)) {
+			for(int i = 0; i < player.getPlayerProperties().size(); i++) {
+				if (player.getPlayerProperties().get(i).getColor().equalsIgnoreCase(color2check)) {
 					numOfColor++;
-					
-					
 				}
 			}
 			

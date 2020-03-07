@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class CommunityChest extends Property {
-	public CommunityChest(int positionOnBoard, String name)
+	public CommunityChest(int positionOnBoard, Player owner, String name)
 	{
-		super(positionOnBoard, name);
+		super(positionOnBoard, owner, name);
 	}
 	
 	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board) {

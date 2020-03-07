@@ -1,9 +1,9 @@
 import java.util.Scanner;
 import java.lang.Math;
 public class TaxProperty extends Property {
-	public TaxProperty(int positionOnBoard, String name)
+	public TaxProperty(int positionOnBoard, Player owner, String name)
 	{
-		super(positionOnBoard, name);
+		super(positionOnBoard, owner, name);
 	}
 	
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)

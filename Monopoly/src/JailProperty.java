@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class JailProperty extends Property {
-	public JailProperty(int price, String name)
+	public JailProperty(int price, Player owner, String name)
 	{
-		super(price, name);
+		super(price, owner, name);
 	}
 	public void doActionBeforePlayerLeavingHere(Player player, int roll, Board board)
 	{
