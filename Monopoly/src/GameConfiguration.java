@@ -15,9 +15,6 @@ public class GameConfiguration {
 		gameEnd = false;
 	}
 	
-	
-	
-	
 	public int getCurrentPlayer() {
 		return currentPlayer;
 	}
