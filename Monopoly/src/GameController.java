@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ public class GameController
 {
     private ResourceBundle resources;
     private Board gameBoard = new Board();
+    private GameConfiguration gameConfiguration = new GameConfiguration();
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
     
@@ -47,7 +49,10 @@ public class GameController
 	@FXML
 	private HBox hbox;
 	@FXML
-	private Icon icon = new Icon();
+	private Icon icon1 = new Icon(Color.RED);
+	@FXML
+	private Icon icon2 = new Icon(Color.BLUE);
+	
 	@FXML
 	private Pane boardPane;
 	
@@ -60,35 +65,34 @@ public class GameController
     	gameBoard.rollDice();
     	int d1 = gameBoard.getDice1();
     	int d2 = gameBoard.getDice2();
+
     	//message.setText("dice1: "+ Integer.toString(d1) +"; dice2: "+ Integer.toString(d2));
 
+
+    	consoleLabel.setText(consoleLabel.getText() + "You diced " + (d1+d2));
+    	
     	Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
 
 		    @Override
 		    public void handle(ActionEvent event2) {
-		    	icon.updateLocation(); // display next string
-		       
+		    	switch(gameConfiguration.getCurrentPlayer())
+		    	{
+		    	case 0:
+		    		icon1.updateLocation(); 				       	
+		    		break;
+		    	case 1:
+		    		icon2.updateLocation(); 
+		    		break;
+		    	}
+		    	
 		    }
 		}));
-
+    	
     	timeline.setCycleCount(d1+d2);
 		timeline.play();
-    }
-    
-    public void delayedAction()
-    {
-    	Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-
-		    @Override
-		    public void handle(ActionEvent event) {
-		    	icon.updateLocation(); // display next string
-		       
-		    }
-		}));
-		//timeline.setCycleCount(table.length - 1);
-    	//timeline.setCycleCount(arg0);
-		timeline.play();
-		
+		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
+    	
+		consoleLabel.setText(consoleLabel.getText() + "\n; Now, Player "+ (gameConfiguration.getCurrentPlayer()+1) +"'s turn; ");
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -116,16 +120,17 @@ public class GameController
 //    	timeline.setAutoReverse(true);
 //    	timeline.play();
     
-    	boardPane.getChildren().add(icon);
-    	icon.initializeLocation();
-    	
+    	boardPane.getChildren().add(icon1);
+    	icon1.initializeLocation(0);
+    	boardPane.getChildren().add(icon2);
+    	icon2.initializeLocation(1);
     	StartGame();
     }
     
     
 	public void StartGame() {
-		consoleLabel.setText("Generating board...");
-		consoleLabel.setText(gameBoard.toString());
+		//consoleLabel.setText("Generating board...");
+		//consoleLabel.setText(gameBoard.toString());
 		
 		
 		Scanner sc = new Scanner(System.in);

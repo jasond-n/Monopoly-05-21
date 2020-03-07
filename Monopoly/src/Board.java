@@ -88,7 +88,7 @@ public class Board {
 		Card moneyN50b = new Card("You fell asleep during your final exam and got a D. Cramming was definitely a bad idea. Lose $50.", "money", -50);
 		
 		Card moveN3 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
-		Card move3 = new Card("You assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
+		Card move3 = new Card("YouR assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
 		
 		Card moveTo0 = new Card("Advance to GO. Collect $200.", "moveTo", 0);
 		Card moveTo24 = new Card("Advance to Science Theatres. If you pass GO, collect $200", "moveTo", 24);
@@ -146,8 +146,8 @@ public class Board {
 		allSpotsOnBoard.add(go = new Property(200, 0, "GO"));
 		allSpotsOnBoard.add(cragie = new Property(60, 0, 0, 1, 2, 10, 30, 90, 160, 250, 30, 50, 50, null, "Cragie Hall", "brown"));
 		allSpotsOnBoard.add(communityChest1 = new CommunityChest(2 , null, "Community Chest 1"));
-		allSpotsOnBoard.add(rentFee = new TaxProperty(3, null, "Rent Fee"));
-		allSpotsOnBoard.add(scienceB = new Property(60, 0, 0, 4, 4, 20, 60, 180, 320, 450, 30, 50, 50, null, "Science B", "brown"));
+		allSpotsOnBoard.add(scienceB = new Property(60, 0, 0, 3, 4, 20, 60, 180, 320, 450, 30, 50, 50, null, "Science B", "brown"));
+		allSpotsOnBoard.add(rentFee = new TaxProperty(4, null, "Rent Fee"));
 		allSpotsOnBoard.add(somerset = new RailroadProperty(200, 5, 25, 50, 100, 200, 100, null, "Somerset Station", "black"));
 		allSpotsOnBoard.add(mathScience = new Property(100, 0, 0, 6, 6, 30, 90, 270, 400, 550, 50, 50, 50, null, "Math Sciences", "light blue"));
 		allSpotsOnBoard.add(chance1 = new Chance(7 , null, "Chance 1"));
@@ -161,7 +161,7 @@ public class Board {
 		allSpotsOnBoard.add(cityHall = new RailroadProperty(200, 15, 25, 50, 100, 200, 100, null, "City Hall Station", "black"));
 		allSpotsOnBoard.add(scurfield = new Property(180, 0, 0, 16, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Scurfield Hall", "orange"));
 		allSpotsOnBoard.add(communityChest2 = new CommunityChest(17 , null, "Community Chest 2"));
-		allSpotsOnBoard.add(professional = new Property(180, 0, 0, 18, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Professional Faculty", "orange"));
+		allSpotsOnBoard.add(professional = new Property(180, 0, 0, 18, 14, 70, 200, 550, 750, 950, 90, 100, 100, null, "Professional Faculties", "orange"));
 		allSpotsOnBoard.add(scienceA = new Property(200, 0, 0, 19, 16, 80, 220, 600, 800, 1000, 100, 100, 100, null, "Science A", "orange"));
 		allSpotsOnBoard.add(freeParking = new TaxProperty(20, null, "Free Parking"));
 		allSpotsOnBoard.add(olympicOval = new Property(220, 0, 0, 21, 18, 90, 250, 700, 875, 1050, 110, 150, 150, null, "Olympic Oval", "red"));
@@ -170,15 +170,15 @@ public class Board {
 		allSpotsOnBoard.add(scienceTheatres = new Property(240, 0, 0, 24, 20, 100, 300, 750, 925, 1100, 120, 150, 150, null, "Science Theatres", "red"));
 		allSpotsOnBoard.add(university = new RailroadProperty(200, 25, 25, 50, 100, 200, 100, null, "University Staiton", "black"));
 		allSpotsOnBoard.add(admin = new Property(260, 0, 0, 26, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Administration Building", "yellow"));
-		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "Macewan Hall", "yellow"));
+		allSpotsOnBoard.add(macHall = new Property(260, 0, 0, 27, 22, 110, 330, 800, 975, 1150, 130, 150, 150, null, "MacEwan Hall", "yellow"));
 		allSpotsOnBoard.add(gym = new Utility(150, 28, 4, 10, 75, null, "The Gym", "white"));
-		allSpotsOnBoard.add(education = new Property(280, 0, 0, 29, 24, 120, 360, 850, 1025, 1200, 140, 150, 150, null, "Werklund School of Education", "yellow"));
+		allSpotsOnBoard.add(education = new Property(280, 0, 0, 29, 24, 120, 360, 850, 1025, 1200, 140, 150, 150, null, "Education Tower", "yellow"));
 		allSpotsOnBoard.add(jail = new JailProperty(30, null, "Go To Jail"));
 		allSpotsOnBoard.add(tfdl = new Property(300, 0, 0, 31, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Taylor Family Digital Library", "green"));
 		allSpotsOnBoard.add(schulich = new Property(300, 0, 0, 32, 26, 130, 390, 900, 1100, 1275, 150, 200, 200, null, "Schulich School of Engineering", "green"));
 		allSpotsOnBoard.add(communityChest3 = new CommunityChest(33 , null, "Community Chest 3"));
-		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 34, 25, 50, 100, 200, 100, null, "Tuscany Station", "black"));
-		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 35, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, null, "ICT", "green"));
+		allSpotsOnBoard.add(ict = new Property(320, 0, 0, 34, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200, null, "ICT", "green"));
+		allSpotsOnBoard.add(tuscany = new RailroadProperty(200, 35, 25, 50, 100, 200, 100, null, "Tuscany Station", "black"));
 		allSpotsOnBoard.add(chance3 = new Chance(36 , null, "Chance 3"));
 		allSpotsOnBoard.add(eeel = new Property(350, 0, 0, 37, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200, null, "EEEL", "dark blue"));
 		allSpotsOnBoard.add(tuitionFee = new TaxProperty(38, null, "Tuition Fee"));

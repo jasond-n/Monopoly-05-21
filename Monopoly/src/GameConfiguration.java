@@ -4,6 +4,36 @@ import java.util.Scanner;
 
 public class GameConfiguration {
 	
+	private int currentPlayer;
+	
+	private boolean gameEnd;
+	
+	
+	public GameConfiguration()
+	{
+		currentPlayer = 0;
+		gameEnd = false;
+	}
+	
+	
+	
+	
+	public int getCurrentPlayer() {
+		return currentPlayer;
+	}
+	public void setCurrentPlayer(int currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+	public boolean isGameEnd() {
+		return gameEnd;
+	}
+	public void setGameEnd(boolean gameEnd) {
+		this.gameEnd = gameEnd;
+	}
+
+
+
+
 	private static Board gameBoard;
 	public static void main(String[] args) {
 		System.out.println("Generating board...");
