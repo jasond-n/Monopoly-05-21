@@ -26,7 +26,6 @@ import javafx.event.ActionEvent;
 public class GameController
 {
     private ResourceBundle resources;
-    private Board gameBoard = new Board();
     private GameConfiguration gameConfiguration = new GameConfiguration();
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -53,6 +52,11 @@ public class GameController
 	@FXML
 	private Icon icon2 = new Icon(Color.BLUE);
 	
+	//@FXML
+	//private Icon icon3 = new Icon(Color.YELLOW);
+	//@FXML
+	//private Icon icon4 = new Icon(Color.GREEN);
+	
 	@FXML
 	private Pane boardPane;
 	
@@ -62,9 +66,9 @@ public class GameController
 	
     @FXML
     void diceroll(ActionEvent event) {
-    	gameBoard.rollDice();
-    	int d1 = gameBoard.getDice1();
-    	int d2 = gameBoard.getDice2();
+    	gameConfiguration.getGameBoard().rollDice();
+    	int d1 = gameConfiguration.getGameBoard().getDice1();
+    	int d2 = gameConfiguration.getGameBoard().getDice2();
 
     	//message.setText("dice1: "+ Integer.toString(d1) +"; dice2: "+ Integer.toString(d2));
 
@@ -78,10 +82,23 @@ public class GameController
 		    	switch(gameConfiguration.getCurrentPlayer())
 		    	{
 		    	case 0:
-		    		icon1.updateLocation(); 				       	
+		    		icon2.updateLocation(); 
+		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
+		    		currentPlayer.movePosition(d1+d2);
+		    		landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+//					
+					Property landedProperty = gameConfiguration.getGameBoard().getProperties().get(currentPlayer.getPosition());
+		    		//consoleLabel.setText("sssssssssssssssss: ");
 		    		break;
 		    	case 1:
-		    		icon2.updateLocation(); 
+		    		icon1.updateLocation(); 
+		    		//consoleLabel.setText("ddddddddddddddd;");
+		    		break;
+		    	case 2:
+		    		//icon3.updateLocation(); 				       	
+		    		break;
+		    	case 3:
+		    		//icon4.updateLocation(); 
 		    		break;
 		    	}
 		    	
@@ -124,6 +141,10 @@ public class GameController
     	icon1.initializeLocation(0);
     	boardPane.getChildren().add(icon2);
     	icon2.initializeLocation(1);
+    	//boardPane.getChildren().add(icon3);
+    	//icon3.initializeLocation(2);
+    	//boardPane.getChildren().add(icon4);
+    	//icon4.initializeLocation(3);
     	StartGame();
     }
     
@@ -141,13 +162,13 @@ public class GameController
 		
 		
 		
-		for (int i = 1; i <= numOfPlayers; i++)
+		for (int i = 0; i < numOfPlayers; i++)
 		{
 			//consoleLabel.setText("Player " + i + ", please enter your name now: ");
 			//String playerName = sc.next();
-			String playerName = "p" + i;
-			Player player = new Player(playerName, gameBoard);
-			gameBoard.getAllPlayers().add(player);
+			String playerName = "p" + (i + 1);
+			Player player = new Player(playerName, gameConfiguration.getGameBoard());
+			gameConfiguration.getGameBoard().getAllPlayers().add(player);
 		}
 		
 		p1Balance.setText("P1 Balance: $1500");
@@ -155,6 +176,8 @@ public class GameController
 		
 		
 		consoleLabel.setText("Player 1, please dice roll now: ");
+		
+		consoleLabel.setText("" + gameConfiguration.getCurrentPlayer());
 
 		sc.close();	
 		

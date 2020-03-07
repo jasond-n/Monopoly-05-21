@@ -29,8 +29,26 @@ public class Icon extends Circle
   
   public void initializeLocation(int player)
   {
-	  setCenterX(550+ player*20);
-	  setCenterY(550+ player*20);
+	  switch(player) {
+	  
+	  case 0:
+		  setCenterX(550);
+		  setCenterY(550);
+		  break;
+	  case 1:
+		  setCenterX(550+ 20);
+		  setCenterY(550);
+		  break;
+	  case 2:
+		  setCenterX(550);
+		  setCenterY(550 + 20);
+		  break;
+	  case 3:
+		  setCenterX(550+ 20);
+		  setCenterY(550+ 20);
+		  break;
+	  
+	  }
   }
   
   public void moveOneSpot()
