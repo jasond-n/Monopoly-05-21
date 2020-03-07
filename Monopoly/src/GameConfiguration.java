@@ -198,9 +198,6 @@ public class GameConfiguration {
 		userInput = "";
 	}
 	
-	
-	
-	
 	public int getCurrentPlayer() {
 		return currentPlayer;
 	}
@@ -213,6 +210,7 @@ public class GameConfiguration {
 	public void setGameEnd(boolean gameEnd) {
 		this.gameEnd = gameEnd;
 	}
+
 
 	public boolean isWin()
 	{
@@ -423,4 +421,6 @@ public class GameConfiguration {
 	
 	
 	
+
+
 }
