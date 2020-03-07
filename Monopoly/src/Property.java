@@ -274,7 +274,7 @@ public class Property {
 				System.out.println(board.getProperties().get(player.getPosition()).getName());
 				System.out.println("stinky");
 				
-					System.out.print("Would you like to buy " +getName()+"? (y/n)");
+					System.out.print("Would you like to buy " + board.getProperties().get(player.getPosition()).getName()+"? (y/n)");
 					userInput = sc.next();
 					
 					if (userInput.equalsIgnoreCase("y")) {
@@ -282,7 +282,7 @@ public class Property {
 							setOwner(player);
 							player.loseMoney(getPrice());
 							player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-							System.out.println("You just bought: " + getName());
+							System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
 						}
 						else {
 							System.out.println("Sorry You do not have enough money to buy this");
@@ -293,7 +293,7 @@ public class Property {
 				//sc.close();
 			}
 			//you own the property 
-			else {
+			else if (board.getProperties().get(player.getPosition()).getOwner() == player){
 				Scanner sc = new Scanner(System.in);
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
 					
