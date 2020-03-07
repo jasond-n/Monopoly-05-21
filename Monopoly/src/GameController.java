@@ -2,12 +2,14 @@
 
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -163,6 +165,19 @@ public class GameController
 		//consoleLabel.setText(gameBoard.toString());
 		
 		
+		Alert badGrade = new Alert(AlertType.CONFIRMATION);
+		badGrade.setTitle("Please make a decision");
+		badGrade.setHeaderText("either type yes or no");
+		
+	
+		Optional <ButtonType> action = badGrade.showAndWait();
+		
+		if (action.get() == ButtonType.OK) {
+			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
+		} 
+		else {
+			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
+		}
 		
 		
 		Scanner sc = new Scanner(System.in);

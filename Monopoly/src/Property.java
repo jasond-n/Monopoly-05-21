@@ -210,6 +210,7 @@ public class Property {
 		}
 		
 		public void setUserInput(String userInput) {
+			System.out.println("Stinky");
 			this.userInput = userInput;
 		}
 		

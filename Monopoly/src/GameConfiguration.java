@@ -197,7 +197,17 @@ public class GameConfiguration {
 		dice = 0;
 		userInput = "";
 	}
-	
+	public Board getGameBoard() {
+		return gameBoard;
+	}
+
+
+
+
+	public void setGameBoard(Board gameBoard) {
+		this.gameBoard = gameBoard;
+	}
+
 	public int getCurrentPlayer() {
 		return currentPlayer;
 	}
