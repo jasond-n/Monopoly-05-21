@@ -17,9 +17,9 @@ You will then see a GUI that you can interact with and be allow to click buttons
 
 ## Installation Requirements
 
-Java JDK latest verison
-Java SE latest verison
-JavaFX latest verison
+* Java JDK latest verison
+* Java SE latest verison
+* JavaFX latest verison
 
 ## Built With
 
