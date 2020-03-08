@@ -65,8 +65,6 @@ public class GameController
 	@FXML
 	private Label consoleLabel;
 	
-	
-	
     @FXML
     void diceroll(ActionEvent event) {
     	gameConfiguration.getGameBoard().rollDice();
@@ -86,13 +84,11 @@ public class GameController
 		    		icon1.updateLocation();
 		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
 		    		currentPlayer.movePosition(1);
-		    		
 		    		break;
 		    	case 1:
 		    		icon2.updateLocation();
 		    		Player currentPlayer2 = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
 		    		currentPlayer2.movePosition(1);
-		    		
 		    		break;
 		    	case 2:
 		    		//icon3.updateLocation(); 				       	
@@ -133,8 +129,8 @@ public class GameController
     
     
 	public void StartGame() {
-		consoleLabel.setText("Generating board...");
-		consoleLabel.setText(gameConfiguration.getGameBoard().toString());
+		//consoleLabel.setText("Generating board...");
+		//consoleLabel.setText(gameConfiguration.getGameBoard().toString());
 		
 		int numOfPlayers = 2;
 			
