@@ -217,6 +217,25 @@ public class Property {
 			return userInput;
 		}
 		
+		public boolean youAreNotOwner(Player player, Board board) {
+			return board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null;
+		}
+		
+		public boolean noOneOwns(Player player, Board board) {
+			return (board.getProperties().get(player.getPosition()).getOwner() == null )
+			
+			&& (board.getProperties().get(player.getPosition()).getName().startsWith("Community Chest") == false) 
+			
+			&& (board.getProperties().get(player.getPosition()).getName().startsWith("Chance") == false) 
+			
+			&& (board.getProperties().get(player.getPosition()).getName().equals("GO") == false);
+		}
+		
+		public boolean youOwn(Player player, Board board) {
+			return board.getProperties().get(player.getPosition()).getOwner() == player;
+		}
+		
+		
 		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 		{
 			String userInput;
@@ -229,7 +248,7 @@ public class Property {
 			
 			//figure out mortgages later
 			//if you are not the owner
-			if (board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null) {
+			if (youAreNotOwner(player, board)) {
 				
 				
 				
@@ -271,13 +290,7 @@ public class Property {
 				}
 			}
 			//no one owns the property
-			else if ((board.getProperties().get(player.getPosition()).getOwner() == null )
-					
-					&& (board.getProperties().get(player.getPosition()).getName().startsWith("Community Chest") == false) 
-					
-					&& (board.getProperties().get(player.getPosition()).getName().startsWith("Chance") == false) 
-					
-					&& (board.getProperties().get(player.getPosition()).getName().equals("GO") == false)) 
+			else if (noOneOwns(player, board)) 
 			{
 				
 				
@@ -302,7 +315,7 @@ public class Property {
 				//sc.close();
 			}
 			//you own the property 
-			else if (board.getProperties().get(player.getPosition()).getOwner() == player){
+			else if (youOwn(player, board)){
 				
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
 					

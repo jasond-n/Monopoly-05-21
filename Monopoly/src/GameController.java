@@ -114,7 +114,7 @@ public class GameController
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
 		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player "+ (((gameConfiguration.getCurrentPlayer()+1)%2)+1) +"'s turn; ");
-		alertPrompt();
+		
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -202,12 +202,13 @@ public class GameController
 		sc.close();
 	}
 	
-	void alertPrompt() {
+	public void alertPrompt(Player p, String message) {
 		Alert alert = new Alert(AlertType.NONE);
 		alert.setTitle("Please make a decision");
-		alert.setHeaderText("either type yes or no");
-		alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer()).getPosition()).getName() + 
-				". Do you want want to buy it?");
+		alert.setHeaderText("Click yes or no");
+		//alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer()).getPosition()).getName() + 
+				//". Do you want want to buy it?");
+		alert.setContentText(message);
 		
 		ButtonType buttonYes = new ButtonType("Yes");
 		alert.getButtonTypes().add(buttonYes);
@@ -218,18 +219,39 @@ public class GameController
 		Optional <ButtonType> action = alert.showAndWait();
 		
 		if (action.get() == buttonYes) {
-			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
-			Board gameBoard = gameConfiguration.getGameBoard();
-			Player currentPlayer = gameBoard.getAllPlayers().get(gameConfiguration.getCurrentPlayer());
-			Property landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
-
-			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, 2, gameBoard);
-			
+			gameConfiguration.getGameBoard().getProperties().get(p.getPosition()).setUserInput("y");
 			//p1Balance.
 			//gameConfiguration.executeTurn(currentPlayer);
 		} 
 		else {
-			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
+			gameConfiguration.getGameBoard().getProperties().get(p.getPosition()).setUserInput("n");
 		}
 	}
+	
+	public void afterLand(Player p, Board gameBoard) {
+		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
+		
+		
+		switch (p.getPosition()) {
+		case 0: 
+			consoleLabel.setText("You just landed on GO, you can gain $200");
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
+			break;
+		case 1:
+			consoleLabel.setText("You just landed on Cragie Hall");
+			
+			if (landedProperty.youAreNotOwner(p, gameBoard)) {
+				consoleLabel.setText("You have to pay the owner of the Property!");
+			}
+			else if (landedProperty.noOneOwns(p, gameBoard)){
+				alertPrompt(p, "Would you like to buy Cragie Hall?");
+			}
+			
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
+			break;
+		}
+	}
+	
+	
+	
 }
