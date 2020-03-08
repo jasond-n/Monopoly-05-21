@@ -73,9 +73,6 @@ public class GameController
     	int d1 = gameConfiguration.getGameBoard().getDice1();
     	int d2 = gameConfiguration.getGameBoard().getDice2();
 
-    	//message.setText("dice1: "+ Integer.toString(d1) +"; dice2: "+ Integer.toString(d2));
-
-
     	consoleLabel.setText(consoleLabel.getText() + "You diced " + (d1+d2));
     	
     	Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
@@ -206,9 +203,6 @@ public class GameController
 			Property landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 
 			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, 2, gameBoard);
-			
-			//p1Balance.
-			//gameConfiguration.executeTurn(currentPlayer);
 		} 
 		else {
 			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
