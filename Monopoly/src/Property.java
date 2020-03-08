@@ -210,7 +210,6 @@ public class Property {
 		}
 		
 		public void setUserInput(String userInput) {
-			System.out.println("Stinky");
 			this.userInput = userInput;
 		}
 		
@@ -304,24 +303,22 @@ public class Property {
 			}
 			//you own the property 
 			else if (board.getProperties().get(player.getPosition()).getOwner() == player){
-				Scanner sc = new Scanner(System.in);
+				
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
 					
-					//debugging line
-					System.out.println("alalalalala funny poo");
 					
-					System.out.print("would you like to buy a hotel? (y/n)");
-					userInput = sc.next();
+					//System.out.print("would you like to buy a hotel? (y/n)");
+					userInput = getUserInput();
 	
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getBalance() - getHotelCost() >= 0) {
 							this.numOfHotels++;
 							this.numOfHouses = 0;
 							player.loseMoney(getHotelCost());
-							System.out.println("You just bought a hotel ");
+							//System.out.println("You just bought a hotel ");
 						}
 						else {
-							System.out.println("Sorry You do not have enough money to buy this");
+							//System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 				}
@@ -330,20 +327,19 @@ public class Property {
 				//asks to buy a house if you have less than 4 houses
 				if (getNumOfHouses() < 4 && getNumOfHotels() == 0) {
 					
-					//debugging line
-					System.out.println("poopy");
 					
-					System.out.print("would you like to buy a house? (y/n)");
-					userInput = sc.next();
+					
+					//System.out.print("would you like to buy a house? (y/n)");
+					userInput = getUserInput();
 	
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getBalance() - getHouseCost() >= 0) {
 							addNumOfHouses();
 							player.loseMoney(getHouseCost());
-							System.out.println("You just bought a house ");
+							//System.out.println("You just bought a house ");
 						}
 						else {
-							System.out.println("Sorry You do not have enough money to buy this");
+							//System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 					
@@ -356,10 +352,6 @@ public class Property {
 			
 		}
 				
-		
-		public void doActionBeforePlayerLeavingHere(Player player, int roll, Board board) {
-			
-		}
 		
 		//helper method to see if the property that was landed on is monopolized
 		public boolean isMonopolized(Player player, Board board) {
