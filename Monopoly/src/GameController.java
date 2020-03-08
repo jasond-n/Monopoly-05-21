@@ -193,8 +193,6 @@ public class GameController
 		
 		
 		consoleLabel.setText("Player 1, please dice roll now: ");
-		
-		consoleLabel.setText("" + gameConfiguration.getCurrentPlayer());
 
 		sc.close();
 	}
@@ -203,7 +201,8 @@ public class GameController
 		Alert alert = new Alert(AlertType.NONE);
 		alert.setTitle("Please make a decision");
 		alert.setHeaderText("either type yes or no");
-		alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getCurrentPlayer()));
+		alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getCurrentPlayer()) + 
+				". Do you want want to buy it?");
 		
 		ButtonType buttonYes = new ButtonType("Yes");
 		alert.getButtonTypes().add(buttonYes);
@@ -215,6 +214,7 @@ public class GameController
 		
 		if (action.get() == buttonYes) {
 			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
+			gameConfiguration.executeTurn(currentPlayer);
 		} 
 		else {
 			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");

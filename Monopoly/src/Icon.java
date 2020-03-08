@@ -1,15 +1,12 @@
 import javafx.scene.shape.Circle;
-
-import java.util.Random;
-
 import javafx.scene.paint.Color;
 
 
 public class Icon extends Circle
 {
   private static final int RADIUS = 10;
-  private int x,y;     // Keep track of the centre of the ball
-  private int xVel, yVel; //Velocities of the ball in the x and y directions
+  private int x,y;     // Keep track of the centre of the icon
+  private int xVel, yVel; //Velocities of the icon in the x and y directions
   int counter; //will be used to determine what lines of code will be run in the update location method
 
   public Icon(Color color)
