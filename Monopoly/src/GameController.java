@@ -86,14 +86,15 @@ public class GameController
 		    	switch(currentPlayerIndex)
 		    	{
 		    	case 0:
-		    		icon2.updateLocation();
-		    		Player currentPlayer2 = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
-		    		currentPlayer2.movePosition(1);
-		    		break;
-		    	case 1:
 		    		icon1.updateLocation();
 		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
 		    		currentPlayer.movePosition(1);
+		    		
+		    		break;
+		    	case 1:
+		    		icon2.updateLocation();
+		    		Player currentPlayer2 = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
+		    		currentPlayer2.movePosition(1);
 		    		
 		    		break;
 		    	case 2:
@@ -112,7 +113,7 @@ public class GameController
 
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
-		consoleLabel.setText(consoleLabel.getText() + "\n; Now, Player "+ (gameConfiguration.getCurrentPlayer()+1) +"'s turn; ");
+		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player "+ (((gameConfiguration.getCurrentPlayer()+1)%2)+1) +"'s turn; ");
 		alertPrompt();
     }
 
@@ -149,6 +150,9 @@ public class GameController
     	//icon3.initializeLocation(2);
     	//boardPane.getChildren().add(icon4);
     	//icon4.initializeLocation(3);
+    	gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
+    	p3Balance.setText("");
+    	p4Balance.setText("");
     	StartGame();
     }
     
@@ -215,6 +219,13 @@ public class GameController
 		
 		if (action.get() == buttonYes) {
 			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
+			Board gameBoard = gameConfiguration.getGameBoard();
+			Player currentPlayer = gameBoard.getAllPlayers().get(gameConfiguration.getCurrentPlayer());
+			Property landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+
+			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, 2, gameBoard);
+			
+			//p1Balance.
 			//gameConfiguration.executeTurn(currentPlayer);
 		} 
 		else {
