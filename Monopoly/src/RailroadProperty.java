@@ -12,15 +12,16 @@ public class RailroadProperty extends Property {
 		if(this.getOwner() == null)
 		{
 			// write the code to ask the player "Do you want to buy this railroad?
-			Scanner sc = new Scanner(System.in);
-				System.out.print("Do you want to buy " + getName() + "? (y/n)");
-				userInput = sc.next();
+			//Scanner sc = new Scanner(System.in);
+				//System.out.print("Do you want to buy " + getName() + "? (y/n)");
+				userInput = getUserInput();
+				
 				if (userInput.equalsIgnoreCase("y")) {
 					if (player.getBalance() - getPrice() >= 0) {
 						setOwner(player);
 						player.loseMoney(getPrice());
 						player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-						System.out.println("You just bought: " + getName());
+						//System.out.println("You just bought: " + getName());
 					}
 				}
 			//sc.close();
@@ -29,7 +30,7 @@ public class RailroadProperty extends Property {
 		//now you must pay rent
 		else if(board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null)
 		{
-			System.out.println("You have to pay the owner of the property!");
+			//System.out.println("You have to pay the owner of the property!");
 			if (counter >= 0) {
 				for(int i = 0; i < board.getProperties().get(player.getPosition()).getOwner().getPlayerProperties().size(); i++) {
 					if (board.getProperties().get(player.getPosition()).getOwner().getPlayerProperties().get(i).getColor().equals("black")) {

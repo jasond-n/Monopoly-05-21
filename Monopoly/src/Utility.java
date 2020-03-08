@@ -13,15 +13,15 @@ public class Utility extends Property {
 		if(this.getOwner() == null)
 		{
 			// write the code to ask the player "Do you want to buy this utility?
-			Scanner sc = new Scanner(System.in);
-				System.out.print("Do you want to buy " + getName() + "? (y/n)");
-				userInput = sc.next();
+			//Scanner sc = new Scanner(System.in);
+				//System.out.print("Do you want to buy " + getName() + "? (y/n)");
+				userInput = getUserInput();
 				if (userInput.equalsIgnoreCase("y")) {
 					if (player.getBalance() - getPrice() >= 0) {
 						setOwner(player);
 						player.addPlayerProperty(board.getProperties().get(player.getPosition()));
 						player.loseMoney(getPrice());
-						System.out.println("You just bought: " + getName());
+						//System.out.println("You just bought: " + getName());
 					}
 				}
 			//sc.close();
