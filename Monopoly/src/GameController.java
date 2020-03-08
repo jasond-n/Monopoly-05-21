@@ -15,7 +15,9 @@ import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 
@@ -110,7 +112,7 @@ public class GameController
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
 		consoleLabel.setText(consoleLabel.getText() + "\n; Now, Player "+ (gameConfiguration.getCurrentPlayer()+1) +"'s turn; ");
-		StartGame();
+		alertPrompt();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -151,16 +153,15 @@ public class GameController
     
     
 	public void StartGame() {
-		//consoleLabel.setText("Generating board...");
-		//consoleLabel.setText(gameBoard.toString());
+		consoleLabel.setText("Generating board...");
+		consoleLabel.setText(gameConfiguration.getGameBoard().toString());
 		
-		
-		Alert badGrade = new Alert(AlertType.CONFIRMATION);
-		badGrade.setTitle("Please make a decision");
-		badGrade.setHeaderText("either type yes or no");
+		Alert prompt = new Alert(AlertType.CONFIRMATION);
+		prompt.setTitle("Please make a decision");
+		prompt.setHeaderText("either type yes or no");
 		
 	
-		Optional <ButtonType> action = badGrade.showAndWait();
+		Optional <ButtonType> action = prompt.showAndWait();
 		
 		if (action.get() == ButtonType.OK) {
 			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
@@ -195,7 +196,28 @@ public class GameController
 		
 		consoleLabel.setText("" + gameConfiguration.getCurrentPlayer());
 
-		sc.close();	
+		sc.close();
+	}
+	
+	void alertPrompt() {
+		Alert alert = new Alert(AlertType.NONE);
+		alert.setTitle("Please make a decision");
+		alert.setHeaderText("either type yes or no");
+		alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getCurrentPlayer()));
 		
+		ButtonType buttonYes = new ButtonType("Yes");
+		alert.getButtonTypes().add(buttonYes);
+	    ButtonType buttonNo = new ButtonType("No");
+	    alert.getButtonTypes().add(buttonNo);
+		
+	
+		Optional <ButtonType> action = alert.showAndWait();
+		
+		if (action.get() == buttonYes) {
+			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
+		} 
+		else {
+			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
+		}
 	}
 }
