@@ -17,7 +17,7 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("Monopoly.fxml"));
 		
 		Scene scene = new Scene(root);
-		Image icon = new Image(getClass().getResourceAsStream("Monopoly.jpg"));
+		Image icon = new Image(getClass().getResourceAsStream("Monopoly.png"));
 		
 		stage.getIcons().add(icon);
 		stage.setScene(scene);

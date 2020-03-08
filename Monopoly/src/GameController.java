@@ -82,19 +82,19 @@ public class GameController
 
 		    @Override
 		    public void handle(ActionEvent event2) {
-		    	switch(gameConfiguration.getCurrentPlayer())
+		    	int currentPlayerIndex = gameConfiguration.getCurrentPlayer();
+		    	switch(currentPlayerIndex)
 		    	{
 		    	case 0:
-		    		icon2.updateLocation(); 
-		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
-		    		currentPlayer.movePosition(d1+d2);
-		    		//landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
-					Property landedProperty = gameConfiguration.getGameBoard().getProperties().get(currentPlayer.getPosition());
-		    		//consoleLabel.setText("sssssssssssssssss: ");
+		    		icon2.updateLocation();
+		    		Player currentPlayer2 = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
+		    		currentPlayer2.movePosition(1);
 		    		break;
 		    	case 1:
-		    		icon1.updateLocation(); 
-		    		//consoleLabel.setText("ddddddddddddddd;");
+		    		icon1.updateLocation();
+		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
+		    		currentPlayer.movePosition(1);
+		    		
 		    		break;
 		    	case 2:
 		    		//icon3.updateLocation(); 				       	
@@ -109,6 +109,7 @@ public class GameController
     	
     	timeline.setCycleCount(d1+d2);
 		timeline.play();
+
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
 		consoleLabel.setText(consoleLabel.getText() + "\n; Now, Player "+ (gameConfiguration.getCurrentPlayer()+1) +"'s turn; ");
@@ -156,20 +157,20 @@ public class GameController
 		consoleLabel.setText("Generating board...");
 		consoleLabel.setText(gameConfiguration.getGameBoard().toString());
 		
-		Alert prompt = new Alert(AlertType.CONFIRMATION);
-		prompt.setTitle("Please make a decision");
-		prompt.setHeaderText("either type yes or no");
+//		Alert prompt = new Alert(AlertType.CONFIRMATION);
+//		prompt.setTitle("Please make a decision");
+//		prompt.setHeaderText("either type yes or no");
+//		
+//	
+		//Optional <ButtonType> action = prompt.showAndWait();
 		
-	
-		Optional <ButtonType> action = prompt.showAndWait();
-		
-		if (action.get() == ButtonType.OK) {
-			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
-		} 
-		else {
-			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
-		}
-		
+//		if (action.get() == ButtonType.OK) {
+//			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
+//		} 
+//		else {
+//			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
+//		}
+//		
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -201,7 +202,7 @@ public class GameController
 		Alert alert = new Alert(AlertType.NONE);
 		alert.setTitle("Please make a decision");
 		alert.setHeaderText("either type yes or no");
-		alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getCurrentPlayer()) + 
+		alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer()).getPosition()).getName() + 
 				". Do you want want to buy it?");
 		
 		ButtonType buttonYes = new ButtonType("Yes");
@@ -214,7 +215,7 @@ public class GameController
 		
 		if (action.get() == buttonYes) {
 			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
-			gameConfiguration.executeTurn(currentPlayer);
+			//gameConfiguration.executeTurn(currentPlayer);
 		} 
 		else {
 			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
