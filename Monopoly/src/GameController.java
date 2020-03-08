@@ -183,25 +183,80 @@ public class GameController
 		}
 	}
 	
+	public void normalPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
+		if (landedProperty.youAreNotOwner(p, gameBoard)) {
+			consoleLabel.setText("You have to pay the owner of the Property!");
+		}
+		else if (landedProperty.noOneOwns(p, gameBoard)){
+			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?");
+			
+			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
+				consoleLabel.setText("You just bought" + landedProperty.getName());
+			}
+			
+			if (p.getBalance() - landedProperty.getPrice() < 0) {
+				consoleLabel.setText("Sorry you do not have enough money to buy " + landedProperty.getName());
+			}
+			
+		}
+		else if (landedProperty.youOwn(p, gameBoard)) {
+			
+			if (landedProperty.getNumOfHouses() == 4 && landedProperty.getNumOfHotels() == 0) {
+				
+				alertPrompt(p, "Would you like to buy a hotel? (y/n)");
+
+				if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
+					if (p.getBalance() - landedProperty.getHotelCost() >= 0) {
+						consoleLabel.setText("You just bought a hotel ");
+					}
+					else {
+						consoleLabel.setText("Sorry You do not have enough money to buy this");
+						
+					}
+				}
+			}
+			
+			
+			//asks to buy a house if you have less than 4 houses
+			if (landedProperty.getNumOfHouses() < 4 && landedProperty.getNumOfHotels() == 0) {
+				
+				
+				
+				//System.out.print("would you like to buy a house? (y/n)");
+				
+
+				if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
+					if (p.getBalance() - landedProperty.getHouseCost() >= 0) {
+						consoleLabel.setText("You just bought a house.");
+						//System.out.println("You just bought a house ");
+					}
+					else {
+						consoleLabel.setText("Sorry You do not have enough money to buy this");
+						//System.out.println("Sorry You do not have enough money to buy this");
+					}
+				}
+				
+				//sc.close();
+			}
+			
+			
+		}
+	}
+	
+	
+	
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		
+		consoleLabel.setText("You just landed on " + landedProperty.getName());
 		
 		switch (p.getPosition()) {
 		case 0: 
-			consoleLabel.setText("You just landed on GO, you can gain $200");
+			consoleLabel.setText("Collect $200");
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 1:
-			consoleLabel.setText("You just landed on Cragie Hall");
-			
-			if (landedProperty.youAreNotOwner(p, gameBoard)) {
-				consoleLabel.setText("You have to pay the owner of the Property!");
-			}
-			else if (landedProperty.noOneOwns(p, gameBoard)){
-				alertPrompt(p, "Would you like to buy Cragie Hall?");
-			}
-			
+			normalPropertyInteraction(p, gameBoard, landedProperty);
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		}
