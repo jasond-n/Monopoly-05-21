@@ -231,6 +231,23 @@ public class GameController
 		}
 	}
 	
+	public void railroadlPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
+		if (landedProperty.youAreNotOwner(p, gameBoard)) {
+			consoleLabel.setText("You have to pay the owner of the railroad!");
+		}
+		else if (landedProperty.noOneOwns(p, gameBoard)){
+			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?");
+			
+			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
+				consoleLabel.setText("You just bought" + landedProperty.getName());
+			}
+			
+			if (p.getBalance() - landedProperty.getPrice() < 0) {
+				consoleLabel.setText("Sorry you do not have enough money to buy " + landedProperty.getName());
+			}	
+		}
+	}
+	
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		
