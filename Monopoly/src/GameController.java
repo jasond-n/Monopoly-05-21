@@ -1,29 +1,23 @@
-
-
-
 import java.net.URL;
 import java.util.Optional;
-import java.util.Scanner;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 
 public class GameController
 {
     private GameConfiguration gameConfiguration = new GameConfiguration();
+    private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
     
@@ -42,10 +36,6 @@ public class GameController
     @FXML
     private Label p4Balance;
 	
-    @FXML
-    private Label decision;
-    
-
     
 	@FXML
 	private HBox hbox;
@@ -82,19 +72,23 @@ public class GameController
 		    	{
 		    	case 0:
 		    		icon1.updateLocation();
-		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
-		    		currentPlayer.movePosition(1);
+		    		setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
+		    		getCurrentPlayer().movePosition(1);
 		    		break;
 		    	case 1:
 		    		icon2.updateLocation();
-		    		Player currentPlayer2 = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
-		    		currentPlayer2.movePosition(1);
+		    		setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
+		    		getCurrentPlayer().movePosition(1);
 		    		break;
 		    	case 2:
-		    		//icon3.updateLocation(); 				       	
+		    		//icon3.updateLocation();
+		    		//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
+		    		//getCurrentPlayer().movePosition(1);
 		    		break;
 		    	case 3:
 		    		//icon4.updateLocation(); 
+		    		//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
+		    		//getCurrentPlayer().movePosition(1);
 		    		break;
 		    	}
 		    	
@@ -107,7 +101,7 @@ public class GameController
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
 		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player "+ (((gameConfiguration.getCurrentPlayer()+1)%2)+1) +"'s turn; ");
-		
+		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -127,6 +121,13 @@ public class GameController
     	StartGame();
     }
     
+    public void setCurrentPlayer(Player p) {
+    	currentPlayer = p;
+    }
+    
+    public Player getCurrentPlayer() {
+    	return currentPlayer;
+    }
     
 	public void StartGame() {
 		//consoleLabel.setText("Generating board...");
@@ -259,9 +260,82 @@ public class GameController
 			normalPropertyInteraction(p, gameBoard, landedProperty);
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		case 10:
+			break;
+		case 11:
+			break;
+		case 12:
+			break;
+		case 13:
+			break;
+		case 14:
+			break;
+		case 15:
+			break;
+		case 16:
+			break;
+		case 17:
+			break;
+		case 18:
+			break;
+		case 19:
+			break;
+		case 20:
+			break;
+		case 21:
+			break;
+		case 22:
+			break;
+		case 23:
+			break;
+		case 24:
+			break;
+		case 25:
+			break;
+		case 26:
+			break;
+		case 27:
+			break;
+		case 28:
+			break;
+		case 29:
+			break;
+		case 30:
+			break;
+		case 31:
+			break;
+		case 32:
+			break;
+		case 33:
+			break;
+		case 34:
+			break;
+		case 35:
+			break;
+		case 36:
+			break;
+		case 37:
+			break;
+		case 38:
+			break;
+		case 39:
+			break;
 		}
 	}
-	
-	
-	
 }

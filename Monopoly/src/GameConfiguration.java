@@ -4,36 +4,6 @@ import java.util.Scanner;
 
 public class GameConfiguration {
 	
-//	private int currentPlayer;
-//	
-//	private boolean gameEnd;
-//	
-//	
-//	public GameConfiguration()
-//	{
-//		currentPlayer = 0;
-//		gameEnd = false;
-//	}
-//	
-//	
-//	
-//	
-//	public int getCurrentPlayer() {
-//		return currentPlayer;
-//	}
-//	public void setCurrentPlayer(int currentPlayer) {
-//		this.currentPlayer = currentPlayer;
-//	}
-//	public boolean isGameEnd() {
-//		return gameEnd;
-//	}
-//	public void setGameEnd(boolean gameEnd) {
-//		this.gameEnd = gameEnd;
-//	}
-//
-//
-//
-//
 //	private static Board gameBoard;
 //	public static void main(String[] args) {
 //		System.out.println("Generating board...");
@@ -178,7 +148,6 @@ public class GameConfiguration {
 //		
 //	}
 	
-	
 	private int currentPlayer;
 	
 	private boolean gameEnd;
@@ -217,17 +186,11 @@ public class GameConfiguration {
 	public void setGameEnd(boolean gameEnd) {
 		this.gameEnd = gameEnd;
 	}
-
-
-
-	
 	
 	public boolean isWin()
 	{
 		return false;
 	}
-	
-	
 	
 	public void setup(int numOfPlayers, String[]names) {
 		this.numOfPlayers = numOfPlayers;
@@ -256,15 +219,13 @@ public class GameConfiguration {
 		this.userInput = userInput;
 	}
 	
-	
 	public void executeTurn(Player currentPlayer) {
 		if(currentPlayer.getInJail() == false)
-
 		{
 			
-			//dice = gameBoard.rollDice();
+			dice = gameBoard.rollDice();
 
-			//currentPlayer.movePosition(dice);
+			currentPlayer.movePosition(dice);
 			
 			landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 
@@ -302,8 +263,6 @@ public class GameConfiguration {
 					}
 				}
 			}
-			
-				
 		}
 	}
 }
