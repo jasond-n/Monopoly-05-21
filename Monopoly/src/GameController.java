@@ -117,28 +117,6 @@ public class GameController
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() { 
     	
-//    	Timeline timeline = new Timeline(
-//            new KeyFrame(Duration.millis(50),
-//                   new EventHandler <ActionEvent>()
-//    			   {
-//    			   	@Override
-//    			   	public void handle(ActionEvent event)
-//    			   	{
-//    			   		icon.updateLocation();
-//    			   		if ((icon.getX() < 0) ||
-//    			   		    (icon.getX() > boardPane.getWidth()))
-//    			   			icon.reverseX();
-//    			   		if ((icon.getY() < 0) ||
-//    			   		    (icon.getY() > boardPane.getHeight()))
-//    			   			icon.reverseY();
-//    			   	}
-//    			   }
-//            )
-//    	);
-//    	timeline.setCycleCount(Timeline.INDEFINITE);
-//    	timeline.setAutoReverse(true);
-//    	timeline.play();
-    
     	boardPane.getChildren().add(icon1);
     	icon1.initializeLocation(0);
     	boardPane.getChildren().add(icon2);
