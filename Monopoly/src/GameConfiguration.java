@@ -201,9 +201,6 @@ public class GameConfiguration {
 		return gameBoard;
 	}
 
-
-
-
 	public void setGameBoard(Board gameBoard) {
 		this.gameBoard = gameBoard;
 	}

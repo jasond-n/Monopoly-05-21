@@ -3,34 +3,24 @@
 
 import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.Scanner;
-
-import javafx.application.Application;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 
 public class GameController
 {
-    private ResourceBundle resources;
     private GameConfiguration gameConfiguration = new GameConfiguration();
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -97,7 +87,6 @@ public class GameController
 		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
 		    		currentPlayer.movePosition(d1+d2);
 		    		//landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
-//					
 					Property landedProperty = gameConfiguration.getGameBoard().getProperties().get(currentPlayer.getPosition());
 		    		//consoleLabel.setText("sssssssssssssssss: ");
 		    		break;
@@ -121,6 +110,7 @@ public class GameController
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
 		consoleLabel.setText(consoleLabel.getText() + "\n; Now, Player "+ (gameConfiguration.getCurrentPlayer()+1) +"'s turn; ");
+		StartGame();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
