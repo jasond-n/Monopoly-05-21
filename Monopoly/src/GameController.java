@@ -65,16 +65,11 @@ public class GameController
 	@FXML
 	private Label consoleLabel;
 	
-	
-	
     @FXML
     void diceroll(ActionEvent event) {
     	gameConfiguration.getGameBoard().rollDice();
     	int d1 = gameConfiguration.getGameBoard().getDice1();
     	int d2 = gameConfiguration.getGameBoard().getDice2();
-
-    	//message.setText("dice1: "+ Integer.toString(d1) +"; dice2: "+ Integer.toString(d2));
-
 
     	consoleLabel.setText(consoleLabel.getText() + "You diced " + (d1+d2));
     	
@@ -89,13 +84,11 @@ public class GameController
 		    		icon1.updateLocation();
 		    		Player currentPlayer = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
 		    		currentPlayer.movePosition(1);
-		    		
 		    		break;
 		    	case 1:
 		    		icon2.updateLocation();
 		    		Player currentPlayer2 = gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer());
 		    		currentPlayer2.movePosition(1);
-		    		
 		    		break;
 		    	case 2:
 		    		//icon3.updateLocation(); 				       	
@@ -120,28 +113,6 @@ public class GameController
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() { 
     	
-//    	Timeline timeline = new Timeline(
-//            new KeyFrame(Duration.millis(50),
-//                   new EventHandler <ActionEvent>()
-//    			   {
-//    			   	@Override
-//    			   	public void handle(ActionEvent event)
-//    			   	{
-//    			   		icon.updateLocation();
-//    			   		if ((icon.getX() < 0) ||
-//    			   		    (icon.getX() > boardPane.getWidth()))
-//    			   			icon.reverseX();
-//    			   		if ((icon.getY() < 0) ||
-//    			   		    (icon.getY() > boardPane.getHeight()))
-//    			   			icon.reverseY();
-//    			   	}
-//    			   }
-//            )
-//    	);
-//    	timeline.setCycleCount(Timeline.INDEFINITE);
-//    	timeline.setAutoReverse(true);
-//    	timeline.play();
-    
     	boardPane.getChildren().add(icon1);
     	icon1.initializeLocation(0);
     	boardPane.getChildren().add(icon2);
@@ -158,48 +129,30 @@ public class GameController
     
     
 	public void StartGame() {
-		consoleLabel.setText("Generating board...");
-		consoleLabel.setText(gameConfiguration.getGameBoard().toString());
+		//consoleLabel.setText("Generating board...");
+		//consoleLabel.setText(gameConfiguration.getGameBoard().toString());
 		
-//		Alert prompt = new Alert(AlertType.CONFIRMATION);
-//		prompt.setTitle("Please make a decision");
-//		prompt.setHeaderText("either type yes or no");
-//		
-//	
-		//Optional <ButtonType> action = prompt.showAndWait();
-		
-//		if (action.get() == ButtonType.OK) {
-//			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
-//		} 
-//		else {
-//			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
-//		}
-//		
-		
-		Scanner sc = new Scanner(System.in);
-		
-		
-		//consoleLabel.setText("How many players are playing: (2-4) ");
 		int numOfPlayers = 2;
-		
-		
-		
+			
 		for (int i = 0; i < numOfPlayers; i++)
 		{
-			//consoleLabel.setText("Player " + i + ", please enter your name now: ");
-			//String playerName = sc.next();
 			String playerName = "p" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
 			gameConfiguration.getGameBoard().getAllPlayers().add(player);
 		}
 		
-		p1Balance.setText("P1 Balance: $1500");
-		p2Balance.setText("P2 Balance: $1500");
-		
-		
+		updateMoney();
 		consoleLabel.setText("Player 1, please dice roll now: ");
-
-		sc.close();
+	}
+	
+	public void updateMoney()
+	{
+		Board gameBoard = gameConfiguration.getGameBoard();
+		Player player1 = gameBoard.getAllPlayers().get(0);
+		Player player2 = gameBoard.getAllPlayers().get(1);
+		
+		p1Balance.setText("P1 Balance: $" + player1.getBalance());
+		p2Balance.setText("P2 Balance: $" + player2.getBalance());
 	}
 	
 	public void alertPrompt(Player p, String message) {
@@ -219,9 +172,11 @@ public class GameController
 		Optional <ButtonType> action = alert.showAndWait();
 		
 		if (action.get() == buttonYes) {
+
 			gameConfiguration.getGameBoard().getProperties().get(p.getPosition()).setUserInput("y");
 			//p1Balance.
 			//gameConfiguration.executeTurn(currentPlayer);
+
 		} 
 		else {
 			gameConfiguration.getGameBoard().getProperties().get(p.getPosition()).setUserInput("n");
