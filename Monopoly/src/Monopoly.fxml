@@ -13,7 +13,6 @@
    <children>
       <Pane fx:id="pane" prefHeight="600.0" prefWidth="360.0" HBox.hgrow="NEVER">
          <children>
-            <Label layoutX="14.0" layoutY="211.0" text="Console" />
             <Label layoutY="6.0" prefHeight="17.0" prefWidth="142.0" text="User Status" />
             <ScrollPane layoutY="247.0" prefHeight="349.0" prefWidth="325.0">
                <content>
@@ -21,9 +20,9 @@
                </content>
             </ScrollPane>
             <Label fx:id="p1Balance" layoutX="21.0" layoutY="46.0" text="Label" />
-            <Label fx:id="p2Balance" layoutX="25.0" layoutY="88.0" text="Label" />
-            <Label fx:id="p3Balance" layoutX="25.0" layoutY="129.0" text="Label" />
-            <Label fx:id="p4Balance" layoutX="21.0" layoutY="169.0" text="Label" />
+            <Label fx:id="p2Balance" layoutX="21.0" layoutY="88.0" text="Label" />
+            <Label fx:id="p3Balance" layoutX="21.0" layoutY="126.0" text="Label" />
+            <Label fx:id="p4Balance" layoutX="21.0" layoutY="168.0" text="Label" />
          </children>
       </Pane>
       <GridPane>
@@ -40,10 +39,6 @@
       <Pane fx:id="boardPane1" prefHeight="600.0" prefWidth="0.0">
          <children>
             <Button layoutX="14.0" layoutY="37.0" mnemonicParsing="false" onAction="#diceroll" text="Roll" />
-            <Button fx:id="btnYes" layoutX="14.0" layoutY="83.0" mnemonicParsing="false" text="Yes" />
-            <Button fx:id="btnNo" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" text="No" />
-            <Label layoutX="27.0" layoutY="217.0" prefHeight="18.0" prefWidth="142.0" text="Decision" />
-            <Label fx:id="displayQuestion" layoutX="18.0" layoutY="248.0" text="Label" />
          </children>
       </Pane>
       <Label fx:id="message1" onMouseClicked="#diceroll" prefHeight="5.0" prefWidth="129.0" />

@@ -151,6 +151,8 @@ public class GameController
     	//boardPane.getChildren().add(icon4);
     	//icon4.initializeLocation(3);
     	gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
+    	p3Balance.setText("");
+    	p4Balance.setText("");
     	StartGame();
     }
     
@@ -222,6 +224,8 @@ public class GameController
 			Property landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 
 			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, 2, gameBoard);
+			
+			//p1Balance.
 			//gameConfiguration.executeTurn(currentPlayer);
 		} 
 		else {
