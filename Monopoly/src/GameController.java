@@ -161,45 +161,27 @@ public class GameController
 		consoleLabel.setText("Generating board...");
 		consoleLabel.setText(gameConfiguration.getGameBoard().toString());
 		
-//		Alert prompt = new Alert(AlertType.CONFIRMATION);
-//		prompt.setTitle("Please make a decision");
-//		prompt.setHeaderText("either type yes or no");
-//		
-//	
-		//Optional <ButtonType> action = prompt.showAndWait();
-		
-//		if (action.get() == ButtonType.OK) {
-//			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("y");
-//		} 
-//		else {
-//			gameConfiguration.getGameBoard().getProperties().get(5).setUserInput("n");
-//		}
-//		
-		
-		Scanner sc = new Scanner(System.in);
-		
-		
-		//consoleLabel.setText("How many players are playing: (2-4) ");
 		int numOfPlayers = 2;
-		
-		
-		
+			
 		for (int i = 0; i < numOfPlayers; i++)
 		{
-			//consoleLabel.setText("Player " + i + ", please enter your name now: ");
-			//String playerName = sc.next();
 			String playerName = "p" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
 			gameConfiguration.getGameBoard().getAllPlayers().add(player);
 		}
 		
-		p1Balance.setText("P1 Balance: $1500");
-		p2Balance.setText("P2 Balance: $1500");
-		
-		
+		updateMoney();
 		consoleLabel.setText("Player 1, please dice roll now: ");
-
-		sc.close();
+	}
+	
+	public void updateMoney()
+	{
+		Board gameBoard = gameConfiguration.getGameBoard();
+		Player player1 = gameBoard.getAllPlayers().get(0);
+		Player player2 = gameBoard.getAllPlayers().get(1);
+		
+		p1Balance.setText("P1 Balance: $" + player1.getBalance());
+		p2Balance.setText("P2 Balance: $" + player2.getBalance());
 	}
 	
 	void alertPrompt() {
