@@ -116,19 +116,12 @@ public class GameController
     	
     	//timeline.setCycleCount(d1+d2);
 		//timeline.play();
-		   
 		    	
-		
 		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
 		
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
 		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player "+ (((gameConfiguration.getCurrentPlayer()+1)%2)+1) +"'s turn; ");
-		
-		
-		
-		
-		
 		
 		updateMoney();
     }
@@ -189,8 +182,6 @@ public class GameController
 		Alert alert = new Alert(AlertType.NONE);
 		alert.setTitle("Please make a decision");
 		alert.setHeaderText("Click yes or no");
-		//alert.setContentText("You are at " + gameConfiguration.getGameBoard().getProperties().get(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayer()).getPosition()).getName() + 
-				//". Do you want want to buy it?");
 		alert.setContentText(message);
 		
 		ButtonType buttonYes = new ButtonType("Yes");
@@ -229,7 +220,7 @@ public class GameController
 			
 			if (landedProperty.getNumOfHouses() == 4 && landedProperty.getNumOfHotels() == 0) {
 				
-				alertPrompt(p, "Would you like to buy a hotel? (y/n)\n The price is " + landedProperty.getHotelCost());
+				alertPrompt(p, "Would you like to buy a hotel? \nThe price is " + landedProperty.getHotelCost());
 
 				if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
 					if (p.getBalance() - landedProperty.getHotelCost() >= 0) {
@@ -243,7 +234,7 @@ public class GameController
 			//asks to buy a house if you have less than 4 houses
 			if (landedProperty.getNumOfHouses() < 4 && landedProperty.getNumOfHotels() == 0) {
 				//System.out.print("would you like to buy a house? (y/n)");
-				consoleLabel.setText(consoleLabel.getText() + "\nwould you like to buy a house? (y/n)");
+				alertPrompt(p, "Would you like to buy a house? \nThe price is " + landedProperty.getHotelCost());
 				if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
 					if (p.getBalance() - landedProperty.getHouseCost() >= 0) {
 						consoleLabel.setText(consoleLabel.getText() + "\nYou just bought a house.");
