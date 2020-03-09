@@ -190,7 +190,7 @@ public class GameController
 			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?");
 			
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
-				consoleLabel.setText("You just bought" + landedProperty.getName());
+				consoleLabel.setText("You just bought " + landedProperty.getName());
 			}
 			
 			if (p.getBalance() - landedProperty.getPrice() < 0) {
@@ -256,7 +256,7 @@ public class GameController
 			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?");
 			
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
-				consoleLabel.setText("You just bought" + landedProperty.getName());
+				consoleLabel.setText("You just bought " + landedProperty.getName());
 			}
 			
 			if (p.getBalance() - landedProperty.getPrice() < 0) {
