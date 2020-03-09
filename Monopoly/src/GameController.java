@@ -248,6 +248,23 @@ public class GameController
 		}
 	}
 	
+	public void utilityPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
+		if (landedProperty.youAreNotOwner(p, gameBoard)) {
+			consoleLabel.setText("You have to pay the owner of the utility!");
+		}
+		else if (landedProperty.noOneOwns(p, gameBoard)){
+			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?");
+			
+			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
+				consoleLabel.setText("You just bought" + landedProperty.getName());
+			}
+			
+			if (p.getBalance() - landedProperty.getPrice() < 0) {
+				consoleLabel.setText("Sorry you do not have enough money to buy " + landedProperty.getName());
+			}	
+		}
+	}
+	
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		
@@ -295,6 +312,8 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 12:
+			utilityPropertyInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 13:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -351,6 +370,8 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 28:
+			utilityPropertyInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 29:
 			normalPropertyInteraction(p, gameBoard, landedProperty);

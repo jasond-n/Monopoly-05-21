@@ -35,10 +35,7 @@ public class TaxProperty extends Property {
 				//System.out.println("You just lost $100"); //take this out later
 				player.loseMoney(100);
 				break;
-		
-		
 			}
 		}
-		
 	}
 }
