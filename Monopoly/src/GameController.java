@@ -402,6 +402,9 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 30:
+			consoleLabel.setText(consoleLabel.getText() + "\nGo to Jail");
+			p.setPosition(10);
+			p.setInJail(true);
 			break;
 		case 31:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
