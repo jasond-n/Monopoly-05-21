@@ -289,7 +289,7 @@ public class GameController
 		
 		consoleLabel.setText(consoleLabel.getText() + "\nYou just landed on " + landedProperty.getName());
 		
-		if (p.getPosition() >= 0 && p.getPreviousPosition() < 0) {
+		if (p.getPosition() >= 0 && p.getPreviousPosition() <= 0) {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou passed go, Collect $50");
 		}
 		
