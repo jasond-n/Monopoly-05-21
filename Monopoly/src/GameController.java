@@ -271,6 +271,8 @@ public class GameController
 		case 4:
 			break;
 		case 5:
+			railroadlPropertyInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 6:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -303,6 +305,8 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 15:
+			railroadlPropertyInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 16:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -335,6 +339,8 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 25:
+			railroadlPropertyInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 26:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -367,6 +373,8 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 35:
+			railroadlPropertyInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 36:
 			break;
