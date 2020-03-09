@@ -264,7 +264,7 @@ public class GameController
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the railroad!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
-			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice() );
+			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 			
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
@@ -281,7 +281,7 @@ public class GameController
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the utility!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
-			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?");
+			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 			
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
@@ -298,14 +298,13 @@ public class GameController
 		
 		consoleLabel.setText(consoleLabel.getText() + "\nYou just landed on " + landedProperty.getName());
 		
-		if (p.getPosition() >= 0 && p.getPreviousPosition() <= 0) {
+		if (p.getPosition() >= 0 && p.getPreviousPosition() < 0) {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou passed go, Collect $50");
 		}
 		
 		
 		switch (p.getPosition()) {
 		case 0: 
-			
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 1:
