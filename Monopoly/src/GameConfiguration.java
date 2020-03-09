@@ -4,48 +4,7 @@ import java.util.Scanner;
 
 public class GameConfiguration {
 	
-	private int currentPlayer;
-	
-	private boolean gameEnd;
-	
-	
-	public GameConfiguration()
-	{
-		currentPlayer = 0;
-		gameEnd = false;
-	}
-	
-	public int getCurrentPlayer() {
-		return currentPlayer;
-	}
-	public void setCurrentPlayer(int currentPlayer) {
-		this.currentPlayer = currentPlayer;
-	}
-	public boolean isGameEnd() {
-		return gameEnd;
-	}
-	public void setGameEnd(boolean gameEnd) {
-		this.gameEnd = gameEnd;
-	}
-
-
-
-
-	private Board gameBoard = new Board();
-	public Board getGameBoard() {
-		return gameBoard;
-	}
-
-
-
-
-	public void setGameBoard(Board gameBoard) {
-		this.gameBoard = gameBoard;
-	}
-
-
-
-
+//	private static Board gameBoard;
 //	public static void main(String[] args) {
 //		System.out.println("Generating board...");
 //		gameBoard = new Board();
@@ -187,5 +146,123 @@ public class GameConfiguration {
 //		}
 //		//sc.close();	
 //		
-	//}
+//	}
+	
+	private int currentPlayer;
+	
+	private boolean gameEnd;
+	private int numOfPlayers;
+	private Board gameBoard;
+	private Property landedProperty;
+	private int dice;
+	private String userInput;
+	
+	public GameConfiguration()
+	{
+		currentPlayer = 0;
+		gameEnd = false;
+		numOfPlayers = 0;
+		gameBoard = new Board();
+		dice = 0;
+		userInput = "";
+	}
+	public Board getGameBoard() {
+		return gameBoard;
+	}
+
+	public void setGameBoard(Board gameBoard) {
+		this.gameBoard = gameBoard;
+	}
+
+	public int getCurrentPlayer() {
+		return currentPlayer;
+	}
+	public void setCurrentPlayer(int currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+	public boolean isGameEnd() {
+		return gameEnd;
+	}
+	public void setGameEnd(boolean gameEnd) {
+		this.gameEnd = gameEnd;
+	}
+	
+	public boolean isWin()
+	{
+		return false;
+	}
+	
+	public void setup(int numOfPlayers, String[]names) {
+		this.numOfPlayers = numOfPlayers;
+		
+		for (int i = 0; i < names.length; i++) {
+			Player player = new Player(names[i], gameBoard);
+			gameBoard.getAllPlayers().add(player);
+		}
+		
+		//gameBoard.decideOrder(); add this later
+		
+	}
+	
+	public void checkBankrupt() {
+		if (gameBoard.someoneIsBankrupt()) {
+			gameBoard.liquidateAssets();
+			numOfPlayers--;
+		}
+	}
+	
+	public String displayPlayerInfo(int i) {
+		return gameBoard.getAllPlayers().get(i).getPlayerAllInfo();
+	}
+	
+	public void setUserInput(String userInput) {
+		this.userInput = userInput;
+	}
+	
+	public void executeTurn(Player currentPlayer) {
+		if(currentPlayer.getInJail() == false)
+		{
+			
+			dice = gameBoard.rollDice();
+
+			currentPlayer.movePosition(dice);
+			
+			landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+
+			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+		
+			if (gameBoard.isDouble()) { //first double
+				
+				dice = gameBoard.rollDice();
+				
+				currentPlayer.movePosition(dice);
+				
+				landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+				
+				landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+				
+				
+				if (gameBoard.isDouble()) { //second double
+					
+					dice = gameBoard.rollDice();
+					
+					currentPlayer.movePosition(dice);
+					
+					landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+					
+					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+					
+					
+					//now they must go to jail
+					if (gameBoard.isDouble()) { //third double
+						currentPlayer.setPosition(10);
+						currentPlayer.setInJail(true);
+						landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
+						
+						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+					}
+				}
+			}
+		}
+	}
 }

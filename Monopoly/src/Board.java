@@ -1,16 +1,18 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
+// Initializing the board with all the spaces and properties  
 public class Board {
 
+	// List of Arraylist needed for the game to run
 	private ArrayList<Property> allSpotsOnBoard;
 	private ArrayList<Card> chanceDeck = new ArrayList<Card>();
 	private ArrayList<Card> communityDeck = new ArrayList<Card>();
 	private ArrayList<Player> allPlayers = new ArrayList<Player>(); 
 	
+	// Two dices to roll just like real Monopoly
 	private int dice1, dice2;
 	
+	//Here are all the spaces on the board that need to be created in order for the game to run
 	private Property go;
 	private Property cragie; //this makes coding the gameconfig alot easier if we make them all public static just not sure about privacy leaks
 	private CommunityChest communityChest1;
@@ -51,29 +53,8 @@ public class Board {
 	private Property eeel;
 	private TaxProperty tuitionFee;
 	private Property ti;
-	
 
-	
-	
-	/*
-	 *  setPrice(price); //price of property
-		setNumOfHouses(numOfHouses); 
-		setNumOfHotels(numOfHotels);
-		setPositionOnBoard(positionOnBoard); //position of property 1-40
-		setRentBase(rentBase);
-		setRent1House(rent1House);
-		setRent2House(rent2House);
-		setRent3House(rent3House);
-		setRent4House(rent4House);
-		setRentHotel(rentHotel);
-		setMortgageValue(mortgageValue);
-		setHouseCost(houseCost);
-		setHotelCost(hotelCost);
-		setOwner(owner); //name of owner of property
-		setName(name); //name of the actual property
-		setColor(color); //String of color
-	 * */
-
+	//Constructor of board to add all the cards of communitychest and chance as well as add all the properties of the game board into our arraylist
 	public Board () { //in the constructor possibly add number of players?
 
 		// coding all the event cards to go in community chest and chance decks
@@ -142,7 +123,6 @@ public class Board {
 		communityDeck.add(GetOutOfJail);
 		
 		allSpotsOnBoard = new ArrayList<Property>();
-		//in the constructor possibly add number of players?
 		allSpotsOnBoard.add(go = new Property(200, 0, "GO"));
 		allSpotsOnBoard.add(cragie = new Property(60, 0, 0, 1, 2, 10, 30, 90, 160, 250, 30, 50, 50, null, "Cragie Hall", "brown"));
 		allSpotsOnBoard.add(communityChest1 = new CommunityChest(2 , null, "Community Chest 1"));
@@ -291,7 +271,7 @@ public class Board {
 		allPlayers.remove(whoToRemove);
 	}
 	
-	
+	//Decide order method that was created using a bubble sort in order to determine which player goes first
 	public void decideOrder() {
 		//ArrayList<String> order = new ArrayList<String>();
 		int player1 = 0, player2 = 0, player3 = 0, player4 = 0;
@@ -302,9 +282,6 @@ public class Board {
 		if (allPlayers.size() != 2) {
 			//this while loop rolls dice until all tje player's rolls are unique
 			while ((player1 == player2) || (player1 == player3) || (player1 == player4) || (player2 == player3) || (player2 == player4) || (player3 == player4)) {
-				
-				
-				
 				for (int i = 0; i < allPlayers.size(); i++) {
 					switch (i) {
 					case 0: 
@@ -364,8 +341,6 @@ public class Board {
 				}
 			}
 			
-			
-			
 			switch (allPlayers.size()) {
 			case 2: 
 				if (rolls[0] > rolls[1]) {
@@ -380,19 +355,13 @@ public class Board {
 				
 				break;
 			case 4: 
-				
+
 				if (rolls[0] > rolls[1] && rolls[1] > rolls[2] && rolls[2] > rolls[3]) {
 					sorted = true;
 				} 
 				
 				break;
 			}
-			
-			
-		} while (sorted == false);
-		
-			
+		} while (sorted == false);	
 	}
-	
-	
 }

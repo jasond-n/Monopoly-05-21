@@ -13,6 +13,7 @@ public class Property {
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
 	private String name, color;
 	private Player owner;
+	private String userInput;
 	
 	//Getters and Setters
 	public Player getOwner() {
@@ -206,19 +207,47 @@ public class Property {
 			setName(name); //name of the actual property
 		}
 		
+		public void setUserInput(String userInput) {
+			this.userInput = userInput;
+		}
+		
+		public String getUserInput() {
+			return userInput;
+		}
+		
+		public boolean youAreNotOwner(Player player, Board board) {
+			return board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null;
+		}
+		
+		public boolean noOneOwns(Player player, Board board) {
+			return (board.getProperties().get(player.getPosition()).getOwner() == null )
+			
+			&& (board.getProperties().get(player.getPosition()).getName().startsWith("Community Chest") == false) 
+			
+			&& (board.getProperties().get(player.getPosition()).getName().startsWith("Chance") == false) 
+			
+			&& (board.getProperties().get(player.getPosition()).getName().equals("GO") == false);
+		}
+		
+		public boolean youOwn(Player player, Board board) {
+			return board.getProperties().get(player.getPosition()).getOwner() == player;
+		}
+		
+		
 		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 		{
 			String userInput;
 			int multiplier = 1;
 			
 			//if you land on go
-			if (player.getPosition() == 0) {
-				player.addMoney(200);
+			if (player.getPosition() >= 0 && player.getPreviousPosition() <= 0) {
+
+				player.addMoney(50);
 			}
 			
 			//figure out mortgages later
 			//if you are not the owner
-			if (board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null) {
+			if (youAreNotOwner(player, board)) {
 				
 				
 				
@@ -228,7 +257,7 @@ public class Property {
 				
 				
 				//add an if statement to see if the owner has a monopoly on all 3
-				System.out.println("You have to pay the owner of the property!");
+				////System.out.println("You have to pay the owner of the property!");
 				if (getNumOfHotels() == 0) {
 					switch(getNumOfHouses()) {
 					case 0: 
@@ -260,32 +289,24 @@ public class Property {
 				}
 			}
 			//no one owns the property
-			else if ((board.getProperties().get(player.getPosition()).getOwner() == null )
-					
-					&& (board.getProperties().get(player.getPosition()).getName().startsWith("Community Chest") == false) 
-					
-					&& (board.getProperties().get(player.getPosition()).getName().startsWith("Chance") == false) 
-					
-					&& (board.getProperties().get(player.getPosition()).getName().equals("GO") == false)) 
+			else if (noOneOwns(player, board)) 
 			{
-				Scanner sc = new Scanner(System.in);
 				
-				//debugging line
-				System.out.println(board.getProperties().get(player.getPosition()).getName());
-				System.out.println("stinky");
 				
-					System.out.print("Would you like to buy " + board.getProperties().get(player.getPosition()).getName()+"? (y/n)");
-					userInput = sc.next();
+				//will wait for the show and wait
+				//continue from here
+					userInput = getUserInput();
+					
 					
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getBalance() - getPrice() >= 0) {
 							setOwner(player);
 							player.loseMoney(getPrice());
 							player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-							System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
+							//System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
 						}
 						else {
-							System.out.println("Sorry You do not have enough money to buy this");
+							//System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 					
@@ -293,25 +314,23 @@ public class Property {
 				//sc.close();
 			}
 			//you own the property 
-			else if (board.getProperties().get(player.getPosition()).getOwner() == player){
-				Scanner sc = new Scanner(System.in);
+			else if (youOwn(player, board)){
+				
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
 					
-					//debugging line
-					System.out.println("alalalalala funny poo");
 					
-					System.out.print("would you like to buy a hotel? (y/n)");
-					userInput = sc.next();
+					////System.out.print("would you like to buy a hotel? (y/n)");
+					userInput = getUserInput();
 	
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getBalance() - getHotelCost() >= 0) {
 							this.numOfHotels++;
 							this.numOfHouses = 0;
 							player.loseMoney(getHotelCost());
-							System.out.println("You just bought a hotel ");
+							////System.out.println("You just bought a hotel ");
 						}
 						else {
-							System.out.println("Sorry You do not have enough money to buy this");
+							////System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 				}
@@ -320,20 +339,19 @@ public class Property {
 				//asks to buy a house if you have less than 4 houses
 				if (getNumOfHouses() < 4 && getNumOfHotels() == 0) {
 					
-					//debugging line
-					System.out.println("poopy");
 					
-					System.out.print("would you like to buy a house? (y/n)");
-					userInput = sc.next();
+					
+					////System.out.print("would you like to buy a house? (y/n)");
+					userInput = getUserInput();
 	
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getBalance() - getHouseCost() >= 0) {
 							addNumOfHouses();
 							player.loseMoney(getHouseCost());
-							System.out.println("You just bought a house ");
+							////System.out.println("You just bought a house ");
 						}
 						else {
-							System.out.println("Sorry You do not have enough money to buy this");
+							////System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 					
@@ -346,10 +364,6 @@ public class Property {
 			
 		}
 				
-		
-		public void doActionBeforePlayerLeavingHere(Player player, int roll, Board board) {
-			
-		}
 		
 		//helper method to see if the property that was landed on is monopolized
 		public boolean isMonopolized(Player player, Board board) {

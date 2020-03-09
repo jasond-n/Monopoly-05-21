@@ -24,13 +24,15 @@ public class JailProperty extends Property {
 	
 		
 		if (player.getInJail() == true) {	
-			Scanner sc = new Scanner(System.in);
-			System.out.println("You are in jail. Would you like to pay $50 to get out this turn? (y/n)");
-			String userInput = sc.next();
+			//Scanner sc = new Scanner(System.in);
+			//System.out.println("You are in jail. Would you like to pay $50 to get out this turn? (y/n)");
+			
+			
+			String userInput = getUserInput();
 			if (userInput.equalsIgnoreCase("y")) {
 				player.loseMoney(50);
 				player.setInJail(false);
-				System.out.println("Nice you are out of jail!");
+				//System.out.println("Nice you are out of jail!");
 				board.rollDice();
 				
 			}
@@ -38,11 +40,11 @@ public class JailProperty extends Property {
 				board.rollDice();
 				if (board.isDouble()) {
 					player.setInJail(false);
-					System.out.println("Hey you rolled a double! You are Free!");
+					//System.out.println("Hey you rolled a double! You are Free!");
 					//player.movePosition(board.rollDice());
 				}
 				else {
-					System.out.println("Damn you suck at rolling. Try again next turn!");
+					//System.out.println("Damn you suck at rolling. Try again next turn!");
 				}
 			}
 		}
@@ -52,10 +54,10 @@ public class JailProperty extends Property {
 		switch(player.getPosition())
 		{
 			case 10:
-				System.out.println(player.getAvatar() + " are passing the jail. Nothing happens.");
+				//System.out.println(player.getAvatar() + " are passing the jail. Nothing happens.");
 				break;
 			case 30:
-				System.out.println(player.getAvatar() + " are going to the jail now. And you have to throw doubles on any of your next three turns.");
+				//System.out.println(player.getAvatar() + " are going to the jail now. And you have to throw doubles on any of your next three turns.");
 				player.movePosition(10);
 				player.setInJail(true);
 				break;

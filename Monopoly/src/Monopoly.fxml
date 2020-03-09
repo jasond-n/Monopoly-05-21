@@ -3,32 +3,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <HBox fx:id="hbox" maxHeight="800.0" maxWidth="800.0" minHeight="600.0" minWidth="1050.0" prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
    <children>
-      <Pane fx:id="pane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="NEVER">
+      <Pane fx:id="pane" prefHeight="600.0" prefWidth="360.0" HBox.hgrow="NEVER">
          <children>
-            <Label layoutX="14.0" layoutY="211.0" text="Console" />
             <Label layoutY="6.0" prefHeight="17.0" prefWidth="142.0" text="User Status" />
-            <ScrollPane layoutY="247.0" prefHeight="349.0" prefWidth="200.0">
+            <ScrollPane layoutY="247.0" prefHeight="349.0" prefWidth="325.0">
                <content>
-                  <Label fx:id="consoleLabel" prefHeight="354.0" prefWidth="175.0" text="Label" />
+                  <Label fx:id="consoleLabel" prefHeight="346.0" prefWidth="332.0" text="Label" />
                </content>
             </ScrollPane>
             <Label fx:id="p1Balance" layoutX="21.0" layoutY="46.0" text="Label" />
-            <Label fx:id="p2Balance" layoutX="25.0" layoutY="88.0" text="Label" />
-            <Label fx:id="p3Balance" layoutX="25.0" layoutY="129.0" text="Label" />
-            <Label fx:id="p4Balance" layoutX="21.0" layoutY="169.0" text="Label" />
+            <Label fx:id="p2Balance" layoutX="21.0" layoutY="88.0" text="Label" />
+            <Label fx:id="p3Balance" layoutX="21.0" layoutY="126.0" text="Label" />
+            <Label fx:id="p4Balance" layoutX="21.0" layoutY="168.0" text="Label" />
          </children>
       </Pane>
-      <Pane fx:id="boardPane" prefHeight="600.0" prefWidth="605.0" style="-fx-background-image: url('file:C:/Users/Jason/Documents/GitHub/COOLPROJECT/MonopolyacBoard.jpg');; -fx-background-size: 600px 600px;;" />
-      <Pane fx:id="boardPane1" prefHeight="600.0" prefWidth="244.0">
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane fx:id="boardPane" prefHeight="600.0" prefWidth="615.0" style="-fx-background-image: url('file:C:/Users/Jason/Documents/GitHub/COOLPROJECT/MonopolyacBoard.jpg');; -fx-background-size: 600px 600px;;" />
+         </children>
+      </GridPane>
+      <Pane fx:id="boardPane1" prefHeight="600.0" prefWidth="0.0">
          <children>
             <Button layoutX="14.0" layoutY="37.0" mnemonicParsing="false" onAction="#diceroll" text="Roll" />
-            <Button fx:id="btnYes" layoutX="14.0" layoutY="83.0" mnemonicParsing="false" text="Yes" />
-            <Button fx:id="btnNo" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" text="No" />
          </children>
       </Pane>
       <Label fx:id="message1" onMouseClicked="#diceroll" prefHeight="5.0" prefWidth="129.0" />
