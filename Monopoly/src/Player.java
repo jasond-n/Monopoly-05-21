@@ -8,7 +8,7 @@ public class Player {
 	private String avatar;
 	private ArrayList<Property> properties;
 	private int balance;
-	private int position;
+	private int position, prevPosition;
 	private Boolean inJail;
 	private ArrayList<Card> cardsOwned;
 
@@ -63,13 +63,29 @@ public class Player {
 		return this.avatar;
 	}
 	
+	
+	public int getPreviousPosition() {
+		return prevPosition;
+	}
+	
+	public void setPreviousPosition(int roll) {
+		prevPosition = getPosition() - roll;
+		
+		
+		
+	}
+	
 	public int getPosition()
 	{
 		return this.position;
 	}
 	
+	
 	public void setPosition(int position)
 	{
+		if (position >= 40) {
+			position %= 40;
+		}
 		this.position = position;
 	}
 	

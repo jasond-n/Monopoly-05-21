@@ -240,8 +240,9 @@ public class Property {
 			int multiplier = 1;
 			
 			//if you land on go
-			if (player.getPosition() == 0) {
-				player.addMoney(200);
+			if (player.getPosition() >= 0 && player.getPreviousPosition() <= 0) {
+
+				player.addMoney(50);
 			}
 			
 			//figure out mortgages later
@@ -256,7 +257,7 @@ public class Property {
 				
 				
 				//add an if statement to see if the owner has a monopoly on all 3
-				System.out.println("You have to pay the owner of the property!");
+				////System.out.println("You have to pay the owner of the property!");
 				if (getNumOfHotels() == 0) {
 					switch(getNumOfHouses()) {
 					case 0: 
@@ -302,10 +303,10 @@ public class Property {
 							setOwner(player);
 							player.loseMoney(getPrice());
 							player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-							System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
+							//System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
 						}
 						else {
-							System.out.println("Sorry You do not have enough money to buy this");
+							//System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 					
@@ -318,7 +319,7 @@ public class Property {
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
 					
 					
-					//System.out.print("would you like to buy a hotel? (y/n)");
+					////System.out.print("would you like to buy a hotel? (y/n)");
 					userInput = getUserInput();
 	
 					if (userInput.equalsIgnoreCase("y")) {
@@ -326,10 +327,10 @@ public class Property {
 							this.numOfHotels++;
 							this.numOfHouses = 0;
 							player.loseMoney(getHotelCost());
-							//System.out.println("You just bought a hotel ");
+							////System.out.println("You just bought a hotel ");
 						}
 						else {
-							//System.out.println("Sorry You do not have enough money to buy this");
+							////System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 				}
@@ -340,17 +341,17 @@ public class Property {
 					
 					
 					
-					//System.out.print("would you like to buy a house? (y/n)");
+					////System.out.print("would you like to buy a house? (y/n)");
 					userInput = getUserInput();
 	
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getBalance() - getHouseCost() >= 0) {
 							addNumOfHouses();
 							player.loseMoney(getHouseCost());
-							//System.out.println("You just bought a house ");
+							////System.out.println("You just bought a house ");
 						}
 						else {
-							//System.out.println("Sorry You do not have enough money to buy this");
+							////System.out.println("Sorry You do not have enough money to buy this");
 						}
 					}
 					

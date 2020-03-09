@@ -33,7 +33,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane fx:id="boardPane" prefHeight="600.0" prefWidth="615.0" style="-fx-background-image: url('file:C:/Users/Kai/Documents/GitHub/COOLPROJECT/MonopolyacBoard.jpg');; -fx-background-size: 600px 600px;;" />
+            <Pane fx:id="boardPane" prefHeight="600.0" prefWidth="615.0" style="-fx-background-image: url('file:C:/Users/Jason/Documents/GitHub/COOLPROJECT/MonopolyacBoard.jpg');; -fx-background-size: 600px 600px;;" />
          </children>
       </GridPane>
       <Pane fx:id="boardPane1" prefHeight="600.0" prefWidth="0.0">
