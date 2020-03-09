@@ -214,7 +214,7 @@ public class GameController
 			consoleLabel.setText("You have to pay the owner of the Property!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
-			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "? The price is " + landedProperty.getPrice());
+			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 			
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
@@ -229,7 +229,7 @@ public class GameController
 			
 			if (landedProperty.getNumOfHouses() == 4 && landedProperty.getNumOfHotels() == 0) {
 				
-				alertPrompt(p, "Would you like to buy a hotel? (y/n)");
+				alertPrompt(p, "Would you like to buy a hotel? (y/n)\n The price is " + landedProperty.getHotelCost());
 
 				if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
 					if (p.getBalance() - landedProperty.getHotelCost() >= 0) {
@@ -264,7 +264,7 @@ public class GameController
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the railroad!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
-			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?");
+			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice() );
 			
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
