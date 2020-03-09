@@ -1,4 +1,5 @@
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -102,6 +103,7 @@ public class GameController
     	
 		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player "+ (((gameConfiguration.getCurrentPlayer()+1)%2)+1) +"'s turn; ");
 		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
+		updateMoney();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -174,8 +176,6 @@ public class GameController
 		
 		if (action.get() == buttonYes) {
 			gameConfiguration.getGameBoard().getProperties().get(p.getPosition()).setUserInput("y");
-			//p1Balance.
-			//gameConfiguration.executeTurn(currentPlayer);
 		} 
 		else {
 			gameConfiguration.getGameBoard().getProperties().get(p.getPosition()).setUserInput("n");
@@ -306,6 +306,7 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
 			break;
 		case 10:
+			consoleLabel.setText("You passed Jail, nothing happened");
 			break;
 		case 11:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
