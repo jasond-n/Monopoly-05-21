@@ -293,14 +293,6 @@ public class GameController
 		}
 	}
 	
-	public void cardSpaceInteraction(Player p, Board gameBoard, Property landedProperty) {
-		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
-		//consoleLabel.setText(consoleLabel.getText() + landedProperty.x());
-		
-		
-		
-	}
-	
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		
@@ -322,7 +314,6 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 2:
-			cardSpaceInteraction(p, gameBoard, landedProperty);
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 3:
@@ -342,8 +333,6 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 7:
-			cardSpaceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 8:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -381,8 +370,6 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 17:
-			cardSpaceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 18:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -399,8 +386,6 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 22:
-			cardSpaceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 23:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -441,8 +426,6 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 33:
-			cardSpaceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 34:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -453,8 +436,6 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 36:
-			cardSpaceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
 			break;
 		case 37:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
