@@ -15,10 +15,10 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("Monopoly.fxml"));
+		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Main Menu Screen.fxml"));
 		
 		Scene scene = new Scene(root);
-		Image icon = new Image(getClass().getResourceAsStream("Monopoly.png"));
+		Image icon = new Image(getClass().getClassLoader().getResourceAsStream("images/Monopoly.png"));
 		
 		stage.getIcons().add(icon);
 		stage.setScene(scene);
