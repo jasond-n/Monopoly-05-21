@@ -3,7 +3,7 @@ CPSC 233 Team Project
 TUTORIAL 5 GROUP 21 
 
 Monopoly reimagined with obect oriented programming.
-Our game will illustrate the logic of a typical board game structure by determining whose turn it is, what a valid move is, when the game is over and who won the game, and finally coming up with a smart strategy for the computer to make moves and act as a player. Our goal by the end of this project is to create a complete and functioning board game program that may be effectively used by other people
+Our game will illustrate the logic of a typical board game structure by determining whose turn it is, what a valid move is, when the game is over and who won the game, and finally coming up with a smart strategy for the computer to make moves and act as a player. Our goal by the end of this project is to create a complete and functioning board game program that may be effectively used by other people.
 
 ## Verison 1
 To find the version for our demo1 look through the branch version1. Download the folder named Monopoly/src and run the class named "GameConfiguration".
@@ -38,6 +38,6 @@ See also the list of [contributors](https://github.com/jasond-n/Monopoly-05-21/c
 
 ## Acknowledgments
 
-* To all the Gamers out there unite
+* To all the Gamers out there
 * Sohaib Bajwa
 * etc
