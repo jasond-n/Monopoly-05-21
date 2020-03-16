@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -22,6 +23,33 @@ public class MainMenuController {
     
     @FXML // fx:id="pane"
     private Pane pane; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="textField"
+    private TextField textField; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="textFieldAI"
+    private TextField textFieldAI; // Value injected by FXMLLoader
+    
+    @FXML
+    void enterNumberPlayersButton(ActionEvent event) {
+    	if (textField.getText().equals("2")) {
+    		
+    	}
+    	else if (textField.getText().equals("3")) {
+    		
+    	}
+    	else if (textField.getText().equals("4")) {
+    		
+    	}
+    	else {
+    		
+    	}
+    }
+
+    @FXML
+    void enterNumberOfAIButton(ActionEvent event) {
+
+    }
 
     @FXML
     void openGameButton(ActionEvent event) {

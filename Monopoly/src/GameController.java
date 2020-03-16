@@ -46,11 +46,10 @@ public class GameController
 	private Icon icon1 = new Icon(Color.RED);
 	@FXML
 	private Icon icon2 = new Icon(Color.BLUE);
-	
-	//@FXML
-	//private Icon icon3 = new Icon(Color.YELLOW);
-	//@FXML
-	//private Icon icon4 = new Icon(Color.GREEN);
+	@FXML
+	private Icon icon3 = new Icon(Color.YELLOW);
+	@FXML
+	private Icon icon4 = new Icon(Color.GREEN);
 	
 	@FXML
 	private Pane boardPane;
