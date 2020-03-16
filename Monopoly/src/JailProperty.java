@@ -60,7 +60,7 @@ public class JailProperty extends Property {
 				//System.out.println(player.getAvatar() + " are going to the jail now. And you have to throw doubles on any of your next three turns.");
 				player.movePosition(10);
 				player.setInJail(true);
-				break;
+				
 		}
 		
 	}

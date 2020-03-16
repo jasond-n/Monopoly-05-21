@@ -148,6 +148,8 @@ public class Property {
 		this.name = name;
 	}
 	
+	
+	
 	// Property constructor that takes in arguments
 	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, Player owner, String name, String color) {
 		setPrice(price); //price of property
@@ -404,6 +406,11 @@ public class Property {
 			}
 			
 			return toReturn;
+			
+		}
+
+		public void doActionBeforeLeavingHere(Player p, int roll, Board gameBoard) {
+			
 			
 		}
 	
