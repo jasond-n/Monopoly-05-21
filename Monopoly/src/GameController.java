@@ -253,14 +253,21 @@ public class GameController
 			consoleLabel.setText("You have to pay the owner of the Property!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
-			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
-			
-			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
-				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+			if(p.getPlayerType() == "human")
+			{
+				alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
+				
+				if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
+					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+				}
+				
+				if (p.getBalance() - landedProperty.getPrice() < 0) {
+					consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
+				}
 			}
-			
-			if (p.getBalance() - landedProperty.getPrice() < 0) {
-				consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
+			else
+			{
+				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
 			}
 			
 		}
