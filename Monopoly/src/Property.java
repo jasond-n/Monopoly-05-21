@@ -300,15 +300,7 @@ public class Property {
 					
 					
 					if (userInput.equalsIgnoreCase("y")) {
-						if (player.getBalance() - getPrice() >= 0) {
-							setOwner(player);
-							player.loseMoney(getPrice());
-							player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-							//System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
-						}
-						else {
-							//System.out.println("Sorry You do not have enough money to buy this");
-						}
+						player.buyProperty(board.getProperties().get(player.getPosition()));
 					}
 					
 				
