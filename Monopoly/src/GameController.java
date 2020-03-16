@@ -286,6 +286,23 @@ public class GameController
 		}
 	}
 	
+	public void chanceInteraction(Player p, Board gameBoard, Property landedProperty) {
+		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
+		int randomIndex = (int) (Math.random() * (gameBoard.getChanceDeck().size() + 1));
+		Card cardDrawn = gameBoard.getChanceDeck().get(randomIndex);
+		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
+		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
+	}
+	
+	public void chestInteraction(Player p, Board gameBoard, Property landedProperty) {
+		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
+		int randomIndex = (int) (Math.random() * (gameBoard.getCommunityDeck().size() + 1));
+		Card cardDrawn = gameBoard.getCommunityDeck().get(randomIndex);
+		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
+		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
+	}
+	
+	
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		
@@ -298,110 +315,117 @@ public class GameController
 		
 		switch (p.getPosition()) {
 		case 0: 
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 1:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 2:
+			chestInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 3:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 4:
 			break;
 		case 5:
 			railroadlPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 6:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 7:
+			chanceInteraction(p, gameBoard, landedProperty);
 			break;
 		case 8:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 9:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 10:
 			consoleLabel.setText(consoleLabel.getText() + "\nYou passed Jail, nothing happened");
 			break;
 		case 11:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 12:
 			utilityPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 13:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 14:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 15:
 			railroadlPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 16:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 17:
+			chestInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 18:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 19:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 20:
 			break;
 		case 21:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 22:
+			chanceInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 23:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 24:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 25:
 			railroadlPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, 0, gameBoard, null);
 			break;
 		case 26:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 27:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 28:
 			utilityPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 29:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 30:
 			consoleLabel.setText(consoleLabel.getText() + "\nGo to Jail");
@@ -410,33 +434,37 @@ public class GameController
 			break;
 		case 31:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 32:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 33:
+			chestInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 34:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 35:
 			railroadlPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 36:
+			chanceInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 37:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 38:
 			break;
 		case 39:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		}
 	}
