@@ -6,9 +6,9 @@ public class Chance extends Property {
 		super(positionOnBoard, owner, name);
 	}
 	
-	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board) {
-			int randomIndex = (int) Math.random() * board.getChanceDeck().size();
-			Card cardDrawn = board.getChanceDeck().get(randomIndex);
+	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board, Card cardDrawn) {
+			//int randomIndex = (int) Math.random() * board.getChanceDeck().size();
+			//Card cardDrawn = board.getChanceDeck().get(randomIndex);
 			
 			System.out.println("drawing a card...");
 			System.out.println(cardDrawn.getDesc());
@@ -30,7 +30,7 @@ public class Chance extends Property {
 					p.setPosition(p.getPosition() + 40);
 				}
 					
-				super.doActionAfterPlayerLandingHere(p, roll, board);
+				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 					
 			} else if (cardDrawn.getType() == "moveTo") {
 				if (p.getPosition() < cardDrawn.getValue()) {
@@ -44,7 +44,7 @@ public class Chance extends Property {
 					p.setPosition(39 - p.getPosition() + cardDrawn.getValue());
 					}
 				
-				super.doActionAfterPlayerLandingHere(p, roll, board);
+				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 					
 			} else if (cardDrawn.getType() == "nearestStation") {
 				if (p.getPosition() <= 4 && p.getPosition() >= 35) {
@@ -61,7 +61,7 @@ public class Chance extends Property {
 					p.setPosition(35);
 				}
 				
-				super.doActionAfterPlayerLandingHere(p, roll, board);
+				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 				
 			} else if (cardDrawn.getType() == "nearestUtil") {
 				if (p.getPosition() >= 11 && p.getPosition() >= 28) {
@@ -70,7 +70,7 @@ public class Chance extends Property {
 					p.setPosition(28);
 				}
 				
-				super.doActionAfterPlayerLandingHere(p, roll, board);
+				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 				
 			} else if (cardDrawn.getType() == "each") {
 				ArrayList<Player> players = board.getAllPlayers();

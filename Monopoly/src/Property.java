@@ -233,7 +233,7 @@ public class Property {
 		}
 		
 		
-		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
+		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board, Card cardDrawn)
 		{
 			String userInput;
 			int multiplier = 1;

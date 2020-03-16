@@ -226,7 +226,7 @@ public class GameConfiguration {
 			
 			landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 
-			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
 		
 			if (gameBoard.isDouble()) { //first double
 				
@@ -236,7 +236,7 @@ public class GameConfiguration {
 				
 				landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 				
-				landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+				landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
 				
 				
 				if (gameBoard.isDouble()) { //second double
@@ -247,7 +247,7 @@ public class GameConfiguration {
 					
 					landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 					
-					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
 					
 					
 					//now they must go to jail
@@ -256,7 +256,7 @@ public class GameConfiguration {
 						currentPlayer.setInJail(true);
 						landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
 						
-						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard);
+						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
 					}
 				}
 			}
