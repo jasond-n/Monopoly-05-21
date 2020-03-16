@@ -1,7 +1,4 @@
 
-
-import java.util.ArrayList;
-
 public class GameConfiguration {
 	
 //	private static Board gameBoard;

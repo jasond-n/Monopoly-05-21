@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 public class RailroadProperty extends Property {
 	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color)
 	{

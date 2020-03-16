@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 import java.lang.Math;
 public class TaxProperty extends Property {
 	public TaxProperty(int positionOnBoard, Player owner, String name)
@@ -13,7 +13,6 @@ public class TaxProperty extends Property {
 		if (player.getBalance() > 0) {
 			switch (player.getPosition()) {
 			case 4: //if they land on the first tax spot
-				Scanner sc = new Scanner(System.in);
 					//System.out.print("Enter ok to pay 10 percent of your income, or cancel to pay 200 dollars: ");
 					userInput = getUserInput();
 					

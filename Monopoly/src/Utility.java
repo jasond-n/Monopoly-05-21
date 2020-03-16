@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 public class Utility extends Property {
 
 	public Utility(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name, String color)

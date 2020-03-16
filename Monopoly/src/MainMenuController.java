@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainMenuController {
@@ -17,6 +19,9 @@ public class MainMenuController {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+    
+    @FXML // fx:id="pane"
+    private Pane pane; // Value injected by FXMLLoader
 
     @FXML
     void openGameButton(ActionEvent event) {
@@ -26,6 +31,12 @@ public class MainMenuController {
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root1));  
 			stage.show();
+			
+			Image icon = new Image(getClass().getClassLoader().getResourceAsStream("images/Monopoly.png"));
+    		
+    		stage.getIcons().add(icon);
+			
+			pane.getScene().getWindow().hide();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
