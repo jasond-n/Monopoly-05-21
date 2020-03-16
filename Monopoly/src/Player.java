@@ -10,7 +10,7 @@ public class Player {
 	private int position, prevPosition;
 	private Boolean inJail;
 	private ArrayList<Card> cardsOwned;
-
+	protected String playerType;
 	private int counterOfRollForLeaveJail;
 	private Board board;
 	
@@ -23,7 +23,17 @@ public class Player {
 		this.inJail = false;
 		this.counterOfRollForLeaveJail = 0;
 		this.board = board;
+		this.playerType = "human";
 	}
+	
+	public String getPlayerType() {
+		return playerType;
+	}
+	
+	public void setPlayerType(String playerType) {
+		this.playerType = playerType;
+	}
+	
 	
 	public int getCounterOfRollForLeaveJail() {
 		return counterOfRollForLeaveJail;
@@ -42,17 +52,29 @@ public class Player {
 	
 	public Boolean buyProperty(Property theProperty)
 	{
-		if(this.balance < theProperty.getPrice())
-		{
-			return false;
+//		if(this.balance < theProperty.getPrice())
+//		{
+//			return false;
+//		}
+//		else
+//		{
+//			theProperty.setOwner(this);
+//			this.properties.add(theProperty);
+//			this.balance = this.balance - theProperty.getPrice();
+//			return true;
+//		}
+		
+		
+		if (player.getBalance() - getPrice() >= 0) {
+			setOwner(player);
+			player.loseMoney(getPrice());
+			player.addPlayerProperty(board.getProperties().get(player.getPosition()));
+			//System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
 		}
-		else
-		{
-			theProperty.setOwner(this);
-			this.properties.add(theProperty);
-			this.balance = this.balance - theProperty.getPrice();
-			return true;
+		else {
+			//System.out.println("Sorry You do not have enough money to buy this");
 		}
+		
 	}
 	
 	

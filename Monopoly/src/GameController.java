@@ -46,11 +46,10 @@ public class GameController
 	private Icon icon1 = new Icon(Color.RED);
 	@FXML
 	private Icon icon2 = new Icon(Color.BLUE);
-	
-	//@FXML
-	//private Icon icon3 = new Icon(Color.YELLOW);
-	//@FXML
-	//private Icon icon4 = new Icon(Color.GREEN);
+	@FXML
+	private Icon icon3 = new Icon(Color.YELLOW);
+	@FXML
+	private Icon icon4 = new Icon(Color.GREEN);
 	
 	@FXML
 	private Pane boardPane;
@@ -58,10 +57,12 @@ public class GameController
 	@FXML
 	private Label consoleLabel;
 	
-	private int d1, d2;
+	private int d1, d2, currentPlayerIndex;
+	
 	
     @FXML
     public void diceroll(ActionEvent event) {
+    	
     	gameConfiguration.getGameBoard().rollDice();
     	d1 = gameConfiguration.getGameBoard().getDice1();
     	d2 = gameConfiguration.getGameBoard().getDice2();
@@ -72,54 +73,37 @@ public class GameController
 
 		   // @Override
 		   // public void handle(ActionEvent event2) {
-		    	int currentPlayerIndex = gameConfiguration.getCurrentPlayer();
+    	if (getCurrentPlayer().getInJail() == false) {
+    		movePlayer(d1, d2);
 		    	
-		    	for (int i = 0; i < d1 + d2; i++) {
-			    	switch(currentPlayerIndex)
-			    	{
-			    	case 1:
-			    		icon1.updateLocation();
-			    		setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
+		    	if (d1 == d2) { 
+		    		consoleLabel.setText(consoleLabel.getText() +"\nNice you Rolled a double!");
+		    		gameConfiguration.getGameBoard().rollDice();
+		    		movePlayer(d1, d2);
+		    		
+		    		if (d1 == d2) {
+		    			consoleLabel.setText(consoleLabel.getText() +"\nNice you Rolled a double!");
+		    			gameConfiguration.getGameBoard().rollDice();
+			    		movePlayer(d1, d2);
 			    		
-			    		if (i == 0) {	
-			    			getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 +  d2);
-			    			getCurrentPlayer().setPreviousPosition(d1 +  d2);
-			    		}
-			    		
-			    		//getCurrentPlayer().movePosition(1);
-			    		break;
-			    	case 0:
-			    		icon2.updateLocation();
-			    		setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
-			    		
-			    		if (i == 0) {	
-			    			getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 +  d2);
-			    			getCurrentPlayer().setPreviousPosition(d1 +  d2);
-			    			
-			    		}
-			    		
-			    		
-			    		//getCurrentPlayer().movePosition(1);
-			    		break;
-			    	case 3:
-			    		//icon3.updateLocation();
-			    		//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
-			    		getCurrentPlayer().movePosition(1);
-			    		break;
-			    	case 4:
-			    		//icon4.updateLocation(); 
-			    		//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
-			    		//getCurrentPlayer().movePosition(1);
-			    		break;
-			    	}
+		    			if (d1 == d2) {
+		    				consoleLabel.setText(consoleLabel.getText() +"\nYou rolled 3 doubles in a roll. Move to jail!");
+		    				getCurrentPlayer().setPosition(10);
+		    				getCurrentPlayer().setInJail(true);
+		    			}
+		    			
+		    		}
 		    	}
+    	}
+    	
+    	
 		   // }
 		//}));
     	
     	//timeline.setCycleCount(d1+d2);
 		//timeline.play();
 		    	
-		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
+		
 		
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
     	
@@ -145,6 +129,54 @@ public class GameController
     	StartGame();
     }
     
+    public void movePlayer(int d1, int d2) {
+    	setCurrentPlayerIndex(gameConfiguration.getCurrentPlayer());
+    	
+    	for (int i = 0; i < d1 + d2; i++) {
+	    	switch(getCurrentPlayerIndex())
+	    	{
+	    	case 1:
+	    		icon1.updateLocation();
+	    		setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
+	    		
+	    		if (i == 0) {	
+	    			getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 +  d2);
+	    			getCurrentPlayer().setPreviousPosition(d1 +  d2);
+	    		}
+	    		
+	    		//getCurrentPlayer().movePosition(1);
+	    		break;
+	    	case 0:
+	    		icon2.updateLocation();
+	    		setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
+	    		
+	    		if (i == 0) {	
+	    			getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 +  d2);
+	    			getCurrentPlayer().setPreviousPosition(d1 +  d2);
+	    			
+	    		}
+	    		
+	    		
+	    		//getCurrentPlayer().movePosition(1);
+	    		break;
+	    	case 3:
+	    		//icon3.updateLocation();
+	    		//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
+	    		getCurrentPlayer().movePosition(1);
+	    		break;
+	    	case 2:
+	    		//icon4.updateLocation(); 
+	    		//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
+	    		//getCurrentPlayer().movePosition(1);
+	    		break;
+	    	}
+	    	
+    	}
+    	
+    	afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
+    }
+    
+    
     public void setCurrentPlayer(Player p) {
     	currentPlayer = p;
     }
@@ -152,6 +184,19 @@ public class GameController
     public Player getCurrentPlayer() {
     	return currentPlayer;
     }
+    
+    public void setCurrentPlayerIndex(int currentPlayerIndex) {
+    	this.currentPlayerIndex = currentPlayerIndex;
+    }
+    
+    public int getCurrentPlayerIndex() {
+    	return currentPlayerIndex;
+    }
+    
+    
+    
+    
+    
     
 	public void StartGame() {
 		//consoleLabel.setText("Generating board...");
@@ -207,14 +252,21 @@ public class GameController
 			consoleLabel.setText("You have to pay the owner of the Property!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
-			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
-			
-			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
-				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+			if(p.getPlayerType() == "human")
+			{
+				alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
+				
+				if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
+					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+				}
+				
+				if (p.getBalance() - landedProperty.getPrice() < 0) {
+					consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
+				}
 			}
-			
-			if (p.getBalance() - landedProperty.getPrice() < 0) {
-				consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
+			else
+			{
+				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
 			}
 			
 		}
@@ -285,7 +337,7 @@ public class GameController
 			}	
 		}
 	}
-	
+
 	public void chanceInteraction(Player p, Board gameBoard, Property landedProperty) {
 		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
 		int randomIndex = (int) (Math.random() * (gameBoard.getChanceDeck().size() + 1));
@@ -301,6 +353,38 @@ public class GameController
 		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
 		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
 	}
+
+	public void jailPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
+		if (p.getInJail() == true) {	
+			
+			//System.out.println("You are in jail. Would you like to pay $50 to get out this turn? (y/n)");
+			alertPrompt(p, "You are in jail. Would you like to pay $50 to get out this turn? (y/n)");
+			String userInput = landedProperty.getUserInput();
+			
+			if (userInput.equalsIgnoreCase("y")) {
+				p.loseMoney(50);
+				p.setInJail(false);
+				consoleLabel.setText(consoleLabel.getText() + "\nNice you are out of jail!");
+				//System.out.println("Nice you are out of jail!");
+				gameBoard.rollDice();
+				
+			}
+			else {
+				gameBoard.rollDice();
+				if (gameBoard.isDouble()) {
+					p.setInJail(false);
+					consoleLabel.setText(consoleLabel.getText() + "\nHey you rolled a double! You are Free!");
+					//System.out.println("Hey you rolled a double! You are Free!");
+					p.movePosition(gameBoard.getDice1() + gameBoard.getDice2());
+				}
+				else {
+					consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn!");
+					//System.out.println("Damn you suck at rolling. Try again next turn!");
+				}
+			}
+		}
+	}
+	
 	
 	
 	public void afterLand(Player p, Board gameBoard) {
@@ -351,7 +435,13 @@ public class GameController
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 10:
-			consoleLabel.setText(consoleLabel.getText() + "\nYou passed Jail, nothing happened");
+			if (p.getInJail() == false) {
+				consoleLabel.setText(consoleLabel.getText() + "\nYou passed Jail, nothing happened");
+			}
+			else {
+				jailPropertyInteraction(p, gameBoard, landedProperty);
+				landedProperty.doActionBeforeLeavingHere(p, d1 + d2, gameBoard);
+			}
 			break;
 		case 11:
 			normalPropertyInteraction(p, gameBoard, landedProperty);

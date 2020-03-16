@@ -147,6 +147,8 @@ public class Property {
 		this.name = name;
 	}
 	
+	
+	
 	// Property constructor that takes in arguments
 	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, Player owner, String name, String color) {
 		setPrice(price); //price of property
@@ -294,21 +296,19 @@ public class Property {
 				
 				//will wait for the show and wait
 				//continue from here
+				//the player is human so we have to wait for input
+				if (player.getPlayerType().equals("human")) {
 					userInput = getUserInput();
 					
 					
 					if (userInput.equalsIgnoreCase("y")) {
-						if (player.getBalance() - getPrice() >= 0) {
-							setOwner(player);
-							player.loseMoney(getPrice());
-							player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-							//System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
-						}
-						else {
-							//System.out.println("Sorry You do not have enough money to buy this");
-						}
+						player.buyProperty(board.getProperties().get(player.getPosition()));
 					}
-					
+				}
+				else { //the player is a computer and will run the needed logic
+					player.buyProperty(board.getProperties().get(player.getPosition()));
+				}
+				
 				
 				//sc.close();
 			}
@@ -403,6 +403,11 @@ public class Property {
 			}
 			
 			return toReturn;
+			
+		}
+
+		public void doActionBeforeLeavingHere(Player p, int roll, Board gameBoard) {
+			
 			
 		}
 	
