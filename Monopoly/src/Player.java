@@ -10,7 +10,7 @@ public class Player {
 	private int position, prevPosition;
 	private Boolean inJail;
 	private ArrayList<Card> cardsOwned;
-	private String playerType;
+	protected String playerType;
 	private int counterOfRollForLeaveJail;
 	private Board board;
 	
