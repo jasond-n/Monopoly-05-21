@@ -296,13 +296,19 @@ public class Property {
 				
 				//will wait for the show and wait
 				//continue from here
+				//the player is human so we have to wait for input
+				if (player.getPlayerType().equals("human")) {
 					userInput = getUserInput();
 					
 					
 					if (userInput.equalsIgnoreCase("y")) {
 						player.buyProperty(board.getProperties().get(player.getPosition()));
 					}
-					
+				}
+				else { //the player is a computer and will run the needed logic
+					player.buyProperty(board.getProperties().get(player.getPosition()));
+				}
+				
 				
 				//sc.close();
 			}
