@@ -89,6 +89,8 @@ public class GameController
 			    		
 		    			if (d1 == d2) {
 		    				consoleLabel.setText(consoleLabel.getText() +"\nYou rolled 3 doubles in a roll. Move to jail!");
+		    				getCurrentPlayer().setPosition(10);
+		    				getCurrentPlayer().setInJail(true);
 		    			}
 		    			
 		    		}
