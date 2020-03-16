@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 /*
  * If you add variables, make getters and setter please

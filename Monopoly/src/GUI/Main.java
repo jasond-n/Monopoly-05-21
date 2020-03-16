@@ -1,9 +1,11 @@
+package GUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class Main extends Application {
@@ -14,14 +16,14 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("Monopoly.fxml"));
+		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Splash Screen.fxml"));
 		
 		Scene scene = new Scene(root);
-		Image icon = new Image(getClass().getResourceAsStream("Monopoly.png"));
+		Image icon = new Image(getClass().getClassLoader().getResourceAsStream("images/Monopoly.png"));
 		
+		stage.initStyle(StageStyle.UNDECORATED);
 		stage.getIcons().add(icon);
 		stage.setScene(scene);
-		stage.setTitle("Monopoly");
 		stage.show();
 	}
 }

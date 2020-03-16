@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class JailProperty extends Property {
 	public JailProperty(int price, Player owner, String name)
