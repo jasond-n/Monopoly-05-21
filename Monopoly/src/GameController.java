@@ -13,9 +13,12 @@ import javafx.event.ActionEvent;
 public class GameController extends MainMenuController {
 	private GameConfiguration gameConfiguration = new GameConfiguration();
 	private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
-	private int d1,
+	private boolean gameOver = false;
+	private int 
+	d1,
 	d2,
-	currentPlayerIndex;
+	currentPlayerIndex,
+	playerCount;
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
@@ -104,7 +107,7 @@ public class GameController extends MainMenuController {
 			boardPane.getChildren().add(icon4);
 			icon4.initializeLocation(3);
 		}
-		int playerCount = getPlayerCount();
+		playerCount = getPlayerCount();
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
 		//p3Balance.setText("");
 		//p4Balance.setText("");
@@ -163,8 +166,8 @@ public class GameController extends MainMenuController {
 	}
 
 	public void StartGame() {
-		int numOfPlayers = getPlayerCount();
-		for (int i = 0; i < numOfPlayers; i++) {
+		playerCount = getPlayerCount();
+		for (int i = 0; i < playerCount; i++) {
 			String playerName = "p" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
 			gameConfiguration.getGameBoard().getAllPlayers().add(player);
@@ -337,6 +340,14 @@ public class GameController extends MainMenuController {
 		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
 	}
 	
+	
+	/**
+	 * possible implementation of human vs ai interaction to make code more clean and actually display what we want it to display.
+	 * or make the computer class set the user input to yes if they make a certain decision and surround the alert prompt to check to see if they are human ***
+	 * 
+	 * 
+	 * */
+	
 	public void taxInteraction(Player p, Board gameBoard, Property landedProperty) {
 		switch (p.getPosition()) {
 		
@@ -386,6 +397,25 @@ public class GameController extends MainMenuController {
 			}
 		}
 	}
+	
+	//figure out where to implement this***
+	//checks to see if anyone is bankrupt and runs the needed code to remove the player and liquidate the assets
+	public void checkGameState(Board board) {
+			
+			if (board.someoneIsBankrupt()) {
+				board.liquidateAssets();
+				playerCount--;
+			}
+			
+			if (board.getAllPlayers().size() == 1) {
+				gameOver = true;
+			}
+
+	}
+	
+	
+	
+	
 
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
