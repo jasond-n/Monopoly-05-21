@@ -346,7 +346,6 @@ public class GameController extends MainMenuController {
 	
 	public void taxInteraction(Player p, Board gameBoard, Property landedProperty) {
 		switch (p.getPosition()) {
-		
 		case 4: 
 			alertPrompt(p, "You have the option of either paying 10% of your balance or paying $200. Press yes to pay 10% or no to pay $200.");
 			if (landedProperty.getUserInput().equals("y")) {
@@ -360,11 +359,10 @@ public class GameController extends MainMenuController {
 		case 38: 
 			consoleLabel.setText(consoleLabel.getText() + "\nYou paid $100 of.");
 			break;
-			
-		}	
-		
+		}		
 	}
 
+	//All the spots on board and what happens when something lands on it
 	public void jailPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (p.getInJail() == true) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
@@ -408,10 +406,6 @@ public class GameController extends MainMenuController {
 			}
 
 	}
-	
-	
-	
-	
 
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
