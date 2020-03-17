@@ -199,6 +199,7 @@ public class GameController extends MainMenuController {
 	}
 	
 	public void normalPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
+		
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
 			consoleLabel.setText("You have to pay the owner of the Property!");
 		}
@@ -222,7 +223,7 @@ public class GameController extends MainMenuController {
 		else if (landedProperty.youOwn(p, gameBoard)) {
 			
 			if (landedProperty.getNumOfHouses() == 4 && landedProperty.getNumOfHotels() == 0) {
-				
+				if(p.getPlayerType() == "human") {
 				alertPrompt(p, "Would you like to buy a hotel? \nThe price is " + landedProperty.getHotelCost());
 
 				if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
@@ -234,9 +235,11 @@ public class GameController extends MainMenuController {
 					}
 				}
 			}
+			}
 			//asks to buy a house if you have less than 4 houses
 			if (landedProperty.getNumOfHouses() < 4 && landedProperty.getNumOfHotels() == 0) {
 				alertPrompt(p, "Would you like to buy a house? \nThe price is " + landedProperty.getHotelCost());
+				if(p.getPlayerType() == "human") {
 				if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
 					if (p.getBalance() - landedProperty.getHouseCost() >= 0) {
 						consoleLabel.setText(consoleLabel.getText() + "\nYou just bought a house.");
@@ -244,6 +247,7 @@ public class GameController extends MainMenuController {
 					else {
 						consoleLabel.setText(consoleLabel.getText() + "\nSorry You do not have enough money to buy this");
 					}
+				}
 				}
 			}
 		}
@@ -254,6 +258,7 @@ public class GameController extends MainMenuController {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the railroad!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
+			if(p.getPlayerType() == "human")
 			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
@@ -261,6 +266,7 @@ public class GameController extends MainMenuController {
 			if (p.getBalance() - landedProperty.getPrice() < 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
 			}	
+		}
 		}
 	}
 	
@@ -269,6 +275,7 @@ public class GameController extends MainMenuController {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the utility!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)){
+			if(p.getPlayerType() == "human")
 			alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 			if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
@@ -276,6 +283,7 @@ public class GameController extends MainMenuController {
 			if (p.getBalance() - landedProperty.getPrice() < 0) {
 				consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
 			}	
+		}
 		}
 	}
 
