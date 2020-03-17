@@ -312,19 +312,21 @@ public class Property {
 			else if (youOwn(player, board)){
 				
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
-					//Would you like to buy a hotel?
-					userInput = getUserInput();
-	
-					if (userInput.equalsIgnoreCase("y")) {
-						if (player.getBalance() - getHotelCost() >= 0) {
-							this.numOfHotels++;
-							this.numOfHouses = 0;
-							player.loseMoney(getHotelCost());
-							////System.out.println("You just bought a hotel ");
+
+					
+					if (player.getPlayerType().equals("human")) {
+						////System.out.print("would you like to buy a hotel? (y/n)");
+						userInput = getUserInput();
+		
+						if (userInput.equalsIgnoreCase("y")) {
+							player.buyHotel(board.getProperties().get(player.getPosition()));
+
 						}
-						else {
-							////System.out.println("Sorry You do not have enough money to buy this");
-						}
+					}
+					
+					//computer player
+					else {
+						player.buyHotel(board.getProperties().get(player.getPosition()));
 					}
 				}
 				
@@ -338,13 +340,18 @@ public class Property {
 					userInput = getUserInput();
 	
 					if (userInput.equalsIgnoreCase("y")) {
-						if (player.getBalance() - getHouseCost() >= 0) {
-							addNumOfHouses();
-							player.loseMoney(getHouseCost());
-							////System.out.println("You just bought a house ");
+						if (player.getPlayerType().equals("human")) {
+							////System.out.print("would you like to buy a hotel? (y/n)");
+							userInput = getUserInput();
+			
+							if (userInput.equalsIgnoreCase("y")) {
+								player.buyHouse(board.getProperties().get(player.getPosition()));
+							}
 						}
+						
+						//computer player
 						else {
-							////System.out.println("Sorry You do not have enough money to buy this");
+							player.buyHouse(board.getProperties().get(player.getPosition()));
 						}
 					}
 					
@@ -400,8 +407,12 @@ public class Property {
 			
 		}
 
-		public void doActionBeforeLeavingHere(Player p, int roll, Board gameBoard) {
-			
+		
+		/**
+		 * placeholder method for the jail spot
+		 * 
+		 * */
+		public void doActionBeforeLeavingHere(Player p, int roll, Board gameBoard) {	
 			
 		}
 	

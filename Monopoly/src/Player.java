@@ -49,7 +49,7 @@ public class Player {
 		this.balance = this.balance + theProperty.getPrice();
 	}
 	
-	public Boolean buyProperty(Property theProperty)
+	public void buyProperty(Property theProperty)
 	{
 //		if(this.balance < theProperty.getPrice())
 //		{
@@ -64,18 +64,40 @@ public class Player {
 //		}
 		
 		
-		if (player.getBalance() - getPrice() >= 0) {
-			setOwner(player);
-			player.loseMoney(getPrice());
-			player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-			//System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
+		if (getBalance() - theProperty.getPrice() >= 0) {
+			theProperty.setOwner(this);
+			loseMoney(theProperty.getPrice());
+			addPlayerProperty(board.getProperties().get(getPosition()));
 		}
-		else {
-			//System.out.println("Sorry You do not have enough money to buy this");
+
+		
+		
+	}
+	
+	public void buyHotel(Property theProperty) {
+		if (getBalance() - theProperty.getHotelCost() >= 0) {
+			theProperty.setNumOfHotels(1);
+			theProperty.setNumOfHouses(0);
+			loseMoney(theProperty.getHotelCost());
+			////System.out.println("You just bought a hotel ");
 		}
 	}
 	
-	public String getAvatar() {
+	public void buyHouse(Property theProperty) {
+		if (getBalance() - theProperty.getHouseCost() >= 0) {
+			theProperty.addNumOfHouses();
+			loseMoney(theProperty.getHouseCost());
+			
+		}
+	}
+	
+	
+	
+	
+	
+	public String getAvatar()
+	{
+
 		return this.avatar;
 	}
 	
