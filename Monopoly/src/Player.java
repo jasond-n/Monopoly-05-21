@@ -50,28 +50,12 @@ public class Player {
 	}
 	
 	public void buyProperty(Property theProperty)
-	{
-//		if(this.balance < theProperty.getPrice())
-//		{
-//			return false;
-//		}
-//		else
-//		{
-//			theProperty.setOwner(this);
-//			this.properties.add(theProperty);
-//			this.balance = this.balance - theProperty.getPrice();
-//			return true;
-//		}
-		
-		
+	{		
 		if (getBalance() - theProperty.getPrice() >= 0) {
 			theProperty.setOwner(this);
 			loseMoney(theProperty.getPrice());
 			addPlayerProperty(board.getProperties().get(getPosition()));
 		}
-
-		
-		
 	}
 	
 	public void buyHotel(Property theProperty) {

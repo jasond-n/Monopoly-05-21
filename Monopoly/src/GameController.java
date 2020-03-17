@@ -329,6 +329,27 @@ public class GameController extends MainMenuController {
 		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
 		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
 	}
+	
+	public void taxInteraction(Player p, Board gameBoard, Property landedProperty) {
+		switch (p.getPosition()) {
+		
+		case 4: 
+			alertPrompt(p, "You have the option of either paying 10% of your balance or paying $200. Press yes to pay 10% or no to pay $200.");
+			if (landedProperty.getUserInput().equals("y")) {
+				consoleLabel.setText(consoleLabel.getText() + "\nYou paid 10% of your balance.");
+			}
+			else {
+				consoleLabel.setText(consoleLabel.getText() + "\nYou paid $200.");
+			}
+			break;
+		
+		case 38: 
+			consoleLabel.setText(consoleLabel.getText() + "\nYou paid $100 of.");
+			break;
+			
+		}	
+		
+	}
 
 	public void jailPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (p.getInJail() == true) {
@@ -382,6 +403,8 @@ public class GameController extends MainMenuController {
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 4:
+			taxInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 5:
 			railroadlPropertyInteraction(p, gameBoard, landedProperty);
@@ -519,6 +542,8 @@ public class GameController extends MainMenuController {
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 38:
+			taxInteraction(p, gameBoard, landedProperty);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 39:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
