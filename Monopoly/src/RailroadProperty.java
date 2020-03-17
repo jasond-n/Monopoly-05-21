@@ -9,26 +9,25 @@ public class RailroadProperty extends Property {
 		String userInput;
 		int counter = 0;
 		
-		if(this.getOwner() == null)
+		if(noOneOwns(player, board))
 		{
-			// write the code to ask the player "Do you want to buy this railroad?
-			//Scanner sc = new Scanner(System.in);
-				//System.out.print("Do you want to buy " + getName() + "? (y/n)");
+			//will wait for the show and wait
+			//continue from here
+			//the player is human so we have to wait for input
+			if (player.getPlayerType().equals("human")) {
 				userInput = getUserInput();
 				
 				if (userInput.equalsIgnoreCase("y")) {
-					if (player.getBalance() - getPrice() >= 0) {
-						setOwner(player);
-						player.loseMoney(getPrice());
-						player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-						//System.out.println("You just bought: " + getName());
-					}
+					player.buyProperty(board.getProperties().get(player.getPosition()));
 				}
-			//sc.close();
+			}
+			else { //the player is a computer and will run the needed logic
+				player.buyProperty(board.getProperties().get(player.getPosition()));
+			}
 		}
 		//if you are not the owner
 		//now you must pay rent
-		else if(board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null)
+		else if(youAreNotOwner(player, board))
 		{
 			//System.out.println("You have to pay the owner of the property!");
 			if (counter >= 0) {
