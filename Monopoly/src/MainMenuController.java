@@ -6,17 +6,24 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainMenuController extends Board {
 	private int playerCount;
+	private String playerName;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -41,6 +48,14 @@ public class MainMenuController extends Board {
     	return playerCount;
     }
     
+    public void setPlayerName(String playerName) {
+    	this.playerName = playerName;
+    }
+    
+    public String getPlayerName() {
+    	return playerName;
+    }
+    
     public void alert(String message) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("ERROR. INVALID INPUT");
@@ -50,18 +65,40 @@ public class MainMenuController extends Board {
     }
     
     public void prompt(String message) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("ERROR. INVALID INPUT");
-		alert.setHeaderText("YOU HAVE ENTERED AN INVALID INPUT");
-		alert.setContentText(message);
-		alert.showAndWait();
+    	Stage window = new Stage();
+    	window.initModality(Modality.APPLICATION_MODAL);
+    	window.setTitle("Enter your character name?");
+    	window.setMinWidth(350);
+    	window.setMinHeight(250);
+    	Label label = new Label();
+    	label.setText(message);
+    	
+    	Button closeButton = new Button("Close Window");
+    	Button enterButton = new Button("Enter");
+    	TextField textFieldName = new TextField();
+    	
+    	closeButton.setOnAction(e -> {
+    		window.close();
+    	});
+    	
+    	enterButton.setOnAction(e -> {
+    		playerName = textFieldName.getText();
+    		textFieldName.clear();
+    	});
+    	
+    	VBox vbox = new VBox(10);
+    	vbox.getChildren().addAll(label, textFieldName, enterButton, closeButton);
+    	vbox.setAlignment(Pos.CENTER);
+    	Scene scene = new Scene(vbox);
+    	window.setScene(scene);
+    	window.showAndWait();
     }
     
     @FXML
     void enterNumberPlayersButton(ActionEvent event) {
     	if (textField.getText().equals("2")) {
     		playerCount = 2;
-    		prompt("Enter a name");
+    		prompt("Enter your name");
     	}
     	else if (textField.getText().equals("3")) {
     		playerCount = 3;
