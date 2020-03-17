@@ -95,43 +95,28 @@ public class MainMenuController extends Board {
     }
     
     @FXML
-    void enterNumberPlayersButton(ActionEvent event) {
-    	if (textField.getText().equals("2")) {
-    		playerCount = 2;
-    		prompt("Enter your name");
-    	}
-    	else if (textField.getText().equals("3")) {
-    		playerCount = 3;
-    	}
-    	else if (textField.getText().equals("4")) {
-    		playerCount = 4;
-    	}
-    	else {
-    		alert("Please enter a number between 2-4.");
-    	}
-    	textField.clear();
-    }
-
-    @FXML
-    void enterNumberOfAIButton(ActionEvent event) {
-    	if (textFieldAI.getText().equals("1")) {
-    		playerCount = 2;
-    	}
-    	else if (textFieldAI.getText().equals("2")) {
-    		playerCount = 3;
-    	}
-    	else if (textFieldAI.getText().equals("3")) {
-    		playerCount = 4;
-    	}
-    	else {
-    		alert("Please enter a number between 1-3.");
-    	}
-    	textFieldAI.clear();
-    }
-
-    @FXML
     void openGameButton(ActionEvent event) {
-		try {
+    	String humanPlayerString = textField.getText();
+    	String aiPlayerString = textFieldAI.getText();
+    	int humanPlayerCount = Integer.parseInt( humanPlayerString );
+		int aiPlayerCount = Integer.parseInt( aiPlayerString );
+		
+		if(humanPlayerCount + aiPlayerCount > 4 || humanPlayerCount + aiPlayerCount < 0)
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR. INVALID INPUT");
+			alert.setHeaderText("You entered more than 4 or less than 0 players");
+			alert.showAndWait();
+			return;
+		}
+		else
+		{
+			setPlayerCount(humanPlayerCount + aiPlayerCount);
+			//prompt("Enter your name");
+		}
+		
+		
+    	try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Monopoly.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
