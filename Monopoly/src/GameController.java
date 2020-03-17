@@ -170,9 +170,27 @@ public class GameController extends MainMenuController {
 		Board gameBoard = gameConfiguration.getGameBoard();
 		Player player1 = gameBoard.getAllPlayers().get(1);
 		Player player2 = gameBoard.getAllPlayers().get(0);
+		Player player3 = gameBoard.getAllPlayers().get(3);
+		Player player4 = gameBoard.getAllPlayers().get(4);
 
-		p1Balance.setText("P1 Balance: $" + player1.getBalance());
-		p2Balance.setText("P2 Balance: $" + player2.getBalance());
+		if(getPlayerCount() == 2)
+		{
+			p1Balance.setText("P1 Balance: $" + player1.getBalance());
+			p2Balance.setText("P2 Balance: $" + player2.getBalance());
+		}
+		else if(getPlayerCount() == 3)
+		{
+			p1Balance.setText("P1 Balance: $" + player1.getBalance());
+			p2Balance.setText("P2 Balance: $" + player2.getBalance());
+			p3Balance.setText("P3 Balance: $" + player3.getBalance());
+		}
+		else if(getPlayerCount() == 4)
+		{
+			p1Balance.setText("P1 Balance: $" + player1.getBalance());
+			p2Balance.setText("P2 Balance: $" + player2.getBalance());
+			p3Balance.setText("P3 Balance: $" + player3.getBalance());
+			p2Balance.setText("P4 Balance: $" + player4.getBalance());
+		}
 	}
 
 	public void alertPrompt(Player p, String message) {
