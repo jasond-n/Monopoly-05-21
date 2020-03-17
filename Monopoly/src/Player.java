@@ -43,8 +43,7 @@ public class Player {
 		this.counterOfRollForLeaveJail = counterOfRollForLeaveJail;
 	}
 
-	public void sellProperty(Property theProperty)
-	{
+	public void sellProperty(Property theProperty) {
 		theProperty.setOwner(null);
 		this.properties.remove(theProperty);
 		this.balance = this.balance + theProperty.getPrice();
@@ -70,6 +69,7 @@ public class Player {
 			loseMoney(theProperty.getPrice());
 			addPlayerProperty(board.getProperties().get(getPosition()));
 		}
+
 		
 		
 	}
@@ -97,9 +97,9 @@ public class Player {
 	
 	public String getAvatar()
 	{
+
 		return this.avatar;
 	}
-	
 	
 	public int getPreviousPosition() {
 		return prevPosition;
@@ -107,31 +107,23 @@ public class Player {
 	
 	public void setPreviousPosition(int roll) {
 		prevPosition = getPosition() - roll;
-		
-		
-		
 	}
 	
-	public int getPosition()
-	{
+	public int getPosition() {
 		return this.position;
 	}
 	
 	
-	public void setPosition(int position)
-	{
+	public void setPosition(int position) {
 		if (position >= 40) {
 			position %= 40;
 		}
 		this.position = position;
 	}
 	
-	public void movePosition(int dice)
-	{
-		
+	public void movePosition(int dice) {
 		this.position += dice;
-		if(this.position > 39)
-		{
+		if(this.position > 39) {
 			this.balance += 200; //passing go
 			this.position %= 40;
 		}
@@ -176,8 +168,7 @@ public class Player {
 		this.properties.add(temp);
 	}
 	
-	public String getPlayerAllInfo()
-	{
+	public String getPlayerAllInfo() {
 		String resultString = "";
 		resultString = this.avatar + ", your position is at " + board.getProperties().get(this.position).getName() + ", your balance is " + this.balance;
 		resultString += " The properies you own are: ";

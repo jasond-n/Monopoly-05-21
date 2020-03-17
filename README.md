@@ -60,6 +60,10 @@ See also the list of [contributors](https://github.com/jasond-n/Monopoly-05-21/c
 # External (3rd party) Resources
 
 Visual Content Resources (images used for GUI):
+- The image used for the splash screen: 
+- The image used for the dinos icon: https://www.sportslogos.net/logos/view/237974652013/Calgary_Dinos/2013/Partial_Logo
+- The image used for the Main Menu Screen: https://www.unilad.co.uk/wp-content/uploads/2015/11/UNILAD-Screen-Shot-2015-11-20-at-14.27.5117310.png
+- The image used for Monopoly icon: https://cdn3.iconfinder.com/data/icons/brain-games/1042/Monopoly.png
 
 Instructional resources (Logic & Coding):
 - stackoverflow

@@ -235,7 +235,7 @@ public class Property {
 		}
 		
 		
-		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
+		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board, Card cardDrawn)
 		{
 			String userInput;
 			int multiplier = 1;
@@ -300,7 +300,6 @@ public class Property {
 				if (player.getPlayerType().equals("human")) {
 					userInput = getUserInput();
 					
-					
 					if (userInput.equalsIgnoreCase("y")) {
 						player.buyProperty(board.getProperties().get(player.getPosition()));
 					}
@@ -308,14 +307,12 @@ public class Property {
 				else { //the player is a computer and will run the needed logic
 					player.buyProperty(board.getProperties().get(player.getPosition()));
 				}
-				
-				
-				//sc.close();
 			}
 			//you own the property 
 			else if (youOwn(player, board)){
 				
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
+
 					
 					if (player.getPlayerType().equals("human")) {
 						////System.out.print("would you like to buy a hotel? (y/n)");
@@ -323,6 +320,7 @@ public class Property {
 		
 						if (userInput.equalsIgnoreCase("y")) {
 							player.buyHotel(board.getProperties().get(player.getPosition()));
+
 						}
 					}
 					
