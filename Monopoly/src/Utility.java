@@ -10,21 +10,19 @@ public class Utility extends Property {
 	{
 		String userInput;
 		
-		if(this.getOwner() == null)
+		if(noOneOwns(player, board)) //ask if they want to buy if they are human
 		{
-			// write the code to ask the player "Do you want to buy this utility?
-			//Scanner sc = new Scanner(System.in);
-				//System.out.print("Do you want to buy " + getName() + "? (y/n)");
+			if (player.getPlayerType().equals("human")) {
 				userInput = getUserInput();
 				if (userInput.equalsIgnoreCase("y")) {
-					if (player.getBalance() - getPrice() >= 0) {
-						setOwner(player);
-						player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-						player.loseMoney(getPrice());
-						//System.out.println("You just bought: " + getName());
-					}
+					player.buyProperty(board.getProperties().get(player.getPosition()));
 				}
-			//sc.close();
+			}
+			//computer player
+			else {
+				player.buyProperty(board.getProperties().get(player.getPosition()));
+			}
+			
 		}
 		// if the owner of this utility is not the player who landed, then you need a nested statement to check if this owner also own other utility, 
 		// if yes, you pay 10 * roll. if they don't own both, that's 4 * roll.

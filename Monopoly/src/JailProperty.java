@@ -27,25 +27,33 @@ public class JailProperty extends Property {
 			//Scanner sc = new Scanner(System.in);
 			//System.out.println("You are in jail. Would you like to pay $50 to get out this turn? (y/n)");
 			
-			
-			String userInput = getUserInput();
-			if (userInput.equalsIgnoreCase("y")) {
+			if (player.getPlayerType().equals("human")) {
+				
+				String userInput = getUserInput();
+				
+				if (userInput.equalsIgnoreCase("y")) {
+					player.loseMoney(50);
+					player.setInJail(false);
+					//System.out.println("Nice you are out of jail!");
+					board.rollDice();
+					
+				}
+				else {
+					board.rollDice();
+					if (board.isDouble()) {
+						player.setInJail(false);
+						//System.out.println("Hey you rolled a double! You are Free!");
+						//player.movePosition(board.rollDice());
+					}
+					
+				}
+			}
+			//computer player
+			else {
 				player.loseMoney(50);
 				player.setInJail(false);
 				//System.out.println("Nice you are out of jail!");
 				board.rollDice();
-				
-			}
-			else {
-				board.rollDice();
-				if (board.isDouble()) {
-					player.setInJail(false);
-					//System.out.println("Hey you rolled a double! You are Free!");
-					//player.movePosition(board.rollDice());
-				}
-				else {
-					//System.out.println("Damn you suck at rolling. Try again next turn!");
-				}
 			}
 		}
 	}
