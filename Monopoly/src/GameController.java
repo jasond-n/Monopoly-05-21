@@ -83,8 +83,8 @@ public class GameController extends MainMenuController {
 				}
 			}
 		}
-		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
-		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % 2) + 1) + "'s turn; ");
+		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
+		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
 		updateMoney();
 	}
 
@@ -94,13 +94,20 @@ public class GameController extends MainMenuController {
 		icon1.initializeLocation(0);
 		boardPane.getChildren().add(icon2);
 		icon2.initializeLocation(1);
-		//boardPane.getChildren().add(icon3);
-		//icon3.initializeLocation(2);
-		//boardPane.getChildren().add(icon4);
-		//icon4.initializeLocation(3);
-		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % 2);
-		p3Balance.setText("");
-		p4Balance.setText("");
+		if(getPlayerCount() >= 3)
+		{
+			boardPane.getChildren().add(icon3);
+			icon3.initializeLocation(2);
+		}
+		if(getPlayerCount() >= 4)
+		{
+			boardPane.getChildren().add(icon4);
+			icon4.initializeLocation(3);
+		}
+		int playerCount = getPlayerCount();
+		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
+		//p3Balance.setText("");
+		//p4Balance.setText("");
 		StartGame();
 	}
 
@@ -156,7 +163,7 @@ public class GameController extends MainMenuController {
 	}
 
 	public void StartGame() {
-		int numOfPlayers = 2;
+		int numOfPlayers = getPlayerCount();
 		for (int i = 0; i < numOfPlayers; i++) {
 			String playerName = "p" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
@@ -170,8 +177,8 @@ public class GameController extends MainMenuController {
 		Board gameBoard = gameConfiguration.getGameBoard();
 		Player player1 = gameBoard.getAllPlayers().get(1);
 		Player player2 = gameBoard.getAllPlayers().get(0);
-		Player player3 = gameBoard.getAllPlayers().get(3);
-		Player player4 = gameBoard.getAllPlayers().get(4);
+		Player player3 = gameBoard.getAllPlayers().get(2);
+		Player player4 = gameBoard.getAllPlayers().get(3);
 
 		if(getPlayerCount() == 2)
 		{
