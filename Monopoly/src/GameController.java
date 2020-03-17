@@ -14,11 +14,7 @@ public class GameController extends MainMenuController {
 	private GameConfiguration gameConfiguration = new GameConfiguration();
 	private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
 	private boolean gameOver = false;
-	private int 
-	d1,
-	d2,
-	currentPlayerIndex,
-	playerCount;
+	private int d1, d2, currentPlayerIndex, playerCount;
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
