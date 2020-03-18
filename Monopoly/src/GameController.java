@@ -164,7 +164,7 @@ public class GameController extends MainMenuController {
 	}
 	
 	public void transferMessage(String message) {
-        //Display the message
+        
 		playerCount= Integer.parseInt(message);
     }
 
