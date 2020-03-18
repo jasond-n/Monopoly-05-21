@@ -11,7 +11,7 @@ import javafx.scene.layout. * ;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 
-public class GameController {
+public class GameController extends MainMenuController {
 	private GameConfiguration gameConfiguration = new GameConfiguration();
 	private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
 	private boolean gameOver = false;
@@ -148,7 +148,7 @@ public class GameController {
 	}
 	
 	public void transferMessage(String message) {
-        //Display the message
+        
 		playerCount= Integer.parseInt(message);
     }
 

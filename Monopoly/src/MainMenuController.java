@@ -108,11 +108,12 @@ public class MainMenuController extends Board {
 		}
     	try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Monopoly.fxml"));
+			GameController gameController = fxmlLoader.getController();
+	        gameController.transferMessage(String.valueOf( getPlayerCount()) );
+	            
 			Parent root = (Parent) fxmlLoader.load();
 			
-            GameController gameController = fxmlLoader.getController();
-            gameController.transferMessage(String.valueOf( getPlayerCount()) );
-            
+          
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));  
 			stage.show();
