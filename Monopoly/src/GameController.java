@@ -3,6 +3,7 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -38,7 +39,8 @@ public class GameController extends MainMenuController {
 	private HBox hbox;
 
 	@FXML
-	private Icon icon1 = new Icon(Color.RED);
+	//private Icon icon1 = new Icon(Color.RED);
+	private Icon icon1 = new Icon(new Image("/images/dinos.png",false));
 
 	@FXML
 	private Icon icon2 = new Icon(Color.BLUE);
