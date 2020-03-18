@@ -82,8 +82,8 @@ public class GameController extends MainMenuController {
 				}
 			}
 		}
-		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
-		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
+		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
+		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % playerCount) + 1) + "'s turn; ");
 		updateMoney();
 	}
 
@@ -93,17 +93,17 @@ public class GameController extends MainMenuController {
 		icon1.initializeLocation(0);
 		boardPane.getChildren().add(icon2);
 		icon2.initializeLocation(1);
-		if(getPlayerCount() >= 3)
+		if(playerCount >= 3)
 		{
 			boardPane.getChildren().add(icon3);
 			icon3.initializeLocation(2);
 		}
-		if(getPlayerCount() >= 4)
+		if(playerCount >= 4)
 		{
 			boardPane.getChildren().add(icon4);
 			icon4.initializeLocation(3);
 		}
-		playerCount = getPlayerCount();
+		playerCount = playerCount;
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
 		//p3Balance.setText("");
 		//p4Balance.setText("");
@@ -144,6 +144,11 @@ public class GameController extends MainMenuController {
 		}
 		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
 	}
+	
+	public void transferMessage(String message) {
+        //Display the message
+		playerCount= Integer.parseInt(message);
+    }
 
 	public void setCurrentPlayer(Player p) {
 		currentPlayer = p;
@@ -162,7 +167,6 @@ public class GameController extends MainMenuController {
 	}
 
 	public void StartGame() {
-		playerCount = getPlayerCount();
 		for (int i = 0; i < playerCount; i++) {
 			String playerName = "p" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
@@ -179,18 +183,18 @@ public class GameController extends MainMenuController {
 		Player player3 = gameBoard.getAllPlayers().get(2);
 		Player player4 = gameBoard.getAllPlayers().get(3);
 
-		if(getPlayerCount() == 2)
+		if(playerCount == 2)
 		{
 			p1Balance.setText("P1 Balance: $" + player1.getBalance());
 			p2Balance.setText("P2 Balance: $" + player2.getBalance());
 		}
-		else if(getPlayerCount() == 3)
+		else if(playerCount == 3)
 		{
 			p1Balance.setText("P1 Balance: $" + player1.getBalance());
 			p2Balance.setText("P2 Balance: $" + player2.getBalance());
 			p3Balance.setText("P3 Balance: $" + player3.getBalance());
 		}
-		else if(getPlayerCount() == 4)
+		else if(playerCount == 4)
 		{
 			p1Balance.setText("P1 Balance: $" + player1.getBalance());
 			p2Balance.setText("P2 Balance: $" + player2.getBalance());

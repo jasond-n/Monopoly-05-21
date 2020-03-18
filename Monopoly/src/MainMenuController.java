@@ -108,9 +108,13 @@ public class MainMenuController extends Board {
 		}
     	try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Monopoly.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
+			Parent root = (Parent) fxmlLoader.load();
+			
+            //GameController scene2Controller = fxmlLoader.getController();
+            //scene2Controller.transferMessage(String.valueOf( getPlayerCount()) );
+            
 			Stage stage = new Stage();
-			stage.setScene(new Scene(root1));  
+			stage.setScene(new Scene(root));  
 			stage.show();
 			Image icon = new Image(getClass().getClassLoader().getResourceAsStream("images/Monopoly.png"));
     		stage.getIcons().add(icon);
