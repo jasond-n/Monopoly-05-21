@@ -3,6 +3,7 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -10,15 +11,11 @@ import javafx.scene.layout. * ;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 
-public class GameController extends MainMenuController {
+public class GameController {
 	private GameConfiguration gameConfiguration = new GameConfiguration();
 	private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
 	private boolean gameOver = false;
-	private int 
-	d1,
-	d2,
-	currentPlayerIndex,
-	playerCount;
+	private int d1, d2, currentPlayerIndex, playerCount;
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
@@ -42,7 +39,8 @@ public class GameController extends MainMenuController {
 	private HBox hbox;
 
 	@FXML
-	private Icon icon1 = new Icon(Color.RED);
+	//private Icon icon1 = new Icon(Color.RED);
+	private Icon icon1 = new Icon(new Image("/images/dinos.png",false));
 
 	@FXML
 	private Icon icon2 = new Icon(Color.BLUE);
@@ -86,12 +84,14 @@ public class GameController extends MainMenuController {
 				}
 			}
 		}
+
 		
 		//test this line
 		checkGameState(gameConfiguration.getGameBoard());
 		
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
 		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
+
 		updateMoney();
 	}
 
@@ -101,17 +101,17 @@ public class GameController extends MainMenuController {
 		icon1.initializeLocation(0);
 		boardPane.getChildren().add(icon2);
 		icon2.initializeLocation(1);
-		if(getPlayerCount() >= 3)
+		if(playerCount >= 3)
 		{
 			boardPane.getChildren().add(icon3);
 			icon3.initializeLocation(2);
 		}
-		if(getPlayerCount() >= 4)
+		if(playerCount >= 4)
 		{
 			boardPane.getChildren().add(icon4);
 			icon4.initializeLocation(3);
 		}
-		playerCount = getPlayerCount();
+		//playerCount = playerCount;
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
 		//p3Balance.setText("");
 		//p4Balance.setText("");
@@ -152,6 +152,11 @@ public class GameController extends MainMenuController {
 		}
 		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
 	}
+	
+	public void transferMessage(String message) {
+        //Display the message
+		playerCount= Integer.parseInt(message);
+    }
 
 	public void setCurrentPlayer(Player p) {
 		currentPlayer = p;
@@ -170,7 +175,6 @@ public class GameController extends MainMenuController {
 	}
 
 	public void StartGame() {
-		playerCount = getPlayerCount();
 		for (int i = 0; i < playerCount; i++) {
 			String playerName = "p" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
@@ -187,18 +191,18 @@ public class GameController extends MainMenuController {
 		Player player3 = gameBoard.getAllPlayers().get(3);
 		Player player4 = gameBoard.getAllPlayers().get(2);
 
-		if(getPlayerCount() == 2)
+		if(playerCount == 2)
 		{
 			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
 			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
 		}
-		else if(getPlayerCount() == 3)
+		else if(playerCount == 3)
 		{
 			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
 			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
 			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
 		}
-		else if(getPlayerCount() == 4)
+		else if(playerCount == 4)
 		{
 			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
 			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
@@ -380,7 +384,6 @@ public class GameController extends MainMenuController {
 	
 	public void taxInteraction(Player p, Board gameBoard, Property landedProperty) {
 		switch (p.getPosition()) {
-		
 		case 4: 
 			
 			if (p.getPlayerType().equals("human")) {
@@ -407,11 +410,10 @@ public class GameController extends MainMenuController {
 		case 38: 
 			consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid $100 in tax.");
 			break;
-			
-		}	
-		
+		}		
 	}
 
+	//All the spots on board and what happens when something lands on it
 	public void jailPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (p.getInJail() == true) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
@@ -482,10 +484,6 @@ public class GameController extends MainMenuController {
 			}
 
 	}
-	
-	
-	
-	
 
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());

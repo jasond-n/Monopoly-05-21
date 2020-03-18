@@ -15,7 +15,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -72,25 +71,19 @@ public class MainMenuController extends Board {
     	window.setMinHeight(250);
     	Label label = new Label();
     	label.setText(message);
-    	
-    	Button closeButton = new Button("Close Window");
-    	Button enterButton = new Button("Enter");
-    	TextField textFieldName = new TextField();
-    	
-    	closeButton.setOnAction(e -> {
-    		window.close();
-    	});
-    	
-    	enterButton.setOnAction(e -> {
-    		playerName = textFieldName.getText();
-    		textFieldName.clear();
-    	});
-    	
-    	VBox vbox = new VBox(10);
-    	vbox.getChildren().addAll(label, textFieldName, enterButton, closeButton);
-    	vbox.setAlignment(Pos.CENTER);
-    	Scene scene = new Scene(vbox);
-    	window.setScene(scene);
+		/*
+		 * Button closeButton = new Button("Close Window"); Button enterButton = new
+		 * Button("Enter"); TextField textFieldName = new TextField();
+		 * 
+		 * closeButton.setOnAction(e -> { window.close(); });
+		 * 
+		 * enterButton.setOnAction(e -> { playerName = textFieldName.getText();
+		 * textFieldName.clear(); });
+		 * 
+		 * VBox vbox = new VBox(10); vbox.getChildren().addAll(label, textFieldName,
+		 * enterButton, closeButton); vbox.setAlignment(Pos.CENTER); Scene scene = new
+		 * Scene(vbox); window.setScene(scene);
+		 */
     	window.showAndWait();
     }
     
@@ -98,9 +91,8 @@ public class MainMenuController extends Board {
     void openGameButton(ActionEvent event) {
     	String humanPlayerString = textField.getText();
     	String aiPlayerString = textFieldAI.getText();
-    	int humanPlayerCount = Integer.parseInt( humanPlayerString );
-		int aiPlayerCount = Integer.parseInt( aiPlayerString );
-		
+    	int humanPlayerCount = Integer.parseInt(humanPlayerString);
+		int aiPlayerCount = Integer.parseInt(aiPlayerString);
 		if(humanPlayerCount + aiPlayerCount > 4 || humanPlayerCount + aiPlayerCount < 0)
 		{
 			Alert alert = new Alert(AlertType.ERROR);
@@ -114,19 +106,18 @@ public class MainMenuController extends Board {
 			setPlayerCount(humanPlayerCount + aiPlayerCount);
 			//prompt("Enter your name");
 		}
-		
-		
     	try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Monopoly.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
+			Parent root = (Parent) fxmlLoader.load();
+			
+            GameController gameController = fxmlLoader.getController();
+            gameController.transferMessage(String.valueOf( getPlayerCount()) );
+            
 			Stage stage = new Stage();
-			stage.setScene(new Scene(root1));  
+			stage.setScene(new Scene(root));  
 			stage.show();
-			
 			Image icon = new Image(getClass().getClassLoader().getResourceAsStream("images/Monopoly.png"));
-    		
     		stage.getIcons().add(icon);
-			
 			pane.getScene().getWindow().hide();
 		} catch (IOException e) {
 			e.printStackTrace();
