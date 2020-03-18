@@ -11,7 +11,7 @@ import javafx.scene.layout. * ;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 
-public class GameController extends MainMenuController {
+public class GameController {
 	private GameConfiguration gameConfiguration = new GameConfiguration();
 	private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
 	private boolean gameOver = false;
@@ -105,7 +105,7 @@ public class GameController extends MainMenuController {
 			boardPane.getChildren().add(icon4);
 			icon4.initializeLocation(3);
 		}
-		playerCount = playerCount;
+		//playerCount = playerCount;
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
 		//p3Balance.setText("");
 		//p4Balance.setText("");
