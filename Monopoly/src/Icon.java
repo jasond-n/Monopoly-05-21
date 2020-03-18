@@ -1,5 +1,7 @@
 import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 
 public class Icon extends Circle
@@ -11,23 +13,30 @@ public class Icon extends Circle
 
   public Icon(Color color)
   {
-		//Random rnd = new Random();
-
-	      setRadius(RADIUS);
-	      setFill(color);
-	      x = 550;
-	      y = 550;
-	      xVel = 50;
-	      yVel = 50;
-	      counter = 0;
+	  setRadius(RADIUS);
+	  setFill(color);
+	  x = 550;
+	  y = 550;
+	  xVel = 50;
+	  yVel = 50;
+	  counter = 0;
+  }
+  
+  public Icon(Image image)
+  {
+	  setRadius(RADIUS);
+	  //Image im = new Image("/images/dinos.png",false);
+	  setFill(new ImagePattern(image));
+	  x = 550;
+	  y = 550;
+	  xVel = 50;
+	  yVel = 50;
+	  counter = 0;
   }
 
-
-  
   public void initializeLocation(int player)
   {
 	  switch(player) {
-	  
 	  case 0:
 		  setCenterX(550);
 		  setCenterY(550);
@@ -41,8 +50,8 @@ public class Icon extends Circle
 		  setCenterY(550 + 20);
 		  break;
 	  case 3:
-		  setCenterX(550+ 20);
-		  setCenterY(550+ 20);
+		  setCenterX(550 + 20);
+		  setCenterY(550 + 20);
 		  break;
 	  
 	  }
@@ -51,14 +60,11 @@ public class Icon extends Circle
   public void moveOneSpot()
   {
 	  x -= 40;
-	  
-	  
 	  setCenterX(x);
 	  //setCenterY(y);
   }
   
   public void updateLocation() {
-	  
 		  //move upwards
 		  if (x == 50 && y == 550) {
 			  reverseY();
@@ -79,28 +85,23 @@ public class Icon extends Circle
 			  reverseX();
 			  counter = 0;
 		  }
-		  
 		  switch (counter) {
 		  case 0:
 			  x += xVel;
 			  setCenterX(x);
 		  	  setCenterY(y);
 		  	break;
-		  
 		  case 1:
 			  	y += yVel;
 			  	setCenterX(x);
 			  	setCenterY(y);
 			  break;
 		  }
-	  
-   
   }
   
   public void jumpToLocation(int toX, int toY)
   {
 	  x = toX;
-	  
 	  y = toY ;
 	  setCenterX(x);
 	  setCenterY(y);
@@ -124,4 +125,5 @@ public class Icon extends Circle
   {
 	  yVel *= -1;
   }
+  
 }
