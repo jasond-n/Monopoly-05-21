@@ -11,7 +11,7 @@ import javafx.scene.layout. * ;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 
-public class GameController {
+public class GameController extends MainMenuController {
 	private GameConfiguration gameConfiguration = new GameConfiguration();
 	private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
 	private boolean gameOver = false;
@@ -88,6 +88,16 @@ public class GameController {
 		
 		//test this line
 		checkGameState(gameConfiguration.getGameBoard());
+		
+		
+		/**
+		 * to add win condition, check to see if array size is 1, then if it is, silence this button and console print the winner
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * */
 		
 		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
 		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
