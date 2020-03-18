@@ -84,8 +84,14 @@ public class GameController extends MainMenuController {
 				}
 			}
 		}
-		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
-		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % playerCount) + 1) + "'s turn; ");
+
+		
+		//test this line
+		checkGameState(gameConfiguration.getGameBoard());
+		
+		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
+		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
+
 		updateMoney();
 	}
 
@@ -182,26 +188,26 @@ public class GameController extends MainMenuController {
 		Board gameBoard = gameConfiguration.getGameBoard();
 		Player player1 = gameBoard.getAllPlayers().get(1);
 		Player player2 = gameBoard.getAllPlayers().get(0);
-		Player player3 = gameBoard.getAllPlayers().get(2);
-		Player player4 = gameBoard.getAllPlayers().get(3);
+		Player player3 = gameBoard.getAllPlayers().get(3);
+		Player player4 = gameBoard.getAllPlayers().get(2);
 
 		if(playerCount == 2)
 		{
-			p1Balance.setText("P1 Balance: $" + player1.getBalance());
-			p2Balance.setText("P2 Balance: $" + player2.getBalance());
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
 		}
 		else if(playerCount == 3)
 		{
-			p1Balance.setText("P1 Balance: $" + player1.getBalance());
-			p2Balance.setText("P2 Balance: $" + player2.getBalance());
-			p3Balance.setText("P3 Balance: $" + player3.getBalance());
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
+			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
 		}
 		else if(playerCount == 4)
 		{
-			p1Balance.setText("P1 Balance: $" + player1.getBalance());
-			p2Balance.setText("P2 Balance: $" + player2.getBalance());
-			p3Balance.setText("P3 Balance: $" + player3.getBalance());
-			p2Balance.setText("P4 Balance: $" + player4.getBalance());
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
+			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
+			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance());
 		}
 	}
 
@@ -228,59 +234,75 @@ public class GameController extends MainMenuController {
 	public void normalPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
-			consoleLabel.setText("You have to pay the owner of the Property!");
+			consoleLabel.setText(p.getAvatar() + " has to pay the owner of the Property!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
 				alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 				if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
-					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought " + landedProperty.getName());
 				}
 				if (p.getBalance() - landedProperty.getPrice() < 0) {
 					consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
 				}
 			}
-			else {
-				if (landedProperty.getPrice() <= p.getBalance() * 0.4);
-					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+			else { //you are a computer
+				if (landedProperty.getPrice() <= p.getBalance() * 0.4) {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought " + landedProperty.getName());
+				}
+				else {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " decided not to buy " + landedProperty.getName());
+				}
 			}
 		}
 		else if (landedProperty.youOwn(p, gameBoard)) {
 
 			if (landedProperty.getNumOfHouses() == 4 && landedProperty.getNumOfHotels() == 0) {
 				if (p.getPlayerType().equalsIgnoreCase("human")) {
+					
 					alertPrompt(p, "Would you like to buy a hotel? \nThe price is " + landedProperty.getHotelCost());
 
 					if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
 						if (p.getBalance() - landedProperty.getHotelCost() >= 0) {
-							consoleLabel.setText(consoleLabel.getText() + "\nYou just bought a hotel ");
+							consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought a hotel ");
 						}
 						else {
 							consoleLabel.setText(consoleLabel.getText() + "\nSorry You do not have enough money to buy this");
 						}
 					}
 				}
-				else {
-					if (landedProperty.getPrice() <= p.getBalance() * 0.4);
-						consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+				else { //computer player
+					if (p.getBalance() - landedProperty.getHotelCost() >= 0) {
+						consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought a hotel ");
+					}
+					else {
+						consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " decided not to buy a hotel.");
+					}
 				}
 			}
 			//asks to buy a house if you have less than 4 houses
 			if (landedProperty.getNumOfHouses() < 4 && landedProperty.getNumOfHotels() == 0) {
-				alertPrompt(p, "Would you like to buy a house? \nThe price is " + landedProperty.getHotelCost());
+				
 				if (p.getPlayerType().equalsIgnoreCase("human")) {
+					
+					alertPrompt(p, "Would you like to buy a house? \nThe price is " + landedProperty.getHouseCost());
+					
 					if (landedProperty.getUserInput().equalsIgnoreCase("y")) {
 						if (p.getBalance() - landedProperty.getHouseCost() >= 0) {
-							consoleLabel.setText(consoleLabel.getText() + "\nYou just bought a house.");
+							consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought a house ");
 						}
 						else {
 							consoleLabel.setText(consoleLabel.getText() + "\nSorry You do not have enough money to buy this");
 						}
 					}
 				}
-				else {
-					if (landedProperty.getPrice() <= p.getBalance() * 0.4);
-						consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+				else { //player is computer
+					if (p.getBalance() - landedProperty.getHouseCost() >= 0) {
+						consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought a house ");
+					}
+					else {
+						consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " decided not to buy a house.");
+					}
 				}
 			}
 		}
@@ -294,14 +316,19 @@ public class GameController extends MainMenuController {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
 				alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 				if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
-					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought " + landedProperty.getName());
 				}
 				if (p.getBalance() - landedProperty.getPrice() < 0) {
 					consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
 				}
-			} else {
-				if (landedProperty.getPrice() <= p.getBalance() * 0.4);
-					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+			}
+			else { //you are a computer
+				if (landedProperty.getPrice() <= p.getBalance() * 0.4) {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought " + landedProperty.getName());
+				}
+				else {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " decided not to buy " + landedProperty.getName());
+				}
 			}
 		}
 	}
@@ -314,14 +341,19 @@ public class GameController extends MainMenuController {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
 				alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 				if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
-					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought " + landedProperty.getName());
 				}
 				if (p.getBalance() - landedProperty.getPrice() < 0) {
 					consoleLabel.setText(consoleLabel.getText() + "\nSorry you do not have enough money to buy " + landedProperty.getName());
 				}
-			} else {
-				if (landedProperty.getPrice() <= p.getBalance() * 0.4);
-					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+			}
+			else { //you are a computer
+				if (landedProperty.getPrice() <= p.getBalance() * 0.4) {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought " + landedProperty.getName());
+				}
+				else {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " decided not to buy " + landedProperty.getName());
+				}
 			}
 		}
 	}
@@ -353,17 +385,30 @@ public class GameController extends MainMenuController {
 	public void taxInteraction(Player p, Board gameBoard, Property landedProperty) {
 		switch (p.getPosition()) {
 		case 4: 
-			alertPrompt(p, "You have the option of either paying 10% of your balance or paying $200. Press yes to pay 10% or no to pay $200.");
-			if (landedProperty.getUserInput().equals("y")) {
-				consoleLabel.setText(consoleLabel.getText() + "\nYou paid 10% of your balance.");
+			
+			if (p.getPlayerType().equals("human")) {
+				alertPrompt(p, "You have the option of either paying 10% of your balance or paying $200. Press yes to pay 10% or no to pay $200.");
+				if (landedProperty.getUserInput().equals("y")) {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid 10% of your balance.");
+				}
+				else {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid $200 in tax.");
+				}
 			}
+			
 			else {
-				consoleLabel.setText(consoleLabel.getText() + "\nYou paid $200.");
+				if ((int)Math.round(p.getBalance() * 0.1) < 200) {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid 10% of your balance.");
+				}
+				else {
+					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid $200 in tax.");
+				}
 			}
+			
 			break;
 		
 		case 38: 
-			consoleLabel.setText(consoleLabel.getText() + "\nYou paid $100 of.");
+			consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid $100 in tax.");
 			break;
 		}		
 	}
@@ -391,9 +436,27 @@ public class GameController extends MainMenuController {
 						consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn!");
 					}
 				}
-			} else {
-				if (landedProperty.getPrice() <= p.getBalance() * 0.4);
-					consoleLabel.setText(consoleLabel.getText() + "\nYou just bought " + landedProperty.getName());
+			} 
+			else { //it is the computer
+				
+				if (p.getBalance() - 50 > 0) {
+					p.loseMoney(50);
+					p.setInJail(false);
+					consoleLabel.setText(consoleLabel.getText() + p.getAvatar() + " decided to pay $50 to get out of jail!");
+					gameBoard.rollDice();
+				}
+				else {
+					gameBoard.rollDice();
+					if (gameBoard.isDouble()) {
+						p.setInJail(false);
+						consoleLabel.setText(consoleLabel.getText() + "\nHey you rolled a double! You are Free!");
+						p.movePosition(gameBoard.getDice1() + gameBoard.getDice2());
+					}
+					else {
+						consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn!");
+					}
+				}
+				
 			}
 		}
 	}
@@ -405,6 +468,15 @@ public class GameController extends MainMenuController {
 			if (board.someoneIsBankrupt()) {
 				board.liquidateAssets();
 				playerCount--;
+				
+				consoleLabel.setText(consoleLabel.getText() + "\n Someone went bankrupt! They must give up their assets to the bank");
+				consoleLabel.setText(consoleLabel.getText() + "\n Remaining Players: ");
+				
+				for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
+					consoleLabel.setText(consoleLabel.getText() + " " + gameConfiguration.getGameBoard().getAllPlayers().get(i));	
+				}
+
+				
 			}
 			
 			if (board.getAllPlayers().size() == 1) {
