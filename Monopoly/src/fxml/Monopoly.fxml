@@ -28,6 +28,5 @@
             <Button layoutX="14.0" layoutY="37.0" mnemonicParsing="false" onAction="#diceroll" text="Roll" />
          </children>
       </Pane>
-      <Label fx:id="message1" onMouseClicked="#diceroll" prefHeight="5.0" prefWidth="129.0" />
    </children>
 </HBox>
