@@ -1,6 +1,6 @@
 
 public class Card {
-	// initializing variables.The Card class is used when making teh chance and community chest decks.
+	// initializing variables.The Card class is used when making the chance and community chest decks.
 	private String desc;
 	private String type;
 	private int value;

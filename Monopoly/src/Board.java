@@ -55,9 +55,9 @@ public class Board {
 	private Property ti;
 
 	//Constructor of board to add all the cards of communitychest and chance as well as add all the properties of the game board into our arraylist
-	public Board () { //in the constructor possibly add number of players?
+	public Board () {
 
-		// coding all the event cards to go in community chest and chance decks
+		// creating all the event cards to go in community chest and chance decks
 		Card money20 = new Card("You sold an old textbook. Collect $20.", "money", 20);
 		Card money50 = new Card("You have just recieved your student loans. Collect $50.", "money", 50);
 		Card money100a = new Card("You earned a scholarship for maintaining a 4.0 GPA last semester. Collect $100", "money", 100);
@@ -280,7 +280,7 @@ public class Board {
 		
 		
 		if (allPlayers.size() != 2) {
-			//this while loop rolls dice until all tje player's rolls are unique
+			//this while loop rolls dice until all the player's rolls are unique
 			while ((player1 == player2) || (player1 == player3) || (player1 == player4) || (player2 == player3) || (player2 == player4) || (player3 == player4)) {
 				for (int i = 0; i < allPlayers.size(); i++) {
 					switch (i) {
