@@ -43,47 +43,47 @@ public class Player {
 		this.counterOfRollForLeaveJail = counterOfRollForLeaveJail;
 	}
 
-	public void sellProperty(Property theProperty)
-	{
+	public void sellProperty(Property theProperty) {
 		theProperty.setOwner(null);
 		this.properties.remove(theProperty);
 		this.balance = this.balance + theProperty.getPrice();
 	}
 	
-	public Boolean buyProperty(Property theProperty)
-	{
-//		if(this.balance < theProperty.getPrice())
-//		{
-//			return false;
-//		}
-//		else
-//		{
-//			theProperty.setOwner(this);
-//			this.properties.add(theProperty);
-//			this.balance = this.balance - theProperty.getPrice();
-//			return true;
-//		}
-		
-		
-		if (player.getBalance() - getPrice() >= 0) {
-			setOwner(player);
-			player.loseMoney(getPrice());
-			player.addPlayerProperty(board.getProperties().get(player.getPosition()));
-			//System.out.println("You just bought: " + board.getProperties().get(player.getPosition()).getName());
+	public void buyProperty(Property theProperty)
+	{		
+		if (getBalance() - theProperty.getPrice() >= 0) {
+			theProperty.setOwner(this);
+			loseMoney(theProperty.getPrice());
+			addPlayerProperty(board.getProperties().get(getPosition()));
 		}
-		else {
-			//System.out.println("Sorry You do not have enough money to buy this");
-		}
-		
 	}
+	
+	public void buyHotel(Property theProperty) {
+		if (getBalance() - theProperty.getHotelCost() >= 0) {
+			theProperty.setNumOfHotels(1);
+			theProperty.setNumOfHouses(0);
+			loseMoney(theProperty.getHotelCost());
+			////System.out.println("You just bought a hotel ");
+		}
+	}
+	
+	public void buyHouse(Property theProperty) {
+		if (getBalance() - theProperty.getHouseCost() >= 0) {
+			theProperty.addNumOfHouses();
+			loseMoney(theProperty.getHouseCost());
+			
+		}
+	}
+	
+	
 	
 	
 	
 	public String getAvatar()
 	{
+
 		return this.avatar;
 	}
-	
 	
 	public int getPreviousPosition() {
 		return prevPosition;
@@ -91,31 +91,23 @@ public class Player {
 	
 	public void setPreviousPosition(int roll) {
 		prevPosition = getPosition() - roll;
-		
-		
-		
 	}
 	
-	public int getPosition()
-	{
+	public int getPosition() {
 		return this.position;
 	}
 	
 	
-	public void setPosition(int position)
-	{
+	public void setPosition(int position) {
 		if (position >= 40) {
 			position %= 40;
 		}
 		this.position = position;
 	}
 	
-	public void movePosition(int dice)
-	{
-		
+	public void movePosition(int dice) {
 		this.position += dice;
-		if(this.position > 39)
-		{
+		if(this.position > 39) {
 			this.balance += 200; //passing go
 			this.position %= 40;
 		}
@@ -160,8 +152,7 @@ public class Player {
 		this.properties.add(temp);
 	}
 	
-	public String getPlayerAllInfo()
-	{
+	public String getPlayerAllInfo() {
 		String resultString = "";
 		resultString = this.avatar + ", your position is at " + board.getProperties().get(this.position).getName() + ", your balance is " + this.balance;
 		resultString += " The properies you own are: ";

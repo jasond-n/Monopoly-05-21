@@ -19,7 +19,7 @@
             <Label fx:id="p1Balance" layoutX="21.0" layoutY="46.0" text="Label" />
             <Label fx:id="p2Balance" layoutX="21.0" layoutY="88.0" text="Label" />
             <Label fx:id="p3Balance" layoutX="21.0" layoutY="126.0" text="Label" />
-            <Label fx:id="p4Balance" layoutX="21.0" layoutY="168.0" text="Label" />
+            <Label fx:id="p4Balance" layoutX="21.0" layoutY="163.0" text="Label" />
          </children>
       </Pane>
       <Pane fx:id="boardPane" prefHeight="600.0" prefWidth="615.0" style="-fx-background-image: url('images/MonopolyacBoard.jpg');; -fx-background-size: 600px 600px;;" />
@@ -28,6 +28,5 @@
             <Button layoutX="14.0" layoutY="37.0" mnemonicParsing="false" onAction="#diceroll" text="Roll" />
          </children>
       </Pane>
-      <Label fx:id="message1" onMouseClicked="#diceroll" prefHeight="5.0" prefWidth="129.0" />
    </children>
 </HBox>
