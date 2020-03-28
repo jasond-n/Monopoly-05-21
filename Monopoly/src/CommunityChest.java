@@ -1,16 +1,17 @@
 import java.util.ArrayList;
 
+// The community chest class is very similar to the chance class, the effect on gameplay for drawing a card with doActionAfter... method
+// instead, it draws from the arraylist of community chest cards created in board.java
+
 public class CommunityChest extends Property {
 	public CommunityChest(int positionOnBoard, Player owner, String name)
 	{
 		super(positionOnBoard, owner, name);
 	}
 	
-	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board, Card cardDrawn) {
+	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board, Card cardDrawn) { 
+		// this method is almost identical to the one in chance.java, see there for details
 		
-		//double randomIndex = (int) (Math.random() * (board.getCommunityDeck().size()));	
-		//Card cardDrawn = board.getChanceDeck().get((int)randomIndex);
-
 		System.out.println("drawing a card...");
 		System.out.println(cardDrawn.getDesc());
 		
@@ -22,7 +23,7 @@ public class CommunityChest extends Property {
 				p.loseMoney(cardDrawn.getValue());
 			} 
 				
-		} else if (cardDrawn.getType() == "move") {					// check if go is passed???
+		} else if (cardDrawn.getType() == "move") {			
 			// update player's location
 			p.setPosition(p.getPosition() + cardDrawn.getValue());
 
