@@ -57,52 +57,58 @@ public class GameController extends MainMenuController {
 	@FXML
 	private Label consoleLabel;
 
+	
+	
+	/**
+	 * runs when the roll button is clicked in the gui
+	 * rolls the dice and moves the player accordingly
+	 * */
 	@FXML
 	public void diceroll(ActionEvent event) {
-		gameConfiguration.getGameBoard().rollDice();
-		d1 = gameConfiguration.getGameBoard().getDice1();
-		d2 = gameConfiguration.getGameBoard().getDice2();
-
-		consoleLabel.setText(consoleLabel.getText() + "You diced " + (d1 + d2));
-		if (getCurrentPlayer().getInJail() == false) {
-			movePlayer(d1, d2);
-			if (d1 == d2) {
-				consoleLabel.setText(consoleLabel.getText() + "\nNice you Rolled a double!");
-				gameConfiguration.getGameBoard().rollDice();
+		if (!gameOver) { //checks to see if the size of the arraylist of players is 1, if not, runs this code
+			gameConfiguration.getGameBoard().rollDice();
+			d1 = gameConfiguration.getGameBoard().getDice1();
+			d2 = gameConfiguration.getGameBoard().getDice2();
+	
+			consoleLabel.setText(consoleLabel.getText() + "You diced " + (d1 + d2));
+			if (getCurrentPlayer().getInJail() == false) {
 				movePlayer(d1, d2);
-
 				if (d1 == d2) {
 					consoleLabel.setText(consoleLabel.getText() + "\nNice you Rolled a double!");
 					gameConfiguration.getGameBoard().rollDice();
 					movePlayer(d1, d2);
-
+	
 					if (d1 == d2) {
-						consoleLabel.setText(consoleLabel.getText() + "\nYou rolled 3 doubles in a roll. Move to jail!");
-						getCurrentPlayer().setPosition(10);
-						getCurrentPlayer().setInJail(true);
+						consoleLabel.setText(consoleLabel.getText() + "\nNice you Rolled a double!");
+						gameConfiguration.getGameBoard().rollDice();
+						movePlayer(d1, d2);
+	
+						if (d1 == d2) {
+							consoleLabel.setText(consoleLabel.getText() + "\nYou rolled 3 doubles in a roll. Move to jail!");
+							getCurrentPlayer().setPosition(10);
+							getCurrentPlayer().setInJail(true);
+						}
 					}
 				}
 			}
+			
+			//test this line
+			//checks to see if anyone's balance is negative and takes them out if they are
+			checkGameState(gameConfiguration.getGameBoard());
+			//determines who's turn is next
+			if (getPlayerCount() > 1) {
+				gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
+				consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
+			}
+			updateMoney();
+			
 		}
-
+		else {
+			consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0));
+		}
 		
-		//test this line
-		checkGameState(gameConfiguration.getGameBoard());
+	
 		
-		
-		/**
-		 * to add win condition, check to see if array size is 1, then if it is, silence this button and console print the winner
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * */
-		
-		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
-		consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
-
-		updateMoney();
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
@@ -128,6 +134,9 @@ public class GameController extends MainMenuController {
 		StartGame();
 	}
 
+	/**
+	 * Moves the current player based on their roll and then does the interaction based on what square they landed on
+	 * */
 	public void movePlayer(int d1, int d2) {
 		setCurrentPlayerIndex(gameConfiguration.getCurrentPlayer());
 		for (int i = 0; i < d1 + d2; i++) {
@@ -184,6 +193,7 @@ public class GameController extends MainMenuController {
 		return currentPlayerIndex;
 	}
 
+	// adds the players and their names into an arrayList
 	public void StartGame() {
 		for (int i = 0; i < playerCount; i++) {
 			String playerName = "p" + (i + 1);
@@ -194,6 +204,7 @@ public class GameController extends MainMenuController {
 		consoleLabel.setText("Player 1, please dice roll now: ");
 	}
 
+	//updates the balances of each player on the gui
 	public void updateMoney() {
 		Board gameBoard = gameConfiguration.getGameBoard();
 		Player player1 = gameBoard.getAllPlayers().get(1);
@@ -221,6 +232,8 @@ public class GameController extends MainMenuController {
 		}
 	}
 
+	// used as our main decision function. Creates a show and wait and based on teh button they click, the according code is executed
+	//parameters are the current player and the message that needs to be displayed in the alert prompt
 	public void alertPrompt(Player p, String message) {
 		Alert alert = new Alert(AlertType.NONE);
 		alert.setTitle("Please make a decision");
@@ -241,6 +254,10 @@ public class GameController extends MainMenuController {
 		}
 	}
 
+	//used by the afterland method
+	//runs certain code depending on if the player is ai or human
+	//can buy property, houses or hotels
+	//displayes text to the gui.
 	public void normalPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
@@ -318,6 +335,10 @@ public class GameController extends MainMenuController {
 		}
 	}
 
+	//used by the afterland method
+		//runs certain code depending on if the player is ai or human
+		//can buy property
+		//displayes text to the gui.
 	public void railroadlPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the railroad!");
@@ -343,6 +364,10 @@ public class GameController extends MainMenuController {
 		}
 	}
 
+	//used by the afterland method
+			//runs certain code depending on if the player is ai or human
+			//can buy property
+			//displayes text to the gui.
 	public void utilityPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the utility!");
@@ -367,7 +392,10 @@ public class GameController extends MainMenuController {
 			}
 		}
 	}
-
+	
+	//used by the afterland method
+			//runs certain code depending on if the player is ai or human
+			//displayes text to the gui.
 	public void chanceInteraction(Player p, Board gameBoard, Property landedProperty) {
 		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
 		int randomIndex = (int)(Math.random() * (gameBoard.getChanceDeck().size() + 1));
@@ -376,6 +404,9 @@ public class GameController extends MainMenuController {
 		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
 	}
 
+	//used by the afterland method
+			//runs certain code depending on if the player is ai or human
+			//displayes text to the gui.
 	public void chestInteraction(Player p, Board gameBoard, Property landedProperty) {
 		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
 		int randomIndex = (int)(Math.random() * (gameBoard.getCommunityDeck().size() + 1));
@@ -385,13 +416,10 @@ public class GameController extends MainMenuController {
 	}
 	
 	
-	/**
-	 * possible implementation of human vs ai interaction to make code more clean and actually display what we want it to display.
-	 * or make the computer class set the user input to yes if they make a certain decision and surround the alert prompt to check to see if they are human ***
-	 * 
-	 * 
-	 * */
 	
+	//used by the afterland method
+			//runs certain code depending on if the player is ai or human
+			//displayes text to the gui.
 	public void taxInteraction(Player p, Board gameBoard, Property landedProperty) {
 		switch (p.getPosition()) {
 		case 4: 
@@ -423,7 +451,10 @@ public class GameController extends MainMenuController {
 		}		
 	}
 
-	//All the spots on board and what happens when something lands on it
+	//used by the afterland method
+			//runs certain code depending on if the player is ai or human
+			//can choose to pay 50 to get out of jail
+			//displayes text to the gui.
 	public void jailPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (p.getInJail() == true) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
@@ -471,7 +502,7 @@ public class GameController extends MainMenuController {
 		}
 	}
 	
-	//figure out where to implement this***
+	
 	//checks to see if anyone is bankrupt and runs the needed code to remove the player and liquidate the assets
 	public void checkGameState(Board board) {
 			
@@ -495,6 +526,7 @@ public class GameController extends MainMenuController {
 
 	}
 
+	//has a switch case for every spot on the board and runs the according interaction depending 
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		consoleLabel.setText(consoleLabel.getText() + "\nYou just landed on " + landedProperty.getName());
@@ -511,7 +543,7 @@ public class GameController extends MainMenuController {
 			break;
 		case 2:
 			chestInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 3:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -575,7 +607,7 @@ public class GameController extends MainMenuController {
 			break;
 		case 17:
 			chestInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 18:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -593,7 +625,7 @@ public class GameController extends MainMenuController {
 			break;
 		case 22:
 			chanceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 23:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
