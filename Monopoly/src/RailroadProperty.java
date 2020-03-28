@@ -1,10 +1,17 @@
 
 public class RailroadProperty extends Property {
+	
+	//constructor that takes the super constructor
 	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color)
 	{
 		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, mortgageValue, owner, name, color);
 	}
 	
+	
+	/**
+	 * runs according code depending on if your human or not.
+	 * allows to buy property, or pay the owner
+	 * */
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board) {
 		String userInput;
 		int counter = 0;

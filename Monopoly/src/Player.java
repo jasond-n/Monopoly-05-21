@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Player {
-
-	private final int INITIAL_BALANCE = 1500;
 	
+	//initializing variables
+	private final int INITIAL_BALANCE = 1500;
 	private String avatar;
 	private ArrayList<Property> properties;
 	private int balance;
@@ -14,6 +14,7 @@ public class Player {
 	private int counterOfRollForLeaveJail;
 	private Board board;
 	
+	//constructor that initializes all the variables
 	public Player(String avatar, Board board)
 	{
 		this.avatar = avatar;
@@ -43,12 +44,15 @@ public class Player {
 		this.counterOfRollForLeaveJail = counterOfRollForLeaveJail;
 	}
 
+	//sells the property passed in
+	//not implemented
 	public void sellProperty(Property theProperty) {
 		theProperty.setOwner(null);
 		this.properties.remove(theProperty);
 		this.balance = this.balance + theProperty.getPrice();
 	}
 	
+	//buy the property passed in
 	public void buyProperty(Property theProperty)
 	{		
 		if (getBalance() - theProperty.getPrice() >= 0) {
@@ -58,6 +62,7 @@ public class Player {
 		}
 	}
 	
+	//buy a hotel for the property passed in
 	public void buyHotel(Property theProperty) {
 		if (getBalance() - theProperty.getHotelCost() >= 0) {
 			theProperty.setNumOfHotels(1);
@@ -67,6 +72,7 @@ public class Player {
 		}
 	}
 	
+	//buy a house for the property passed in
 	public void buyHouse(Property theProperty) {
 		if (getBalance() - theProperty.getHouseCost() >= 0) {
 			theProperty.addNumOfHouses();
@@ -81,7 +87,6 @@ public class Player {
 	
 	public String getAvatar()
 	{
-
 		return this.avatar;
 	}
 	
@@ -97,7 +102,7 @@ public class Player {
 		return this.position;
 	}
 	
-	
+	//sets the position of the player
 	public void setPosition(int position) {
 		if (position >= 40) {
 			position %= 40;
@@ -105,6 +110,7 @@ public class Player {
 		this.position = position;
 	}
 	
+	//not implemented
 	public void movePosition(int dice) {
 		this.position += dice;
 		if(this.position > 39) {
@@ -152,6 +158,7 @@ public class Player {
 		this.properties.add(temp);
 	}
 	
+	//not implemented
 	public String getPlayerAllInfo() {
 		String resultString = "";
 		resultString = this.avatar + ", your position is at " + board.getProperties().get(this.position).getName() + ", your balance is " + this.balance;

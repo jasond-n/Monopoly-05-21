@@ -1,11 +1,14 @@
 
 import java.lang.Math;
 public class TaxProperty extends Property {
+	
+	//constructor
 	public TaxProperty(int positionOnBoard, Player owner, String name)
 	{
 		super(positionOnBoard, owner, name);
 	}
 	
+	//gives them the decision to pay 200 or pay 10% of their balance when they land on a property.
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 	{
 		String userInput;

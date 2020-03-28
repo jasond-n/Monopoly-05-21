@@ -14,7 +14,7 @@ public class Board {
 	
 	//Here are all the spaces on the board that need to be created in order for the game to run
 	private Property go;
-	private Property cragie; //this makes coding the gameconfig alot easier if we make them all public static just not sure about privacy leaks
+	private Property cragie; 
 	private CommunityChest communityChest1;
 	private TaxProperty rentFee;
 	private Property scienceB;
@@ -55,7 +55,7 @@ public class Board {
 	private Property ti;
 
 	//Constructor of board to add all the cards of communitychest and chance as well as add all the properties of the game board into our arraylist
-	public Board () { //in the constructor possibly add number of players?
+	public Board () { 
 
 		// coding all the event cards to go in community chest and chance decks
 		Card money20 = new Card("You sold an old textbook. Collect $20.", "money", 20);
@@ -122,6 +122,7 @@ public class Board {
 		communityDeck.add(moveToJail);
 		communityDeck.add(GetOutOfJail);
 		
+		//initializing all the spots on the board and adding them to an arraylist in order
 		allSpotsOnBoard = new ArrayList<Property>();
 		allSpotsOnBoard.add(go = new Property(200, 0, "GO"));
 		allSpotsOnBoard.add(cragie = new Property(60, 0, 0, 1, 2, 10, 30, 90, 160, 250, 30, 50, 50, null, "Cragie Hall", "brown"));

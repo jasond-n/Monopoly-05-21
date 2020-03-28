@@ -154,6 +154,7 @@ public class GameConfiguration {
 	private int dice;
 	private String userInput;
 	
+	//constructor that initializes the gameboard and houses memory for the current player 
 	public GameConfiguration()
 	{
 		currentPlayer = 0;
@@ -177,89 +178,5 @@ public class GameConfiguration {
 	public void setCurrentPlayer(int currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}
-	public boolean isGameEnd() {
-		return gameEnd;
-	}
-	public void setGameEnd(boolean gameEnd) {
-		this.gameEnd = gameEnd;
-	}
 	
-	public boolean isWin()
-	{
-		return false;
-	}
-	
-	public void setup(int numOfPlayers, String[]names) {
-		this.numOfPlayers = numOfPlayers;
-		
-		for (int i = 0; i < names.length; i++) {
-			Player player = new Player(names[i], gameBoard);
-			gameBoard.getAllPlayers().add(player);
-		}
-		
-		//gameBoard.decideOrder(); add this later
-		
-	}
-	
-	public void checkBankrupt() {
-		if (gameBoard.someoneIsBankrupt()) {
-			gameBoard.liquidateAssets();
-			numOfPlayers--;
-		}
-	}
-	
-	public String displayPlayerInfo(int i) {
-		return gameBoard.getAllPlayers().get(i).getPlayerAllInfo();
-	}
-	
-	public void setUserInput(String userInput) {
-		this.userInput = userInput;
-	}
-	
-	public void executeTurn(Player currentPlayer) {
-		if(currentPlayer.getInJail() == false)
-		{
-			
-			dice = gameBoard.rollDice();
-
-			currentPlayer.movePosition(dice);
-			
-			landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
-
-			landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
-		
-			if (gameBoard.isDouble()) { //first double
-				
-				dice = gameBoard.rollDice();
-				
-				currentPlayer.movePosition(dice);
-				
-				landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
-				
-				landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
-				
-				
-				if (gameBoard.isDouble()) { //second double
-					
-					dice = gameBoard.rollDice();
-					
-					currentPlayer.movePosition(dice);
-					
-					landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
-					
-					landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
-					
-					
-					//now they must go to jail
-					if (gameBoard.isDouble()) { //third double
-						currentPlayer.setPosition(10);
-						currentPlayer.setInJail(true);
-						landedProperty = gameBoard.getProperties().get(currentPlayer.getPosition());
-						
-						landedProperty.doActionAfterPlayerLandingHere(currentPlayer, dice, gameBoard, null);
-					}
-				}
-			}
-		}
-	}
 }

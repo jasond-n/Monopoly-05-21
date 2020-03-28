@@ -1,10 +1,17 @@
 
 
 public class JailProperty extends Property {
+	
+	/**
+	 * constructor that uses the property
+	 * */
 	public JailProperty(int price, Player owner, String name)
 	{
 		super(price, owner, name);
 	}
+	
+	//updates player information based on their decision gathered from the gameController
+	//runs different lines if they are in jail or not
 	public void doActionBeforePlayerLeavingHere(Player player, int roll, Board board)
 	{
 //		Scanner sc = new Scanner(System.in);
@@ -57,6 +64,8 @@ public class JailProperty extends Property {
 			}
 		}
 	}
+	
+	//if they land on go to jail, they get sent to jail.
 	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
 	{
 		switch(player.getPosition())

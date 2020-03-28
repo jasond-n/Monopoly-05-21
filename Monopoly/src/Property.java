@@ -201,7 +201,8 @@ public class Property {
 					setName(name); //name of the actual property
 					setOwner(owner);
 				}
-		
+				
+		//constructor for go
 		public Property(int price, int positionOnBoard, String name) {
 			setPrice(price);
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
@@ -216,10 +217,12 @@ public class Property {
 			return userInput;
 		}
 		
+		//helper method to check truth values
 		public boolean youAreNotOwner(Player player, Board board) {
 			return board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null;
 		}
 		
+		//helper method to check truth values
 		public boolean noOneOwns(Player player, Board board) {
 			return (board.getProperties().get(player.getPosition()).getOwner() == null )
 			
@@ -230,11 +233,12 @@ public class Property {
 			&& (board.getProperties().get(player.getPosition()).getName().equals("GO") == false);
 		}
 		
+		//helper method to check truth values
 		public boolean youOwn(Player player, Board board) {
 			return board.getProperties().get(player.getPosition()).getOwner() == player;
 		}
 		
-		
+		//runs the looic side of of landing on a spot on the board
 		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board, Card cardDrawn)
 		{
 			String userInput;

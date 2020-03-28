@@ -1,4 +1,4 @@
-
+//a child class of player with logic to buy property and has type COMPUTER which is used to differentiate what o print to the console in the gameController
 public class ComputerPlayer extends Player {
 
 	public ComputerPlayer(String avatar, Board board) {

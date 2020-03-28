@@ -11,6 +11,10 @@ public class Icon extends Circle
   private int xVel, yVel; //Velocities of the icon in the x and y directions
   int counter; //will be used to determine what lines of code will be run in the update location method
 
+  /**
+   * constructor that initializes each icons variables
+   * takes in the color of the icon
+   * */
   public Icon(Color color)
   {
 	  setRadius(RADIUS);
@@ -22,6 +26,10 @@ public class Icon extends Circle
 	  counter = 0;
   }
   
+  /**
+   * creates an image instead of a circle
+   * 
+   * */
   public Icon(Image image)
   {
 	  setRadius(RADIUS);
@@ -34,6 +42,9 @@ public class Icon extends Circle
 	  counter = 0;
   }
 
+  /**
+   * places players in the gui so they don't overlap wih eachother
+   * */
   public void initializeLocation(int player)
   {
 	  switch(player) {
@@ -57,6 +68,7 @@ public class Icon extends Circle
 	  }
   }
   
+  //moves the player the amount of pixels 1 spot is
   public void moveOneSpot()
   {
 	  x -= 40;
@@ -64,6 +76,7 @@ public class Icon extends Circle
 	  //setCenterY(y);
   }
   
+  //tells where the icon should move depending on it's pixel location
   public void updateLocation() {
 		  //move upwards
 		  if (x == 50 && y == 550) {
@@ -99,6 +112,7 @@ public class Icon extends Circle
 		  }
   }
   
+  //moves the player instantly to a location
   public void jumpToLocation(int toX, int toY)
   {
 	  x = toX;
