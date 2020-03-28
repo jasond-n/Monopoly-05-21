@@ -526,7 +526,8 @@ public class GameController extends MainMenuController {
 
 	}
 
-	//has a switch case for every spot on the board and runs the according interaction depending 
+	//has a switch case for every spot on the board and runs the according interaction depending
+	//these allow messages to be sent to console and displayed on GUI
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		consoleLabel.setText(consoleLabel.getText() + "\nYou just landed on " + landedProperty.getName());
@@ -543,7 +544,7 @@ public class GameController extends MainMenuController {
 			break;
 		case 2:
 			chestInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 3:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -607,7 +608,7 @@ public class GameController extends MainMenuController {
 			break;
 		case 17:
 			chestInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 18:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -625,7 +626,7 @@ public class GameController extends MainMenuController {
 			break;
 		case 22:
 			chanceInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 23:
 			normalPropertyInteraction(p, gameBoard, landedProperty);

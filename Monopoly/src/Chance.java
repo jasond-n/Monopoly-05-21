@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+// chance class inherits from the property class, it contains the class doAtionAfterPlayer... which mimics the actions of a 
+// random chance card drawn from the deck of chance cards created in board.java
+
 public class Chance extends Property {
 	public Chance(int positionOnBoard, Player owner, String name)
 	{
@@ -7,21 +10,18 @@ public class Chance extends Property {
 	}
 	
 	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board, Card cardDrawn) {
-			//int randomIndex = (int) Math.random() * board.getChanceDeck().size();
-			//Card cardDrawn = board.getChanceDeck().get(randomIndex);
 			
 			System.out.println("drawing a card...");
 			System.out.println(cardDrawn.getDesc());
 			
-			if (cardDrawn.getType() == "money") {
-				// update player's money getValue()
+			if (cardDrawn.getType() == "money") { //this card type adds or removes money from a player by updating player's addmoney/losemoney
 				if (cardDrawn.getValue() > 0) {
 					p.addMoney(cardDrawn.getValue());
 				} else if (cardDrawn.getValue() < 0) {
 					p.loseMoney(cardDrawn.getValue());
 				}
 					
-			} else if (cardDrawn.getType() == "move") {					// check if go is passed???
+			} else if (cardDrawn.getType() == "move") { // causes player to move a specific amount of spaces
 				// update player's location
 				p.setPosition(p.getPosition() + cardDrawn.getValue());
 				
@@ -32,7 +32,7 @@ public class Chance extends Property {
 					
 				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 					
-			} else if (cardDrawn.getType() == "moveTo") {
+			} else if (cardDrawn.getType() == "moveTo") { // move to another space
 				if (p.getPosition() < cardDrawn.getValue()) {
 					p.setPosition(cardDrawn.getValue() - p.getPosition());
 					
@@ -46,7 +46,7 @@ public class Chance extends Property {
 				
 				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 					
-			} else if (cardDrawn.getType() == "nearestStation") {
+			} else if (cardDrawn.getType() == "nearestStation") { // move to the nearest station
 				if (p.getPosition() <= 4 && p.getPosition() >= 35) {
 					// go to 5
 					p.setPosition(5);
@@ -63,7 +63,7 @@ public class Chance extends Property {
 				
 				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 				
-			} else if (cardDrawn.getType() == "nearestUtil") {
+			} else if (cardDrawn.getType() == "nearestUtil") {  // move to the nearest utility space
 				if (p.getPosition() >= 11 && p.getPosition() >= 28) {
 					p.setPosition(12);
 				} else {
@@ -72,7 +72,7 @@ public class Chance extends Property {
 				
 				super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 				
-			} else if (cardDrawn.getType() == "each") {
+			} else if (cardDrawn.getType() == "each") { //adding/removing money from each player
 				ArrayList<Player> players = board.getAllPlayers();
 				if (cardDrawn.getValue() > 0) {
 					p.addMoney(cardDrawn.getValue());
@@ -86,7 +86,7 @@ public class Chance extends Property {
 					}
 				}
 				
-			} else if (cardDrawn.getType() == "jail") {
+			} else if (cardDrawn.getType() == "jail") { //get out of jail free card
 				ArrayList<Card> x = new ArrayList<Card>();
 				x.add(cardDrawn);
 				p.setCardsOwned(x);

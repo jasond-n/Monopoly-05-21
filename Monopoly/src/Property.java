@@ -1,14 +1,8 @@
 
-
-/*
- * If you add variables, make getters and setter please
- * 
- * 
- * 
- * 
- * */
+// the property class is used to represents all the landable spaces on the monopoly board. BEcause of this
+// it is a parent class to the variety of other types of properties, including ocmmunity chest, chance, utility, tax, railroad, etc.
 public class Property {
-	//initializing variables
+	//These are all the necessary variables that define a property space.
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
 	private String name, color;
 	private Player owner;
@@ -58,10 +52,6 @@ public class Property {
 	public void setNumOfHotels(int numOfHotels) {
 		this.numOfHotels = numOfHotels;
 	}
-
-	//public int getPositionOnBoard() {
-		//return positionOnBoard;
-	//}
 
 	private void setPositionOnBoard(int positionOnBoard) {
 		this.positionOnBoard = positionOnBoard;
@@ -148,7 +138,7 @@ public class Property {
 	}
 	
 	
-	
+
 	// Property constructor that takes in arguments
 	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, Player owner, String name, String color) {
 		setPrice(price); //price of property
@@ -169,7 +159,7 @@ public class Property {
 		setColor(color); //String of color
 	}
 	
-	// use this to make special property 
+	// this constructor is used to make special properties
 	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color) {
 		setPrice(price); //price of property
 		setPositionOnBoard(positionOnBoard); //position of property 1-40
@@ -196,10 +186,10 @@ public class Property {
 		}
 		
 		//use this to make community chest / chance / tax
-				public Property(int positionOnBoard, Player owner, String name) {
-					setPositionOnBoard(positionOnBoard); //position of property 1-40
-					setName(name); //name of the actual property
-					setOwner(owner);
+		public Property(int positionOnBoard, Player owner, String name) {
+			setPositionOnBoard(positionOnBoard); //position of property 1-40
+			setName(name); //name of the actual property
+			setOwner(owner);
 				}
 				
 		//constructor for go
@@ -217,7 +207,11 @@ public class Property {
 			return userInput;
 		}
 		
+
 		//helper method to check truth values
+
+		//checking ownership of the property spaces
+
 		public boolean youAreNotOwner(Player player, Board board) {
 			return board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null;
 		}
