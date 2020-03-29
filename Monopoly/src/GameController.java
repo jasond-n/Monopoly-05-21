@@ -6,7 +6,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.layout. * ;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -40,6 +39,22 @@ public class GameController {
     public int getAIPlayerCount() {
     	return aiPlayerCount;
     }
+    
+	public void setCurrentPlayer(Player p) {
+		currentPlayer = p;
+	}
+
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayerIndex(int currentPlayerIndex) {
+		this.currentPlayerIndex = currentPlayerIndex;
+	}
+
+	public int getCurrentPlayerIndex() {
+		return currentPlayerIndex;
+	}
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
@@ -83,9 +98,47 @@ public class GameController {
 
 	@FXML
 	private Label consoleLabel;
+	
+	@FXML // This method is called by the FXMLLoader when initialization is complete
+	void initialize() {
+		alertPromptPlayerCount();
+		boardPane.getChildren().add(icon1);
+		icon1.initializeLocation(0);
+		boardPane.getChildren().add(icon2);
+		icon2.initializeLocation(1);
+		if(playerCount >= 3)
+		{
+			boardPane.getChildren().add(icon3);
+			icon3.initializeLocation(2);
+		}
+		if(playerCount >= 4)
+		{
+			boardPane.getChildren().add(icon4);
+			icon4.initializeLocation(3);
+		}
+		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
+		StartGame();
+	}
+	
+	// adds the players and their names into an arrayList
+	public void StartGame() {
+		
+		for (int i = 0; i < getHumanPlayerCount(); i++) {
+			String playerName = "Human Player" + (i + 1);
+			Player player = new Player(playerName, gameConfiguration.getGameBoard());
+			gameConfiguration.getGameBoard().getAllPlayers().add(player);
+		}
+		
+		for (int i = 0; i < getAIPlayerCount(); i++) {
+			String playerName = "AI Player" + (i + 1);
+			Player player = new ComputerPlayer(playerName, gameConfiguration.getGameBoard());
+			gameConfiguration.getGameBoard().getAllPlayers().add(player);
+		}
+		
+		updateMoney();
+		consoleLabel.setText("Player 1, please dice roll now: ");
+	}
 
-	
-	
 	/**
 	 * runs when the roll button is clicked in the gui
 	 * rolls the dice and moves the player accordingly
@@ -118,7 +171,6 @@ public class GameController {
 					}
 				}
 			}
-			
 			//test this line
 			//checks to see if anyone's balance is negative and takes them out if they are
 			checkGameState(gameConfiguration.getGameBoard());
@@ -127,39 +179,11 @@ public class GameController {
 				gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
 				consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
 			}
-			updateMoney();
-			
+			updateMoney();	
 		}
 		else {
 			consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0));
 		}
-		
-	
-		
-	}
-
-	@FXML // This method is called by the FXMLLoader when initialization is complete
-	void initialize() {
-		alertPromptPlayerCount();
-		boardPane.getChildren().add(icon1);
-		icon1.initializeLocation(0);
-		boardPane.getChildren().add(icon2);
-		icon2.initializeLocation(1);
-		if(playerCount >= 3)
-		{
-			boardPane.getChildren().add(icon3);
-			icon3.initializeLocation(2);
-		}
-		if(playerCount >= 4)
-		{
-			boardPane.getChildren().add(icon4);
-			icon4.initializeLocation(3);
-		}
-		//playerCount = playerCount;
-		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
-		//p3Balance.setText("");
-		//p4Balance.setText("");
-		StartGame();
 	}
 
 	/**
@@ -186,7 +210,7 @@ public class GameController {
 				}
 				break;
 			case 3:
-				icon4.updateLocation();
+				icon3.updateLocation();
 				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
 				if (i == 0) {
 					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
@@ -194,7 +218,7 @@ public class GameController {
 				}
 				break;
 			case 2:
-				icon3.updateLocation();
+				icon4.updateLocation();
 				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
 				if (i == 0) {
 					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
@@ -205,45 +229,6 @@ public class GameController {
 		}
 		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
 	}
-	
-	public void transferMessage(String message) {
-		playerCount= Integer.parseInt(message);
-    }
-
-	public void setCurrentPlayer(Player p) {
-		currentPlayer = p;
-	}
-
-	public Player getCurrentPlayer() {
-		return currentPlayer;
-	}
-
-	public void setCurrentPlayerIndex(int currentPlayerIndex) {
-		this.currentPlayerIndex = currentPlayerIndex;
-	}
-
-	public int getCurrentPlayerIndex() {
-		return currentPlayerIndex;
-	}
-
-	// adds the players and their names into an arrayList
-	public void StartGame() {
-		
-		for (int i = 0; i < getHumanPlayerCount(); i++) {
-			String playerName = "Human Player" + (i + 1);
-			Player player = new Player(playerName, gameConfiguration.getGameBoard());
-			gameConfiguration.getGameBoard().getAllPlayers().add(player);
-		}
-		
-		for (int i = 0; i < getAIPlayerCount(); i++) {
-			String playerName = "AI Player" + (i + 1);
-			Player player = new ComputerPlayer(playerName, gameConfiguration.getGameBoard());
-			gameConfiguration.getGameBoard().getAllPlayers().add(player);
-		}
-		
-		updateMoney();
-		consoleLabel.setText("Player 1, please dice roll now: ");
-	}
 
 	//updates the balances of each player on the gui
 	public void updateMoney() {
@@ -252,7 +237,6 @@ public class GameController {
 		Player player2 = gameBoard.getAllPlayers().get(0);
 		Player player3 = gameBoard.getAllPlayers().get(3);
 		Player player4 = gameBoard.getAllPlayers().get(2);
-
 		if(playerCount == 2)
 		{
 			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
@@ -276,7 +260,7 @@ public class GameController {
 	public void alertPromptPlayerCount() {
 		Alert alert = new Alert(AlertType.NONE);
 		alert.setTitle("Please make a decision");
-		alert.setHeaderText("Click yes or no");
+		alert.setHeaderText("Enter the amount of human players you want.");
 
 		ButtonType button1 = new ButtonType("1");
 		alert.getButtonTypes().add(button1);
@@ -414,9 +398,9 @@ public class GameController {
 	}
 
 	//used by the afterland method
-		//runs certain code depending on if the player is ai or human
-		//can buy property
-		//displayes text to the gui.
+	//runs certain code depending on if the player is ai or human
+	//can buy property
+	//displayes text to the gui.
 	public void railroadlPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the railroad!");
@@ -443,9 +427,9 @@ public class GameController {
 	}
 
 	//used by the afterland method
-			//runs certain code depending on if the player is ai or human
-			//can buy property
-			//displayes text to the gui.
+	//runs certain code depending on if the player is ai or human
+	//can buy property
+	//displayes text to the gui.
 	public void utilityPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou have to pay the owner of the utility!");
@@ -472,8 +456,8 @@ public class GameController {
 	}
 	
 	//used by the afterland method
-			//runs certain code depending on if the player is ai or human
-			//displayes text to the gui.
+	//runs certain code depending on if the player is ai or human
+	//displayes text to the gui.
 	public void chanceInteraction(Player p, Board gameBoard, Property landedProperty) {
 		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
 		int randomIndex = (int)(Math.random() * (gameBoard.getChanceDeck().size() + 1));
@@ -493,15 +477,12 @@ public class GameController {
 		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
 	}
 	
-	
-	
 	//used by the afterland method
 			//runs certain code depending on if the player is ai or human
 			//displayes text to the gui.
 	public void taxInteraction(Player p, Board gameBoard, Property landedProperty) {
 		switch (p.getPosition()) {
 		case 4: 
-			
 			if (p.getPlayerType().equals("human")) {
 				alertPrompt(p, "You have the option of either paying 10% of your balance or paying $200. Press yes to pay 10% or no to pay $200.");
 				if (landedProperty.getUserInput().equals("y")) {
@@ -511,7 +492,6 @@ public class GameController {
 					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid $200 in tax.");
 				}
 			}
-			
 			else {
 				if ((int)Math.round(p.getBalance() * 0.1) < 200) {
 					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid 10% of your balance.");
@@ -520,9 +500,7 @@ public class GameController {
 					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid $200 in tax.");
 				}
 			}
-			
 			break;
-		
 		case 38: 
 			consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " paid $100 in tax.");
 			break;
@@ -530,9 +508,9 @@ public class GameController {
 	}
 
 	//used by the afterland method
-			//runs certain code depending on if the player is ai or human
-			//can choose to pay 50 to get out of jail
-			//displayes text to the gui.
+	//runs certain code depending on if the player is ai or human
+	//can choose to pay 50 to get out of jail
+	//displayes text to the gui.
 	public void jailPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 		if (p.getInJail() == true) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
@@ -557,7 +535,6 @@ public class GameController {
 				}
 			} 
 			else { //it is the computer
-				
 				if (p.getBalance() - 50 > 0) {
 					p.loseMoney(50);
 					p.setInJail(false);
@@ -575,15 +552,12 @@ public class GameController {
 						consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn!");
 					}
 				}
-				
 			}
 		}
 	}
 	
-	
 	//checks to see if anyone is bankrupt and runs the needed code to remove the player and liquidate the assets
 	public void checkGameState(Board board) {
-			
 			if (board.someoneIsBankrupt()) {
 				board.liquidateAssets();
 				playerCount--;
@@ -594,14 +568,10 @@ public class GameController {
 				for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
 					consoleLabel.setText(consoleLabel.getText() + " " + gameConfiguration.getGameBoard().getAllPlayers().get(i));	
 				}
-
-				
 			}
-			
 			if (board.getAllPlayers().size() == 1) {
 				gameOver = true;
 			}
-
 	}
 
 	//has a switch case for every spot on the board and runs the according interaction depending
@@ -622,7 +592,6 @@ public class GameController {
 			break;
 		case 2:
 			chestInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 3:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -686,7 +655,6 @@ public class GameController {
 			break;
 		case 17:
 			chestInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 18:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -704,7 +672,6 @@ public class GameController {
 			break;
 		case 22:
 			chanceInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 23:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -749,7 +716,6 @@ public class GameController {
 			break;
 		case 33:
 			chestInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 34:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -761,7 +727,6 @@ public class GameController {
 			break;
 		case 36:
 			chanceInteraction(p, gameBoard, landedProperty);
-			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 37:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
