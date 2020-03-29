@@ -194,11 +194,19 @@ public class GameController extends MainMenuController {
 
 	// adds the players and their names into an arrayList
 	public void StartGame() {
-		for (int i = 0; i < playerCount; i++) {
-			String playerName = "p" + (i + 1);
+		
+		for (int i = 0; i < getHumanPlayerCount(); i++) {
+			String playerName = "Human Player" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
 			gameConfiguration.getGameBoard().getAllPlayers().add(player);
 		}
+		
+		for (int i = 0; i < getAIPlayerCount(); i++) {
+			String playerName = "AI Player" + (i + 1);
+			Player player = new ComputerPlayer(playerName, gameConfiguration.getGameBoard());
+			gameConfiguration.getGameBoard().getAllPlayers().add(player);
+		}
+		
 		updateMoney();
 		consoleLabel.setText("Player 1, please dice roll now: ");
 	}
