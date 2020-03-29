@@ -18,7 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainMenuController extends Board {
-	private int playerCount;
+	private int playerCount, humanPlayerCount, aiPlayerCount;
 	private String playerName;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -88,8 +88,15 @@ public class MainMenuController extends Board {
     void openGameButton(ActionEvent event) {
     	String humanPlayerString = textField.getText();
     	String aiPlayerString = textFieldAI.getText();
-    	int humanPlayerCount = Integer.parseInt(humanPlayerString);
-		int aiPlayerCount = Integer.parseInt(aiPlayerString);
+    	try {
+    	humanPlayerCount = Integer.parseInt(humanPlayerString);
+		aiPlayerCount = Integer.parseInt(aiPlayerString);
+    	} catch (NumberFormatException e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR. INVALID INPUT");
+			alert.setHeaderText("You entered zero players!");
+			alert.showAndWait();
+    	}
 		if(humanPlayerCount + aiPlayerCount > 4 || humanPlayerCount + aiPlayerCount < 0)
 		{
 			Alert alert = new Alert(AlertType.ERROR);
@@ -104,9 +111,10 @@ public class MainMenuController extends Board {
 			//prompt("Enter your name");
 		}
     	try {
+    		System.out.println(getPlayerCount());
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Monopoly.fxml"));
-			//GameController gameController = fxmlLoader.getController();
-	        //gameController.transferMessage(String.valueOf(getPlayerCount()));
+			GameController gameController = fxmlLoader.getController();
+	        gameController.transferMessage(String.valueOf(getPlayerCount()));
 	            
 			Parent root = (Parent) fxmlLoader.load();
 			
@@ -119,7 +127,7 @@ public class MainMenuController extends Board {
 			pane.getScene().getWindow().hide();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+    	}
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
