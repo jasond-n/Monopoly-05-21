@@ -64,6 +64,9 @@ Visual Content Resources (images used for GUI):
 - The image used for the dinos icon: https://www.sportslogos.net/logos/view/237974652013/Calgary_Dinos/2013/Partial_Logo
 - The image used for the Main Menu Screen: https://www.unilad.co.uk/wp-content/uploads/2015/11/UNILAD-Screen-Shot-2015-11-20-at-14.27.5117310.png
 - The image used for Monopoly icon: https://cdn3.iconfinder.com/data/icons/brain-games/1042/Monopoly.png
+- Using SceneBuilder and Controller class to change scenes in Javafx: https://www.youtube.com/watch?v=XCgcQTQCfJQ
+- JavaFX : Loading New FXML in the Same Scene / WIndow: https://www.youtube.com/watch?v=RJOza3XQk34&t=56s
+- JavaFX Tutorial #6 - FXML and the Scene Builder: https://www.youtube.com/watch?v=uPm1n-cyupU
 
 Instructional resources (Logic & Coding):
 - stackoverflow
