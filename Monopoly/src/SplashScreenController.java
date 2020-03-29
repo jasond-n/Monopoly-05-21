@@ -46,7 +46,7 @@ public class SplashScreenController implements Initializable {
     			public void run() {
     				Parent root = null;
 					try {
-						root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Main Menu Screen.fxml"));
+						root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Monopoly.fxml"));
 					} catch (IOException e) {
 						Logger.getLogger(SplashScreenController.class.getName()).log(Level.SEVERE, null, e);
 					}
