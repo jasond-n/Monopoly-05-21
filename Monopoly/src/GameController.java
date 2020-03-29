@@ -173,7 +173,6 @@ public class GameController extends MainMenuController {
 	}
 	
 	public void transferMessage(String message) {
-        
 		playerCount= Integer.parseInt(message);
     }
 
