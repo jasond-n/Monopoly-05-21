@@ -11,11 +11,35 @@ import javafx.scene.layout. * ;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 
-public class GameController extends MainMenuController {
+public class GameController {
 	private GameConfiguration gameConfiguration = new GameConfiguration();
 	private Player currentPlayer = new Player("", gameConfiguration.getGameBoard());
 	private boolean gameOver = false;
-	private int d1, d2, currentPlayerIndex, playerCount;
+	private int d1, d2, currentPlayerIndex, playerCount, humanPlayerCount, aiPlayerCount;
+	
+    public void setPlayerCount(int playerCount) {
+    	this.playerCount = playerCount; 
+    }
+    
+    public int getPlayerCount() {
+    	return playerCount;
+    }
+    
+    public void setHumanPlayerCount(int humanPlayerCount) {
+    	this.humanPlayerCount = humanPlayerCount; 
+    }
+    
+    public int getHumanPlayerCount() {
+    	return humanPlayerCount;
+    }
+    
+    public void setAIPlayerCount(int aiPlayerCount) {
+    	this.aiPlayerCount = aiPlayerCount; 
+    }
+    
+    public int getAIPlayerCount() {
+    	return aiPlayerCount;
+    }
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
@@ -113,6 +137,7 @@ public class GameController extends MainMenuController {
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
+		alertPromptPlayerCount();
 		boardPane.getChildren().add(icon1);
 		icon1.initializeLocation(0);
 		boardPane.getChildren().add(icon2);
@@ -236,6 +261,43 @@ public class GameController extends MainMenuController {
 			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
 			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
 			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance());
+		}
+	}
+	
+	public void alertPromptPlayerCount() {
+		Alert alert = new Alert(AlertType.NONE);
+		alert.setTitle("Please make a decision");
+		alert.setHeaderText("Click yes or no");
+
+		ButtonType button1 = new ButtonType("1");
+		alert.getButtonTypes().add(button1);
+		ButtonType button2 = new ButtonType("2");
+		alert.getButtonTypes().add(button2);
+		ButtonType button3 = new ButtonType("3");
+		alert.getButtonTypes().add(button3);
+		ButtonType button4 = new ButtonType("4");
+		alert.getButtonTypes().add(button4);
+
+		Optional < ButtonType > action = alert.showAndWait();
+		if (action.get() == button1) {
+			setHumanPlayerCount(1);
+			setAIPlayerCount(3);
+			setPlayerCount(getHumanPlayerCount() + getAIPlayerCount());
+		}
+		else if (action.get() == button2){
+			setHumanPlayerCount(2);
+			setAIPlayerCount(2);
+			setPlayerCount(getHumanPlayerCount() + getAIPlayerCount());
+		}
+		else if (action.get() == button3){
+			setHumanPlayerCount(3);
+			setAIPlayerCount(1);
+			setPlayerCount(getHumanPlayerCount() + getAIPlayerCount());
+		}
+		else {
+			setHumanPlayerCount(4);
+			setAIPlayerCount(0);
+			setPlayerCount(getHumanPlayerCount() + getAIPlayerCount());
 		}
 	}
 
