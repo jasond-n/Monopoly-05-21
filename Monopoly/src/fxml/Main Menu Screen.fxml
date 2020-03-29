@@ -15,7 +15,7 @@
          </image>
       </ImageView>
       <TextField fx:id="textField" layoutX="295.0" layoutY="328.0" />
-      <Label layoutX="117.0" layoutY="332.0" text="Please Enter Number of Players:" />
+      <Label layoutX="68.0" layoutY="332.0" text="Please Enter Number of Human Players:" />
       <Label layoutX="62.0" layoutY="360.0" text="Please Enter Number of AI to play against:" />
       <TextField fx:id="textFieldAI" layoutX="295.0" layoutY="356.0" />
       <Button layoutX="324.0" layoutY="405.0" mnemonicParsing="false" onAction="#openGameButton" prefHeight="31.0" prefWidth="91.0" text="Start Game" />
