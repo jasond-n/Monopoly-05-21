@@ -67,13 +67,16 @@ public class GameController {
 	private Icon icon1 = new Icon(new Image("/images/dinos.png",false));
 
 	@FXML
-	private Icon icon2 = new Icon(Color.BLUE);
+	//private Icon icon2 = new Icon(Color.BLUE);
+	private Icon icon2 = new Icon(new Image("/images/MonopolyMan.jpeg",false));
 
 	@FXML
-	private Icon icon3 = new Icon(Color.YELLOW);
+	//private Icon icon3 = new Icon(Color.YELLOW);
+	private Icon icon3 = new Icon(new Image("/images/sait.png",false));
 
 	@FXML
-	private Icon icon4 = new Icon(Color.GREEN);
+	//private Icon icon4 = new Icon(Color.GREEN);
+	private Icon icon4 = new Icon(new Image("/images/UofCCoat.png",false));
 
 	@FXML
 	private Pane boardPane;
@@ -183,14 +186,20 @@ public class GameController {
 				}
 				break;
 			case 3:
-				//icon3.updateLocation();
-				//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
-				//getCurrentPlayer().movePosition(1);
+				icon4.updateLocation();
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
+				if (i == 0) {
+					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+					getCurrentPlayer().setPreviousPosition(d1 + d2);
+				}
 				break;
 			case 2:
-				//icon4.updateLocation(); 
-				//setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(currentPlayerIndex));
-				//getCurrentPlayer().movePosition(1);
+				icon3.updateLocation();
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
+				if (i == 0) {
+					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+					getCurrentPlayer().setPreviousPosition(d1 + d2);
+				}
 				break;
 			}
 		}
@@ -613,7 +622,7 @@ public class GameController {
 			break;
 		case 2:
 			chestInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 3:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -677,7 +686,7 @@ public class GameController {
 			break;
 		case 17:
 			chestInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 18:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -695,7 +704,7 @@ public class GameController {
 			break;
 		case 22:
 			chanceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 23:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -740,7 +749,7 @@ public class GameController {
 			break;
 		case 33:
 			chestInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 34:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
@@ -752,7 +761,7 @@ public class GameController {
 			break;
 		case 36:
 			chanceInteraction(p, gameBoard, landedProperty);
-			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
+			//landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 37:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
