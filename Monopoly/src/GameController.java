@@ -138,6 +138,33 @@ public class GameController {
 		consoleLabel.setText("Player 1, please dice roll now: ");
 	}
 
+	//updates the balances of each player on the gui
+	public void updateMoney() {
+		Board gameBoard = gameConfiguration.getGameBoard();
+		Player player1 = gameBoard.getAllPlayers().get(1);
+		Player player2 = gameBoard.getAllPlayers().get(0);
+		Player player3 = gameBoard.getAllPlayers().get(3);
+		Player player4 = gameBoard.getAllPlayers().get(2);
+		if(playerCount == 2)
+		{
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
+		}
+		else if(playerCount == 3)
+		{
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
+			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
+		}
+		else if(playerCount == 4)
+		{
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
+			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
+			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance());
+		}
+	}
+	
 	/**
 	 * runs when the roll button is clicked in the gui
 	 * rolls the dice and moves the player accordingly
@@ -228,34 +255,8 @@ public class GameController {
 		}
 		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
 	}
-
-	//updates the balances of each player on the gui
-	public void updateMoney() {
-		Board gameBoard = gameConfiguration.getGameBoard();
-		Player player1 = gameBoard.getAllPlayers().get(1);
-		Player player2 = gameBoard.getAllPlayers().get(0);
-		Player player3 = gameBoard.getAllPlayers().get(3);
-		Player player4 = gameBoard.getAllPlayers().get(2);
-		if(playerCount == 2)
-		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
-		}
-		else if(playerCount == 3)
-		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
-			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
-		}
-		else if(playerCount == 4)
-		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
-			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
-			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance());
-		}
-	}
 	
+	// On startup. You must pick the number of human players you want and we will fill the rest with ai players.
 	public void alertPromptPlayerCount() {
 		Alert alert = new Alert(AlertType.NONE);
 		alert.setTitle("Please make a decision");
