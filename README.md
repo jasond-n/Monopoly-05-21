@@ -36,7 +36,7 @@ To find the version for our demo2 look through the branch version2. Download the
 
 You will then see a GUI that you can interact with and be allow to click buttons and see labels.
 
-## Version 3
+## Version 2 update
 
 To find the version for our demo2 updated look through the branch version2 updated. Download the folder named Monopoly/src and run the class named "Main.java".
 
