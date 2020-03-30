@@ -36,6 +36,12 @@ To find the version for our demo2 look through the branch version2. Download the
 
 You will then see a GUI that you can interact with and be allow to click buttons and see labels.
 
+## Version 3
+
+To find the version for our demo2 updated look through the branch version2 updated. Download the folder named Monopoly/src and run the class named "Main.java".
+
+You will then see a GUI that you can interact with and be allow to click buttons and see labels.
+
 ## Installation Requirements
 
 * Java JDK latest verison
@@ -65,7 +71,7 @@ Visual Content Resources (images used for GUI):
 - The image used for the Main Menu Screen: https://www.unilad.co.uk/wp-content/uploads/2015/11/UNILAD-Screen-Shot-2015-11-20-at-14.27.5117310.png
 - The image used for Monopoly icon: https://cdn3.iconfinder.com/data/icons/brain-games/1042/Monopoly.png
 - Using SceneBuilder and Controller class to change scenes in Javafx: https://www.youtube.com/watch?v=XCgcQTQCfJQ
-- JavaFX : Loading New FXML in the Same Scene / WIndow: https://www.youtube.com/watch?v=RJOza3XQk34&t=56s
+- JavaFX | Alert with examples: https://www.geeksforgeeks.org/javafx-alert-with-examples/
 - JavaFX Tutorial #6 - FXML and the Scene Builder: https://www.youtube.com/watch?v=uPm1n-cyupU
 
 Instructional resources (Logic & Coding):
