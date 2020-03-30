@@ -24,7 +24,6 @@ public class Utility extends Property {
 			else {
 				player.buyProperty(board.getProperties().get(player.getPosition()));
 			}
-			
 		}
 		// if the owner of this utility is not the player who landed, then you need a nested statement to check if this owner also own other utility, 
 		// if yes, you pay 10 * roll. if they don't own both, that's 4 * roll.
@@ -39,7 +38,6 @@ public class Utility extends Property {
 				player.loseMoney(roll * 4);
 				board.getProperties().get(player.getPosition()).getOwner().addMoney(roll * 4);
 			}
-			
 		}
 	}
 }

@@ -40,7 +40,6 @@ public class SplashScreenController implements Initializable {
     	public void run() {
     		try {
     		Thread.sleep(2500);
-    		
     		Platform.runLater(new Runnable() {
     			@Override
     			public void run() {
@@ -63,7 +62,6 @@ public class SplashScreenController implements Initializable {
     	    		pane.getScene().getWindow().hide();
     			}
     		});
-    		
     		} catch (InterruptedException ex) {
     			Logger.getLogger(SplashScreenController.class.getName()).log(Level.SEVERE, null, ex);
     		}

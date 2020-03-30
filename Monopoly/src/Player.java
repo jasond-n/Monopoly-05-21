@@ -81,10 +81,6 @@ public class Player {
 		}
 	}
 	
-	
-	
-	
-	
 	public String getAvatar()
 	{
 		return this.avatar;

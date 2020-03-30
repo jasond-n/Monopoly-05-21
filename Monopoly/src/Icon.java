@@ -33,7 +33,6 @@ public class Icon extends Circle
   public Icon(Image image)
   {
 	  setRadius(RADIUS);
-	  //Image im = new Image("/images/dinos.png",false);
 	  setFill(new ImagePattern(image));
 	  x = 550;
 	  y = 550;

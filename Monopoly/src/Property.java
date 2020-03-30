@@ -1,6 +1,6 @@
 
 // the property class is used to represents all the landable spaces on the monopoly board. BEcause of this
-// it is a parent class to the variety of other types of properties, including ocmmunity chest, chance, utility, tax, railroad, etc.
+// it is a parent class to the variety of other types of properties, including community chest, chance, utility, tax, railroad, etc.
 public class Property {
 	//These are all the necessary variables that define a property space.
 	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
@@ -137,8 +137,6 @@ public class Property {
 		this.name = name;
 	}
 	
-	
-
 	// Property constructor that takes in arguments
 	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, Player owner, String name, String color) {
 		setPrice(price); //price of property
@@ -190,7 +188,7 @@ public class Property {
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
 			setName(name); //name of the actual property
 			setOwner(owner);
-				}
+			}
 				
 		//constructor for go
 		public Property(int price, int positionOnBoard, String name) {
@@ -207,11 +205,8 @@ public class Property {
 			return userInput;
 		}
 		
-
 		//helper method to check truth values
-
 		//checking ownership of the property spaces
-
 		public boolean youAreNotOwner(Player player, Board board) {
 			return board.getProperties().get(player.getPosition()).getOwner() != player && board.getProperties().get(player.getPosition()).getOwner() != null;
 		}
@@ -232,18 +227,15 @@ public class Property {
 			return board.getProperties().get(player.getPosition()).getOwner() == player;
 		}
 		
-		//runs the looic side of of landing on a spot on the board
+		//runs the logic side of of landing on a spot on the board
 		public void doActionAfterPlayerLandingHere(Player player, int roll, Board board, Card cardDrawn)
 		{
 			String userInput;
 			int multiplier = 1;
-			
 			//if you land on go
 			if (player.getPosition() >= 0 && player.getPreviousPosition() <= 0) {
-
 				player.addMoney(50);
 			}
-			
 			//figure out mortgages later
 			//if you are not the owner
 			if (youAreNotOwner(player, board)) {
@@ -253,8 +245,6 @@ public class Property {
 				if (isMonopolized(player, board)) {
 					multiplier = 2;
 				}
-				
-				
 				//add an if statement to see if the owner has a monopoly on all 3
 				////System.out.println("You have to pay the owner of the property!");
 				if (getNumOfHotels() == 0) {
@@ -281,7 +271,6 @@ public class Property {
 						break;
 					}
 				}
-				
 				if (getNumOfHotels() == 1) {
 					player.loseMoney(getRentHotel());
 					board.getProperties().get(player.getPosition()).getOwner().addMoney(getRentHotel() * multiplier);
@@ -290,14 +279,11 @@ public class Property {
 			//no one owns the property
 			else if (noOneOwns(player, board)) 
 			{
-				
-				
 				//will wait for the show and wait
 				//continue from here
 				//the player is human so we have to wait for input
 				if (player.getPlayerType().equals("human")) {
 					userInput = getUserInput();
-					
 					if (userInput.equalsIgnoreCase("y")) {
 						player.buyProperty(board.getProperties().get(player.getPosition()));
 					}
@@ -308,27 +294,19 @@ public class Property {
 			}
 			//you own the property 
 			else if (youOwn(player, board)){
-				
 				if (getNumOfHouses() == 4 && getNumOfHotels() == 0) {
-
-					
 					if (player.getPlayerType().equals("human")) {
 						////System.out.print("would you like to buy a hotel? (y/n)");
 						userInput = getUserInput();
-		
 						if (userInput.equalsIgnoreCase("y")) {
 							player.buyHotel(board.getProperties().get(player.getPosition()));
-
 						}
 					}
-					
 					//computer player
 					else {
 						player.buyHotel(board.getProperties().get(player.getPosition()));
 					}
 				}
-				
-				
 				//asks to buy a house if you have less than 4 houses
 				if (getNumOfHouses() < 4 && getNumOfHotels() == 0) {
 					
@@ -336,49 +314,33 @@ public class Property {
 					
 					////System.out.print("would you like to buy a house? (y/n)");
 					userInput = getUserInput();
-	
 					if (userInput.equalsIgnoreCase("y")) {
 						if (player.getPlayerType().equals("human")) {
 							////System.out.print("would you like to buy a hotel? (y/n)");
 							userInput = getUserInput();
-			
 							if (userInput.equalsIgnoreCase("y")) {
 								player.buyHouse(board.getProperties().get(player.getPosition()));
 							}
 						}
-						
 						//computer player
 						else {
 							player.buyHouse(board.getProperties().get(player.getPosition()));
 						}
 					}
-					
-					//sc.close();
 				}
 			}
-			
-			
-			
-			
 		}
-				
 		
 		//helper method to see if the property that was landed on is monopolized
 		public boolean isMonopolized(Player player, Board board) {
 			String color2check = board.getProperties().get(player.getPosition()).getColor();
 			int numOfColor = 0;
 			boolean toReturn = false;
-			
-			
-			
 			for(int i = 0; i < player.getPlayerProperties().size(); i++) {
 				if (player.getPlayerProperties().get(i).getColor().equalsIgnoreCase(color2check)) {
 					numOfColor++;
 				}
 			}
-			
-			
-			
 			if (numOfColor == 2) {
 				switch(color2check) {
 				case "brown": 
@@ -387,7 +349,6 @@ public class Property {
 					break;
 				}
 			}
-			
 			if (numOfColor == 3) {
 				switch(color2check) {
 				case "light blue": 
@@ -400,18 +361,14 @@ public class Property {
 					break;
 				}
 			}
-			
 			return toReturn;
-			
 		}
-
 		
 		/**
 		 * placeholder method for the jail spot
 		 * 
 		 * */
-		public void doActionBeforeLeavingHere(Player p, int roll, Board gameBoard) {	
+		public void doActionBeforeLeavingHere(Player p, int roll, Board gameBoard) {
 			
-		}
-	
+		}	
 }
