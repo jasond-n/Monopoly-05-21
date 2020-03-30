@@ -48,13 +48,7 @@ public class GameController {
 		return currentPlayer;
 	}
 
-	public void setCurrentPlayerIndex(int currentPlayerIndex) {
-		this.currentPlayerIndex = currentPlayerIndex;
-	}
 
-	public int getCurrentPlayerIndex() {
-		return currentPlayerIndex;
-	}
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
@@ -116,7 +110,7 @@ public class GameController {
 			boardPane.getChildren().add(icon4);
 			icon4.initializeLocation(3);
 		}
-		gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % playerCount);
+		gameConfiguration.setCurrentPlayerIndex(0);
 		StartGame();
 	}
 	
@@ -141,10 +135,10 @@ public class GameController {
 	//updates the balances of each player on the gui
 	public void updateMoney() {
 		Board gameBoard = gameConfiguration.getGameBoard();
-		Player player1 = gameBoard.getAllPlayers().get(1);
-		Player player2 = gameBoard.getAllPlayers().get(0);
-		Player player3 = gameBoard.getAllPlayers().get(3);
-		Player player4 = gameBoard.getAllPlayers().get(2);
+		Player player1 = gameBoard.getAllPlayers().get(0);
+		Player player2 = gameBoard.getAllPlayers().get(1);
+		Player player3 = gameBoard.getAllPlayers().get(2);
+		Player player4 = gameBoard.getAllPlayers().get(3);
 		if(playerCount == 2)
 		{
 			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
@@ -202,8 +196,8 @@ public class GameController {
 			checkGameState(gameConfiguration.getGameBoard());
 			//determines who's turn is next
 			if (getPlayerCount() > 1) {
-				gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
-				consoleLabel.setText(consoleLabel.getText() + ";\nNow, Player " + (((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount()) + 1) + "'s turn; ");
+				//gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
+				consoleLabel.setText(consoleLabel.getText() + ";\nNow, " + gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getAvatar() + "'s turn; ");
 			}
 			updateMoney();	
 		}
@@ -216,45 +210,52 @@ public class GameController {
 	 * Moves the current player based on their roll and then does the interaction based on what square they landed on
 	 * */
 	public void movePlayer(int d1, int d2) {
-		setCurrentPlayerIndex(gameConfiguration.getCurrentPlayer());
-		for (int i = 0; i < d1 + d2; i++) {
-			switch (getCurrentPlayerIndex()) {
-			case 1:
-				icon1.updateLocation();
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
-				if (i == 0) {
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
-				}
-				break;
+		
+			switch (gameConfiguration.getCurrentPlayerIndex()) {
 			case 0:
-				icon2.updateLocation();
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
-				if (i == 0) {
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
+				for (int i = 0; i < d1 + d2; i++) {
+					icon1.updateLocation();
 				}
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+				getCurrentPlayer().setPreviousPosition(d1 + d2);
+			
 				break;
-			case 3:
-				icon3.updateLocation();
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
-				if (i == 0) {
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
+			case 1:
+				for (int i = 0; i < d1 + d2; i++) {
+					icon2.updateLocation();
 				}
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+				getCurrentPlayer().setPreviousPosition(d1 + d2);
+				
 				break;
 			case 2:
-				icon4.updateLocation();
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(getCurrentPlayerIndex()));
-				if (i == 0) {
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
+				for (int i = 0; i < d1 + d2; i++) {
+					icon3.updateLocation();
 				}
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+				getCurrentPlayer().setPreviousPosition(d1 + d2);
+				
+				break;
+			case 3:
+				for (int i = 0; i < d1 + d2; i++) {
+					icon4.updateLocation();
+				}
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+				getCurrentPlayer().setPreviousPosition(d1 + d2);
 				break;
 			}
+			
+			gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
+			afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
 		}
-		afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
-	}
+
+	
+		
+		
 	
 	// On startup. You must pick the number of human players you want and we will fill the rest with ai players.
 	public void alertPromptPlayerCount() {

@@ -145,7 +145,7 @@ public class GameConfiguration {
 //		
 //	}
 	
-	private int currentPlayer;
+	private int currentPlayerIndex;
 	
 	private boolean gameEnd;
 	private int numOfPlayers;
@@ -157,7 +157,7 @@ public class GameConfiguration {
 	//constructor that initializes the gameboard and houses memory for the current player 
 	public GameConfiguration()
 	{
-		currentPlayer = 0;
+		currentPlayerIndex = 0;
 		gameEnd = false;
 		numOfPlayers = 0;
 		gameBoard = new Board();
@@ -172,11 +172,11 @@ public class GameConfiguration {
 		this.gameBoard = gameBoard;
 	}
 
-	public int getCurrentPlayer() {
-		return currentPlayer;
+	public int getCurrentPlayerIndex() {
+		return currentPlayerIndex;
 	}
-	public void setCurrentPlayer(int currentPlayer) {
-		this.currentPlayer = currentPlayer;
+	public void setCurrentPlayerIndex(int currentPlayerIndex) {
+		this.currentPlayerIndex = currentPlayerIndex;
 	}
 	
 }

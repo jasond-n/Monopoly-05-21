@@ -36,6 +36,7 @@ public class Chance extends Property {
 				
 					p.setPosition(cardDrawn.getValue());
 					
+					//all the spaces you can possibly move to with a move to card
 					switch (p.getPosition()) {
 					case 0: p.addMoney(50); break;
 					case 11: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
