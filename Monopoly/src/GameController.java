@@ -579,7 +579,7 @@ public class GameController {
 	public void afterLand(Player p, Board gameBoard) {
 		Property landedProperty = gameBoard.getProperties().get(p.getPosition());
 		consoleLabel.setText(consoleLabel.getText() + "\nYou just landed on " + landedProperty.getName());
-		if (p.getPosition() >= 0 && p.getPreviousPosition() <= 0) {
+		if (p.getPosition() >= 0 && p.getPreviousPosition() < 0) {
 			consoleLabel.setText(consoleLabel.getText() + "\nYou passed go, Collect $50");
 		}
 		switch (p.getPosition()) {
