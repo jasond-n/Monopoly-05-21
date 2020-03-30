@@ -16,10 +16,10 @@
                   <Label fx:id="consoleLabel" prefHeight="346.0" prefWidth="332.0" text="Label" />
                </content>
             </ScrollPane>
-            <Label fx:id="p2Balance" layoutX="21.0" layoutY="46.0" text="Label" />
-            <Label fx:id="p1Balance" layoutX="21.0" layoutY="88.0" text="Label" />
-            <Label fx:id="p4Balance" layoutX="21.0" layoutY="126.0" text="Label" />
-            <Label fx:id="p3Balance" layoutX="21.0" layoutY="163.0" text="Label" />
+            <Label fx:id="p1Balance" layoutX="21.0" layoutY="46.0" text="Label" />
+            <Label fx:id="p2Balance" layoutX="21.0" layoutY="88.0" text="Label" />
+            <Label fx:id="p3Balance" layoutX="21.0" layoutY="126.0" text="Label" />
+            <Label fx:id="p4Balance" layoutX="21.0" layoutY="163.0" text="Label" />
          </children>
       </Pane>
       <Pane fx:id="boardPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url('images/MonopolyacBoard.jpg');; -fx-background-size: 600px 600px;;" />
