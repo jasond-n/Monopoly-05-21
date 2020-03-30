@@ -122,7 +122,6 @@ public class GameController {
 	
 	// adds the players and their names into an arrayList
 	public void StartGame() {
-		
 		for (int i = 0; i < getHumanPlayerCount(); i++) {
 			String playerName = "Human Player" + (i + 1);
 			Player player = new Player(playerName, gameConfiguration.getGameBoard());
