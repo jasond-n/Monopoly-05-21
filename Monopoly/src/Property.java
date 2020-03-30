@@ -233,7 +233,7 @@ public class Property {
 			String userInput;
 			int multiplier = 1;
 			//if you land on go
-			if (player.getPosition() >= 0 && player.getPreviousPosition() <= 0) {
+			if (player.getPosition() >= 0 && player.getPreviousPosition() < 0) {
 				player.addMoney(50);
 			}
 			//figure out mortgages later
