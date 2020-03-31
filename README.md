@@ -38,7 +38,7 @@ You will then see a GUI that you can interact with and be allow to click buttons
 
 ## Version 2 update
 
-To find the version for our demo2 updated look through the branch version2 updated. Download the folder named Monopoly/src and run the class named "Main.java".
+To find the version for our demo2 updated look through the branch version2 updates. Download the folder named Monopoly/src and run the class named "Main.java".
 
 You will then see a GUI that you can interact with and be allow to click buttons and see labels.
 
