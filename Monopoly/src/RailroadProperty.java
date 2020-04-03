@@ -1,9 +1,9 @@
 
 public class RailroadProperty extends Property {
 	//constructor that takes the super constructor
-	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color)
+	public RailroadProperty(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, Player owner, String name, String color)
 	{
-		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, mortgageValue, owner, name, color);
+		super(price, positionOnBoard, rentBase, rent1House, rent2House, rent3House, owner, name, color);
 	}
 	
 	/**
