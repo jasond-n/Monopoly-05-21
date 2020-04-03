@@ -37,20 +37,19 @@ public class CommunityChest extends Property {
 			super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 				
 		} else if (cardDrawn.getType() == "moveTo") {
-			if (p.getPosition() < cardDrawn.getValue()) {
-				p.setPosition(cardDrawn.getValue() - p.getPosition());
-				
-				//checking to see if you go negative
-				if (p.getPosition() < 0) {
-					p.setPosition(p.getPosition() + 40);
-				}
-				
-				
-			} else {
-				p.setPosition(39 - p.getPosition() + cardDrawn.getValue());
-				}
+			p.setPosition(cardDrawn.getValue());
 			
-			super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
+			//all the spaces you can possibly move to with a move to card
+			switch (p.getPosition()) {
+			case 0: p.addMoney(50); break;
+			case 11: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
+			case 24: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
+			case 39: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
+			case 30: 
+				p.setInJail(true);
+				p.setPosition(10);
+				break;
+			}
 			
 		} else if (cardDrawn.getType() == "nearestStation") {
 			if (p.getPosition() <= 4 && p.getPosition() >= 35) {
