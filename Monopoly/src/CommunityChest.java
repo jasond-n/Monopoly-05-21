@@ -42,9 +42,6 @@ public class CommunityChest extends Property {
 			//all the spaces you can possibly move to with a move to card
 			switch (p.getPosition()) {
 			case 0: p.addMoney(50); break;
-			case 11: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
-			case 24: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
-			case 39: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
 			case 30: 
 				p.setInJail(true);
 				p.setPosition(10);

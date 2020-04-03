@@ -14,7 +14,8 @@ public class Chance extends Property {
 			System.out.println("drawing a card...");
 			System.out.println(cardDrawn.getDesc());
 			
-			if (cardDrawn.getType() == "money") { //this card type adds or removes money from a player by updating player's addmoney/losemoney
+			if (cardDrawn.getType().equals("money")) { //this card type adds or removes money from a player by updating player's addmoney/losemoney
+				System.out.println("poop");
 				if (cardDrawn.getValue() > 0) {
 					p.addMoney(cardDrawn.getValue());
 				} else if (cardDrawn.getValue() < 0) {
@@ -39,9 +40,6 @@ public class Chance extends Property {
 					//all the spaces you can possibly move to with a move to card
 					switch (p.getPosition()) {
 					case 0: p.addMoney(50); break;
-					case 11: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
-					case 24: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
-					case 39: super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn); break;
 					case 30: 
 						p.setInJail(true);
 						p.setPosition(10);
