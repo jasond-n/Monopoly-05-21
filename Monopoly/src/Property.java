@@ -3,7 +3,7 @@
 // it is a parent class to the variety of other types of properties, including community chest, chance, utility, tax, railroad, etc.
 public class Property {
 	//These are all the necessary variables that define a property space.
-	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, mortgageValue, houseCost, hotelCost;
+	private int price, numOfHouses, numOfHotels, positionOnBoard, rentBase, rent1House, rent2House, rent3House, rent4House, rentHotel, houseCost, hotelCost;
 	private String name, color;
 	private Player owner;
 	private String userInput;
@@ -105,14 +105,6 @@ public class Property {
 		this.rentHotel = rentHotel;
 	}
 
-	public int getMortgageValue() {
-		return mortgageValue;
-	}
-
-	private void setMortgageValue(int mortgageValue) {
-		this.mortgageValue = mortgageValue;
-	}
-
 	public int getHouseCost() {
 		return houseCost;
 	}
@@ -138,7 +130,7 @@ public class Property {
 	}
 	
 	// Property constructor that takes in arguments
-	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int mortgageValue, int houseCost, int hotelCost, Player owner, String name, String color) {
+	public Property(int price, int numOfHouses, int numOfHotels, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int rent4House, int rentHotel, int houseCost, int hotelCost, Player owner, String name, String color) {
 		setPrice(price); //price of property
 		setNumOfHouses(numOfHouses); 
 		setNumOfHotels(numOfHotels);
@@ -149,7 +141,6 @@ public class Property {
 		setRent3House(rent3House);
 		setRent4House(rent4House);
 		setRentHotel(rentHotel);
-		setMortgageValue(mortgageValue);
 		setHouseCost(houseCost);
 		setHotelCost(hotelCost);
 		setOwner(owner); //name of owner of property
@@ -158,26 +149,24 @@ public class Property {
 	}
 	
 	// this constructor is used to make special properties
-	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, int mortgageValue, Player owner, String name, String color) {
+	public Property(int price, int positionOnBoard, int rentBase, int rent1House, int rent2House, int rent3House, Player owner, String name, String color) {
 		setPrice(price); //price of property
 		setPositionOnBoard(positionOnBoard); //position of property 1-40
 		setRentBase(rentBase);
 		setRent1House(rent1House);
 		setRent2House(rent2House);
 		setRent3House(rent3House);
-		setMortgageValue(mortgageValue);
 		setOwner(owner); //name of owner of property
 		setName(name); //name of the actual property
 		setColor(color); //String of color
 	}
 	
 	//use this to make utility 
-		public Property(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name, String color) {
+		public Property(int price, int positionOnBoard, int rentBase, int rent1House, Player owner, String name, String color) {
 			setPrice(price); //price of property
 			setPositionOnBoard(positionOnBoard); //position of property 1-40
 			setRentBase(rentBase);
 			setRent1House(rent1House);
-			setMortgageValue(mortgageValue);
 			setOwner(owner); //name of owner of property
 			setName(name); //name of the actual property
 			setColor(color);

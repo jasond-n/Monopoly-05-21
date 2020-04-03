@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout. * ;
@@ -97,18 +98,18 @@ public class GameController {
 	void initialize() {
 		alertPromptPlayerCount();
 		boardPane.getChildren().add(icon1);
-		icon1.initializeLocation(0);
+		icon1.movePlayer1(0);
 		boardPane.getChildren().add(icon2);
-		icon2.initializeLocation(1);
+		icon2.movePlayer2(0);
 		if(playerCount >= 3)
 		{
 			boardPane.getChildren().add(icon3);
-			icon3.initializeLocation(2);
+			icon3.movePlayer3(0);
 		}
 		if(playerCount >= 4)
 		{
 			boardPane.getChildren().add(icon4);
-			icon4.initializeLocation(3);
+			icon4.movePlayer4(0);
 		}
 		gameConfiguration.setCurrentPlayerIndex(0);
 		StartGame();
@@ -260,6 +261,11 @@ public class GameController {
 	// On startup. You must pick the number of human players you want and we will fill the rest with ai players.
 	public void alertPromptPlayerCount() {
 		Alert alert = new Alert(AlertType.NONE);
+		Image image = new Image("images/monopoly screen.png");
+		ImageView imageView = new ImageView(image);
+		alert.setGraphic(imageView);
+		imageView.setFitWidth(240);
+	    imageView.setFitHeight(160);
 		alert.setTitle("Please make a decision");
 		alert.setHeaderText("Enter the amount of human players you want.");
 
@@ -272,7 +278,7 @@ public class GameController {
 		ButtonType button4 = new ButtonType("4");
 		alert.getButtonTypes().add(button4);
 
-		Optional < ButtonType > action = alert.showAndWait();
+		Optional <ButtonType> action = alert.showAndWait();
 		if (action.get() == button1) {
 			setHumanPlayerCount(1);
 			setAIPlayerCount(3);
@@ -463,6 +469,24 @@ public class GameController {
 		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
 		int randomIndex = (int)(Math.random() * (gameBoard.getChanceDeck().size() + 1));
 		Card cardDrawn = gameBoard.getChanceDeck().get(randomIndex);
+		
+		if (cardDrawn.getType().equals("moveTo")) {
+			switch (gameConfiguration.getCurrentPlayerIndex()) {
+			case 0: 
+				icon1.movePlayer1(cardDrawn.getValue());
+				break;
+			case 1: 
+				icon2.movePlayer2(cardDrawn.getValue());
+				break;
+			case 2: 
+				icon3.movePlayer3(cardDrawn.getValue());
+				break; 
+			case 3:
+				icon4.movePlayer4(cardDrawn.getValue());
+				break;
+			}
+		}
+		
 		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
 		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
 	}
@@ -474,6 +498,25 @@ public class GameController {
 		consoleLabel.setText(consoleLabel.getText() + "\nDrawing a card from the deck...");
 		int randomIndex = (int)(Math.random() * (gameBoard.getCommunityDeck().size() + 1));
 		Card cardDrawn = gameBoard.getCommunityDeck().get(randomIndex);
+		
+		if (cardDrawn.getType().equals("moveTo")) {
+			switch (gameConfiguration.getCurrentPlayerIndex()) {
+			case 0: 
+				icon1.movePlayer1(cardDrawn.getValue());
+				break;
+			case 1: 
+				icon2.movePlayer2(cardDrawn.getValue());
+				break;
+			case 2: 
+				icon3.movePlayer3(cardDrawn.getValue());
+				break; 
+			case 3:
+				icon4.movePlayer4(cardDrawn.getValue());
+				break;
+			}
+		}
+		
+		
 		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
 		landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
 	}

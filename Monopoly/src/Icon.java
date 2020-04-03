@@ -42,30 +42,122 @@ public class Icon extends Circle
   }
 
   /**
-   * places players in the gui so they don't overlap wih eachother
+   * places player1 in the gui so they don't overlap wih eachother
    * */
-  public void initializeLocation(int player)
+  public void movePlayer1(int location)
   {
-	  switch(player) {
+	  switch(location) {
 	  case 0:
 		  setCenterX(550);
 		  setCenterY(550);
 		  break;
-	  case 1:
-		  setCenterX(550+ 20);
+	  case 11:
+		  setCenterX(50);
+		  setCenterY(500);
+		  break;
+	  case 24: 
+		  setCenterX(250);
+		  setCenterY(50);
+		  break;
+	  case 30: 
+		  setCenterX(50);
 		  setCenterY(550);
-		  break;
-	  case 2:
+		  break; // go to jail
+	  case 39: 
 		  setCenterX(550);
-		  setCenterY(550 + 20);
+		  setCenterY(500);
 		  break;
-	  case 3:
-		  setCenterX(550 + 20);
-		  setCenterY(550 + 20);
-		  break;
+	  
 	  
 	  }
   }
+  
+  public void movePlayer2(int location)
+  {
+	  switch(location) {
+	  case 0:
+		  setCenterX(550+ 20);
+		  setCenterY(550);
+		  break;
+	  case 11:
+		  setCenterX(50 + 20);
+		  setCenterY(500);
+		  break;
+	  case 24: 
+		  setCenterX(250 + 20);
+		  setCenterY(50);
+		  break;
+	  case 30: 
+		  setCenterX(50 + 20);
+		  setCenterY(550);
+		  break; // go to jail
+	  case 39: 
+		  setCenterX(550 + 20);
+		  setCenterY(500);
+		  break;  
+	  
+	  
+	  }
+  }
+  
+  public void movePlayer3(int location)
+  {
+	  switch(location) {
+	  case 0:
+		  setCenterX(550);
+		  setCenterY(550 + 20);
+		  break;
+	  case 11:
+		  setCenterX(50);
+		  setCenterY(500 + 20);
+		  break;
+	  case 24: 
+		  setCenterX(250);
+		  setCenterY(50 + 20);
+		  break;
+	  case 30: 
+		  setCenterX(50);
+		  setCenterY(550 + 20);
+		  break; // go to jail
+	  case 39: 
+		  setCenterX(550);
+		  setCenterY(500 + 20);
+		  break;
+	  }
+  }
+  
+  public void movePlayer4(int location)
+  {
+	  switch(location) {
+	  case 0:
+		  setCenterX(550 + 20);
+		  setCenterY(550 + 20);
+		  break;
+	  case 11:
+		  setCenterX(50 + 20);
+		  setCenterY(500 + 20);
+		  break;
+	  case 24: 
+		  setCenterX(250 + 20);
+		  setCenterY(50 + 20);
+		  break;
+	  case 30: 
+		  setCenterX(50 + 20);
+		  setCenterY(550 + 20);
+		  break; // go to jail
+	  case 39: 
+		  setCenterX(550 + 20);
+		  setCenterY(500 + 20);
+		  break;
+	  }
+  }
+  
+  
+  
+  
+  
+  
+  
   
   //moves the player the amount of pixels 1 spot is
   public void moveOneSpot()
