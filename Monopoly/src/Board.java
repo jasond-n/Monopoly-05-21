@@ -70,8 +70,8 @@ public class Board {
 		Card moneyN50a = new Card("Pay a $50 fine for dropping out of astronomy 207. Yep, way too much physics.", "money", -50);
 		Card moneyN50b = new Card("You fell asleep during your final exam and got a D. Cramming was definitely a bad idea. Lose $50.", "money", -50);
 		
-		Card moveN3 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
-		Card move3 = new Card("Your assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
+		//Card moveN3 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
+		//Card move3 = new Card("Your assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
 		
 		Card moveTo0 = new Card("Advance to GO. Collect $200.", "moveTo", 0);
 		Card moveTo24 = new Card("Advance to Science Theatres. If you pass GO, collect $50", "moveTo", 24);
@@ -79,10 +79,10 @@ public class Board {
 		Card moveTo39 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $50.", "moveTo", 39);
 		Card moveToJail = new Card("Go directly to Jail. Do not pass GO, do not collect $50.", "moveTo", 30);
 		
-		Card nearestUtility = new Card("Advance to nearest utility.", "nearestUtil", 0); // If owned, throw dice and pay owner a total 10 times the amount thrown.
-		Card nearestStation = new Card("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
+		//Card nearestUtility = new Card("Advance to nearest utility.", "nearestUtil", 0); // If owned, throw dice and pay owner a total 10 times the amount thrown.
+		//Card nearestStation = new Card("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
 		
-		Card GetOutOfJail = new Card("Get out of Jail Free. This card may be kept until needed, or traded/sold.", "jail", 0);
+		//Card GetOutOfJail = new Card("Get out of Jail Free. This card may be kept until needed, or traded/sold.", "jail", 0);
 		
 		Card eachN50 = new Card("You have been elected as SU president. Pay each player $50.", "each", -50);
 		Card each50 = new Card("You are hosting a networking night for software engineers. Each player pays you a $50 entrance fee.", "each", 50);
@@ -94,17 +94,20 @@ public class Board {
 		chanceDeck.add(money150);
 		chanceDeck.add(moneyN15);
 		chanceDeck.add(money100a);
-		chanceDeck.add(moveN3);
+		
 		chanceDeck.add(moveTo0);
 		chanceDeck.add(moveTo24);
 		chanceDeck.add(moveTo11);
 		chanceDeck.add(moveTo39);
-		chanceDeck.add(move3);
+		
+		//chanceDeck.add(moveN3);
+		//chanceDeck.add(move3);
+		
 		chanceDeck.add(moveToJail);
-		chanceDeck.add(nearestStation);
-		chanceDeck.add(nearestUtility);
+		//chanceDeck.add(nearestStation);
+		//chanceDeck.add(nearestUtility);
 		chanceDeck.add(eachN50);
-		chanceDeck.add(GetOutOfJail);
+		//chanceDeck.add(GetOutOfJail);
 		
 		communityDeck.add(money200);
 		communityDeck.add(money20);
@@ -116,11 +119,11 @@ public class Board {
 		communityDeck.add(money50);
 		communityDeck.add(moveTo0);
 		communityDeck.add(moveTo39);
-		communityDeck.add(move3);
+		//communityDeck.add(move3);
 		communityDeck.add(each50);
 		communityDeck.add(each10);
 		communityDeck.add(moveToJail);
-		communityDeck.add(GetOutOfJail);
+		//communityDeck.add(GetOutOfJail);
 		
 		//initializing all the spots on the board and adding them to an arraylist in order
 		allSpotsOnBoard = new ArrayList<Property>();
