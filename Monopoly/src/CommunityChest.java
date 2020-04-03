@@ -20,7 +20,7 @@ public class CommunityChest extends Property {
 			if (cardDrawn.getValue() > 0) {
 				p.addMoney(cardDrawn.getValue());
 			} else if (cardDrawn.getValue() < 0) {
-				p.loseMoney(cardDrawn.getValue());
+				p.loseMoney(-cardDrawn.getValue());
 			} 
 				
 		} else if (cardDrawn.getType() == "move") {			

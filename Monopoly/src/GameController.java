@@ -6,6 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout. * ;
 import javafx.fxml.FXML;
@@ -92,7 +93,7 @@ public class GameController {
 	private Pane boardPane;
 
 	@FXML
-	private Label consoleLabel;
+	private TextArea consoleLabel;
 	
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
