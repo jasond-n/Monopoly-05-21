@@ -471,20 +471,38 @@ public class GameController {
 		Card cardDrawn = gameBoard.getChanceDeck().get(randomIndex);
 		
 		if (cardDrawn.getType().equals("moveTo")) {
-			switch (gameConfiguration.getCurrentPlayerIndex()) {
-			case 0: 
-				icon1.movePlayer1(cardDrawn.getValue());
-				break;
-			case 1: 
-				icon2.movePlayer2(cardDrawn.getValue());
-				break;
-			case 2: 
-				icon3.movePlayer3(cardDrawn.getValue());
-				break; 
-			case 3:
-				icon4.movePlayer4(cardDrawn.getValue());
-				break;
-			}
+			int tempValue = 0;
+
+            switch (gameConfiguration.getCurrentPlayerIndex()) {
+            case 0: 
+                tempValue = 3;
+                break;
+            case 1: 
+                tempValue = 0;
+                break;
+            case 2: 
+                tempValue = 1;
+                break;
+            case 3: 
+                tempValue = 2;
+                break;
+            }
+
+
+            switch (tempValue) {
+            case 0: 
+                icon1.movePlayer1(cardDrawn.getValue());
+                break;
+            case 1: 
+                icon2.movePlayer2(cardDrawn.getValue());
+                break;
+            case 2: 
+                icon3.movePlayer3(cardDrawn.getValue());
+                break; 
+            case 3:
+                icon4.movePlayer4(cardDrawn.getValue());
+                break;
+            }
 		}
 		
 		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
@@ -500,20 +518,38 @@ public class GameController {
 		Card cardDrawn = gameBoard.getCommunityDeck().get(randomIndex);
 		
 		if (cardDrawn.getType().equals("moveTo")) {
-			switch (gameConfiguration.getCurrentPlayerIndex()) {
-			case 0: 
-				icon1.movePlayer1(cardDrawn.getValue());
-				break;
-			case 1: 
-				icon2.movePlayer2(cardDrawn.getValue());
-				break;
-			case 2: 
-				icon3.movePlayer3(cardDrawn.getValue());
-				break; 
-			case 3:
-				icon4.movePlayer4(cardDrawn.getValue());
-				break;
-			}
+			int tempValue = 0;
+
+            switch (gameConfiguration.getCurrentPlayerIndex()) {
+            case 0: 
+                tempValue = 3;
+                break;
+            case 1: 
+                tempValue = 0;
+                break;
+            case 2: 
+                tempValue = 1;
+                break;
+            case 3: 
+                tempValue = 2;
+                break;
+            }
+
+
+            switch (tempValue) {
+            case 0: 
+                icon1.movePlayer1(cardDrawn.getValue());
+                break;
+            case 1: 
+                icon2.movePlayer2(cardDrawn.getValue());
+                break;
+            case 2: 
+                icon3.movePlayer3(cardDrawn.getValue());
+                break; 
+            case 3:
+                icon4.movePlayer4(cardDrawn.getValue());
+                break;
+            }
 		}
 		
 		
