@@ -2,9 +2,9 @@
 public class Utility extends Property {
 	
 	//constructor
-	public Utility(int price, int positionOnBoard, int rentBase, int rent1House, int mortgageValue, Player owner, String name, String color)
+	public Utility(int price, int positionOnBoard, int rentBase, int rent1House, Player owner, String name, String color)
 	{
-		super(price, positionOnBoard, rentBase, rent1House, mortgageValue, owner, name, color);
+		super(price, positionOnBoard, rentBase, rent1House, owner, name, color);
 	}
 
 	//if no one owns it, you can buy it. If someone else owns it, you must pay the owner 
