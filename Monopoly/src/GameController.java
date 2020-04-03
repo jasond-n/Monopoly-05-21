@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout. * ;
@@ -260,6 +261,11 @@ public class GameController {
 	// On startup. You must pick the number of human players you want and we will fill the rest with ai players.
 	public void alertPromptPlayerCount() {
 		Alert alert = new Alert(AlertType.NONE);
+		Image image = new Image("images/monopoly screen.png");
+		ImageView imageView = new ImageView(image);
+		alert.setGraphic(imageView);
+		imageView.setFitWidth(240);
+	    imageView.setFitHeight(160);
 		alert.setTitle("Please make a decision");
 		alert.setHeaderText("Enter the amount of human players you want.");
 
@@ -272,7 +278,7 @@ public class GameController {
 		ButtonType button4 = new ButtonType("4");
 		alert.getButtonTypes().add(button4);
 
-		Optional < ButtonType > action = alert.showAndWait();
+		Optional <ButtonType> action = alert.showAndWait();
 		if (action.get() == button1) {
 			setHumanPlayerCount(1);
 			setAIPlayerCount(3);
