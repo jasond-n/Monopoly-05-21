@@ -556,6 +556,9 @@ public class GameController {
                 break;
             }
 		}
+		else {
+			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, cardDrawn);
+		}
 		
 		
 		consoleLabel.setText(consoleLabel.getText() + "\n" + cardDrawn.getDesc());
