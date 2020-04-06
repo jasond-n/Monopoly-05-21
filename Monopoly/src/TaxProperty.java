@@ -1,4 +1,5 @@
-
+// There are 2 types of  tax property in the board. each involve making the player pay some amount of money if
+// landed on. These properties cannot be bought.
 import java.lang.Math;
 public class TaxProperty extends Property {
 	

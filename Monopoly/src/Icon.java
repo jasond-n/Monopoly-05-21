@@ -1,3 +1,6 @@
+// icon.java initializes icons as images updates locations of the player's icons by hard coding them to move to specific pixel locations on the 
+// main board space on the GUI.
+
 import javafx.scene.shape.Circle;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -42,7 +45,7 @@ public class Icon extends Circle
   }
 
   /**
-   * places player1 in the gui so they don't overlap wih eachother
+   * places player1 in the GUI so they don't overlap with each other
    * */
   public void movePlayer1(int location)
   {

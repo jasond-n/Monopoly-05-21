@@ -1,5 +1,5 @@
 
-// the property class is used to represents all the landable spaces on the monopoly board. BEcause of this
+// the property class is used to represents all the landable spaces on the monopoly board. Because of this
 // it is a parent class to the variety of other types of properties, including community chest, chance, utility, tax, railroad, etc.
 public class Property {
 	//These are all the necessary variables that define a property space.

@@ -1,3 +1,5 @@
+//Utility is a child class of the property class. It has many similar behaviors to regular properties, such as 
+// ownership and the ability to be bought, but houses and hotels may not be placed onto them. 
 
 public class Utility extends Property {
 	

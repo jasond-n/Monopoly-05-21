@@ -59,16 +59,16 @@ public class GameController {
 	private Label message;
 
 	@FXML
-	private Label p1Balance;
+	private TextArea p1Balance;
 
 	@FXML
-	private Label p2Balance;
+	private TextArea p2Balance;
 
 	@FXML
-	private Label p3Balance;
+	private TextArea p3Balance;
 
 	@FXML
-	private Label p4Balance;
+	private TextArea p4Balance;
 
 	@FXML
 	private HBox hbox;
@@ -143,21 +143,21 @@ public class GameController {
 		Player player4 = gameBoard.getAllPlayers().get(3);
 		if(playerCount == 2)
 		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
 		}
 		else if(playerCount == 3)
 		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
-			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
+			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance() + " Properties Owned: " + player3.getPlayerPropertiesString().toString());
 		}
 		else if(playerCount == 4)
 		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance());
-			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance());
-			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance());
+			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
+			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
+			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance() + " Properties Owned: " + player3.getPlayerPropertiesString().toString());
+			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance() + " Properties Owned: " + player4.getPlayerPropertiesString().toString());
 		}
 	}
 	
@@ -331,7 +331,7 @@ public class GameController {
 	public void normalPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
-			consoleLabel.setText(consoleLabel.getText() + p.getAvatar() + " has to pay the owner of the Property!");
+			consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " has to pay the owner of the Property!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
