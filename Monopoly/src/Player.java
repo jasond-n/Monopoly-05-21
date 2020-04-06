@@ -154,7 +154,7 @@ public class Player {
 		String result = "";
 		for(Property thisProperty : temp)
 		{
-			result += thisProperty.getName() + ", ";
+			result += thisProperty.getName() + "(Houses: " + thisProperty.getNumOfHouses() + " Hotels: " + thisProperty.getNumOfHotels()  + "), ";
 		}
 		return result;
 	}
