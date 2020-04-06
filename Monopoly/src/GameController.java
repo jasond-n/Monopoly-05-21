@@ -176,7 +176,7 @@ public class GameController {
 			if (getCurrentPlayer().getInJail() == false) {
 				movePlayer(d1, d2);
 //				if (d1 == d2) {
-//					consoleLabel.setText(consoleLabel.getText() + "\nNice you Rolled a double!");
+//					consoleLabel.setText(consoleLa	bel.getText() + "\nNice you Rolled a double!");
 //					gameConfiguration.getGameBoard().rollDice();
 //					movePlayer(d1, d2);
 //	
@@ -342,7 +342,6 @@ public class GameController {
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
-				System.out.println("stinky 2");
 				alertPrompt(p, "Would you like to buy " + landedProperty.getName() + "?\nThe price is " + landedProperty.getPrice());
 				if (landedProperty.getUserInput().equals("y") && p.getBalance() - landedProperty.getPrice() > 0) {
 					consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " just bought " + landedProperty.getName());
