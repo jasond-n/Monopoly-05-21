@@ -331,7 +331,7 @@ public class GameController {
 	public void normalPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
 
 		if (landedProperty.youAreNotOwner(p, gameBoard)) {
-			consoleLabel.setText(consoleLabel.getText() + p.getAvatar() + " has to pay the owner of the Property!");
+			consoleLabel.setText(consoleLabel.getText() + "\n" + p.getAvatar() + " has to pay the owner of the Property!");
 		}
 		else if (landedProperty.noOneOwns(p, gameBoard)) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
