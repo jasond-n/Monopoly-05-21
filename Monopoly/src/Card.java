@@ -1,3 +1,5 @@
+// the card class simulates the wild cards, or chance and community chest cards. Each card has a string description,
+// a type of card (see chance and community chest for more info) and a value associated with the card.
 
 public class Card {
 	// initializing variables.The Card class is used when making the chance and community chest decks.

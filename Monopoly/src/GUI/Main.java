@@ -1,3 +1,5 @@
+// this is the main class. Run this to launch the GUI and start the entire program.
+
 package GUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

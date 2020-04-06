@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 // The community chest class is very similar to the chance class, the effect on gameplay for drawing a card with doActionAfter... method
 // instead, it draws from the arraylist of community chest cards created in board.java
+// This property cannot be bought.
 
 public class CommunityChest extends Property {
 	public CommunityChest(int positionOnBoard, Player owner, String name)
