@@ -193,6 +193,10 @@ public class GameController {
 //					}
 //				}
 			}
+			else {
+				jailPropertyInteraction(getCurrentPlayer(), gameConfiguration.getGameBoard());
+				//landedProperty.doActionBeforeLeavingHere(p, d1 + d2, gameBoard);
+			}
 			//test this line
 			//checks to see if anyone's balance is negative and takes them out if they are
 			checkGameState(gameConfiguration.getGameBoard());
@@ -201,11 +205,13 @@ public class GameController {
 				//gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
 				consoleLabel.setText(consoleLabel.getText() + ";\nNow, " + gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getAvatar() + "'s turn; ");
 			}
-			updateMoney();	
+			updateMoney();
+			
 		}
 		else {
 			consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0));
 		}
+		
 	}
 
 	/**
@@ -253,6 +259,7 @@ public class GameController {
 			
 			gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
 			afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
+			setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
 		}
 
 	
@@ -599,23 +606,27 @@ public class GameController {
 	//runs certain code depending on if the player is ai or human
 	//can choose to pay 50 to get out of jail
 	//displayes text to the gui.
-	public void jailPropertyInteraction(Player p, Board gameBoard, Property landedProperty) {
+	public void jailPropertyInteraction(Player p, Board gameBoard) {
 		if (p.getInJail() == true) {
 			if (p.getPlayerType().equalsIgnoreCase("human")) {
 				alertPrompt(p, "You are in jail. Would you like to pay $50 to get out this turn? (y/n)");
-				String userInput = landedProperty.getUserInput();
+				String userInput = gameConfiguration.getGameBoard().getProperties().get(10).getUserInput();
 				if (userInput.equalsIgnoreCase("y")) {
 					p.loseMoney(50);
 					p.setInJail(false);
 					consoleLabel.setText(consoleLabel.getText() + "\nNice you are out of jail!");
 					gameBoard.rollDice();
+					consoleLabel.setText(consoleLabel.getText() + "You diced " + (gameBoard.getDice1() + gameBoard.getDice2()));
+					movePlayer(gameBoard.getDice1(),gameBoard.getDice2());
 				}
 				else {
 					gameBoard.rollDice();
 					if (gameBoard.isDouble()) {
 						p.setInJail(false);
 						consoleLabel.setText(consoleLabel.getText() + "\nHey you rolled a double! You are Free!");
-						p.movePosition(gameBoard.getDice1() + gameBoard.getDice2());
+						consoleLabel.setText(consoleLabel.getText() + "You diced " + (gameBoard.getDice1() + gameBoard.getDice2()));
+						//p.movePosition(gameBoard.getDice1() + gameBoard.getDice2());
+						movePlayer(gameBoard.getDice1(),gameBoard.getDice2());
 					}
 					else {
 						consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn!");
@@ -628,13 +639,17 @@ public class GameController {
 					p.setInJail(false);
 					consoleLabel.setText(consoleLabel.getText() + p.getAvatar() + " decided to pay $50 to get out of jail!");
 					gameBoard.rollDice();
+					consoleLabel.setText(consoleLabel.getText() + "You diced " + (gameBoard.getDice1() + gameBoard.getDice2()));
+					movePlayer(gameBoard.getDice1(),gameBoard.getDice2());
 				}
 				else {
 					gameBoard.rollDice();
 					if (gameBoard.isDouble()) {
 						p.setInJail(false);
 						consoleLabel.setText(consoleLabel.getText() + "\nHey you rolled a double! You are Free!");
-						p.movePosition(gameBoard.getDice1() + gameBoard.getDice2());
+						consoleLabel.setText(consoleLabel.getText() + "You diced " + (gameBoard.getDice1() + gameBoard.getDice2()));
+						//p.movePosition(gameBoard.getDice1() + gameBoard.getDice2());
+						movePlayer(gameBoard.getDice1(),gameBoard.getDice2());
 					}
 					else {
 						consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn!");
@@ -713,8 +728,8 @@ public class GameController {
 				consoleLabel.setText(consoleLabel.getText() + "\nYou passed Jail, nothing happened");
 			}
 			else {
-				jailPropertyInteraction(p, gameBoard, landedProperty);
-				landedProperty.doActionBeforeLeavingHere(p, d1 + d2, gameBoard);
+				jailPropertyInteraction(p, gameBoard);
+				//landedProperty.doActionBeforeLeavingHere(p, d1 + d2, gameBoard);
 			}
 			break;
 		case 11:
@@ -793,6 +808,38 @@ public class GameController {
 			consoleLabel.setText(consoleLabel.getText() + "\nGo to Jail");
 			p.setPosition(10);
 			p.setInJail(true);
+			int tempValue = 0;
+
+            switch (gameConfiguration.getCurrentPlayerIndex()) {
+            case 0: 
+                tempValue = 3;
+                break;
+            case 1: 
+                tempValue = 0;
+                break;
+            case 2: 
+                tempValue = 1;
+                break;
+            case 3: 
+                tempValue = 2;
+                break;
+            }
+
+
+            switch (tempValue) {
+            case 0: 
+                icon1.movePlayer1(30);
+                break;
+            case 1: 
+                icon2.movePlayer2(30);
+                break;
+            case 2: 
+                icon3.movePlayer3(30);
+                break; 
+            case 3:
+                icon4.movePlayer4(30);
+                break;
+            }
 			break;
 		case 31:
 			normalPropertyInteraction(p, gameBoard, landedProperty);
