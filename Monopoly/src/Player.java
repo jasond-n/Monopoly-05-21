@@ -149,6 +149,15 @@ public class Player {
 		ArrayList<Property> temp = new ArrayList<Property>(this.properties);
 		return temp;
 	}
+	public String getPlayerPropertiesString() {
+		ArrayList<Property> temp = new ArrayList<Property>(this.properties);
+		String result = "";
+		for(Property thisProperty : temp)
+		{
+			result += thisProperty.getName() + ", ";
+		}
+		return result;
+	}
 	
 	public void addPlayerProperty(Property temp) {
 		this.properties.add(temp);
