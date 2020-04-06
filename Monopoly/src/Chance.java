@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 // chance class inherits from the property class, it contains the class doAtionAfterPlayer... which mimics the actions of a 
-// random chance card drawn from the deck of chance cards created in board.java
+// random chance card drawn from the deck of chance cards created in board.java.
+// This property cannot be bought.
 
 public class Chance extends Property {
 	public Chance(int positionOnBoard, Player owner, String name)
