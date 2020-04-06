@@ -15,7 +15,6 @@ public class Chance extends Property {
 			System.out.println(cardDrawn.getDesc());
 			
 			if (cardDrawn.getType().equals("money")) { //this card type adds or removes money from a player by updating player's addmoney/losemoney
-				System.out.println("poop");
 				if (cardDrawn.getValue() > 0) {
 					p.addMoney(cardDrawn.getValue());
 				} else if (cardDrawn.getValue() < 0) {
