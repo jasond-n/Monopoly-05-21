@@ -9,10 +9,9 @@ public class TaxProperty extends Property {
 	}
 	
 	//gives them the decision to pay 200 or pay 10% of their balance when they land on a property.
-	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board)
+	public void doActionAfterPlayerLandingHere(Player player, int roll, Board board, Card cardDrawn)
 	{
 		String userInput;
-		
 		if (player.getBalance() > 0) {
 			switch (player.getPosition()) {
 			case 4: //if they land on the first tax spot
