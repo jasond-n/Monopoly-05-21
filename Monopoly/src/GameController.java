@@ -172,7 +172,7 @@ public class GameController {
 			d1 = gameConfiguration.getGameBoard().getDice1();
 			d2 = gameConfiguration.getGameBoard().getDice2();
 	
-			consoleLabel.setText(consoleLabel.getText() + "You diced " + (d1 + d2));
+			consoleLabel.setText(consoleLabel.getText() + "You rolled a " + (d1 + d2));
 			if (getCurrentPlayer().getInJail() == false) {
 				movePlayer(d1, d2);
 //				if (d1 == d2) {
