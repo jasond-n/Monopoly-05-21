@@ -144,7 +144,9 @@ public class Player {
 	{
 		this.balance = this.balance - money;
 	}
-	
+	public ArrayList<Property> getProperties() {
+		return this.properties;
+	}
 	public ArrayList<Property> getPlayerProperties() {
 		ArrayList<Property> temp = new ArrayList<Property>(this.properties);
 		return temp;

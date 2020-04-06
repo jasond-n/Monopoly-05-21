@@ -12,7 +12,7 @@ public class ComputerPlayer extends Player {
 		if(theProperty.getPrice() <= getBalance() * 0.4)
 		{
 			theProperty.setOwner(this);
-			getPlayerProperties().add(theProperty);
+			getProperties().add(theProperty);
 			setBalance(getBalance() - theProperty.getPrice());
 			
 		}
