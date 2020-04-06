@@ -1,3 +1,5 @@
+// gameConfiguration is a class that starts the game. It is mostly commented out
+// because it was used for the text based version of the game, adn this is the GUI version.
 
 public class GameConfiguration {
 	
