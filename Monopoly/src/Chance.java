@@ -80,12 +80,12 @@ public class Chance extends Property {
 				if (cardDrawn.getValue() > 0) {
 					p.addMoney(cardDrawn.getValue());
 					for (int i=0; i < board.getAllPlayers().size(); i++) {
-						players.get(i).loseMoney(-1 * cardDrawn.getValue());
+						players.get(i).loseMoney(cardDrawn.getValue());
 					}
 				} else if (cardDrawn.getValue() < 0) {
 					p.loseMoney(cardDrawn.getValue());
 					for (int i=0; i < board.getAllPlayers().size(); i++) {
-						players.get(i).addMoney(cardDrawn.getValue());
+						players.get(i).addMoney(-cardDrawn.getValue());
 					}
 				}
 				
