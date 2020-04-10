@@ -227,7 +227,8 @@ public class GameController {
 			
 		}
 		else {
-			consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0));
+			// Not finished. Need to add a for loop
+			consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0).getAvatar());
 		}
 		
 	}
@@ -237,7 +238,8 @@ public class GameController {
 	 * */
 	public void movePlayer(int d1, int d2) {
 		
-
+		if(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getIsBankrupt()  == false)
+		{
 			switch (gameConfiguration.getCurrentPlayerIndex()) {
 			case 0:
 				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
@@ -279,10 +281,12 @@ public class GameController {
 					getCurrentPlayer().setPreviousPosition(d1 + d2);
 
 				}
-				gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
-				afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+			
 			}
+			gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
+			afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
+			setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+		}
 			else
 			{
 				gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
@@ -708,9 +712,16 @@ public class GameController {
 					}
 				}
 			}
-			if (board.getAllPlayers().size() == 1) {
-				gameOver = true;
-			}
+			int numOfBankrupt = 0;
+            for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
+                if (gameConfiguration.getGameBoard().getAllPlayers().get(i).getIsBankrupt() == true) {
+                    numOfBankrupt++;
+                }
+            }
+
+            if (numOfBankrupt == 3) {
+                gameOver = true;
+            }
 	}
 
 	//has a switch case for every spot on the board and runs the according interaction depending
