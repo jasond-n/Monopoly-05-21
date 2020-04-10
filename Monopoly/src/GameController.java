@@ -1,5 +1,8 @@
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
+
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
@@ -154,10 +157,22 @@ public class GameController {
 		}
 		else if(playerCount == 4)
 		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
-			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance() + " Properties Owned: " + player3.getPlayerPropertiesString().toString());
-			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance() + " Properties Owned: " + player4.getPlayerPropertiesString().toString());
+			if(player1.getIsBankrupt() == false)
+				p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
+			else
+				p1Balance.setText(player1.getAvatar() + " is out!");
+			if(player2.getIsBankrupt() == false)
+				p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
+			else
+				p2Balance.setText(player2.getAvatar() + " is out!");
+			if(player3.getIsBankrupt() == false)
+				p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance() + " Properties Owned: " + player3.getPlayerPropertiesString().toString());
+			else
+				p3Balance.setText(player3.getAvatar() + " is out!");
+			if(player4.getIsBankrupt() == false)
+				p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance() + " Properties Owned: " + player4.getPlayerPropertiesString().toString());
+			else
+				p4Balance.setText(player4.getAvatar() + " is out!");
 		}
 	}
 	
@@ -203,7 +218,10 @@ public class GameController {
 			//determines who's turn is next
 			if (getPlayerCount() > 1) {
 				//gameConfiguration.setCurrentPlayer((gameConfiguration.getCurrentPlayer() + 1) % getPlayerCount());
+				if(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getIsBankrupt()  == false)
+				{
 				consoleLabel.setText(consoleLabel.getText() + ";\nNow, " + gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getAvatar() + "'s turn; ");
+				}
 			}
 			updateMoney();
 			
@@ -219,58 +237,71 @@ public class GameController {
 	 * */
 	public void movePlayer(int d1, int d2) {
 		
-			switch (gameConfiguration.getCurrentPlayerIndex()) {
-			case 0:
-				if (getCurrentPlayer().getIsBankrupt() == false) {
-					for (int i = 0; i < d1 + d2; i++) {
-						icon1.updateLocation();
+			if(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getIsBankrupt()  == false)
+			{	
+				switch (gameConfiguration.getCurrentPlayerIndex()) {
+				case 0:
+					if (getCurrentPlayer().getIsBankrupt() == false) {
+						for (int i = 0; i < d1 + d2; i++) {
+							icon1.updateLocation();
+						}
+						setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+						getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+						getCurrentPlayer().setPreviousPosition(d1 + d2);
 					}
-					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
-				}
-				break;
-			case 1:
-				if (getCurrentPlayer().getIsBankrupt() == false) {
-					for (int i = 0; i < d1 + d2; i++) {
-						icon2.updateLocation();
+					break;
+				case 1:
+					if (getCurrentPlayer().getIsBankrupt() == false) {
+						for (int i = 0; i < d1 + d2; i++) {
+							icon2.updateLocation();
+						}
+						setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+						getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+						getCurrentPlayer().setPreviousPosition(d1 + d2);
 					}
-					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
-				}
-				break;
-			case 2:
-				if (getCurrentPlayer().getIsBankrupt() == false) {
-					for (int i = 0; i < d1 + d2; i++) {
-						icon3.updateLocation();
+					break;
+				case 2:
+					if (getCurrentPlayer().getIsBankrupt() == false) {
+						for (int i = 0; i < d1 + d2; i++) {
+							icon3.updateLocation();
+						}
+						setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+						getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+						getCurrentPlayer().setPreviousPosition(d1 + d2);
 					}
-					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
-				}
-				break;
-			case 3:
-				if (getCurrentPlayer().getIsBankrupt() == false) {
-					for (int i = 0; i < d1 + d2; i++) {
-						icon4.updateLocation();
+					break;
+				case 3:
+					if (getCurrentPlayer().getIsBankrupt() == false) {
+						for (int i = 0; i < d1 + d2; i++) {
+							icon4.updateLocation();
+						}
+						setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+						getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+						getCurrentPlayer().setPreviousPosition(d1 + d2);
 					}
-					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-					getCurrentPlayer().setPreviousPosition(d1 + d2);
+					break;
 				}
-				break;
+				gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
+				afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+			}
+			else
+			{
+				gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
+				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
 			}
 			
-			gameConfiguration.setCurrentPlayerIndex((gameConfiguration.getCurrentPlayerIndex() + 1) % getPlayerCount());
-			afterLand(getCurrentPlayer(), gameConfiguration.getGameBoard());
-			setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
 		}
 
 	
 		
 		
 	
+	private List<Node> getAllPlayers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	// On startup. You must pick the number of human players you want and we will fill the rest with ai players.
 	public void alertPromptPlayerCount() {
 		Alert alert = new Alert(AlertType.NONE);
@@ -668,13 +699,16 @@ public class GameController {
 			if (board.someoneIsBankrupt()) {
 				consoleLabel.setText(consoleLabel.getText() + "\n" + board.whoIsBankrupt().getAvatar() + " went bankrupt! They must give up their assets to the bank");
 				board.liquidateAssets();
-				playerCount--;
+				//playerCount--;
 				
 				
 				consoleLabel.setText(consoleLabel.getText() + "\n Remaining Players: ");
 				
 				for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
+					if(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getIsBankrupt()  == false)
+					{
 					consoleLabel.setText(consoleLabel.getText() + " " + gameConfiguration.getGameBoard().getAllPlayers().get(i).getAvatar());	
+					}
 				}
 			}
 			if (board.getAllPlayers().size() == 1) {
