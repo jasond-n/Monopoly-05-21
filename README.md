@@ -24,6 +24,15 @@ Our game will illustrate the logic of a typical board game structure by determin
 - At that position on the board, a prompt will pop up and will ask them a simple question in which they must response to
 - After that, this will continue for each player until there is only one player left standing
 
+# Install and Run Instructions
+
+Once you have imported this application into Eclipse, (for now) run the application from the GUI package named main.java (this will launch the GUI based application. The default package will only contain the classes needed to run the game.
+
+1. download the zip file to /Downloads folder (or anywhere else)
+2. extract contents and go into the extracted Directory /Monopoly
+3. make sure everything looks correct and no files are missing
+4. from there import the entire folder into your eclipse and run the file in the package called GUI.
+
 ## Verison 1
 
 To find the version for our demo1 look through the branch version1. Download the folder named Monopoly/src and run the class named "GameConfiguration".
