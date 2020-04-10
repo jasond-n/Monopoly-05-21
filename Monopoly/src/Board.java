@@ -240,7 +240,7 @@ public class Board {
 		boolean bankrupt = false;
 		
 		for (int i = 0; i < allPlayers.size(); i++) {
-			if (allPlayers.get(i).getBalance() <= 0) {
+			if (allPlayers.get(i).getBalance() < 0 && allPlayers.get(i).getIsBankrupt() == false) {
 				bankrupt = true;
 			}
 		}
@@ -253,7 +253,7 @@ public class Board {
 			Player broke = new Player(null, null);
 			
 			for (int i = 0; i < allPlayers.size(); i++) {
-				if (allPlayers.get(i).getBalance() <= 0) {
+				if (allPlayers.get(i).getBalance() < 0 && allPlayers.get(i).getIsBankrupt() == false) {
 					broke = allPlayers.get(i);
 				}
 			}
@@ -268,6 +268,7 @@ public class Board {
 		whoToRemove.setBalance(0);
 		whoToRemove.setIsBankrupt(true);
 		
+		System.out.println(whoToRemove.getAvatar());
 		for (int i = 0; i < whoToRemove.getPlayerProperties().size(); i++) {
 			whoToRemove.getPlayerProperties().get(i).setOwner(null);
 			whoToRemove.getPlayerProperties().get(i).setNumOfHouses(0);
