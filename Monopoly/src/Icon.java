@@ -9,7 +9,7 @@ import javafx.scene.paint.ImagePattern;
 
 public class Icon extends Circle
 {
-  private static final int RADIUS = 10;
+  private static final int RADIUS = 13;
   private int x,y;     // Keep track of the centre of the icon
   private int xVel, yVel; //Velocities of the icon in the x and y directions
   int counter; //will be used to determine what lines of code will be run in the update location method
