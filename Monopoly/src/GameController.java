@@ -221,39 +221,44 @@ public class GameController {
 		
 			switch (gameConfiguration.getCurrentPlayerIndex()) {
 			case 0:
-				for (int i = 0; i < d1 + d2; i++) {
-					icon1.updateLocation();
+				if (getCurrentPlayer().getIsBankrupt() == false) {
+					for (int i = 0; i < d1 + d2; i++) {
+						icon1.updateLocation();
+					}
+					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+					getCurrentPlayer().setPreviousPosition(d1 + d2);
 				}
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-				getCurrentPlayer().setPreviousPosition(d1 + d2);
-			
 				break;
 			case 1:
-				for (int i = 0; i < d1 + d2; i++) {
-					icon2.updateLocation();
+				if (getCurrentPlayer().getIsBankrupt() == false) {
+					for (int i = 0; i < d1 + d2; i++) {
+						icon2.updateLocation();
+					}
+					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+					getCurrentPlayer().setPreviousPosition(d1 + d2);
 				}
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-				getCurrentPlayer().setPreviousPosition(d1 + d2);
-				
 				break;
 			case 2:
-				for (int i = 0; i < d1 + d2; i++) {
-					icon3.updateLocation();
+				if (getCurrentPlayer().getIsBankrupt() == false) {
+					for (int i = 0; i < d1 + d2; i++) {
+						icon3.updateLocation();
+					}
+					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+					getCurrentPlayer().setPreviousPosition(d1 + d2);
 				}
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-				getCurrentPlayer().setPreviousPosition(d1 + d2);
-				
 				break;
 			case 3:
-				for (int i = 0; i < d1 + d2; i++) {
-					icon4.updateLocation();
+				if (getCurrentPlayer().getIsBankrupt() == false) {
+					for (int i = 0; i < d1 + d2; i++) {
+						icon4.updateLocation();
+					}
+					setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
+					getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
+					getCurrentPlayer().setPreviousPosition(d1 + d2);
 				}
-				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
-				getCurrentPlayer().setPosition(getCurrentPlayer().getPosition() + d1 + d2);
-				getCurrentPlayer().setPreviousPosition(d1 + d2);
 				break;
 			}
 			
