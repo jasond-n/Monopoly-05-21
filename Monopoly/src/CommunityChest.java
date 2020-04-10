@@ -84,11 +84,13 @@ public class CommunityChest extends Property {
 			if (cardDrawn.getValue() > 0) {
 				p.addMoney(cardDrawn.getValue());
 				for (int i=0; i < board.getAllPlayers().size(); i++) {
+					if (players.get(i).getIsBankrupt() == false)
 					players.get(i).loseMoney(-1 * cardDrawn.getValue());
 				}
 			} else if (cardDrawn.getValue() < 0) {
 				p.loseMoney(cardDrawn.getValue());
 				for (int i=0; i < board.getAllPlayers().size(); i++) {
+					if (players.get(i).getIsBankrupt() == false)
 					players.get(i).addMoney(cardDrawn.getValue());
 				}
 			}
