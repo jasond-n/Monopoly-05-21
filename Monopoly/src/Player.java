@@ -9,6 +9,7 @@ public class Player {
 	private int balance;
 	private int position, prevPosition;
 	private Boolean inJail;
+	private Boolean isBankrupt;
 	private ArrayList<Card> cardsOwned;
 	protected String playerType;
 	private int counterOfRollForLeaveJail;
@@ -22,6 +23,7 @@ public class Player {
 		this.position = 0;
 		this.properties = new ArrayList<Property>();
 		this.inJail = false;
+		this.isBankrupt = false;
 		this.counterOfRollForLeaveJail = 0;
 		this.board = board;
 		this.playerType = "human";
@@ -133,6 +135,14 @@ public class Player {
 
 	public void setInJail(Boolean inJail) {
 		this.inJail = inJail;
+	}
+	
+	public Boolean getIsBankrupt() {
+		return isBankrupt;
+	}
+
+	public void setIsBankrupt(Boolean isBankrupt) {
+		this.isBankrupt = isBankrupt;
 	}
 	
 	public void addMoney(int money)

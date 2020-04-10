@@ -249,7 +249,7 @@ public class Board {
 	}
 	
 	//helper method checks to see who is bankrupt
-		private Player whoIsBankrupt() {
+		public Player whoIsBankrupt() {
 			Player broke = new Player(null, null);
 			
 			for (int i = 0; i < allPlayers.size(); i++) {
@@ -265,6 +265,9 @@ public class Board {
 	public void liquidateAssets() {
 		Player whoToRemove = whoIsBankrupt();
 		
+		whoToRemove.setBalance(0);
+		whoToRemove.setIsBankrupt(true);
+		
 		for (int i = 0; i < whoToRemove.getPlayerProperties().size(); i++) {
 			whoToRemove.getPlayerProperties().get(i).setOwner(null);
 			whoToRemove.getPlayerProperties().get(i).setNumOfHouses(0);
@@ -272,7 +275,7 @@ public class Board {
 		}
 		
 		
-		allPlayers.remove(whoToRemove);
+		//allPlayers.remove(whoToRemove);
 	}
 	
 	//Decide order method that was created using a bubble sort in order to determine which player goes first

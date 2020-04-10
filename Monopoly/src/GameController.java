@@ -661,14 +661,15 @@ public class GameController {
 	//checks to see if anyone is bankrupt and runs the needed code to remove the player and liquidate the assets
 	public void checkGameState(Board board) {
 			if (board.someoneIsBankrupt()) {
+				consoleLabel.setText(consoleLabel.getText() + "\n" + board.whoIsBankrupt().getAvatar() + " went bankrupt! They must give up their assets to the bank");
 				board.liquidateAssets();
 				playerCount--;
 				
-				consoleLabel.setText(consoleLabel.getText() + "\n Someone went bankrupt! They must give up their assets to the bank");
+				
 				consoleLabel.setText(consoleLabel.getText() + "\n Remaining Players: ");
 				
 				for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
-					consoleLabel.setText(consoleLabel.getText() + " " + gameConfiguration.getGameBoard().getAllPlayers().get(i));	
+					consoleLabel.setText(consoleLabel.getText() + " " + gameConfiguration.getGameBoard().getAllPlayers().get(i).getAvatar());	
 				}
 			}
 			if (board.getAllPlayers().size() == 1) {
