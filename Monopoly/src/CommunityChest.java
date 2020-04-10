@@ -47,6 +47,9 @@ public class CommunityChest extends Property {
 				p.setInJail(true);
 				p.setPosition(10);
 				break;
+			case 11:
+            	case 24:
+            	case 39: p.setPosition(cardDrawn.getValue()); break;
 			}
 			
 		} else if (cardDrawn.getType() == "nearestStation") {
