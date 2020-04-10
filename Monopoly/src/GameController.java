@@ -53,8 +53,6 @@ public class GameController {
 		return currentPlayer;
 	}
 
-
-
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
 

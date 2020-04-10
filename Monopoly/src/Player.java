@@ -45,14 +45,6 @@ public class Player {
 	public void setCounterOfRollForLeaveJail(int counterOfRollForLeaveJail) {
 		this.counterOfRollForLeaveJail = counterOfRollForLeaveJail;
 	}
-
-	//sells the property passed in
-	//not implemented
-	public void sellProperty(Property theProperty) {
-		theProperty.setOwner(null);
-		this.properties.remove(theProperty);
-		this.balance = this.balance + theProperty.getPrice();
-	}
 	
 	//buy the property passed in
 	public void buyProperty(Property theProperty)
@@ -108,7 +100,6 @@ public class Player {
 		this.position = position;
 	}
 	
-	//not implemented
 	public void movePosition(int dice) {
 		this.position += dice;
 		if(this.position > 39) {
@@ -175,7 +166,6 @@ public class Player {
 		this.properties.add(temp);
 	}
 	
-	//not implemented
 	public String getPlayerAllInfo() {
 		String resultString = "";
 		resultString = this.avatar + ", your position is at " + board.getProperties().get(this.position).getName() + ", your balance is " + this.balance;
