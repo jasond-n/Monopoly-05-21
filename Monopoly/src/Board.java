@@ -250,17 +250,13 @@ public class Board {
 		whoToRemove.setBalance(0);
 		whoToRemove.setIsBankrupt(true);
 		
-		System.out.println(whoToRemove.getAvatar());
 		for (int i = 0; i < whoToRemove.getPlayerProperties().size(); i++) {
 			whoToRemove.getPlayerProperties().get(i).setOwner(null);
 			whoToRemove.getPlayerProperties().get(i).setNumOfHouses(0);
 			whoToRemove.getPlayerProperties().get(i).setNumOfHotels(0);
-		}
-		
-		
+		}	
 		//allPlayers.remove(whoToRemove);
 	}
-	
 }
 	
 	/*
