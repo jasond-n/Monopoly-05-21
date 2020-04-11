@@ -207,7 +207,11 @@ public class GameController {
 		}
 		else {
 			// Not finished. Need to add a for loop
-			consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0).getAvatar());
+            for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
+                if (gameConfiguration.getGameBoard().getAllPlayers().get(i).getIsBankrupt() == false) {
+                    consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0).getAvatar());
+                }
+            }
 		}
 	}
 
@@ -671,11 +675,10 @@ public class GameController {
 				board.liquidateAssets();
 				//playerCount--;
 				
-				
 				consoleLabel.setText(consoleLabel.getText() + "\n Remaining Players: ");
 				
 				for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
-					if(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getIsBankrupt()  == false)
+					if(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getIsBankrupt() == false)
 					{
 					consoleLabel.setText(consoleLabel.getText() + " " + gameConfiguration.getGameBoard().getAllPlayers().get(i).getAvatar());	
 					}
