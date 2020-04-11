@@ -142,37 +142,23 @@ public class GameController {
 		Player player2 = gameBoard.getAllPlayers().get(1);
 		Player player3 = gameBoard.getAllPlayers().get(2);
 		Player player4 = gameBoard.getAllPlayers().get(3);
-		if(playerCount == 2)
-		{
+		if(player1.getIsBankrupt() == false)
 			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
+		else
+			p1Balance.setText(player1.getAvatar() + " is out!");
+		if(player2.getIsBankrupt() == false)
 			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
-		}
-		else if(playerCount == 3)
-		{
-			p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
-			p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
+		else
+			p2Balance.setText(player2.getAvatar() + " is out!");
+		if(player3.getIsBankrupt() == false)
 			p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance() + " Properties Owned: " + player3.getPlayerPropertiesString().toString());
+		else
+			p3Balance.setText(player3.getAvatar() + " is out!");
+		if(player4.getIsBankrupt() == false)
+			p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance() + " Properties Owned: " + player4.getPlayerPropertiesString().toString());
+		else
+			p4Balance.setText(player4.getAvatar() + " is out!");
 		}
-		else if(playerCount == 4)
-		{
-			if(player1.getIsBankrupt() == false)
-				p1Balance.setText(player1.getAvatar() + " Balance: $" + player1.getBalance() + " Properties Owned: " + player1.getPlayerPropertiesString().toString());
-			else
-				p1Balance.setText(player1.getAvatar() + " is out!");
-			if(player2.getIsBankrupt() == false)
-				p2Balance.setText(player2.getAvatar() + " Balance: $" + player2.getBalance() + " Properties Owned: " + player2.getPlayerPropertiesString().toString());
-			else
-				p2Balance.setText(player2.getAvatar() + " is out!");
-			if(player3.getIsBankrupt() == false)
-				p3Balance.setText(player3.getAvatar() + " Balance: $" + player3.getBalance() + " Properties Owned: " + player3.getPlayerPropertiesString().toString());
-			else
-				p3Balance.setText(player3.getAvatar() + " is out!");
-			if(player4.getIsBankrupt() == false)
-				p4Balance.setText(player4.getAvatar() + " Balance: $" + player4.getBalance() + " Properties Owned: " + player4.getPlayerPropertiesString().toString());
-			else
-				p4Balance.setText(player4.getAvatar() + " is out!");
-		}
-	}
 	
 	/**
 	 * runs when the roll button is clicked in the gui
