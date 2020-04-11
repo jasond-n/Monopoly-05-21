@@ -13,11 +13,7 @@ public class ComputerPlayer extends Player {
 		{
 			theProperty.setOwner(this);
 			getProperties().add(theProperty);
-			setBalance(getBalance() - theProperty.getPrice());
-			
+			setBalance(getBalance() - theProperty.getPrice());		
 		}
 	}
-	
-	
-
 }

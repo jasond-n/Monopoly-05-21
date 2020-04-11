@@ -188,27 +188,9 @@ public class GameController {
 			consoleLabel.setText(consoleLabel.getText() + "You rolled a " + (d1 + d2));
 			if (getCurrentPlayer().getInJail() == false) {
 				movePlayer(d1, d2);
-//				if (d1 == d2) {
-//					consoleLabel.setText(consoleLa	bel.getText() + "\nNice you Rolled a double!");
-//					gameConfiguration.getGameBoard().rollDice();
-//					movePlayer(d1, d2);
-//	
-//					if (d1 == d2) {
-//						consoleLabel.setText(consoleLabel.getText() + "\nNice you Rolled a double!");
-//						gameConfiguration.getGameBoard().rollDice();
-//						movePlayer(d1, d2);
-//	
-//						if (d1 == d2) {
-//							consoleLabel.setText(consoleLabel.getText() + "\nYou rolled 3 doubles in a roll. Move to jail!");
-//							getCurrentPlayer().setPosition(10);
-//							getCurrentPlayer().setInJail(true);
-//						}
-//					}
-//				}
 			}
 			else {
 				jailPropertyInteraction(getCurrentPlayer(), gameConfiguration.getGameBoard());
-				//landedProperty.doActionBeforeLeavingHere(p, d1 + d2, gameBoard);
 			}
 			//test this line
 			//checks to see if anyone's balance is negative and takes them out if they are
@@ -222,13 +204,11 @@ public class GameController {
 				}
 			}
 			updateMoney();
-			
 		}
 		else {
 			// Not finished. Need to add a for loop
 			consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0).getAvatar());
 		}
-		
 	}
 
 	/**
@@ -291,15 +271,6 @@ public class GameController {
 				setCurrentPlayer(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()));
 			}
 		}
-
-	
-		
-		
-	
-	private List<Node> getAllPlayers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	// On startup. You must pick the number of human players you want and we will fill the rest with ai players.
 	public void alertPromptPlayerCount() {

@@ -225,11 +225,8 @@ public class Property {
 			if (player.getPosition() >= 0 && player.getPreviousPosition() < 0) {
 				player.addMoney(50);
 			}
-			//figure out mortgages later
 			//if you are not the owner
 			if (youAreNotOwner(player, board)) {
-				
-				
 				
 				if (isMonopolized(player, board)) {
 					multiplier = 2;
@@ -298,9 +295,6 @@ public class Property {
 				}
 				//asks to buy a house if you have less than 4 houses
 				if (getNumOfHouses() < 4 && getNumOfHotels() == 0) {
-					
-					
-					
 					////System.out.print("would you like to buy a house? (y/n)");
 					userInput = getUserInput();
 					if (userInput.equalsIgnoreCase("y")) {

@@ -45,7 +45,7 @@ public class Icon extends Circle
   }
 
   /**
-   * places player1 in the GUI so they don't overlap with each other
+   * places player2 in the GUI so people playing the game are able to see where it moves too
    * */
   public void movePlayer1(int location)
   {
@@ -75,6 +75,9 @@ public class Icon extends Circle
 	  }
   }
   
+  /**
+   * places player2 in the GUI so people playing the game are able to see where it moves too
+   * */
   public void movePlayer2(int location)
   {
 	  switch(location) {
@@ -103,6 +106,9 @@ public class Icon extends Circle
 	  }
   }
   
+  /**
+   * places player3 in the GUI so people playing the game are able to see where it moves too
+   * */
   public void movePlayer3(int location)
   {
 	  switch(location) {
@@ -129,6 +135,9 @@ public class Icon extends Circle
 	  }
   }
   
+  /**
+   * places player4 in the GUI so people playing the game are able to see where it moves too
+   * */
   public void movePlayer4(int location)
   {
 	  switch(location) {
@@ -154,13 +163,6 @@ public class Icon extends Circle
 		  break;
 	  }
   }
-  
-  
-  
-  
-  
-  
-  
   
   //moves the player the amount of pixels 1 spot is
   public void moveOneSpot()

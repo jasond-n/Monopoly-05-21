@@ -10,7 +10,6 @@ public class Player {
 	private int position, prevPosition;
 	private Boolean inJail;
 	private Boolean isBankrupt;
-	private ArrayList<Card> cardsOwned;
 	protected String playerType;
 	private int counterOfRollForLeaveJail;
 	private Board board;
@@ -114,10 +113,6 @@ public class Player {
 
 	public void setBalance(int balance) {
 		this.balance = balance;
-	}
-
-	public void setCardsOwned(ArrayList<Card> cardsOwned) {
-		this.cardsOwned = cardsOwned;
 	}
 	
 	public Boolean getInJail() {

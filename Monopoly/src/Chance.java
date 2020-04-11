@@ -11,10 +11,7 @@ public class Chance extends Property {
 	}
 	
 	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board, Card cardDrawn) {
-			
-			System.out.println("drawing a card...");
-			System.out.println(cardDrawn.getDesc());
-			
+		
 			if (cardDrawn.getType().equals("money")) { //this card type adds or removes money from a player by updating player's addmoney/losemoney
 				if (cardDrawn.getValue() > 0) {
 					p.addMoney(cardDrawn.getValue());
@@ -47,11 +44,7 @@ public class Chance extends Property {
 					case 11:
 		            	case 24:
 		            	case 39: p.setPosition(cardDrawn.getValue()); break;
-					}
-				 
-				
-				
-					
+					}					
 			} else if (cardDrawn.getType() == "nearestStation") { // move to the nearest station
 				if (p.getPosition() <= 4 && p.getPosition() >= 35) {
 					// go to 5
@@ -92,13 +85,7 @@ public class Chance extends Property {
 						if (players.get(i).getIsBankrupt() == false)
 						players.get(i).addMoney(-cardDrawn.getValue());
 					}
-				}
-				
-			} else if (cardDrawn.getType() == "jail") { //get out of jail free card
-				ArrayList<Card> x = new ArrayList<Card>();
-				x.add(cardDrawn);
-				p.setCardsOwned(x);
+				}	
 			}
 		}
 	}
-

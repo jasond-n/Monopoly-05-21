@@ -13,9 +13,6 @@ public class CommunityChest extends Property {
 	public void doActionAfterPlayerLandingHere(Player p, int roll, Board board, Card cardDrawn) { 
 		// this method is almost identical to the one in chance.java, see there for details
 		
-		System.out.println("drawing a card...");
-		System.out.println(cardDrawn.getDesc());
-		
 		if (cardDrawn.getType() == "money") {
 			// update player's money value
 			if (cardDrawn.getValue() > 0) {
@@ -28,13 +25,11 @@ public class CommunityChest extends Property {
 			// update player's location
 			p.setPosition(p.getPosition() + cardDrawn.getValue());
 
-			
 			//checking to see if you go negative
 			if (p.getPosition() < 0) {
 				p.setPosition(p.getPosition() + 40);
 			}
-			
-			
+
 			super.doActionAfterPlayerLandingHere(p, roll, board, cardDrawn);
 				
 		} else if (cardDrawn.getType() == "moveTo") {
@@ -93,12 +88,7 @@ public class CommunityChest extends Property {
 					if (players.get(i).getIsBankrupt() == false)
 					players.get(i).addMoney(cardDrawn.getValue());
 				}
-			}
-			
-		} else if (cardDrawn.getType() == "jail") {
-			ArrayList<Card> x = new ArrayList<Card>();
-			x.add(cardDrawn);
-			p.setCardsOwned(x);
+			}	
 		}
 	}
 }

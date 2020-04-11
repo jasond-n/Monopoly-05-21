@@ -70,19 +70,11 @@ public class Board {
 		Card moneyN50a = new Card("Pay a $50 fine for dropping out of astronomy 207. Yep, way too much physics.", "money", -50);
 		Card moneyN50b = new Card("You fell asleep during your final exam and got a D. Cramming was definitely a bad idea. Lose $50.", "money", -50);
 		
-		//Card moveN3 = new Card("MATH 265 has no more open lecture seats left this semester. Move back 3 spaces.","move", -3);
-		//Card move3 = new Card("Your assignment due date was extended by one week. Move forward 3 spaces.", "move", 3);
-		
 		Card moveTo0 = new Card("Advance to GO. Collect $200.", "moveTo", 0);
 		Card moveTo24 = new Card("Advance to Science Theatres. If you pass GO, collect $50", "moveTo", 24);
 		Card moveTo11 = new Card("Advance to Reeve Theatre. If you pass GO, collect $50.", "moveTo", 11);
 		Card moveTo39 = new Card("Take a trip to the Taylor Institute. If you pass GO, collect $50.", "moveTo", 39);
 		Card moveToJail = new Card("Go directly to Jail. Do not pass GO, do not collect $50.", "moveTo", 30);
-		
-		//Card nearestUtility = new Card("Advance to nearest utility.", "nearestUtil", 0); // If owned, throw dice and pay owner a total 10 times the amount thrown.
-		//Card nearestStation = new Card("Advance to nearest station.", "nearestStation", 0); // and pay owner twice the rental amount.
-		
-		//Card GetOutOfJail = new Card("Get out of Jail Free. This card may be kept until needed, or traded/sold.", "jail", 0);
 		
 		Card eachN50 = new Card("You have been elected as SU president. Pay each player $50.", "each", -50);
 		Card each50 = new Card("You are hosting a networking night for software engineers. Each player pays you a $50 entrance fee.", "each", 50);
@@ -94,20 +86,12 @@ public class Board {
 		chanceDeck.add(money150);
 		chanceDeck.add(moneyN15);
 		chanceDeck.add(money100a);
-		
 		chanceDeck.add(moveTo0);
 		chanceDeck.add(moveTo24);
 		chanceDeck.add(moveTo11);
-		chanceDeck.add(moveTo39);
-		
-		//chanceDeck.add(moveN3);
-		//chanceDeck.add(move3);
-		
+		chanceDeck.add(moveTo39);		
 		chanceDeck.add(moveToJail);
-		//chanceDeck.add(nearestStation);
-		//chanceDeck.add(nearestUtility);
 		chanceDeck.add(eachN50);
-		//chanceDeck.add(GetOutOfJail);
 		
 		communityDeck.add(money200);
 		communityDeck.add(money20);
@@ -119,11 +103,9 @@ public class Board {
 		communityDeck.add(money50);
 		communityDeck.add(moveTo0);
 		communityDeck.add(moveTo39);
-		//communityDeck.add(move3);
 		communityDeck.add(each50);
 		communityDeck.add(each10);
 		communityDeck.add(moveToJail);
-		//communityDeck.add(GetOutOfJail);
 		
 		//initializing all the spots on the board and adding them to an arraylist in order
 		allSpotsOnBoard = new ArrayList<Property>();
@@ -279,97 +261,48 @@ public class Board {
 		//allPlayers.remove(whoToRemove);
 	}
 	
-	//Decide order method that was created using a bubble sort in order to determine which player goes first
-	public void decideOrder() {
-		//ArrayList<String> order = new ArrayList<String>();
-		int player1 = 0, player2 = 0, player3 = 0, player4 = 0;
-		int[] rolls = new int[allPlayers.size()];
-		boolean sorted = false;
-		
-		
-		if (allPlayers.size() != 2) {
-			//this while loop rolls dice until all the player's rolls are unique
-			while ((player1 == player2) || (player1 == player3) || (player1 == player4) || (player2 == player3) || (player2 == player4) || (player3 == player4)) {
-				for (int i = 0; i < allPlayers.size(); i++) {
-					switch (i) {
-					case 0: 
-						player1 = rollDice();
-						rolls[0] = player1;
-						break;
-					case 1: 
-						player2 = rollDice();
-						rolls[1] = player2;
-						break;
-					case 2: 
-						player3 = rollDice();
-						rolls[2] = player3;
-						break;
-					case 3: 
-						player4 = rollDice();
-						rolls[3] = player4;
-						break;
-					}
-				}
-			}
-		}
-		else {
-			while ((player1 == player2)) {
-				
-				for (int i = 0; i < allPlayers.size(); i++) {
-					switch (i) {
-					case 0: 
-						player1 = rollDice();
-						rolls[0] = player1;
-						break;
-					case 1: 
-						player2 = rollDice();
-						rolls[1] = player2;
-						break;
-					}
-				}
-			}
-		}
-		//a bubble sort to create the order
-		
-		int temp;
-		Player temp2;
-		do {
-			//sorting
-			for (int i = 0; i < allPlayers.size() - 1; i++) {
-				if (rolls[i] < rolls[i + 1]) {
-					temp = rolls[i];
-					rolls[i] = rolls[i + 1];
-					rolls[i + 1] = temp;
-					
-					temp2 = allPlayers.get(i);
-					allPlayers.set(i, allPlayers.get(i + 1));
-					allPlayers.set(i + 1, temp2);
-					
-					
-				}
-			}
-			
-			switch (allPlayers.size()) {
-			case 2: 
-				if (rolls[0] > rolls[1]) {
-					sorted = true;
-				} 
-			break;
-			case 3: 
-				
-				if (rolls[0] > rolls[1] && rolls[1] > rolls[2]) {
-					sorted = true;
-				} 
-				
-				break;
-			case 4: 
-
-				if (rolls[0] > rolls[1] && rolls[1] > rolls[2] && rolls[2] > rolls[3]) {
-					sorted = true;
-				} 
-				
-				break;
-			}
-		} while (sorted == false);	
-	}
 }
+	
+	/*
+	 * //Decide order method that was created using a bubble sort in order to
+	 * determine which player goes first public void decideOrder() {
+	 * //ArrayList<String> order = new ArrayList<String>(); int player1 = 0, player2
+	 * = 0, player3 = 0, player4 = 0; int[] rolls = new int[allPlayers.size()];
+	 * boolean sorted = false;
+	 * 
+	 * 
+	 * if (allPlayers.size() != 2) { //this while loop rolls dice until all the
+	 * player's rolls are unique while ((player1 == player2) || (player1 == player3)
+	 * || (player1 == player4) || (player2 == player3) || (player2 == player4) ||
+	 * (player3 == player4)) { for (int i = 0; i < allPlayers.size(); i++) { switch
+	 * (i) { case 0: player1 = rollDice(); rolls[0] = player1; break; case 1:
+	 * player2 = rollDice(); rolls[1] = player2; break; case 2: player3 =
+	 * rollDice(); rolls[2] = player3; break; case 3: player4 = rollDice(); rolls[3]
+	 * = player4; break; } } } } else { while ((player1 == player2)) {
+	 * 
+	 * for (int i = 0; i < allPlayers.size(); i++) { switch (i) { case 0: player1 =
+	 * rollDice(); rolls[0] = player1; break; case 1: player2 = rollDice(); rolls[1]
+	 * = player2; break; } } } } //a bubble sort to create the order
+	 * 
+	 * int temp; Player temp2; do { //sorting for (int i = 0; i < allPlayers.size()
+	 * - 1; i++) { if (rolls[i] < rolls[i + 1]) { temp = rolls[i]; rolls[i] =
+	 * rolls[i + 1]; rolls[i + 1] = temp;
+	 * 
+	 * temp2 = allPlayers.get(i); allPlayers.set(i, allPlayers.get(i + 1));
+	 * allPlayers.set(i + 1, temp2);
+	 * 
+	 * 
+	 * } }
+	 * 
+	 * switch (allPlayers.size()) { case 2: if (rolls[0] > rolls[1]) { sorted =
+	 * true; } break; case 3:
+	 * 
+	 * if (rolls[0] > rolls[1] && rolls[1] > rolls[2]) { sorted = true; }
+	 * 
+	 * break; case 4:
+	 * 
+	 * if (rolls[0] > rolls[1] && rolls[1] > rolls[2] && rolls[2] > rolls[3]) {
+	 * sorted = true; }
+	 * 
+	 * break; } } while (sorted == false); }
+	 */

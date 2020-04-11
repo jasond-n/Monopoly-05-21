@@ -2,7 +2,42 @@
 // because it was used for the text based version of the game, adn this is the GUI version.
 
 public class GameConfiguration {
+	private int currentPlayerIndex;
 	
+	private boolean gameEnd;
+	private int numOfPlayers;
+	private Board gameBoard;
+	private Property landedProperty;
+	private int dice;
+	private String userInput;
+	
+	//constructor that initializes the gameboard and houses memory for the current player 
+	public GameConfiguration()
+	{
+		currentPlayerIndex = 0;
+		gameEnd = false;
+		numOfPlayers = 0;
+		gameBoard = new Board();
+		dice = 0;
+		userInput = "";
+	}
+	public Board getGameBoard() {
+		return gameBoard;
+	}
+
+	public void setGameBoard(Board gameBoard) {
+		this.gameBoard = gameBoard;
+	}
+
+	public int getCurrentPlayerIndex() {
+		return currentPlayerIndex;
+	}
+	public void setCurrentPlayerIndex(int currentPlayerIndex) {
+		this.currentPlayerIndex = currentPlayerIndex;
+	}
+}
+
+
 //	private static Board gameBoard;
 //	public static void main(String[] args) {
 //		System.out.println("Generating board...");
@@ -146,39 +181,3 @@ public class GameConfiguration {
 //		//sc.close();	
 //		
 //	}
-	
-	private int currentPlayerIndex;
-	
-	private boolean gameEnd;
-	private int numOfPlayers;
-	private Board gameBoard;
-	private Property landedProperty;
-	private int dice;
-	private String userInput;
-	
-	//constructor that initializes the gameboard and houses memory for the current player 
-	public GameConfiguration()
-	{
-		currentPlayerIndex = 0;
-		gameEnd = false;
-		numOfPlayers = 0;
-		gameBoard = new Board();
-		dice = 0;
-		userInput = "";
-	}
-	public Board getGameBoard() {
-		return gameBoard;
-	}
-
-	public void setGameBoard(Board gameBoard) {
-		this.gameBoard = gameBoard;
-	}
-
-	public int getCurrentPlayerIndex() {
-		return currentPlayerIndex;
-	}
-	public void setCurrentPlayerIndex(int currentPlayerIndex) {
-		this.currentPlayerIndex = currentPlayerIndex;
-	}
-	
-}
