@@ -195,7 +195,7 @@ public class GameController {
 			// Not finished. Need to add a for loop
             for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
                 if (gameConfiguration.getGameBoard().getAllPlayers().get(i).getIsBankrupt() == false) {
-                    consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(0).getAvatar());
+                    consoleLabel.setText(consoleLabel.getText() + ";\nGame Over! The winner is: " + gameConfiguration.getGameBoard().getAllPlayers().get(i).getAvatar());
                 }
             }
 		}
