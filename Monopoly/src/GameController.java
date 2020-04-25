@@ -660,25 +660,16 @@ public class GameController {
 				consoleLabel.setText(consoleLabel.getText() + "\n" + board.whoIsBankrupt().getAvatar() + " went bankrupt! They must give up their assets to the bank");
 				board.liquidateAssets();
 				//playerCount--;
-				
-				consoleLabel.setText(consoleLabel.getText() + "\n Remaining Players: ");
-				
-				for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
-					if(gameConfiguration.getGameBoard().getAllPlayers().get(gameConfiguration.getCurrentPlayerIndex()).getIsBankrupt() == false)
-					{
-					consoleLabel.setText(consoleLabel.getText() + " " + gameConfiguration.getGameBoard().getAllPlayers().get(i).getAvatar());	
-					}
-				}
 			}
+			
 			int numOfBankrupt = 0;
             for (int i = 0; i < gameConfiguration.getGameBoard().getAllPlayers().size(); i++) {
                 if (gameConfiguration.getGameBoard().getAllPlayers().get(i).getIsBankrupt() == true) {
                     numOfBankrupt++;
                 }
             }
-
             if (numOfBankrupt == 3) {
-                gameOver = true;
+            	gameOver = true;
             }
 	}
 
