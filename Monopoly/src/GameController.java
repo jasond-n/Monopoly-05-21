@@ -609,7 +609,7 @@ public class GameController {
 				if (userInput.equalsIgnoreCase("y")) {
 					p.loseMoney(50);
 					p.setInJail(false);
-					consoleLabel.setText(consoleLabel.getText() + "\nNice you are out of jail!");
+					consoleLabel.setText(consoleLabel.getText() + "\nNice you are out of jail! ");
 					gameBoard.rollDice();
 					consoleLabel.setText(consoleLabel.getText() + "You diced " + (gameBoard.getDice1() + gameBoard.getDice2()));
 					movePlayer(gameBoard.getDice1(),gameBoard.getDice2());
@@ -624,7 +624,7 @@ public class GameController {
 						movePlayer(gameBoard.getDice1(),gameBoard.getDice2());
 					}
 					else {
-						consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn!");
+						consoleLabel.setText(consoleLabel.getText() + "\nDamn you suck at rolling. Try again next turn! ");
 					}
 				}
 			} 
@@ -801,7 +801,7 @@ public class GameController {
 			landedProperty.doActionAfterPlayerLandingHere(p, d1 + d2, gameBoard, null);
 			break;
 		case 30:
-			consoleLabel.setText(consoleLabel.getText() + "\nGo to Jail");
+			consoleLabel.setText(consoleLabel.getText() + "\nGo to Jail ");
 			p.setPosition(10);
 			p.setInJail(true);
 			int tempValue = 0;
